@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="226921" started-at="2019-01-14T19:54:39Z" finished-at="2019-01-14T19:58:25Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="226921" started-at="2019-01-14T19:54:39Z" finished-at="2019-01-14T19:58:25Z">
+      <class name="WebLineaUnica">
+        <test-method status="PASS" signature="apis()[pri:0, instance:WebLineaUnica@4ed9f0]" name="apis" is-config="true" duration-ms="23490" started-at="2019-01-14T16:54:39Z" finished-at="2019-01-14T16:55:02Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- apis -->
+        <test-method status="PASS" signature="before()[pri:0, instance:WebLineaUnica@4ed9f0]" name="before" is-config="true" duration-ms="2377" started-at="2019-01-14T16:55:02Z" finished-at="2019-01-14T16:55:04Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- before -->
+        <test-method status="PASS" signature="asd()[pri:0, instance:WebLineaUnica@4ed9f0]" name="asd" duration-ms="91779" started-at="2019-01-14T16:55:04Z" finished-at="2019-01-14T16:56:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- asd -->
+        <test-method status="PASS" signature="after()[pri:0, instance:WebLineaUnica@4ed9f0]" name="after" is-config="true" duration-ms="6445" started-at="2019-01-14T16:56:36Z" finished-at="2019-01-14T16:56:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- after -->
+        <test-method status="PASS" signature="before()[pri:0, instance:WebLineaUnica@4ed9f0]" name="before" is-config="true" duration-ms="2208" started-at="2019-01-14T16:56:43Z" finished-at="2019-01-14T16:56:45Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- before -->
+        <test-method status="PASS" signature="asdd()[pri:0, instance:WebLineaUnica@4ed9f0]" name="asdd" duration-ms="87935" started-at="2019-01-14T16:56:45Z" finished-at="2019-01-14T16:58:13Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- asdd -->
+        <test-method status="PASS" signature="after()[pri:0, instance:WebLineaUnica@4ed9f0]" name="after" is-config="true" duration-ms="12658" started-at="2019-01-14T16:58:13Z" finished-at="2019-01-14T16:58:25Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- after -->
+      </class> <!-- WebLineaUnica -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
