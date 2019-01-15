@@ -105,8 +105,8 @@ public class Metodos {
 	
 	public static class waitFor {
 		
-		public static void selected(WebElement element) {
-			dynamicWait().until(ExpectedConditions.elementToBeSelected(element));
+		public static void presence(By element) {
+			dynamicWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(element));
 		}
 		
 		public static void click(WebElement element) {
@@ -116,7 +116,7 @@ public class Metodos {
 		}
 	}
 	
-	public void irA(String sMenu) {
+	public void irA(String sMenu, By element) {
 		sleep(3000);
 		List<WebElement> wMenu = driver.findElement(By.id("ul_menusolapas")).findElements(By.className("dev-solapa"));
 		for (WebElement wAux : wMenu) {
@@ -125,7 +125,7 @@ public class Metodos {
 				break;
 			}
 		}
-		sleep(5000);
+		waitFor.presence(element);
 	}
 	public int getIndexFrame(WebDriver driver, By byForElement) { 
 		int index = 0;

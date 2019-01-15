@@ -54,10 +54,9 @@ public class WebLineaUnica extends Metodos{
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
-	public void Comprar_Packs_Consultar_Comprobantes_MIX(){
+	public void Comprar_Packs_Consultar_Comprobantes_MIX() {
 		loginPorLinea("MIX");
-		irA("packs");
-		
+		irA("packs", By.id("sample-tablist"));
 		waitFor.click(driver.findElement(By.id("btnConsultarDesk")));
 		waitFor.click(driver.findElement(By.cssSelector(".item-cell-body.text-center")).findElement(By.tagName("a")));
 		Assert.assertTrue(false);
