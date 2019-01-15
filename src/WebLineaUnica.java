@@ -28,7 +28,7 @@ public class WebLineaUnica extends Metodos{
 		driver = setup();
 	}
 	
-	@AfterMethod
+	//@AfterMethod
 	public void after(){
 		waitFor.click(driver.findElement(By.id("tpi-user")));
 		waitFor.click(driver.findElement(By.id("tpi-form-logoff")));
@@ -36,8 +36,9 @@ public class WebLineaUnica extends Metodos{
 	}
 	
 	@Test
-	public void asd (){
+	public void TS_Comprar_Packs_Compra_de_Packs_MIX(){
 		loginPorLinea("MIX");
+		
 	}
 	
 	@Test
