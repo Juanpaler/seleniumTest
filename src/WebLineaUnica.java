@@ -32,7 +32,7 @@ public class WebLineaUnica extends Metodos{
 		driver = setup();
 	}
 	
-	@AfterMethod
+	//@AfterMethod
 	public void after(){
 		driver.findElement(By.id("tpi-user")).click();
 		sleep(2500);
@@ -41,8 +41,9 @@ public class WebLineaUnica extends Metodos{
 	}
 	
 	@Test
-	public void asd (){
+	public void TS_Comprar_Packs_Compra_de_Packs_MIX(){
 		loginPorLinea("MIX");
+		
 	}
 	
 	@Test
