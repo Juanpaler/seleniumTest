@@ -17,7 +17,7 @@ public class WebLineaUnica extends Metodos{
 	
 	private WebDriver driver;
 
-	//@BeforeClass
+	//@BeforeClass (alwaysRun = true)
 	public void apis(){
 		driver = setup();
 		driver.get("https://resourcesuat.telecom.com.ar/styles/v1/css/tpstyle.css");
@@ -27,19 +27,19 @@ public class WebLineaUnica extends Metodos{
 		driver.quit();
 	}
 	
-	@BeforeMethod
+	@BeforeMethod (alwaysRun = true)
 	public void before(){
 		driver = setup();
 	}
 	
-	//@AfterMethod
+	//@AfterMethod (alwaysRun = true)
 	public void after(){
 		waitFor.click(driver.findElement(By.id("tpi-user")));
 		waitFor.click(driver.findElement(By.id("tpi-form-logoff")));
 		driver.close();
 	}
 	
-	@Test
+	@Test (groups = "AutogestionIndividuosWeb")
 	public void TS_Comprar_Packs_Compra_de_Packs_MIX(){
 		loginPorLinea("MIX");
 		irA("packs");
@@ -67,8 +67,13 @@ public class WebLineaUnica extends Metodos{
 			
 	}
 	
-	@Test
-	public void asdd(){
-		loginPorLinea("Pre");
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Comprar_Packs_Consultar_Comprobantes_MIX(){
+		loginPorLinea("MIX");
+		irA("packs");
+		
+		waitFor.click(driver.findElement(By.id("btnConsultarDesk")));
+		waitFor.click(driver.findElement(By.cssSelector(".item-cell-body.text-center")).findElement(By.tagName("a")));
+		Assert.assertTrue(false);
 	}
 }

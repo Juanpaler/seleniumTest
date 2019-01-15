@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -109,6 +110,7 @@ public class Metodos {
 		
 		public static void click(WebElement element) {
 			dynamicWait().until(ExpectedConditions.elementToBeClickable(element));
+			((JavascriptExecutor) driver).executeScript("window.scrollTo(0," + element.getLocation().y + ")");
 			element.click();
 		}
 	}
