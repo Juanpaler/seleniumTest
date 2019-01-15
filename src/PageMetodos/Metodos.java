@@ -6,6 +6,7 @@ import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -124,5 +125,35 @@ public class Metodos {
 				break;
 			}
 		}
+		sleep(5000);
+	}
+	public int getIndexFrame(WebDriver driver, By byForElement) { 
+		int index = 0;
+		driver.switchTo().defaultContent();
+		List<WebElement> frames = driver.findElements(By.tagName("iframe"));
+		for(WebElement frame : frames) {
+			try {
+				driver.switchTo().frame(frame);
+
+				driver.findElement(byForElement).getText(); 
+
+				driver.findElement(byForElement).isDisplayed(); 
+				driver.switchTo().defaultContent();
+				return index;
+			}catch(NoSuchElementException noSuchElemExcept) {
+				index++;
+				driver.switchTo().defaultContent();
+			}
+		}
+		return -1; 
+	}
+	public WebElement cambioFrame(WebDriver driver, By byForElement) {
+		driver.switchTo().defaultContent();
+		List<WebElement> frames = driver.findElements(By.tagName("iframe"));
+		try {return frames.get(getIndexFrame(driver, byForElement));
+		}catch(ArrayIndexOutOfBoundsException iobExcept) {System.out.println("Elemento no encontrado en ningun frame.");
+			return null;
+		}
+
 	}
 }
