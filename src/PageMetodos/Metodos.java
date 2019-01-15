@@ -123,5 +123,17 @@ public class Metodos {
 		public static void elementToBeClickable(WebElement elem) {
 			dynamicWait().until(ExpectedConditions.elementToBeClickable(elem));
 		}
+		
+	}
+	
+	public void irA(String sMenu) {
+		sleep(3000);
+		List<WebElement> wMenu = driver.findElement(By.id("ul_menusolapas")).findElements(By.className("dev-solapa"));
+		for (WebElement wAux : wMenu) {
+			if (wAux.getText().toLowerCase().contains(sMenu.toLowerCase())) {
+				wAux.click();
+				break;
+			}
+		}
 	}
 }
