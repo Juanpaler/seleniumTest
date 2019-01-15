@@ -5,15 +5,12 @@ import java.util.List;
 import java.util.Set;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Metodos {
 	
@@ -37,7 +34,7 @@ public class Metodos {
 	
 	public void loginPorLinea(String tipoDeLinea) {
 		driver.get("https://autogestionuat.personal.com.ar");
-		waitFor.click(driver.findElement(By.id("modal-ingresar")));
+		driver.findElement(By.id("modal-ingresar")).click();
 		sleep(4000);
 		String parentWindowHandler = driver.getWindowHandle();
 		String subWindowHandler = null;
@@ -60,11 +57,11 @@ public class Metodos {
 			driver.findElement(By.id("linea-numero")).sendKeys(lineaPos);
 			break;
 		}
-		waitFor.click(driver.findElement(By.id("btn-login")));
+		driver.findElement(By.id("btn-login")).click();;
 		sleep(25000);
 		driver.findElement(By.id("idToken2")).clear();
 		driver.findElement(By.id("idToken2")).sendKeys("1469");
-		waitFor.click(driver.findElement(By.id("loginButton_0")));
+		driver.findElement(By.id("loginButton_0")).click();
 		driver.switchTo().window(parentWindowHandler);
 		sleep(20000);
 	}
@@ -98,25 +95,7 @@ public class Metodos {
 		sleep(2000);
 	}
 	
-	public static WebDriverWait dynamicWait() {
-		WebDriverWait wait = new WebDriverWait(driver, 15);
-		return wait;
-	}
-	
-	public static class waitFor {
-		
-		public static void presence(By element) {
-			dynamicWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(element));
-		}
-		
-		public static void click(WebElement element) {
-			dynamicWait().until(ExpectedConditions.elementToBeClickable(element));
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0," + element.getLocation().y + ")");
-			element.click();
-		}
-	}
-	
-	public void irA(String sMenu, By element) {
+	public void irA(String sMenu) {
 		sleep(3000);
 		List<WebElement> wMenu = driver.findElement(By.id("ul_menusolapas")).findElements(By.className("dev-solapa"));
 		for (WebElement wAux : wMenu) {
@@ -125,7 +104,6 @@ public class Metodos {
 				break;
 			}
 		}
-		waitFor.presence(element);
 	}
 	public int getIndexFrame(WebDriver driver, By byForElement) { 
 		int index = 0;
@@ -147,6 +125,7 @@ public class Metodos {
 		}
 		return -1; 
 	}
+	
 	public WebElement cambioFrame(WebDriver driver, By byForElement) {
 		driver.switchTo().defaultContent();
 		List<WebElement> frames = driver.findElements(By.tagName("iframe"));

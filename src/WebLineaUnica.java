@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -11,11 +13,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import PageMetodos.Metodos;
-import PageMetodos.Metodos.waitFor;
 
 public class WebLineaUnica extends Metodos{
 	
 	private WebDriver driver;
+	
 
 	//@BeforeClass (alwaysRun = true)
 	public void apis(){
@@ -34,8 +36,10 @@ public class WebLineaUnica extends Metodos{
 	
 	//@AfterMethod (alwaysRun = true)
 	public void after(){
-		waitFor.click(driver.findElement(By.id("tpi-user")));
-		waitFor.click(driver.findElement(By.id("tpi-form-logoff")));
+		driver.findElement(By.id("tpi-user")).click();
+		sleep(7000);
+		driver.findElement(By.id("tpi-form-logoff")).click();
+		sleep(7000);
 		driver.close();
 	}
 	
@@ -56,9 +60,11 @@ public class WebLineaUnica extends Metodos{
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Comprar_Packs_Consultar_Comprobantes_MIX() {
 		loginPorLinea("MIX");
-		irA("packs", By.id("sample-tablist"));
-		waitFor.click(driver.findElement(By.id("btnConsultarDesk")));
-		waitFor.click(driver.findElement(By.cssSelector(".item-cell-body.text-center")).findElement(By.tagName("a")));
+		irA("packs");
+		sleep(15000);
+		driver.findElement(By.id("btnConsultarDesk")).click();
+		sleep(15000);
+		driver.findElement(By.cssSelector(".item-cell-body.text-center")).findElement(By.cssSelector(".tpicon.font-30.tpicon-descargar"));
 		Assert.assertTrue(false);
 	}
 }
