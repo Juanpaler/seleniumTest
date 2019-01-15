@@ -1,11 +1,7 @@
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Set;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -50,7 +46,3 @@ public class WebLineaUnica extends Metodos{
 		loginPorLinea("Pre");
 	}
 }
-
-//ínea de prueba: 1162735148
-
-//pin, 1469
