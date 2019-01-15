@@ -95,24 +95,6 @@ public class Metodos {
 		sleep(2000);
 	}
 	
-	public static WebDriverWait dynamicWait() {
-		WebDriverWait wait = new WebDriverWait(driver, 15);
-		return wait;
-	}
-	
-	public static class waitFor {
-		
-		public static void presence(By element) {
-			dynamicWait().until(ExpectedConditions.presenceOfAllElementsLocatedBy(element));
-		}
-		
-		public static void click(WebElement element) {
-			dynamicWait().until(ExpectedConditions.elementToBeClickable(element));
-			((JavascriptExecutor) driver).executeScript("window.scrollTo(0," + element.getLocation().y + ")");
-			element.click();
-		}
-	}
-	
 	public void irA(String sMenu) {
 		sleep(3000);
 		List<WebElement> wMenu = driver.findElement(By.id("ul_menusolapas")).findElements(By.className("dev-solapa"));
