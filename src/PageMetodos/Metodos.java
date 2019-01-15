@@ -13,8 +13,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import PageMetodos.Metodos.waitFor;
-
 public class Metodos {
 	
 	static WebDriver driver;
@@ -38,8 +36,7 @@ public class Metodos {
 	public void loginPorLinea(String tipoDeLinea) {
 		driver.get("https://autogestionuat.personal.com.ar");
 		waitFor.click(driver.findElement(By.id("modal-ingresar")));
-		//driver.findElement(By.id("modal-ingresar")).click();
-		try {Thread.sleep(4000);} catch (InterruptedException ex) {Thread.currentThread().interrupt();}
+		sleep(4000);
 		String parentWindowHandler = driver.getWindowHandle();
 		String subWindowHandler = null;
 		Set<String> handles = driver.getWindowHandles();
@@ -49,7 +46,7 @@ public class Metodos {
 		}
 		driver.switchTo().window(subWindowHandler);
 		driver.findElement(By.id("linea-numero")).clear();
-		try {Thread.sleep(5000);} catch (Exception ignore) {}
+		sleep(5000);
 		switch(tipoDeLinea) {
 		case "MIX":
 			driver.findElement(By.id("linea-numero")).sendKeys(lineaMIX);
@@ -61,14 +58,13 @@ public class Metodos {
 			driver.findElement(By.id("linea-numero")).sendKeys(lineaPos);
 			break;
 		}
-		try {Thread.sleep(5000);} catch (Exception ignore) {}
-		driver.findElement(By.id("btn-login")).click();
-		try {Thread.sleep(15000);} catch (InterruptedException ex) {Thread.currentThread().interrupt();}
+		waitFor.click(driver.findElement(By.id("btn-login")));
+		sleep(25000);
 		driver.findElement(By.id("idToken2")).clear();
 		driver.findElement(By.id("idToken2")).sendKeys("1469");
-		driver.findElement(By.id("loginButton_0")).click();
+		waitFor.click(driver.findElement(By.id("loginButton_0")));
 		driver.switchTo().window(parentWindowHandler);
-		try {Thread.sleep(20000);} catch (Exception ignore) {}
+		sleep(20000);
 	}
 	
 	public void buscarYClick(List <WebElement> elements, String match, String texto) {
@@ -101,27 +97,19 @@ public class Metodos {
 	}
 	
 	public static WebDriverWait dynamicWait() {
-		WebDriverWait wait = new WebDriverWait(driver, 7);
+		WebDriverWait wait = new WebDriverWait(driver, 15);
 		return wait;
 	}
 	
 	public static class waitFor {
 		
-		public static void visibilityOfAllElements(List<WebElement> elems) {
-			dynamicWait().until(ExpectedConditions.visibilityOfAllElements(elems));
+		public static void selected(WebElement element) {
+			dynamicWait().until(ExpectedConditions.elementToBeSelected(element));
 		}
 		
 		public static void click(WebElement element) {
-			dynamicWait().until(ExpectedConditions.visibilityOf(element));
+			dynamicWait().until(ExpectedConditions.elementToBeClickable(element));
 			element.click();
-		}
-		
-		public static void elementToBeSelected(WebElement elem) {
-			dynamicWait().until(ExpectedConditions.elementToBeSelected(elem));
-		}
-		
-		public static void elementToBeClickable(WebElement elem) {
-			dynamicWait().until(ExpectedConditions.elementToBeClickable(elem));
 		}
 	}
 }

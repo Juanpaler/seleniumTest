@@ -30,9 +30,8 @@ public class WebLineaUnica extends Metodos{
 	
 	@AfterMethod
 	public void after(){
-		driver.findElement(By.id("tpi-user")).click();
-		sleep(2500);
-		driver.findElement(By.id("tpi-form-logoff")).click();
+		waitFor.click(driver.findElement(By.id("tpi-user")));
+		waitFor.click(driver.findElement(By.id("tpi-form-logoff")));
 		driver.close();
 	}
 	
