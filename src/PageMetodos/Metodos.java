@@ -104,6 +104,7 @@ public class Metodos {
 				break;
 			}
 		}
+		sleep(5000);
 	}
 	public int getIndexFrame(WebDriver driver, By byForElement) { 
 		int index = 0;

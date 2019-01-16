@@ -63,8 +63,37 @@ public class WebLineaUnica extends Metodos{
 		irA("packs");
 		sleep(15000);
 		driver.findElement(By.id("btnConsultarDesk")).click();
-		sleep(15000);
+		sleep(7000);
+		driver.findElement(By.cssSelector(".item-cell-body.text-center")).findElement(By.cssSelector(".tpicon.font-30.tpicon-descargar")).click();;
+		Assert.assertTrue(false);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Comprar_Packs_Consultar_Comprobantes_PRE() {
+		loginPorLinea("Pre");
+		irA("ahorros");
+		driver.findElement(By.cssSelector(".card.card-lg.packs.ng-scope")).click();
+		sleep(7000);
+		driver.findElement(By.id("btnConsultarDesk")).click();
+		sleep(7000);
 		driver.findElement(By.cssSelector(".item-cell-body.text-center")).findElement(By.cssSelector(".tpicon.font-30.tpicon-descargar"));
 		Assert.assertTrue(false);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Consumos_Detalles_de_Consumos_MIX() {
+		boolean tabla = false, detalles = false;
+		loginPorLinea("MIX");
+		irA("consumos");
+		driver.findElement(By.className("card-footer")).click();
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-block")), "contains", "consultar");
+		if (driver.findElement(By.id("tbodyMoviminetos")).isDisplayed())
+			tabla = true;
+		driver.findElement(By.id("tbodyMoviminetos")).findElement(By.tagName("tbody")).findElement(By.className("col-detalle")).click();
+		sleep(3000);
+		if (driver.findElement(By.cssSelector(".card.col-sm-7.col-sm-offset-3.col-lg-offset-3")).isDisplayed())
+			detalles = true;
+		Assert.assertTrue(tabla && detalles);
 	}
 }
