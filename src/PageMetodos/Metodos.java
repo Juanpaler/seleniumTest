@@ -28,7 +28,7 @@ public class Metodos {
 		return driver;
 	}
 		
-	public void sleep(int miliseconds) {
+	public static void sleep(int miliseconds) {
 		try {Thread.sleep(miliseconds);} catch (InterruptedException ex) {Thread.currentThread().interrupt();}
 	}
 	
@@ -86,7 +86,7 @@ public class Metodos {
 			}
 			break;
 		}
-		sleep(2000);
+		sleep(5000);
 	}
 	
 	public void selectByText(WebElement element, String data){
@@ -106,6 +106,7 @@ public class Metodos {
 		}
 		sleep(5000);
 	}
+	
 	public int getIndexFrame(WebDriver driver, By byForElement) { 
 		int index = 0;
 		driver.switchTo().defaultContent();

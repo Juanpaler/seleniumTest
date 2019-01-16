@@ -44,15 +44,33 @@ public class WebLineaUnica extends Metodos{
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
-	public void TS_Comprar_Packs_Compra_de_Packs_MIX(){
+	public void Comprar_Packs_Compra_de_Packs_MIX(){
 		loginPorLinea("MIX");
 		irA("packs");
-		sleep(8000);
-		driver.switchTo().frame(cambioFrame(driver, By.id("collapseOne")));
+		sleep(15000);
 		buscarYClick(driver.findElements(By.cssSelector(".list-group-item.dev-categorias.ng-scope")),"equals","roaming");
-		buscarYClick(driver.findElements(By.className("cursor-pointer")),"equals","roaming 20 sms mundial");
+		sleep(15000);
+		buscarYClick(driver.findElements(By.cssSelector(".list-group-item.ng-scope")),"contains","mundial");
+		sleep(15000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-responsive.btn-primary")),"equals","confirmar compra");
-		waitFor.selected(driver.findElement(By.id("principalExito")));
+		sleep(15000);
+		Assert.assertTrue(driver.findElement(By.id("principalExito")).isDisplayed());
+			
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Comprar_Packs_Compra_de_Packs_PRE(){
+		loginPorLinea("Pre");
+		irA("ahorros");
+		sleep(15000);
+		buscarYClick(driver.findElements(By.cssSelector(".card-body.ng-scope")),"equals","packs destacados");
+		sleep(15000);
+		buscarYClick(driver.findElements(By.cssSelector(".list-group-item.dev-categorias.ng-scope")),"equals","roaming");
+		sleep(15000);
+		buscarYClick(driver.findElements(By.cssSelector(".list-group-item.ng-scope")),"contains","mundial");
+		sleep(15000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-responsive.btn-primary")),"equals","confirmar compra");
+		sleep(15000);
 		Assert.assertTrue(driver.findElement(By.id("principalExito")).isDisplayed());
 			
 	}
@@ -95,5 +113,71 @@ public class WebLineaUnica extends Metodos{
 		if (driver.findElement(By.cssSelector(".card.col-sm-7.col-sm-offset-3.col-lg-offset-3")).isDisplayed())
 			detalles = true;
 		Assert.assertTrue(tabla && detalles);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Consumos_Packs_Activos_MIX(){
+		loginPorLinea("MIX");
+		irA("consumos");
+		sleep(12000);
+		buscarYClick(driver.findElements(By.cssSelector(".padding-right-pack.ng-scope")),"equals","packs activos");
+		sleep(15000);
+		WebElement tabla = driver.findElement(By.cssSelector(".list-store.margin-bottom-50"));
+		Assert.assertTrue(tabla.isDisplayed());
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Consumos_Packs_Activos_PRE(){
+		loginPorLinea("Pre");
+		irA("consumos");
+		sleep(12000);
+		buscarYClick(driver.findElements(By.cssSelector(".padding-right-pack.ng-scope")),"equals","packs activos");
+		sleep(15000);
+		WebElement tabla = driver.findElement(By.cssSelector(".list-store.margin-bottom-50"));
+		Assert.assertTrue(tabla.isDisplayed());
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mi_Linea_Baja_de_Suscripciones_MIX(){
+		loginPorLinea("MIX");
+		irA("mi l\u00ednea");
+		sleep(12000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","mis suscripciones");
+		sleep(20000);
+		buscarYClick(driver.findElements(By.id("btnEliminarMobile")),"equals","cancelar suscripci\u00f3n");
+		sleep(15000);
+		WebElement alert = driver.findElement(By.id("divSinSuscripciones"));
+		System.out.println(alert.getText());
+		Assert.assertTrue(alert.isDisplayed());
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mi_Linea_Baja_de_Suscripciones_PRE(){
+		loginPorLinea("Pre");
+		irA("mi l\u00ednea");
+		sleep(12000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","mis suscripciones");
+		sleep(20000);
+		buscarYClick(driver.findElements(By.cssSelector("tpicon.tpicon-cerrar2")),"equals","cancelar suscripci\u00f3n");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".col-xs-12.col-sm-12.item-cell")),"equals","aceptar");
+		sleep(12000);
+		WebElement alert = driver.findElement(By.id("divSinSuscripciones"));
+		System.out.println(alert.getText());
+		Assert.assertTrue(alert.isDisplayed());
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mi_Linea_Baja_de_Suscripciones_POS(){
+		loginPorLinea("Pos");
+		irA("mi l\u00ednea");
+		sleep(12000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","mis suscripciones");
+		sleep(20000);
+		buscarYClick(driver.findElements(By.id("btnEliminarMobile")),"equals","cancelar suscripci\u00f3n");
+		sleep(15000);
+		WebElement alert = driver.findElement(By.id("divSinSuscripciones"));
+		System.out.println(alert.getText());
+		Assert.assertTrue(alert.isDisplayed());
 	}
 }
