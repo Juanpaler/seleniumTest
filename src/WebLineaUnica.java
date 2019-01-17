@@ -85,9 +85,38 @@ public class WebLineaUnica extends Metodos{
 		irA("packs");
 		sleep(15000);
 		driver.findElement(By.id("btnConsultarDesk")).click();
-		sleep(15000);
+		sleep(7000);
+		driver.findElement(By.cssSelector(".item-cell-body.text-center")).findElement(By.cssSelector(".tpicon.font-30.tpicon-descargar")).click();;
+		Assert.assertTrue(false);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Comprar_Packs_Consultar_Comprobantes_PRE() {
+		loginPorLinea("Pre");
+		irA("ahorros");
+		driver.findElement(By.cssSelector(".card.card-lg.packs.ng-scope")).click();
+		sleep(7000);
+		driver.findElement(By.id("btnConsultarDesk")).click();
+		sleep(7000);
 		driver.findElement(By.cssSelector(".item-cell-body.text-center")).findElement(By.cssSelector(".tpicon.font-30.tpicon-descargar"));
 		Assert.assertTrue(false);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Consumos_Detalles_de_Consumos_MIX() {
+		boolean tabla = false, detalles = false;
+		loginPorLinea("MIX");
+		irA("consumos");
+		driver.findElement(By.className("card-footer")).click();
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-block")), "contains", "consultar");
+		if (driver.findElement(By.id("tbodyMoviminetos")).isDisplayed())
+			tabla = true;
+		driver.findElement(By.id("tbodyMoviminetos")).findElement(By.className("col-detalle")).click();
+		sleep(3000);
+		if (driver.findElement(By.cssSelector(".card.col-sm-7.col-sm-offset-3.col-lg-offset-3")).isDisplayed())
+			detalles = true;
+		Assert.assertTrue(tabla && detalles);
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
@@ -163,6 +192,68 @@ public class WebLineaUnica extends Metodos{
 		WebElement alert = driver.findElement(By.id("divSinSuscripciones"));
 		System.out.println(alert.getText());
 		Assert.assertTrue(alert.isDisplayed());
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Consumos_Detalles_de_Consumos_POS() {
+		boolean tabla = false;
+		loginPorLinea("Pos");
+		irA("consumos");
+		driver.findElement(By.cssSelector(".card.card-xs.detalle-consumos.dashboard")).click();
+		sleep(5000);
+		selectByText(driver.findElement(By.id("cmbTipoConsumo")), "Todos");
+		selectByText(driver.findElement(By.id("cmbPeriodosFijos")), "M\u00e1s");
+		driver.findElement(By.id("txtFechaDesde")).clear();
+		driver.findElement(By.id("txtFechaDesde")).sendKeys("01/01/2019");
+		driver.findElement(By.id("txtFechaHasta")).sendKeys("16/01/2019");
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-block")), "contains", "consultar");
+		sleep(5000);
+		if (driver.findElement(By.cssSelector(".list-store.detalle-consumo")).isDisplayed())
+			tabla = true;
+		Assert.assertTrue(tabla);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Consumos_Detalles_de_Consumos_PRE() {
+		boolean tabla = false, detalles = false;
+		loginPorLinea("Pre");
+		irA("consumos");
+		driver.findElement(By.className("card-footer")).click();
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-block")), "contains", "consultar");
+		if (driver.findElement(By.id("tbodyMoviminetos")).isDisplayed())
+			tabla = true;
+		driver.findElement(By.id("tbodyMoviminetos")).findElement(By.className("col-detalle")).click();
+		sleep(3000);
+		if (driver.findElement(By.cssSelector(".card.col-sm-7.col-sm-offset-3.col-lg-offset-3")).isDisplayed())
+			detalles = true;
+		Assert.assertTrue(tabla && detalles);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Recargas_Gestiones_y_Consultas_Recargar_Ahora_MIX() {
+		loginPorLinea("MIX");
+		irA("recargas");
+		driver.findElement(By.id("btnRecargaTarjeta")).click();
+		sleep(5000);
+		Assert.assertTrue(driver.findElement(By.id("divPin")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("divCaptcha")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("btnRecargaQuemaPin")).isDisplayed());
+		driver.findElement(By.id("lnkFlechaIzqQP")).click();
+		sleep(3000);
+		driver.findElement(By.id("btRecargas20")).click();
+		sleep(5000);
+		Assert.assertTrue(driver.findElement(By.id("divNuevaTC")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("divIngresoVto")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("divIngresoCodSeguridad")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("divCaptcha")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("btnContinuarTC")).isDisplayed());
+		driver.findElement(By.id("lnkFlechaIzqQP")).click();
+		sleep(3000);
+		driver.findElement(By.id("btnRecargaPuntosClub")).click();
+		sleep(5000);
+		driver.findElement(By.className("panel-heading")).findElement(By.className("collapsed")).click();
+		
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
