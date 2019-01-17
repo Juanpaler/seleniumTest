@@ -18,6 +18,7 @@ public class WebLineaUnica extends Metodos{
 	
 	private WebDriver driver;
 	
+	String imagen;
 
 	//@BeforeClass (alwaysRun = true)
 	public void apis(){
@@ -36,6 +37,7 @@ public class WebLineaUnica extends Metodos{
 	
 	//@AfterMethod (alwaysRun = true)
 	public void after(){
+		tomarCaptura(driver,imagen);
 		driver.findElement(By.id("tpi-user")).click();
 		sleep(7000);
 		driver.findElement(By.id("tpi-form-logoff")).click();
@@ -45,6 +47,7 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Comprar_Packs_Compra_de_Packs_MIX(){
+		imagen = "Comprar_Packs_Compra_de_Packs_MIX";
 		loginPorLinea("MIX");
 		irA("packs");
 		sleep(15000);
@@ -60,6 +63,7 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Comprar_Packs_Compra_de_Packs_PRE(){
+		imagen = "Comprar_Packs_Compra_de_Packs_PRE";
 		loginPorLinea("Pre");
 		irA("ahorros");
 		sleep(15000);
@@ -88,6 +92,7 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Consumos_Packs_Activos_MIX(){
+		imagen = "Consumos_Packs_Activos_MIX";
 		loginPorLinea("MIX");
 		irA("consumos");
 		sleep(12000);
@@ -99,6 +104,7 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Consumos_Packs_Activos_PRE(){
+		imagen = "Consumos_Packs_Activos_PRE";
 		loginPorLinea("Pre");
 		irA("consumos");
 		sleep(12000);
@@ -108,15 +114,18 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(tabla.isDisplayed());
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups = "AutogestionIndividuosWeb") 
 	public void Mi_Linea_Baja_de_Suscripciones_MIX(){
+		imagen = "Mi_Linea_Baja_de_Suscripciones_MIX";
 		loginPorLinea("MIX");
 		irA("mi l\u00ednea");
 		sleep(12000);
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","mis suscripciones");
-		sleep(20000);
-		buscarYClick(driver.findElements(By.id("btnEliminarMobile")),"equals","cancelar suscripci\u00f3n");
-		sleep(15000);
+		sleep(12000);
+		driver.findElement(By.id("btnEliminar")).click();
+		sleep(7000);
+		driver.findElement(By.id("btnAceptar")).click();
+		sleep(12000);
 		WebElement alert = driver.findElement(By.id("divSinSuscripciones"));
 		System.out.println(alert.getText());
 		Assert.assertTrue(alert.isDisplayed());
@@ -124,14 +133,15 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Mi_Linea_Baja_de_Suscripciones_PRE(){
+		imagen = "Mi_Linea_Baja_de_Suscripciones_PRE";
 		loginPorLinea("Pre");
 		irA("mi l\u00ednea");
 		sleep(12000);
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","mis suscripciones");
-		sleep(20000);
-		buscarYClick(driver.findElements(By.cssSelector("tpicon.tpicon-cerrar2")),"equals","cancelar suscripci\u00f3n");
-		sleep(10000);
-		buscarYClick(driver.findElements(By.cssSelector(".col-xs-12.col-sm-12.item-cell")),"equals","aceptar");
+		sleep(12000);
+		driver.findElement(By.id("btnEliminar")).click();
+		sleep(7000);
+		driver.findElement(By.id("btnAceptar")).click();
 		sleep(12000);
 		WebElement alert = driver.findElement(By.id("divSinSuscripciones"));
 		System.out.println(alert.getText());
@@ -140,15 +150,69 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Mi_Linea_Baja_de_Suscripciones_POS(){
+		imagen = "Mi_Linea_Baja_de_Suscripciones_POS";
 		loginPorLinea("Pos");
 		irA("mi l\u00ednea");
 		sleep(12000);
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","mis suscripciones");
-		sleep(20000);
-		buscarYClick(driver.findElements(By.id("btnEliminarMobile")),"equals","cancelar suscripci\u00f3n");
-		sleep(15000);
+		sleep(12000);
+		driver.findElement(By.id("btnEliminar")).click();
+		sleep(7000);
+		driver.findElement(By.id("btnAceptar")).click();
+		sleep(12000);
 		WebElement alert = driver.findElement(By.id("divSinSuscripciones"));
 		System.out.println(alert.getText());
 		Assert.assertTrue(alert.isDisplayed());
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mi_Linea_Claves_PIN_y_PUK_PRE(){
+		imagen = "Mi_Linea_Claves_PIN_y_PUK_PRE";
+		loginPorLinea("Pre");
+		irA("mi l\u00ednea");
+		sleep(12000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","claves pin y puk");
+		sleep(12000);
+		WebElement pin = driver.findElements(By.cssSelector(".well.text-center")).get(0);
+		WebElement puk = driver.findElements(By.cssSelector(".well.text-center")).get(1);
+		System.out.println(pin.findElement(By.tagName("h1")).getText());
+		System.out.println(puk.findElement(By.tagName("h1")).getText());
+		Assert.assertTrue(pin.getText().toLowerCase().contains("tu pin es:") && puk.getText().toLowerCase().contains("tu puk es:"));
+		Assert.assertTrue(pin.isDisplayed());
+		Assert.assertTrue(puk.isDisplayed());
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mi_Linea_Claves_PIN_y_PUK_POS(){
+		imagen = "Mi_Linea_Claves_PIN_y_PUK_POS";
+		loginPorLinea("Pos");
+		irA("mi l\u00ednea");
+		sleep(12000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","claves pin y puk");
+		sleep(12000);
+		WebElement pin = driver.findElements(By.cssSelector(".well.text-center")).get(0);
+		WebElement puk = driver.findElements(By.cssSelector(".well.text-center")).get(1);
+		System.out.println(pin.findElement(By.tagName("h1")).getText());
+		System.out.println(puk.findElement(By.tagName("h1")).getText());
+		Assert.assertTrue(pin.getText().toLowerCase().contains("tu pin es:") && puk.getText().toLowerCase().contains("tu puk es:"));
+		Assert.assertTrue(pin.isDisplayed());
+		Assert.assertTrue(puk.isDisplayed());
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mi_Linea_Claves_PIN_y_PUK_MIX(){
+		imagen = "Mi_Linea_Claves_PIN_y_PUK_MIX";
+		loginPorLinea("MIX");
+		irA("mi l\u00ednea");
+		sleep(12000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","claves pin y puk");
+		sleep(12000);
+		WebElement pin = driver.findElements(By.cssSelector(".well.text-center")).get(0);
+		WebElement puk = driver.findElements(By.cssSelector(".well.text-center")).get(1);
+		System.out.println(pin.findElement(By.tagName("h1")).getText());
+		System.out.println(puk.findElement(By.tagName("h1")).getText());
+		Assert.assertTrue(pin.getText().toLowerCase().contains("tu pin es:") && puk.getText().toLowerCase().contains("tu puk es:"));
+		Assert.assertTrue(pin.isDisplayed());
+		Assert.assertTrue(puk.isDisplayed());
 	}
 }
