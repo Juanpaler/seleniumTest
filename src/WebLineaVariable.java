@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.ClickAction;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
@@ -135,22 +136,151 @@ public class WebLineaVariable extends Metodos{
 	public void Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activacion_MIX(){
 		imagen = "Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activación_MIX";
 		String ln = "1162735148";
-		String ar = null;
 		ln = ln.substring(ln.length()-8);
-		System.out.println(ln);
 		LoginPorLineaVariable("1164461283");
 		irA("mi l\u00ednea");
 		sleep(12000);
 		buscarYClick(driver.findElements(By.cssSelector(".card-footer")),"equals","gestionar n\u00fameros gratis");
 		sleep(8000);
-		driver.findElement(By.id("divListNroSMS")).findElement(By.cssSelector(".text-destacado.text-destacado-lg")).click();
+			if(driver.findElement(By.id("divListNroSMS")).findElement(By.className("text-muted")).isDisplayed()){
+				driver.findElement(By.id("divListNroSMS")).findElement(By.cssSelector(".text-destacado.text-destacado-lg")).click();
+			}
+			else{  
+				driver.findElement(By.xpath("//*[@id='divListNroSMS']/div[2]/table/tbody/tr[2]/td[1]/a")).click();
+				}
 		sleep(5000);
 		driver.findElement(By.id("editSms")).findElement(By.id("inputCarct")).sendKeys("11");
 		driver.findElement(By.id("editSms")).findElement(By.id("inputNumb")).sendKeys(ln);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary")),"equals","guardar");
 		sleep(8000);
 		Assert.assertTrue(driver.findElement(By.cssSelector(".alert.alert-dismissable.alert-success.ng-binding")).getText().toLowerCase().contains(" registraste el n\u00famero gratis con \u00e9xito"));
-		}
+	}
 	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activacion_PRE(){
+		imagen = "Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activación_PRE";
+		String ln = "1162735148";
+		ln = ln.substring(ln.length()-8);
+		LoginPorLineaVariable("1164480623");
+		irA("mi l\u00ednea");
+		sleep(12000);
+		buscarYClick(driver.findElements(By.cssSelector(".card-footer")),"equals","gestionar n\u00fameros gratis");
+		sleep(8000);
+			if(driver.findElement(By.id("divListNroSMS")).findElement(By.className("text-muted")).isDisplayed()){
+				driver.findElement(By.id("divListNroSMS")).findElement(By.cssSelector(".text-destacado.text-destacado-lg")).click();
+			}
+			else{  
+				driver.findElement(By.xpath("//*[@id='divListNroSMS']/div[2]/table/tbody/tr[2]/td[1]/a")).click();
+				}
+		sleep(5000);
+		driver.findElement(By.id("editSms")).findElement(By.id("inputCarct")).sendKeys("11");
+		driver.findElement(By.id("editSms")).findElement(By.id("inputNumb")).sendKeys(ln);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary")),"equals","guardar");
+		sleep(8000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".alert.alert-dismissable.alert-success.ng-binding")).getText().toLowerCase().contains(" registraste el n\u00famero gratis con \u00e9xito"));
+	}
 	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Eliminacion_MIX(){
+		imagen = "Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Eliminacion_MIX";
+		String ln = "1162735148";
+		ln = ln.substring(ln.length()-8);
+		LoginPorLineaVariable("1164480623");
+		irA("mi l\u00ednea");
+		sleep(12000);
+		buscarYClick(driver.findElements(By.cssSelector(".card-footer")),"equals","gestionar n\u00fameros gratis");
+		sleep(8000);
+		driver.findElement(By.id("divListNroSMS")).findElement(By.cssSelector(".tpicon.tpicon-cerrar2.text-danger")).click();
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary")),"equals","confirmar");
+		sleep(8000);
+		Assert.assertTrue(driver.findElement(By.id("divListNroSMS")).findElement(By.className("text-muted")).isDisplayed());
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Eliminacion_PRE(){
+		imagen = "Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Eliminacion_PRE";
+		String ln = "1162735148";
+		ln = ln.substring(ln.length()-8);
+		LoginPorLineaVariable("1164480623");
+		irA("mi l\u00ednea");
+		sleep(12000);
+		buscarYClick(driver.findElements(By.cssSelector(".card-footer")),"equals","gestionar n\u00fameros gratis");
+		sleep(8000);
+		driver.findElement(By.id("divListNroSMS")).findElement(By.cssSelector(".tpicon.tpicon-cerrar2.text-danger")).click();
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary")),"equals","confirmar");
+		sleep(8000);
+		Assert.assertTrue(driver.findElement(By.id("divListNroSMS")).findElement(By.className("text-muted")).isDisplayed());
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Mi_Linea_Seguimineto_de_Gestiones_MIX(){
+		imagen = "Mi_Linea_Seguimineto_de_Gestiones_MIX";
+		LoginPorLineaVariable("1162755344");
+		irA("mi l\u00ednea");
+		sleep(12000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","seguimiento de gestiones");
+		sleep(8000);
+		Assert.assertTrue(driver.findElement(By.id("itemContainer")).isDisplayed());
+		driver.findElement(By.id("imgVerDetalle")).click();
+		sleep(5000);
+		Assert.assertTrue(false);
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Mi_Linea_Seguimineto_de_Gestiones_PRE(){
+		imagen = "Mi_Linea_Seguimineto_de_Gestiones_PRE";
+		LoginPorLineaVariable("1164405558");
+		irA("mi l\u00ednea");
+		sleep(12000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","seguimiento de gestiones");
+		sleep(8000);
+		Assert.assertTrue(driver.findElement(By.id("itemContainer")).isDisplayed());
+		driver.findElement(By.id("imgVerDetalle")).click();
+		sleep(5000);
+		Assert.assertTrue(false);
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Mi_Linea_Seguimineto_de_Gestiones_POS(){
+		imagen = "Mi_Linea_Seguimineto_de_Gestiones_POS";
+		LoginPorLineaVariable("1166248383");
+		irA("mi l\u00ednea");
+		sleep(12000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","seguimiento de gestiones");
+		sleep(8000);
+		Assert.assertTrue(driver.findElement(By.id("itemContainer")).isDisplayed());
+		driver.findElement(By.id("imgVerDetalle")).click();
+		sleep(5000);
+		Assert.assertTrue(false);
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Mis_Consumos_DataSharing_Alta_MIX(){
+		imagen = "Mis_Consumos_DataSharing_Alta_MIX";
+		String num = "64480754";
+		LoginPorLineaVariable("1164493210");
+		irA("consumos");
+		sleep(8000);
+		//List<WebElement> gigas = driver.findElements(By.cssSelector(".ds-tittle.text-destacado.text-destacado-xs"));
+		/*	for(WebElement g : gigas){
+				if(g.getText().toLowerCase().equals("gigas compartidos")){
+					buscarYClick(driver.findElements(By.cssSelector(".card.card-xs.data-sharing.ng-scope")),"contains","gigas compartidos");
+				}else{ */
+				buscarYClick(driver.findElements(By.cssSelector(".card.card-xs.data-sharing.ng-scopen")),"contains","\u00e1dministra gigas compartidos");
+		//		}
+		//	}
+		sleep(8000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"equals","comenzar");
+		sleep(8000);
+		driver.findElement(By.name("inp_CodArea")).sendKeys("11");
+		driver.findElement(By.id("inputNumb")).sendKeys(num);
+		driver.findElement(By.name("inp_Limite")).sendKeys("1");
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.ng-binding")),"equals","agregar");
+		sleep(8000);
+		Assert.assertTrue(driver.findElements(By.id("divExito")).contains("¡Felicitaciones! El n\u00famero se agreg\u00f3 con \u00e9xito"));
+		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.adm-i-compartido")).isDisplayed());
+		
+	}
 } 
