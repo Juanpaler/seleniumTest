@@ -53,8 +53,7 @@ public class WebLineaUnica extends Metodos{
 		sleep(15000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-responsive.btn-primary")),"equals","confirmar compra");
 		sleep(15000);
-		Assert.assertTrue(driver.findElement(By.id("principalExito")).isDisplayed());
-			
+		Assert.assertTrue(driver.findElement(By.id("principalExito")).isDisplayed());			
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
@@ -71,8 +70,7 @@ public class WebLineaUnica extends Metodos{
 		sleep(15000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-responsive.btn-primary")),"equals","confirmar compra");
 		sleep(15000);
-		Assert.assertTrue(driver.findElement(By.id("principalExito")).isDisplayed());
-			
+		Assert.assertTrue(driver.findElement(By.id("principalExito")).isDisplayed());			
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
