@@ -235,11 +235,112 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(driver.findElement(By.id("divIngresoCodSeguridad")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("divCaptcha")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("btnContinuarTC")).isDisplayed());
-		driver.findElement(By.id("lnkFlechaIzqQP")).click();
+		driver.findElement(By.id("lnkFlechaIzqTC")).click();
 		sleep(3000);
 		driver.findElement(By.id("btnRecargaPuntosClub")).click();
 		sleep(5000);
-		driver.findElement(By.className("panel-heading")).findElement(By.className("collapsed")).click();
+		driver.findElements(By.className("panel-heading")).get(2).click();
+		sleep(3000);
+		driver.findElement(By.cssSelector(".panel-body.list-group")).findElement(By.tagName("div")).click();
+		Assert.assertTrue(driver.findElement(By.cssSelector(".btn.btn-lg.btn-primary.pull-right.disabled")).isDisplayed());
+		for (int i=0; i<3; i++) {
+			for (WebElement x : driver.findElements(By.cssSelector(".card.card-lg.recarga-puntosclub")))
+				if (x.getText().toLowerCase().contains("puntos club disponibles")) {
+					x.findElement(By.cssSelector(".tpicon.tpicon-flechaizquierda")).click();
+				i++;
+			}
+		}
+		driver.findElement(By.id("btnRecargaOtrosMedios")).click();
+		sleep(7000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".aivohc-search-container.mat-card")).isDisplayed());
+		driver.navigate().back();
+		sleep(5000);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Recargas_Gestiones_y_Consultas_Recargar_Ahora_PRE() {
+		loginPorLinea("Pre");
+		irA("recargas");
+		driver.findElement(By.id("btnRecargaTarjeta")).click();
+		sleep(5000);
+		Assert.assertTrue(driver.findElement(By.id("divPin")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("divCaptcha")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("btnRecargaQuemaPin")).isDisplayed());
+		driver.findElement(By.id("lnkFlechaIzqQP")).click();
+		sleep(3000);
+		driver.findElement(By.id("btRecargas20")).click();
+		sleep(5000);
+		Assert.assertTrue(driver.findElement(By.id("divNuevaTC")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("divIngresoVto")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("divIngresoCodSeguridad")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("divCaptcha")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("btnContinuarTC")).isDisplayed());
+		driver.findElement(By.id("lnkFlechaIzqTC")).click();
+		sleep(3000);
+		driver.findElement(By.id("btnRecargaPuntosClub")).click();
+		sleep(5000);
+		driver.findElements(By.className("panel-heading")).get(2).click();
+		sleep(3000);
+		driver.findElement(By.cssSelector(".panel-body.list-group")).findElement(By.tagName("div")).click();
+		Assert.assertTrue(driver.findElement(By.cssSelector(".btn.btn-lg.btn-primary.pull-right.disabled")).isDisplayed());
+		for (int i=0; i<3; i++) {
+			for (WebElement x : driver.findElements(By.cssSelector(".card.card-lg.recarga-puntosclub")))
+				if (x.getText().toLowerCase().contains("puntos club disponibles")) {
+					x.findElement(By.cssSelector(".tpicon.tpicon-flechaizquierda")).click();
+				i++;
+			}
+		}
+		driver.findElement(By.id("btnRecargaOtrosMedios")).click();
+		sleep(7000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".aivohc-search-container.mat-card")).isDisplayed());
+		driver.navigate().back();
+		sleep(5000);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Recargas_Gestiones_y_Consultas_Ultimas_Recargas_MIX() {
+		loginPorLinea("MIX");
+		irA("recargas");
+		driver.findElement(By.cssSelector(".card.card-lg.padding-bottom-0")).click();
+		sleep(5000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".list-store.detalle-consumo")).isDisplayed());
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Recargas_Gestiones_y_Consultas_Ultimas_Recargas_PRE() {
+		loginPorLinea("Pre");
+		irA("recargas");
+		driver.findElement(By.cssSelector(".card.card-lg.padding-bottom-0")).click();
+		sleep(5000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".list-store.detalle-consumo")).isDisplayed());
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseña_MIX() {
+		loginPorLinea("MIX");
+		Assert.assertTrue(cambiarClave("1357"));
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseña_PRE() {
+		loginPorLinea("Pre");
+		Assert.assertTrue(cambiarClave("1357"));
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseña_POS() {
+		loginPorLinea("Pos");
+		Assert.assertTrue(cambiarClave("1357"));
+	}
+	
+	@Test
+	public void Facturacion_Gestiones_y_Consultas_Distribucion_de_Factura_MIX() {
+		loginPorLinea("MIX");
+		irA("facturaci\u00f3n");
+		for (WebElement x : driver.findElement(By.id("lista-menu-derecha")).findElements(By.tagName("li"))) {
+			if (x.getText().toLowerCase().contains("cu\u00e1ndo llega mi factura"))
+				x.click();
+		}
 		
 	}
 }

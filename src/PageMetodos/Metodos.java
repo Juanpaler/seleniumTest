@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 public class Metodos {
 	
@@ -135,6 +136,33 @@ public class Metodos {
 		}catch(ArrayIndexOutOfBoundsException iobExcept) {System.out.println("Elemento no encontrado en ningun frame.");
 			return null;
 		}
-
+	}
+	
+	public boolean cambiarClave(String nuevaClave) {
+		boolean cambioDeClave = false;
+		driver.findElement(By.id("tpi-user")).click();
+		sleep(3000);
+		driver.findElement(By.cssSelector(".tpi-user-link.tpi-fix-micuenta")).click();
+		sleep(15000);
+		driver.findElement(By.id("lnkCambioClave")).click();
+		sleep(15000);
+		driver.findElement(By.id("inputclaveanterior")).sendKeys("1469");
+		driver.findElement(By.id("inputclave")).sendKeys(nuevaClave);
+		driver.findElement(By.id("inputrepetirclave")).sendKeys(nuevaClave);
+		driver.findElement(By.id("btnAceptarCambio")).click();
+		sleep(5000);
+		if (driver.findElement(By.cssSelector(".card-body.padding-bottom-20")).getText().equalsIgnoreCase("El cambio de clave fue tomado correctamente."))
+			cambioDeClave = true;
+		driver.findElement(By.id("tpi-user")).click();
+		sleep(3000);
+		driver.findElement(By.cssSelector(".tpi-user-link.tpi-fix-micuenta")).click();
+		sleep(10000);
+		driver.findElement(By.id("lnkCambioClave")).click();
+		sleep(10000);
+		driver.findElement(By.id("inputclaveanterior")).sendKeys(nuevaClave);
+		driver.findElement(By.id("inputclave")).sendKeys("1469");
+		driver.findElement(By.id("inputrepetirclave")).sendKeys("1469");
+		driver.findElement(By.id("btnAceptarCambio")).click();
+		return cambioDeClave;
 	}
 }
