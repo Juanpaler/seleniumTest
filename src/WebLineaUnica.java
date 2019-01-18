@@ -1,11 +1,8 @@
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -17,7 +14,6 @@ import PageMetodos.Metodos;
 public class WebLineaUnica extends Metodos{
 	
 	private WebDriver driver;
-	
 	String imagen;
 
 	//@BeforeClass (alwaysRun = true)
@@ -57,8 +53,7 @@ public class WebLineaUnica extends Metodos{
 		sleep(15000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-responsive.btn-primary")),"equals","confirmar compra");
 		sleep(15000);
-		Assert.assertTrue(driver.findElement(By.id("principalExito")).isDisplayed());
-			
+		Assert.assertTrue(driver.findElement(By.id("principalExito")).isDisplayed());			
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
@@ -75,12 +70,12 @@ public class WebLineaUnica extends Metodos{
 		sleep(15000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-responsive.btn-primary")),"equals","confirmar compra");
 		sleep(15000);
-		Assert.assertTrue(driver.findElement(By.id("principalExito")).isDisplayed());
-			
+		Assert.assertTrue(driver.findElement(By.id("principalExito")).isDisplayed());			
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Comprar_Packs_Consultar_Comprobantes_MIX() {
+		imagen = "Comprar_Packs_Consultar_Comprobantes_MIX";
 		loginPorLinea("MIX");
 		irA("packs");
 		sleep(15000);
@@ -92,6 +87,7 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Comprar_Packs_Consultar_Comprobantes_PRE() {
+		imagen = "Comprar_Packs_Consultar_Comprobantes_PRE";
 		loginPorLinea("Pre");
 		irA("ahorros");
 		driver.findElement(By.cssSelector(".card.card-lg.packs.ng-scope")).click();
@@ -104,6 +100,7 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Consumos_Detalles_de_Consumos_MIX() {
+		imagen = "Consumos_Detalles_de_Consumos_MIX";
 		boolean tabla = false, detalles = false;
 		loginPorLinea("MIX");
 		irA("consumos");
@@ -196,6 +193,7 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Consumos_Detalles_de_Consumos_POS() {
+		imagen = "Consumos_Detalles_de_Consumos_POS";
 		boolean tabla = false;
 		loginPorLinea("Pos");
 		irA("consumos");
@@ -215,6 +213,7 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Consumos_Detalles_de_Consumos_PRE() {
+		imagen = "Consumos_Detalles_de_Consumos_PRE";
 		boolean tabla = false, detalles = false;
 		loginPorLinea("Pre");
 		irA("consumos");
@@ -232,6 +231,7 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Recargas_Gestiones_y_Consultas_Recargar_Ahora_MIX() {
+		imagen = "Recargas_Gestiones_y_Consultas_Recargar_Ahora_MIX";
 		loginPorLinea("MIX");
 		irA("recargas");
 		driver.findElement(By.id("btnRecargaTarjeta")).click();
@@ -248,11 +248,119 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(driver.findElement(By.id("divIngresoCodSeguridad")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("divCaptcha")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("btnContinuarTC")).isDisplayed());
-		driver.findElement(By.id("lnkFlechaIzqQP")).click();
+		driver.findElement(By.id("lnkFlechaIzqTC")).click();
 		sleep(3000);
 		driver.findElement(By.id("btnRecargaPuntosClub")).click();
 		sleep(5000);
-		driver.findElement(By.className("panel-heading")).findElement(By.className("collapsed")).click();
+		driver.findElements(By.className("panel-heading")).get(2).click();
+		sleep(3000);
+		driver.findElement(By.cssSelector(".panel-body.list-group")).findElement(By.tagName("div")).click();
+		Assert.assertTrue(driver.findElement(By.cssSelector(".btn.btn-lg.btn-primary.pull-right.disabled")).isDisplayed());
+		for (int i=0; i<3; i++) {
+			for (WebElement x : driver.findElements(By.cssSelector(".card.card-lg.recarga-puntosclub")))
+				if (x.getText().toLowerCase().contains("puntos club disponibles")) {
+					x.findElement(By.cssSelector(".tpicon.tpicon-flechaizquierda")).click();
+				i++;
+			}
+		}
+		driver.findElement(By.id("btnRecargaOtrosMedios")).click();
+		sleep(7000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".aivohc-search-container.mat-card")).isDisplayed());
+		driver.navigate().back();
+		sleep(5000);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Recargas_Gestiones_y_Consultas_Recargar_Ahora_PRE() {
+		imagen = "Recargas_Gestiones_y_Consultas_Recargar_Ahora_PRE";
+		loginPorLinea("Pre");
+		irA("recargas");
+		driver.findElement(By.id("btnRecargaTarjeta")).click();
+		sleep(5000);
+		Assert.assertTrue(driver.findElement(By.id("divPin")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("divCaptcha")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("btnRecargaQuemaPin")).isDisplayed());
+		driver.findElement(By.id("lnkFlechaIzqQP")).click();
+		sleep(3000);
+		driver.findElement(By.id("btRecargas20")).click();
+		sleep(5000);
+		Assert.assertTrue(driver.findElement(By.id("divNuevaTC")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("divIngresoVto")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("divIngresoCodSeguridad")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("divCaptcha")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("btnContinuarTC")).isDisplayed());
+		driver.findElement(By.id("lnkFlechaIzqTC")).click();
+		sleep(3000);
+		driver.findElement(By.id("btnRecargaPuntosClub")).click();
+		sleep(5000);
+		driver.findElements(By.className("panel-heading")).get(2).click();
+		sleep(3000);
+		driver.findElement(By.cssSelector(".panel-body.list-group")).findElement(By.tagName("div")).click();
+		Assert.assertTrue(driver.findElement(By.cssSelector(".btn.btn-lg.btn-primary.pull-right.disabled")).isDisplayed());
+		for (int i=0; i<3; i++) {
+			for (WebElement x : driver.findElements(By.cssSelector(".card.card-lg.recarga-puntosclub")))
+				if (x.getText().toLowerCase().contains("puntos club disponibles")) {
+					x.findElement(By.cssSelector(".tpicon.tpicon-flechaizquierda")).click();
+				i++;
+			}
+		}
+		driver.findElement(By.id("btnRecargaOtrosMedios")).click();
+		sleep(7000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".aivohc-search-container.mat-card")).isDisplayed());
+		driver.navigate().back();
+		sleep(5000);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Recargas_Gestiones_y_Consultas_Ultimas_Recargas_MIX() {
+		imagen = "Recargas_Gestiones_y_Consultas_Ultimas_Recargas_MIX";
+		loginPorLinea("MIX");
+		irA("recargas");
+		driver.findElement(By.cssSelector(".card.card-lg.padding-bottom-0")).click();
+		sleep(5000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".list-store.detalle-consumo")).isDisplayed());
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Recargas_Gestiones_y_Consultas_Ultimas_Recargas_PRE() {
+		imagen = "Recargas_Gestiones_y_Consultas_Ultimas_Recargas_PRE";
+		loginPorLinea("Pre");
+		irA("recargas");
+		driver.findElement(By.cssSelector(".card.card-lg.padding-bottom-0")).click();
+		sleep(5000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".list-store.detalle-consumo")).isDisplayed());
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseña_MIX() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseña_MIX";
+		loginPorLinea("MIX");
+		Assert.assertTrue(cambiarClave("1357"));
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseña_PRE() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseña_PRE";
+		loginPorLinea("Pre");
+		Assert.assertTrue(cambiarClave("1357"));
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseña_POS() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseña_POS";
+		loginPorLinea("Pos");
+		Assert.assertTrue(cambiarClave("1357"));
+	}
+	
+	@Test
+	public void Facturacion_Gestiones_y_Consultas_Distribucion_de_Factura_MIX() {
+		imagen = "Facturacion_Gestiones_y_Consultas_Distribucion_de_Factura_MIX";
+		loginPorLinea("MIX");
+		irA("facturaci\u00f3n");
+		for (WebElement x : driver.findElement(By.id("lista-menu-derecha")).findElements(By.tagName("li"))) {
+			if (x.getText().toLowerCase().contains("cu\u00e1ndo llega mi factura"))
+				x.click();
+		}
 		
 	}
 	
