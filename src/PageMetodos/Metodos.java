@@ -1,11 +1,17 @@
 package PageMetodos;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -58,6 +64,29 @@ public class Metodos {
 			driver.findElement(By.id("linea-numero")).sendKeys(lineaPos);
 			break;
 		}
+		driver.findElement(By.id("btn-login")).click();;
+		sleep(25000);
+		driver.findElement(By.id("idToken2")).clear();
+		driver.findElement(By.id("idToken2")).sendKeys("1469");
+		driver.findElement(By.id("loginButton_0")).click();
+		driver.switchTo().window(parentWindowHandler);
+		sleep(20000);
+	}
+	public void LoginPorLineaVariable(String sLinea){
+		driver.get("https://autogestionuat.personal.com.ar");
+		driver.findElement(By.id("modal-ingresar")).click();
+		sleep(4000);
+		String parentWindowHandler = driver.getWindowHandle();
+		String subWindowHandler = null;
+		Set<String> handles = driver.getWindowHandles();
+		Iterator<String> iterator = handles.iterator();
+		while (iterator.hasNext()) {
+			subWindowHandler = iterator.next();
+		}
+		driver.switchTo().window(subWindowHandler);
+		driver.findElement(By.id("linea-numero")).clear();
+		sleep(5000);
+		driver.findElement(By.id("linea-numero")).sendKeys(sLinea);
 		driver.findElement(By.id("btn-login")).click();;
 		sleep(25000);
 		driver.findElement(By.id("idToken2")).clear();
@@ -165,4 +194,31 @@ public class Metodos {
 		driver.findElement(By.id("btnAceptarCambio")).click();
 		return cambioDeClave;
 	}
+	
+	public void obligarclick(WebElement element) {	
+		((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+element.getLocation().y+")");
+	    element.click();
+	}
+	
+	public void tomarCaptura(WebDriver driver, String imageName) {
+	      //Directorio donde quedaran las imagenes guardadas
+		File directory;
+		
+	      directory = new File("IMG");
+		 
+	      try {
+	         if (directory.isDirectory()) {
+	            //Toma la captura de imagen
+	            File imagen = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+	            //Mueve el archivo a la carga especificada con el respectivo nombre
+	            FileUtils.copyFile(imagen, new File(directory.getAbsolutePath()   + "\\" + imageName + ".png"));
+	         } else {
+	            //Se lanza la excepcion cuando no encuentre el directorio
+	            throw new IOException("ERROR : La ruta especificada no es un directorio!");
+	         }
+	      } catch (IOException e) {
+	         //Impresion de Excepciones
+	         e.printStackTrace();
+	      }
+ }
 }
