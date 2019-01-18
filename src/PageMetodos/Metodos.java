@@ -17,7 +17,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 
 public class Metodos {
 	
@@ -72,6 +71,7 @@ public class Metodos {
 		driver.switchTo().window(parentWindowHandler);
 		sleep(20000);
 	}
+	
 	public void LoginPorLineaVariable(String sLinea){
 		driver.get("https://autogestionuat.personal.com.ar");
 		driver.findElement(By.id("modal-ingresar")).click();
@@ -144,13 +144,11 @@ public class Metodos {
 		for(WebElement frame : frames) {
 			try {
 				driver.switchTo().frame(frame);
-
 				driver.findElement(byForElement).getText(); 
-
 				driver.findElement(byForElement).isDisplayed(); 
 				driver.switchTo().defaultContent();
 				return index;
-			}catch(NoSuchElementException noSuchElemExcept) {
+			} catch(NoSuchElementException noSuchElemExcept) {
 				index++;
 				driver.switchTo().defaultContent();
 			}
@@ -161,8 +159,10 @@ public class Metodos {
 	public WebElement cambioFrame(WebDriver driver, By byForElement) {
 		driver.switchTo().defaultContent();
 		List<WebElement> frames = driver.findElements(By.tagName("iframe"));
-		try {return frames.get(getIndexFrame(driver, byForElement));
-		}catch(ArrayIndexOutOfBoundsException iobExcept) {System.out.println("Elemento no encontrado en ningun frame.");
+		try {
+			return frames.get(getIndexFrame(driver, byForElement));
+		} catch (ArrayIndexOutOfBoundsException iobExcept) {
+			System.out.println("Elemento no encontrado en ningun frame.");
 			return null;
 		}
 	}
@@ -201,24 +201,22 @@ public class Metodos {
 	}
 	
 	public void tomarCaptura(WebDriver driver, String imageName) {
-	      //Directorio donde quedaran las imagenes guardadas
+		// Directorio donde quedaran las imagenes guardadas
 		File directory;
-		
-	      directory = new File("IMG");
-		 
-	      try {
-	         if (directory.isDirectory()) {
-	            //Toma la captura de imagen
-	            File imagen = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-	            //Mueve el archivo a la carga especificada con el respectivo nombre
-	            FileUtils.copyFile(imagen, new File(directory.getAbsolutePath()   + "\\" + imageName + ".png"));
-	         } else {
-	            //Se lanza la excepcion cuando no encuentre el directorio
-	            throw new IOException("ERROR : La ruta especificada no es un directorio!");
-	         }
-	      } catch (IOException e) {
-	         //Impresion de Excepciones
-	         e.printStackTrace();
-	      }
- }
+		directory = new File("IMG");
+		try {
+			if (directory.isDirectory()) {
+				// Toma la captura de imagen
+				File imagen = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+				// Mueve el archivo a la carga especificada con el respectivo nombre
+				FileUtils.copyFile(imagen, new File(directory.getAbsolutePath() + "\\" + imageName + ".png"));
+			} else {
+				// Se lanza la excepcion cuando no encuentre el directorio
+				throw new IOException("ERROR : La ruta especificada no es un directorio!");
+			}
+		} catch (IOException e) {
+			// Impresion de Excepciones
+			e.printStackTrace();
+		}
+	}
 }

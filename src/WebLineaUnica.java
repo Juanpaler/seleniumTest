@@ -1,11 +1,8 @@
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -17,7 +14,6 @@ import PageMetodos.Metodos;
 public class WebLineaUnica extends Metodos{
 	
 	private WebDriver driver;
-	
 	String imagen;
 
 	//@BeforeClass (alwaysRun = true)
@@ -81,6 +77,7 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Comprar_Packs_Consultar_Comprobantes_MIX() {
+		imagen = "Comprar_Packs_Consultar_Comprobantes_MIX";
 		loginPorLinea("MIX");
 		irA("packs");
 		sleep(15000);
@@ -92,6 +89,7 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Comprar_Packs_Consultar_Comprobantes_PRE() {
+		imagen = "Comprar_Packs_Consultar_Comprobantes_PRE";
 		loginPorLinea("Pre");
 		irA("ahorros");
 		driver.findElement(By.cssSelector(".card.card-lg.packs.ng-scope")).click();
@@ -104,6 +102,7 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Consumos_Detalles_de_Consumos_MIX() {
+		imagen = "Consumos_Detalles_de_Consumos_MIX";
 		boolean tabla = false, detalles = false;
 		loginPorLinea("MIX");
 		irA("consumos");
@@ -196,6 +195,7 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Consumos_Detalles_de_Consumos_POS() {
+		imagen = "Consumos_Detalles_de_Consumos_POS";
 		boolean tabla = false;
 		loginPorLinea("Pos");
 		irA("consumos");
@@ -215,6 +215,7 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Consumos_Detalles_de_Consumos_PRE() {
+		imagen = "Consumos_Detalles_de_Consumos_PRE";
 		boolean tabla = false, detalles = false;
 		loginPorLinea("Pre");
 		irA("consumos");
@@ -232,6 +233,7 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Recargas_Gestiones_y_Consultas_Recargar_Ahora_MIX() {
+		imagen = "Recargas_Gestiones_y_Consultas_Recargar_Ahora_MIX";
 		loginPorLinea("MIX");
 		irA("recargas");
 		driver.findElement(By.id("btnRecargaTarjeta")).click();
@@ -272,6 +274,7 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Recargas_Gestiones_y_Consultas_Recargar_Ahora_PRE() {
+		imagen = "Recargas_Gestiones_y_Consultas_Recargar_Ahora_PRE";
 		loginPorLinea("Pre");
 		irA("recargas");
 		driver.findElement(By.id("btnRecargaTarjeta")).click();
@@ -312,6 +315,7 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Recargas_Gestiones_y_Consultas_Ultimas_Recargas_MIX() {
+		imagen = "Recargas_Gestiones_y_Consultas_Ultimas_Recargas_MIX";
 		loginPorLinea("MIX");
 		irA("recargas");
 		driver.findElement(By.cssSelector(".card.card-lg.padding-bottom-0")).click();
@@ -321,6 +325,7 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Recargas_Gestiones_y_Consultas_Ultimas_Recargas_PRE() {
+		imagen = "Recargas_Gestiones_y_Consultas_Ultimas_Recargas_PRE";
 		loginPorLinea("Pre");
 		irA("recargas");
 		driver.findElement(By.cssSelector(".card.card-lg.padding-bottom-0")).click();
@@ -330,24 +335,28 @@ public class WebLineaUnica extends Metodos{
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseña_MIX() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseña_MIX";
 		loginPorLinea("MIX");
 		Assert.assertTrue(cambiarClave("1357"));
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseña_PRE() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseña_PRE";
 		loginPorLinea("Pre");
 		Assert.assertTrue(cambiarClave("1357"));
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseña_POS() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseña_POS";
 		loginPorLinea("Pos");
 		Assert.assertTrue(cambiarClave("1357"));
 	}
 	
 	@Test
 	public void Facturacion_Gestiones_y_Consultas_Distribucion_de_Factura_MIX() {
+		imagen = "Facturacion_Gestiones_y_Consultas_Distribucion_de_Factura_MIX";
 		loginPorLinea("MIX");
 		irA("facturaci\u00f3n");
 		for (WebElement x : driver.findElement(By.id("lista-menu-derecha")).findElements(By.tagName("li"))) {
