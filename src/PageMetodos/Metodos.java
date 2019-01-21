@@ -99,6 +99,25 @@ public class Metodos {
 		sleep(20000);
 	}
 	
+	public void loginPorLineaMobile(WebDriver driver, String tipoDeLinea) {
+		sleep(5000);
+		switch(tipoDeLinea) {
+		case "MIX":
+			driver.findElement(By.id("editTextLinea")).sendKeys(lineaMIX);
+			break;
+		case "Pre":
+			driver.findElement(By.id("editTextLinea")).sendKeys(lineaPre);
+			break;
+		case "Pos":
+			driver.findElement(By.id("editTextLinea")).sendKeys(lineaPos);
+			break;
+		}
+        driver.findElement(By.id("btn_log_in")).click();
+        driver.findElement(By.id("editTextPin")).sendKeys("1469");
+        driver.findElement(By.id("btn_log_in")).click();
+        sleep(20000);
+	}
+	
 	public void buscarYClick(List <WebElement> elements, String match, String texto) {
 		sleep(2000);
 		switch (match) {
