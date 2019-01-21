@@ -359,11 +359,18 @@ public class WebLineaUnica extends Metodos{
 		imagen = "Facturacion_Gestiones_y_Consultas_Distribucion_de_Factura_MIX";
 		loginPorLinea("MIX");
 		irA("facturaci\u00f3n");
-		for (WebElement x : driver.findElement(By.id("lista-menu-derecha")).findElements(By.tagName("li"))) {
-			if (x.getText().toLowerCase().contains("cu\u00e1ndo llega mi factura"))
-				x.click();
-		}
+		try {
+			for (WebElement x : driver.findElement(By.id("lista-menu-derecha")).findElements(By.tagName("li"))) {
+				if (x.getText().toLowerCase().contains("cu\u00e1ndo llega mi factura"))
+					x.click();
+			}
+		} catch(Exception e) {}
+		sleep(5000);
+		//System.out.println("Tu ciclo de facturación cierra todos los días 27 de cada mes.");
+		WebElement cuadro = driver.findElement(By.className("cuando-llega-tu-factura"));
+		Assert.assertTrue(cuadro.getText().matches(".*Tu\\sciclo\\sde\\sfacturaci\u00f3n\\scierra\\stodos\\slos\\sd\u00edas\\s\\d{1,2}\\sde\\scada\\smes\\..*"));
 		
+		//Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"mvc-container\"]/section/div/div[4]/div[2]/div[2]")).getText().matches("^\\d{2}/\\d{2}/\\d{4}$"));
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
