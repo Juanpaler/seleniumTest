@@ -40,7 +40,7 @@ public class Metodos {
 	
 	public void loginPorLinea(String tipoDeLinea) {
 		driver.get("https://autogestionuat.personal.com.ar");
-		driver.findElement(By.id("modal-ingresar")).click();
+		/*driver.findElement(By.id("modal-ingresar")).click();
 		sleep(4000);
 		String parentWindowHandler = driver.getWindowHandle();
 		String subWindowHandler = null;
@@ -49,50 +49,53 @@ public class Metodos {
 		while (iterator.hasNext()) {
 			subWindowHandler = iterator.next();
 		}
-		driver.switchTo().window(subWindowHandler);
+		driver.switchTo().window(subWindowHandler);*/
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
 		driver.findElement(By.id("linea-numero")).clear();
 		sleep(5000);
 		switch(tipoDeLinea) {
 		case "MIX":
-			driver.findElement(By.id("linea-numero")).sendKeys(lineaMIX);
+			driver.findElement(By.id("idToken1")).sendKeys(lineaMIX);
 			break;
 		case "Pre":
-			driver.findElement(By.id("linea-numero")).sendKeys(lineaPre);
+			driver.findElement(By.id("idToken1")).sendKeys(lineaPre);
 			break;
 		case "Pos":
-			driver.findElement(By.id("linea-numero")).sendKeys(lineaPos);
+			driver.findElement(By.id("idToken1")).sendKeys(lineaPos);
 			break;
 		}
-		driver.findElement(By.id("btn-login")).click();;
-		sleep(25000);
+		//driver.findElement(By.id("btn-login")).click();;
+		//sleep(25000);
 		driver.findElement(By.id("idToken2")).clear();
 		driver.findElement(By.id("idToken2")).sendKeys("1469");
 		driver.findElement(By.id("loginButton_0")).click();
-		driver.switchTo().window(parentWindowHandler);
+		//driver.switchTo().window(parentWindowHandler);
 		sleep(20000);
 	}
 	
 	public void LoginPorLineaVariable(String sLinea){
 		driver.get("https://autogestionuat.personal.com.ar");
-		driver.findElement(By.id("modal-ingresar")).click();
-		sleep(4000);
-		String parentWindowHandler = driver.getWindowHandle();
+		//driver.findElement(By.id("modal-ingresar")).click();
+		//sleep(4000);
+		/*String parentWindowHandler = driver.getWindowHandle();
 		String subWindowHandler = null;
 		Set<String> handles = driver.getWindowHandles();
 		Iterator<String> iterator = handles.iterator();
 		while (iterator.hasNext()) {
 			subWindowHandler = iterator.next();
-		}
-		driver.switchTo().window(subWindowHandler);
-		driver.findElement(By.id("linea-numero")).clear();
-		sleep(5000);
-		driver.findElement(By.id("linea-numero")).sendKeys(sLinea);
-		driver.findElement(By.id("btn-login")).click();;
-		sleep(25000);
+		}*/
+		sleep(10000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		
+	//	driver.findElement(By.id("idToken1")).clear();
+		//sleep(5000);
+		driver.findElement(By.id("idToken1")).sendKeys(sLinea);
+	//	driver.findElement(By.id("btn-login")).click();;
+		//sleep(25000);
 		driver.findElement(By.id("idToken2")).clear();
 		driver.findElement(By.id("idToken2")).sendKeys("1469");
 		driver.findElement(By.id("loginButton_0")).click();
-		driver.switchTo().window(parentWindowHandler);
+		//driver.switchTo().window(parentWindowHandler);
 		sleep(20000);
 	}
 	

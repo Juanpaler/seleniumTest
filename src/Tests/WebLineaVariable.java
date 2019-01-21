@@ -263,25 +263,58 @@ public class WebLineaVariable extends Metodos{
 		String num = "64480754";
 		LoginPorLineaVariable("1164493210");
 		irA("consumos");
-		sleep(8000);
+		sleep(10000);
 		//List<WebElement> gigas = driver.findElements(By.cssSelector(".ds-tittle.text-destacado.text-destacado-xs"));
-		/*	for(WebElement g : gigas){
-				if(g.getText().toLowerCase().equals("gigas compartidos")){
-					buscarYClick(driver.findElements(By.cssSelector(".card.card-xs.data-sharing.ng-scope")),"contains","gigas compartidos");
-				}else{ */
-				buscarYClick(driver.findElements(By.cssSelector(".card.card-xs.data-sharing.ng-scopen")),"contains","\u00e1dministra gigas compartidos");
-		//		}
-		//	}
-		sleep(8000);
-		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"equals","comenzar");
-		sleep(8000);
+			//for(WebElement g : gigas){
+		
+				if(driver.findElement(By.className("acess-ds")).getText().equals("administr\u00e1 gigas compartidos")){
+					
+					driver.findElement(By.className("acess-ds")).click();
+					sleep(5000);
+					
+					
+				}else{ 
+					driver.findElement(By.className("agregar")).click();buscarYClick(driver.findElements(By.cssSelector(".card.card-xs.data-sharing.ng-scope")),"contains","gigas compartidos");
+					sleep(5000);
+					buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"equals","comenzar");
+					sleep(8000);
+				
+				}
+			//}
 		driver.findElement(By.name("inp_CodArea")).sendKeys("11");
 		driver.findElement(By.id("inputNumb")).sendKeys(num);
 		driver.findElement(By.name("inp_Limite")).sendKeys("1");
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.ng-binding")),"equals","agregar");
 		sleep(8000);
-		Assert.assertTrue(driver.findElements(By.id("divExito")).contains("¡Felicitaciones! El n\u00famero se agreg\u00f3 con \u00e9xito"));
+		Assert.assertTrue(driver.findElement(By.id("divExito")).getText().contains("El n\u00famero se agreg\u00f3 con \u00e9xito"));
 		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.adm-i-compartido")).isDisplayed());
+		
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Mis_Consumos_DataSharing_Modificacion_MIX(){
+		imagen = "Mis_Consumos_DataSharing_Modificacion_MIX";
+		LoginPorLineaVariable("1164493210");
+		irA("consumos");
+		sleep(10000);
+		driver.findElement(By.className("acess-ds")).click();
+		sleep(5000);
+		driver.findElement(By.cssSelector(".tpicon.tpicon-editar.edit")).click();
+		sleep(5000);
+		WebElement gigas = driver.findElement(By.id("inputCarct"));
+		System.out.println(gigas.getAttribute("value"));
+		gigas.clear();
+			if(gigas.getAttribute("value").equals("1")){
+				gigas.sendKeys("2");
+			}else{
+				gigas.getAttribute("value").equals("2");
+				driver.findElement(By.id("inputCarct")).sendKeys("1");
+		}
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.ng-binding")),"equals","guardar");
+		sleep(12000);
+		System.out.println(driver.findElement(By.id("divExito")).getText());
+		Assert.assertTrue(driver.findElement(By.id("divExito")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.cssSelector(".alert.alert-dismissable.alert-success")).getText().toLowerCase().contains("el l\u00edmite se modific\u00f3 con \u00e9xito"));
 		
 	}
 } 
