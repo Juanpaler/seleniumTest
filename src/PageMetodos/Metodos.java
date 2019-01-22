@@ -18,6 +18,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
 
+import io.appium.java_client.android.AndroidElement;
+
 public class Metodos {
 	
 	static WebDriver driver;
@@ -53,7 +55,7 @@ public class Metodos {
 		sleep(10000);
 		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
 		//driver.findElement(By.id("linea-numero")).clear();
-		sleep(5000);
+		//sleep(5000);
 		switch(tipoDeLinea) {
 		case "MIX":
 			driver.findElement(By.id("idToken1")).sendKeys(lineaMIX);
@@ -240,6 +242,15 @@ public class Metodos {
 		} catch (IOException e) {
 			// Impresion de Excepciones
 			e.printStackTrace();
+		}
+	}
+	
+	public void asd(List<AndroidElement> elements, String texto) {
+		for (WebElement x : elements) {
+			if (x.getText().toLowerCase().contains(texto.toLowerCase())) {
+				((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+ x.getLocation().y+")");
+				x.click();
+			}
 		}
 	}
 	public void completarDatos(String sMotivo, String sProvincia, String sCiudad, String sOficina, String sTelefono, String sMail, String sFecha){
