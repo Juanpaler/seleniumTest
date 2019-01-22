@@ -251,7 +251,7 @@ public class WebLineaVariable extends Metodos{
 		irA("mi l\u00ednea");
 		sleep(12000);
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","seguimiento de gestiones");
-		sleep(8000);
+		sleep(10000);
 		Assert.assertTrue(driver.findElement(By.id("itemContainer")).isDisplayed());
 		driver.findElement(By.id("imgVerDetalle")).click();
 		sleep(5000);
@@ -265,29 +265,20 @@ public class WebLineaVariable extends Metodos{
 		LoginPorLineaVariable("1164493210");
 		irA("consumos");
 		sleep(10000);
-		//List<WebElement> gigas = driver.findElements(By.cssSelector(".ds-tittle.text-destacado.text-destacado-xs"));
-			//for(WebElement g : gigas){
-		
-				if(driver.findElement(By.className("acess-ds")).getText().equals("administr\u00e1 gigas compartidos")){
-					
-					driver.findElement(By.className("acess-ds")).click();
-					sleep(5000);
-					
-					
-				}else{ 
-					driver.findElement(By.className("agregar")).click();buscarYClick(driver.findElements(By.cssSelector(".card.card-xs.data-sharing.ng-scope")),"contains","gigas compartidos");
-					sleep(5000);
-					buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"equals","comenzar");
-					sleep(8000);
-				
-				}
-			//}
+		try {
+			driver.findElement(By.className("acess-ds")).click();
+			sleep(5000);
+			driver.findElement(By.className("agregar")).click();;
+		} catch (Exception e) {}
+			buscarYClick(driver.findElements(By.cssSelector(".card.card-xs.data-sharing.ng-scope")),"contains","gigas compartidos");
+			sleep(5000);
+			buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"equals","comenzar");
+			sleep(8000);
 		driver.findElement(By.name("inp_CodArea")).sendKeys("11");
 		driver.findElement(By.id("inputNumb")).sendKeys(num);
 		driver.findElement(By.name("inp_Limite")).sendKeys("1");
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.ng-binding")),"equals","agregar");
 		sleep(8000);
-		Assert.assertTrue(driver.findElement(By.id("divExito")).getText().contains("El n\u00famero se agreg\u00f3 con \u00e9xito"));
 		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.adm-i-compartido")).isDisplayed());
 		
 	}
@@ -303,7 +294,6 @@ public class WebLineaVariable extends Metodos{
 		driver.findElement(By.cssSelector(".tpicon.tpicon-editar.edit")).click();
 		sleep(5000);
 		WebElement gigas = driver.findElement(By.id("inputCarct"));
-		System.out.println(gigas.getAttribute("value"));
 		gigas.clear();
 			if(gigas.getAttribute("value").equals("1")){
 				gigas.sendKeys("2");
@@ -312,10 +302,22 @@ public class WebLineaVariable extends Metodos{
 				driver.findElement(By.id("inputCarct")).sendKeys("1");
 		}
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.ng-binding")),"equals","guardar");
-		sleep(12000);
-		System.out.println(driver.findElement(By.id("divExito")).getText());
-		Assert.assertTrue(driver.findElement(By.id("divExito")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.cssSelector(".alert.alert-dismissable.alert-success")).getText().toLowerCase().contains("el l\u00edmite se modific\u00f3 con \u00e9xito"));
-		
+		sleep(15000);
+		Assert.assertTrue(driver.findElements(By.id("divExito")).get(1).getText().toLowerCase().contains("el l\u00edmite se modific\u00f3 con \u00e9xito"));
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Mis_Consumos_DataSharing_Baja_MIX(){
+		imagen = "Mis_Consumos_DataSharing_Baja_MIX";
+		LoginPorLineaVariable("1164493210");
+		irA("consumos");
+		sleep(10000);
+		driver.findElement(By.className("acess-ds")).click();
+		sleep(5000);
+		driver.findElement(By.cssSelector(".tpicon.tpicon-cerrar2.delete")).click();
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.ng-binding")),"equals","eliminar");
+		sleep(15000);
+		Assert.assertTrue(driver.findElements(By.id("divExito")).get(1).getText().toLowerCase().contains("el n\u00famero se elimin\u00f3 con \u00e9xito"));
 	}
 } 

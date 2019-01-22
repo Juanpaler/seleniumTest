@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -423,5 +423,88 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(pin.getText().toLowerCase().contains("tu pin es:") && puk.getText().toLowerCase().contains("tu puk es:"));
 		Assert.assertTrue(pin.isDisplayed());
 		Assert.assertTrue(puk.isDisplayed());
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Recargas_Recarga_SOS_MIX(){
+		imagen = "Recargas_Recarga_SOS_MIX";
+		loginPorLinea("MIX");
+		irA("recargas");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".list-group-item-full.padding-top-0")),"contains","recarga s.o.s.");
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".pull-right.btn.btn-lg.btn-responsive.btn-primary")),"contains","recarg\u00e1 ahora");
+		sleep(8000);
+		Assert.assertTrue(driver.findElement(By.id("divRecargasExitoAbono")).isDisplayed());
+		driver.findElement(By.id("lnkAtrasModulo")).click();
+		sleep(10000);
+		irA("recargas");
+		buscarYClick(driver.findElements(By.cssSelector(".list-group-item-full.padding-top-0")),"contains","recarga s.o.s.");
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".pull-right.btn.btn-lg.btn-responsive.btn-primary")),"contains","recarg\u00e1 ahora");
+		sleep(8000);
+		Assert.assertTrue(driver.findElement(By.id("lblErrorGlobal")).getText().toLowerCase().equals("la recarga s.o.s no pudo completarse porque ten\u00e9s pendiente el pago de la anterior."));
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Recargas_Recarga_SOS_PRE(){
+		imagen = "Recargas_Recarga_SOS_PRE";
+		loginPorLinea("MIX");
+		irA("recargas");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".list-group-item-full.padding-top-0")),"contains","recarga s.o.s.");
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".pull-right.btn.btn-lg.btn-responsive.btn-primary")),"contains","recarg\u00e1 ahora");
+		sleep(8000);
+		Assert.assertTrue(driver.findElement(By.id("divRecargasExitoAbono")).isDisplayed());
+		driver.findElement(By.id("lnkAtrasModulo")).click();
+		sleep(10000);
+		irA("recargas");
+		buscarYClick(driver.findElements(By.cssSelector(".list-group-item-full.padding-top-0")),"contains","recarga s.o.s.");
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".pull-right.btn.btn-lg.btn-responsive.btn-primary")),"contains","recarg\u00e1 ahora");
+		sleep(8000);
+		Assert.assertTrue(driver.findElement(By.id("lblErrorGlobal")).getText().toLowerCase().equals("la recarga s.o.s no pudo completarse porque ten\u00e9s pendiente el pago de la anterior."));
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mi_Linea_MI_Plan_MIX(){
+		imagen = "Mi_Linea_MI_Plan_MIX";
+		loginPorLinea("MIX");
+		irA("mi l\u00ednea");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","mi plan");
+		sleep(8000);
+		buscarYClick(driver.findElements(By.cssSelector(".col-xs-12.col-sm-12.col-md-1.item-cell.item-cell-last")),"contains","ver detalle");
+		Assert.assertTrue(driver.findElement(By.id("section-ui-view")).isDisplayed());
+		driver.findElements(By.cssSelector(".glyphicon.glyphicon-chevron-down")).get(6).click();
+		sleep(3000);
+		Assert.assertTrue(driver.findElement(By.id("legalDP")).findElement(By.tagName("div")).isDisplayed());
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mi_Linea_MI_Plan_POS(){
+		imagen = "Mi_Linea_MI_Plan_POS";
+		loginPorLinea("Pos");
+		irA("mi l\u00ednea");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","mi plan");
+		sleep(8000);
+		buscarYClick(driver.findElements(By.cssSelector(".col-xs-12.col-sm-12.col-md-1.item-cell.item-cell-last")),"contains","ver detalle");
+		Assert.assertTrue(driver.findElement(By.id("section-ui-view")).isDisplayed());
+		driver.findElements(By.cssSelector(".glyphicon.glyphicon-chevron-down")).get(6).click();
+		sleep(3000);
+		Assert.assertTrue(driver.findElement(By.id("legalDP")).findElement(By.tagName("div")).isDisplayed());
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mi_Linea_MI_Plan_POS_Plan_Black(){
+		imagen = "Mi_Linea_MI_Plan_POS_Plan_Black";
+		loginPorLinea("Pos");
+		irA("mi l\u00ednea");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","reserva de turno");
+		sleep(8000);
+		completarDatos("Compra de Equipo/L\u00ednea","Buenos Aires","San Justo","Dr. Ignacio Arieta 3169","111111111","a@a.com","23/01/2019");
 	}
 }

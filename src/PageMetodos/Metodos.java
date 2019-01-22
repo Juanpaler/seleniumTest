@@ -51,7 +51,7 @@ public class Metodos {
 			subWindowHandler = iterator.next();
 		}
 		driver.switchTo().window(subWindowHandler);*/
-		sleep(20000);
+		sleep(10000);
 		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
 		//driver.findElement(By.id("linea-numero")).clear();
 		//sleep(5000);
@@ -242,5 +242,24 @@ public class Metodos {
 			// Impresion de Excepciones
 			e.printStackTrace();
 		}
+	}
+	public void completarDatos(String sMotivo, String sProvincia, String sCiudad, String sOficina, String sTelefono, String sMail, String sFecha){
+		Select mot = new Select(driver.findElement(By.id("lstMotivo")));
+		mot.selectByVisibleText(sMotivo);
+		Select pro = new Select(driver.findElement(By.id("lstProvincia")));
+		pro.selectByVisibleText(sProvincia);
+		sleep(3500);
+		Select ciu = new Select(driver.findElement(By.id("lstLocalidad")));
+		ciu.selectByVisibleText(sCiudad);
+		Select ofi = new Select(driver.findElement(By.id("lstOficina")));
+		ofi.selectByVisibleText(sOficina);
+		driver.findElement(By.id("txtTelefonoAlter")).sendKeys(sTelefono);
+		driver.findElement(By.id("txtemail")).sendKeys(sMail);
+		driver.findElement(By.id("dpkReserva")).sendKeys(sFecha);
+		driver.findElement(By.id("txtHora")).click();
+		sleep(2500);
+		driver.findElement(By.id("liMan0")).click();
+		driver.findElement(By.id("btnConfirmar")).click();
+		sleep(8000);
 	}
 }
