@@ -367,10 +367,11 @@ public class WebLineaUnica extends Metodos{
 		} catch(Exception e) {}
 		sleep(5000);
 		//System.out.println("Tu ciclo de facturación cierra todos los días 27 de cada mes.");
-		WebElement cuadro = driver.findElement(By.className("cuando-llega-tu-factura"));
-		Assert.assertTrue(cuadro.getText().matches(".*Tu\\sciclo\\sde\\sfacturaci\u00f3n\\scierra\\stodos\\slos\\sd\u00edas\\s\\d{1,2}\\sde\\scada\\smes\\..*"));
+		WebElement ciclo = driver.findElement(By.className("cuando-llega-tu-factura")).findElement(By.className("row")).findElements(By.tagName("div")).get(1).findElements(By.tagName("div")).get(1);
+		System.out.println(ciclo.getText());
+		//Assert.assertTrue(cuadro.getText().contains("Tu ciclo de facturaci\u00f3n cierra todos los d\u00edas 27 de cada mes."));
 		
-		//Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"mvc-container\"]/section/div/div[4]/div[2]/div[2]")).getText().matches("^\\d{2}/\\d{2}/\\d{4}$"));
+		Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"mvc-container\"]/section/div/div[4]/div[2]/div[2]")).getText().matches("^\\d{2}/\\d{2}/\\d{4}$"));
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")

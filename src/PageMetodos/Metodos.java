@@ -2,9 +2,7 @@ package PageMetodos;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
@@ -18,6 +16,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
 
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 
 public class Metodos {
@@ -103,7 +102,7 @@ public class Metodos {
 	}
 	
 	public void loginPorLineaMobile(WebDriver driver, String tipoDeLinea) {
-		sleep(5000);
+		sleep(10000);
 		switch(tipoDeLinea) {
 		case "MIX":
 			driver.findElement(By.id("editTextLinea")).sendKeys(lineaMIX);
@@ -242,15 +241,6 @@ public class Metodos {
 		} catch (IOException e) {
 			// Impresion de Excepciones
 			e.printStackTrace();
-		}
-	}
-	
-	public void asd(List<AndroidElement> elements, String texto) {
-		for (WebElement x : elements) {
-			if (x.getText().toLowerCase().contains(texto.toLowerCase())) {
-				((JavascriptExecutor)driver).executeScript("window.scrollTo(0,"+ x.getLocation().y+")");
-				x.click();
-			}
 		}
 	}
 }
