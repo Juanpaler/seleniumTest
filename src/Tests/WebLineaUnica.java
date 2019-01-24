@@ -1,5 +1,8 @@
 package Tests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -507,4 +510,33 @@ public class WebLineaUnica extends Metodos{
 		sleep(8000);
 		completarDatos("Compra de Equipo/L\u00ednea","Buenos Aires","San Justo","Dr. Ignacio Arieta 3169","111111111","a@a.com","23/01/2019");
 	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Facturacion_Ver_Formas_de_Pago_MIX(){
+		imagen="Facturacion_Ver_Formas_de_Pago_MIX";
+		loginPorLinea("MIX");
+		irA("facturaci\u00f3n");
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","formas y lugares de pago");
+		sleep(15000);
+	    ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+	    driver.switchTo().window(tabs2.get(1));
+	    Assert.assertTrue(driver.findElement(By.id("mat-input-0")).isDisplayed());
+	    driver.close();
+	    driver.switchTo().window(tabs2.get(0));
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Facturacion_Ver_Formas_de_Pago_POS(){
+		imagen="Facturacion_Ver_Formas_de_Pago_POS";
+		loginPorLinea("Pos");
+		irA("facturaci\u00f3n");
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","formas y lugares de pago");
+		sleep(15000);
+	    ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+	    driver.switchTo().window(tabs2.get(1));
+	    Assert.assertTrue(driver.findElement(By.id("mat-input-0")).isDisplayed());
+	    driver.close();
+	    driver.switchTo().window(tabs2.get(0));
+	}
+	
 }
