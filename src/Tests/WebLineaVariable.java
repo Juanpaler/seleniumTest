@@ -1,5 +1,6 @@
 package Tests;
 
+import java.awt.AWTException;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -320,4 +321,75 @@ public class WebLineaVariable extends Metodos{
 		sleep(15000);
 		Assert.assertTrue(driver.findElements(By.id("divExito")).get(1).getText().toLowerCase().contains("el n\u00famero se elimin\u00f3 con \u00e9xito"));
 	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Facturacion_Imprimir_cupon_de_pago_MIX(){
+		imagen = "Facturacion_Imprimir_cupon_de_pago_MIX";
+		LoginPorLineaVariable("1162733281");
+		irA("facturaci\u00f3n");
+		sleep(10000);
+		driver.findElement(By.id("lnk-descargar-cupon-pagos")).click();
+		sleep(10000);
+		driver.findElement(By.id("inputImporte")).sendKeys("100");
+		sleep(2000);
+		driver.findElement(By.id("btnDescargar")).click();
+		// ===========  FALTA TERMINAR  ===============
+		Assert.assertTrue(false);
+	
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Facturacion_Imprimir_cupon_de_pago_POS() throws AWTException{
+		imagen = "Facturacion_Imprimir_cupon_de_pago_POS";
+		LoginPorLineaVariable("3413130145");
+		irA("facturaci\u00f3n");
+		sleep(10000);
+		driver.findElement(By.id("lnk-descargar-cupon-pagos")).click();
+		sleep(10000);
+		driver.findElement(By.id("inputImporte")).sendKeys("100");
+		sleep(2000);
+		driver.findElement(By.id("btnDescargar")).click();
+		
+		// ===========  FALTA TERMINAR  ===============
+		Assert.assertTrue(false);
+	}
+	
+	/*@Test(groups = "AutogestionIndividuosWeb") 
+	public void Facturacion_Ver_Facturas_MIX() throws AWTException{
+		imagen ="Facturacion_Ver_Facturas_MIX";
+		LoginPorLineaVariable("1162733281");
+		irA("facturaci\u00f3n");
+		sleep(10000);
+		driver.findElement(By.id("lnk-ver-todo-mis-facturas")).click();
+		sleep(8000);
+		String Fecha = driver.findElement(By.id("itemContainer")).findElements(By.cssSelector(".col-xs-12.col-md-2.item-cell.ng-scope")).get(0).findElement(By.cssSelector(".item-cell-body.padding-left-10-xs.ng-binding")).getText();
+		String NumFact = driver.findElement(By.id("itemContainer")).findElements(By.cssSelector(".col-xs-12.col-md-2.item-cell.ng-scope")).get(1).findElement(By.cssSelector(".item-cell-body.padding-left-10-xs.ng-binding")).getText();
+		Fecha = Fecha.replace("/", "-");
+		String Fecha2 = Fecha;
+		if(Fecha.charAt(3)=='0')
+			Fecha2= Fecha.substring(0,2)+Fecha.substring(4,Fecha.length());
+		if(Fecha.charAt(0)=='0')
+			Fecha2= Fecha2.substring(1,Fecha2.length());
+		System.out.println(NumFact);
+		System.out.println(Fecha);
+		driver.findElement(By.id("itemContainer")).findElement(By.cssSelector(".col-xs-12.col-md-2.item-cell.item-cell-last")).findElement(By.tagName("a")).click();
+		sleep(15000);
+		boolean exito = false;
+		AbrirTab(driver);
+		ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+		sleep(5000);
+		try {
+			driver.switchTo().window(tabs2.get(1));
+			driver.get("file:///C:/Users/Sofia%20Chardin/Downloads/"+NumFact+Fecha+".pdf");
+			exito = true;
+			LeerPDF pdfTextParserObj = new LeerPDF();
+			//String pdfToText = pdfTextParserObj.pdftoText(args[0]);
+			String pdfToText = pdfTextParserObj.pdftoText("C://Users//Sofia Chardin//Downloads//"+NumFact+Fecha+".pdf");
+			System.out.println(pdfToText);
+		}catch(Exception ex1) {
+			driver.close();
+		    driver.switchTo().window(tabs2.get(0));
+		}
+		
+	}*/
 } 
