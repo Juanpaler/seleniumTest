@@ -120,6 +120,15 @@ public class Metodos {
         sleep(20000);
 	}
 	
+	public void loginPorLineaMobileVariable(WebDriver driver, String linea) {
+		sleep(10000);
+		driver.findElement(By.id("editTextLinea")).sendKeys(linea);
+        driver.findElement(By.id("btn_log_in")).click();
+        driver.findElement(By.id("editTextPin")).sendKeys("1469");
+        driver.findElement(By.id("btn_log_in")).click();
+        sleep(20000);
+	}
+	
 	public void buscarYClick(List <WebElement> elements, String match, String texto) {
 		sleep(2000);
 		switch (match) {
