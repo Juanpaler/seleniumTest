@@ -1,5 +1,8 @@
 package PageMetodos;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -265,10 +268,20 @@ public class Metodos {
 		driver.findElement(By.id("txtTelefonoAlter")).sendKeys(sTelefono);
 		driver.findElement(By.id("txtemail")).sendKeys(sMail);
 		driver.findElement(By.id("dpkReserva")).sendKeys(sFecha);
+		sleep(1000);
 		driver.findElement(By.id("txtHora")).click();
 		sleep(2500);
 		driver.findElement(By.id("liMan0")).click();
 		driver.findElement(By.id("btnConfirmar")).click();
 		sleep(8000);
+	}
+	
+	public void AbrirTab(WebDriver driver) throws AWTException
+	{
+		Robot r = new Robot();       
+		r.keyPress(KeyEvent.VK_CONTROL); 
+		r.keyPress(KeyEvent.VK_T); 
+		r.keyRelease(KeyEvent.VK_CONTROL);
+		r.keyRelease(KeyEvent.VK_T);
 	}
 }
