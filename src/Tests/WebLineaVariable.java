@@ -73,8 +73,8 @@ public class WebLineaVariable extends Metodos{
 	}
 	
 	@Test(groups = "AutogestionIndividuosWeb")
-	public void Mi_Línea_Destransferencia_de_Llamadas_POS(){
-		imagen = "Mi_Línea_Destransferencia_de_Llamadas_POS";
+	public void Mi_Lï¿½nea_Destransferencia_de_Llamadas_POS(){
+		imagen = "Mi_Lï¿½nea_Destransferencia_de_Llamadas_POS";
 		LoginPorLineaVariable("1166248383");
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -139,7 +139,7 @@ public class WebLineaVariable extends Metodos{
 	
 	@Test(groups = "AutogestionIndividuosWeb") 
 	public void Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activacion_MIX(){
-		imagen = "Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activación_MIX";
+		imagen = "Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activaciï¿½n_MIX";
 		String ln = "1162735148";
 		ln = ln.substring(ln.length()-8);
 		LoginPorLineaVariable("1164461283");
@@ -163,7 +163,7 @@ public class WebLineaVariable extends Metodos{
 	
 	@Test(groups = "AutogestionIndividuosWeb") 
 	public void Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activacion_PRE(){
-		imagen = "Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activación_PRE";
+		imagen = "Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activaciï¿½n_PRE";
 		String ln = "1162735148";
 		ln = ln.substring(ln.length()-8);
 		LoginPorLineaVariable("1164480623");

@@ -19,9 +19,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-
 public class Metodos {
 	
 	static WebDriver driver;
@@ -80,9 +77,9 @@ public class Metodos {
 	
 	public void LoginPorLineaVariable(String sLinea){
 		driver.get("https://autogestionuat.personal.com.ar");
-		//driver.findElement(By.id("modal-ingresar")).click();
-		//sleep(4000);
-		/*String parentWindowHandler = driver.getWindowHandle();
+		/*driver.findElement(By.id("modal-ingresar")).click();
+		sleep(4000);
+		String parentWindowHandler = driver.getWindowHandle();
 		String subWindowHandler = null;
 		Set<String> handles = driver.getWindowHandles();
 		Iterator<String> iterator = handles.iterator();
@@ -90,12 +87,11 @@ public class Metodos {
 			subWindowHandler = iterator.next();
 		}*/
 		sleep(10000);
-		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
-		
-	//	driver.findElement(By.id("idToken1")).clear();
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));		
+		//driver.findElement(By.id("idToken1")).clear();
 		//sleep(5000);
 		driver.findElement(By.id("idToken1")).sendKeys(sLinea);
-	//	driver.findElement(By.id("btn-login")).click();;
+		//driver.findElement(By.id("btn-login")).click();;
 		//sleep(25000);
 		driver.findElement(By.id("idToken2")).clear();
 		driver.findElement(By.id("idToken2")).sendKeys("1469");
@@ -123,7 +119,16 @@ public class Metodos {
         sleep(20000);
 	}
 	
-	public void buscarYClick(List <WebElement> elements, String match, String texto) {
+	public void loginPorLineaMobileVariable(WebDriver driver, String linea) {
+		sleep(10000);
+		driver.findElement(By.id("editTextLinea")).sendKeys(linea);
+        driver.findElement(By.id("btn_log_in")).click();
+        driver.findElement(By.id("editTextPin")).sendKeys("1469");
+        driver.findElement(By.id("btn_log_in")).click();
+        sleep(20000);
+	}
+	
+	public void buscarYClick(List<WebElement> elements, String match, String texto) {
 		sleep(2000);
 		switch (match) {
 		case "contains":
@@ -267,8 +272,7 @@ public class Metodos {
 		sleep(8000);
 	}
 	
-	public void AbrirTab(WebDriver driver) throws AWTException
-	{
+	public void AbrirTab(WebDriver driver) throws AWTException {
 		Robot r = new Robot();       
 		r.keyPress(KeyEvent.VK_CONTROL); 
 		r.keyPress(KeyEvent.VK_T); 
