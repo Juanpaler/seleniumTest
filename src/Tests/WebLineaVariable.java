@@ -73,7 +73,7 @@ public class WebLineaVariable extends Metodos{
 	}
 	
 	@Test(groups = "AutogestionIndividuosWeb")
-	public void Mi_L�nea_Destransferencia_de_Llamadas_POS(){
+	public void Mi_Linea_Destransferencia_de_Llamadas_POS(){
 		imagen = "Mi_L�nea_Destransferencia_de_Llamadas_POS";
 		LoginPorLineaVariable("1166248383");
 		irA("mi l\u00ednea");
@@ -658,4 +658,89 @@ public class WebLineaVariable extends Metodos{
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.pull-right")),"equals","canjear");
 		Assert.assertTrue(false);
 	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Facturacion_Pagar_Factura_MIX(){
+		imagen = "Facturacion_Pagar_Factura_MIX";
+		LoginPorLineaVariable("1162733281");
+		irA("facturaci\u00f3n");
+		driver.findElement(By.id("btnPagarFactura")).click();
+		sleep(5000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".section-title")).getText().equals("Medios de pago disponibles"));
+		driver.findElement(By.id("lnkPagoTC")).click();
+		sleep(5000);
+		Assert.assertTrue(driver.findElement(By.id("nroTarjeta")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("txtVto")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("txtCodSeguridad")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("txtCaptcha")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("btnContinuar")).isDisplayed());
+		driver.findElement(By.cssSelector(".tpicon.tpicon-flechaizquierda.lnkVolverAindexPagar")).click();
+		sleep(5000);
+		driver.findElement(By.id("lnkPMCuentas")).click();
+		ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+	    driver.switchTo().window(tabs.get(1));
+	    sleep(5000);
+		Assert.assertTrue(driver.getCurrentUrl().equals("https://pagomiscuentas.com/"));
+		driver.close();
+		driver.switchTo().window(tabs.get(0));
+		sleep(5000);
+		driver.findElement(By.id("lnkLNKpagos")).click();
+		tabs=new ArrayList<String> (driver.getWindowHandles());
+		driver.switchTo().window(tabs.get(1));
+		sleep(5000);
+		Assert.assertTrue(driver.getCurrentUrl().equals("https://www.redlink.com.ar/link_pagos_y_cobranzas.html"));
+		driver.close();
+		driver.switchTo().window(tabs.get(0));
+		sleep(5000);
+		driver.findElement(By.id("lnkTodoPago")).click();
+		tabs=new ArrayList<String> (driver.getWindowHandles());
+		driver.switchTo().window(tabs.get(1));
+		sleep(5000);
+		Assert.assertTrue(driver.getCurrentUrl().equals("https://www.todopago.com.ar/"));
+		driver.close();
+		driver.switchTo().window(tabs.get(0));
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Facturacion_Pagar_Factura_POS(){
+		imagen = "Facturacion_Pagar_Factura_POS";
+		LoginPorLineaVariable("1165990597");
+		irA("facturaci\u00f3n");
+		driver.findElement(By.id("btnPagarFactura")).click();
+		sleep(5000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".section-title")).getText().equals("Medios de pago disponibles"));
+		driver.findElement(By.id("lnkPagoTC")).click();
+		sleep(5000);
+		Assert.assertTrue(driver.findElement(By.id("nroTarjeta")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("txtVto")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("txtCodSeguridad")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("txtCaptcha")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.id("btnContinuar")).isDisplayed());
+		driver.findElement(By.cssSelector(".tpicon.tpicon-flechaizquierda.lnkVolverAindexPagar")).click();
+		sleep(5000);
+		driver.findElement(By.id("lnkPMCuentas")).click();
+		ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+	    driver.switchTo().window(tabs.get(1));
+	    sleep(5000);
+		Assert.assertTrue(driver.getCurrentUrl().equals("https://pagomiscuentas.com/"));
+		driver.close();
+		driver.switchTo().window(tabs.get(0));
+		sleep(5000);
+		driver.findElement(By.id("lnkLNKpagos")).click();
+		tabs=new ArrayList<String> (driver.getWindowHandles());
+		driver.switchTo().window(tabs.get(1));
+		sleep(5000);
+		Assert.assertTrue(driver.getCurrentUrl().equals("https://www.redlink.com.ar/link_pagos_y_cobranzas.html"));
+		driver.close();
+		driver.switchTo().window(tabs.get(0));
+		sleep(5000);
+		driver.findElement(By.id("lnkTodoPago")).click();
+		tabs=new ArrayList<String> (driver.getWindowHandles());
+		driver.switchTo().window(tabs.get(1));
+		sleep(5000);
+		Assert.assertTrue(driver.getCurrentUrl().equals("https://www.todopago.com.ar/"));
+		driver.close();
+		driver.switchTo().window(tabs.get(0));
+	}
+	
 } 
