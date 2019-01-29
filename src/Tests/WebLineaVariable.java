@@ -1,6 +1,7 @@
 package Tests;
 
 import java.awt.AWTException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -18,6 +19,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import PageMetodos.Metodos;
+import PageMetodos.PDF;
 
 public class WebLineaVariable extends Metodos{
 	
@@ -354,7 +356,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(false);
 	}
 	
-	/*@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups = "AutogestionIndividuosWeb") 
 	public void Facturacion_Ver_Facturas_MIX() throws AWTException{
 		imagen ="Facturacion_Ver_Facturas_MIX";
 		LoginPorLineaVariable("1162733281");
@@ -366,12 +368,10 @@ public class WebLineaVariable extends Metodos{
 		String NumFact = driver.findElement(By.id("itemContainer")).findElements(By.cssSelector(".col-xs-12.col-md-2.item-cell.ng-scope")).get(1).findElement(By.cssSelector(".item-cell-body.padding-left-10-xs.ng-binding")).getText();
 		Fecha = Fecha.replace("/", "-");
 		String Fecha2 = Fecha;
-		if(Fecha.charAt(3)=='0')
-			Fecha2= Fecha.substring(0,2)+Fecha.substring(4,Fecha.length());
-		if(Fecha.charAt(0)=='0')
-			Fecha2= Fecha2.substring(1,Fecha2.length());
-		System.out.println(NumFact);
-		System.out.println(Fecha);
+			if(Fecha.charAt(3)=='0')
+				Fecha2= Fecha.substring(0,3)+Fecha.substring(4,Fecha.length());
+			if(Fecha.charAt(0)=='0')
+				Fecha2= Fecha2.substring(1,Fecha2.length());
 		driver.findElement(By.id("itemContainer")).findElement(By.cssSelector(".col-xs-12.col-md-2.item-cell.item-cell-last")).findElement(By.tagName("a")).click();
 		sleep(15000);
 		boolean exito = false;
@@ -380,16 +380,282 @@ public class WebLineaVariable extends Metodos{
 		sleep(5000);
 		try {
 			driver.switchTo().window(tabs2.get(1));
-			driver.get("file:///C:/Users/Sofia%20Chardin/Downloads/"+NumFact+Fecha+".pdf");
+			driver.get("file:///C:/Users/Sofia%20Chardin/Downloads/"+NumFact+"-"+Fecha2+".pdf");
 			exito = true;
-			LeerPDF pdfTextParserObj = new LeerPDF();
-			//String pdfToText = pdfTextParserObj.pdftoText(args[0]);
-			String pdfToText = pdfTextParserObj.pdftoText("C://Users//Sofia Chardin//Downloads//"+NumFact+Fecha+".pdf");
-			System.out.println(pdfToText);
-		}catch(Exception ex1) {
+			PDF pdf =  new PDF();
+			Assert.assertTrue(pdf.ContenidoPDF("C:\\Users\\Sofia Chardin\\Downloads\\"+NumFact+"-"+Fecha2+".pdf").contains(NumFact));
+			sleep(12000);
 			driver.close();
 		    driver.switchTo().window(tabs2.get(0));
+		    Assert.assertTrue(exito);
+		}catch(Exception ex1) {
+			System.out.println("Fallo la descarga de la factura");
+			driver.close();
+		    driver.switchTo().window(tabs2.get(0));
+			Assert.assertTrue(false);
+		    
 		}
 		
-	}*/
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Facturacion_Ver_Facturas_POS() throws AWTException{
+		imagen ="Facturacion_Ver_Facturas_POS";
+		LoginPorLineaVariable("1165990597");
+		irA("facturaci\u00f3n");
+		sleep(10000);
+		driver.findElement(By.id("lnk-ver-todo-mis-facturas")).click();
+		sleep(8000);
+		String Fecha = driver.findElement(By.id("itemContainer")).findElements(By.cssSelector(".col-xs-12.col-md-2.item-cell.ng-scope")).get(0).findElement(By.cssSelector(".item-cell-body.padding-left-10-xs.ng-binding")).getText();
+		String NumFact = driver.findElement(By.id("itemContainer")).findElements(By.cssSelector(".col-xs-12.col-md-2.item-cell.ng-scope")).get(1).findElement(By.cssSelector(".item-cell-body.padding-left-10-xs.ng-binding")).getText();
+		Fecha = Fecha.replace("/", "-");
+		String Fecha2 = Fecha;
+			if(Fecha.charAt(3)=='0')
+				Fecha2= Fecha.substring(0,3)+Fecha.substring(4,Fecha.length());
+			if(Fecha.charAt(0)=='0')
+				Fecha2= Fecha2.substring(1,Fecha2.length());
+		driver.findElement(By.id("itemContainer")).findElement(By.cssSelector(".col-xs-12.col-md-2.item-cell.item-cell-last")).findElement(By.tagName("a")).click();
+		sleep(15000);
+		boolean exito = false;
+		AbrirTab(driver);
+		ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+		sleep(5000);
+		try {
+			driver.switchTo().window(tabs2.get(1));
+			driver.get("file:///C:/Users/Sofia%20Chardin/Downloads/"+NumFact+"-"+Fecha2+".pdf");
+			exito = true;
+			PDF pdf =  new PDF();
+			Assert.assertTrue(pdf.ContenidoPDF("C:\\Users\\Sofia Chardin\\Downloads\\"+NumFact+"-"+Fecha2+".pdf").contains(NumFact));
+			sleep(12000);
+			driver.close();
+		    driver.switchTo().window(tabs2.get(0));
+		    Assert.assertTrue(exito);
+		}catch(Exception ex1) {
+			System.out.println("Fallo la descarga de la factura");
+			driver.close();
+		    driver.switchTo().window(tabs2.get(0));
+			Assert.assertTrue(false);
+		}
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Facturacion_Alarmas_POS(){
+		imagen = "Facturacion_Alarmas_POS";
+		LoginPorLineaVariable("1166248383");
+		irA("facturaci\u00f3n");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","configurar alarmas");
+		sleep(8000);
+		driver.findElement(By.className("chkAlarmaDispoSMS")).click();
+		sleep(1000);
+		driver.findElement(By.className("chkAlarmaProxVtoSMS")).click();
+		sleep(1000);
+		driver.findElement(By.id("btnGuardar")).click();
+		sleep(5000);
+		Assert.assertTrue(driver.findElement(By.id("lblMensajeExito")).getText().contains("Modificaste tus alarmas con \u00e9xito"));
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Facturacion_Alarmas_MIX(){
+		imagen = "Facturacion_Alarmas_MIX";
+		LoginPorLineaVariable("1162733281");
+		irA("facturaci\u00f3n");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","configurar alarmas");
+		sleep(8000);
+		driver.findElement(By.className("chkAlarmaDispoSMS")).click();
+		sleep(1000);
+		driver.findElement(By.className("chkAlarmaProxVtoSMS")).click();
+		sleep(1000);
+		driver.findElement(By.id("btnGuardar")).click();
+		sleep(5000);
+		Assert.assertTrue(driver.findElement(By.id("lblMensajeExito")).getText().contains("Modificaste tus alarmas con \u00e9xito"));
+	}
+		
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Login_Iniciar_Sesion_con_Linea_Inexistente(){
+		imagen = "Login_Iniciar_Sesion_con_Linea_Inexistente";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1111223311");
+		driver.findElement(By.id("idToken2")).clear();
+		driver.findElement(By.id("idToken2")).sendKeys("1234");
+		driver.findElement(By.id("loginButton_0")).click();
+		sleep(2000);
+		System.out.println(driver.findElement(By.className("message")).getText());
+		Assert.assertTrue(driver.findElement(By.className("message")).getText().contains("Los datos ingresados son incorrectos"));
+		Assert.assertTrue(driver.findElement(By.cssSelector(".fa.alert-message-icon")).isDisplayed());
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Login_Iniciar_Sesion_con_clave_Incorrecta(){
+		imagen = "Login_Iniciar_Sesion_con_clave_Incorrecta";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1166248383");
+		driver.findElement(By.id("idToken2")).clear();
+		driver.findElement(By.id("idToken2")).sendKeys("1234");
+		driver.findElement(By.id("loginButton_0")).click();
+		sleep(2000);
+		System.out.println(driver.findElement(By.className("message")).getText());
+		Assert.assertTrue(driver.findElement(By.className("message")).getText().contains("Los datos ingresados son incorrectos"));
+		Assert.assertTrue(driver.findElement(By.cssSelector(".fa.alert-message-icon")).isDisplayed());
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Login_Iniciar_Sesion_con_Linea_PreActiva(){
+		imagen = "Login_Iniciar_Sesion_con_clave_Incorrecta";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1162645152");
+		driver.findElement(By.id("idToken2")).clear();
+		driver.findElement(By.id("idToken2")).sendKeys("1469");
+		driver.findElement(By.id("loginButton_0")).click();
+		sleep(10000);
+		irA("mi l\u00ednea");
+		sleep(8000);
+		boolean asd = false;
+		for (WebElement x : driver.findElements(By.cssSelector(".card.card-front"))) {
+			if (x.getText().toLowerCase().contains("predesactiva")) {
+				x.isDisplayed();
+				asd = true;
+				break;
+			}
+		}
+		
+		Assert.assertTrue(asd);
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Facturacion_Notas_de_Credito_y_Debito_MIX() throws AWTException{
+		imagen = "Facturacion_Notas_de_Credito_y_Debito_MIX";
+		LoginPorLineaVariable("1161120234");
+		irA("facturaci\u00f3n");
+		sleep(12000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","notas de cr\u00e9dito y d\u00e9bito");
+		sleep(8000);
+		String Fecha = driver.findElement(By.id("itemContainer")).findElements(By.className("table-row")).get(0).findElements(By.cssSelector(".col-xs-7.col-sm-2.col-md-2.col-lg-2")).get(0).findElement(By.tagName("span")).getText();
+		String NumFact = driver.findElement(By.id("itemContainer")).findElements(By.className("table-row")).get(0).findElements(By.cssSelector(".col-xs-7.col-sm-2.col-md-2.col-lg-2")).get(1).findElement(By.tagName("span")).getText();
+		System.out.println(NumFact);
+		Fecha = Fecha.replace("/", "_");
+		String Fecha2 = Fecha;
+			if(Fecha.charAt(3)=='0')
+				Fecha2= Fecha.substring(0,3)+Fecha.substring(4,Fecha.length());
+			if(Fecha.charAt(0)=='0')
+				Fecha2= Fecha2.substring(1,Fecha2.length());
+		System.out.println(Fecha2);
+		System.out.println(NumFact+"_"+Fecha2+".pdf");
+		driver.findElement(By.className("dev-lnk-descargar")).click();
+		sleep(15000);
+		boolean exito = false;
+		AbrirTab(driver);
+		ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+		sleep(5000);
+		try {
+			driver.switchTo().window(tabs2.get(1));
+			driver.get("file:///C:/Users/Sofia%20Chardin/Downloads/"+NumFact+"_"+Fecha2+".pdf");
+			exito = true;
+			PDF pdf =  new PDF();
+			//Assert.assertTrue(pdf.ContenidoPDF("C:\\Users\\Sofia Chardin\\Downloads\\"+NumFact+"_"+Fecha2+".pdf").contains(NumFact));
+			sleep(12000);
+			driver.close();
+		    driver.switchTo().window(tabs2.get(0));
+		    Assert.assertTrue(exito);
+		}catch(Exception ex1) {
+			System.out.println("Fallo la descarga de la factura");
+			driver.close();
+		    driver.switchTo().window(tabs2.get(0));
+			Assert.assertTrue(false);
+		}
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Facturacion_Notas_de_Credito_y_Debito_POS() throws AWTException{
+		imagen = "Facturacion_Notas_de_Credito_y_Debito_POS";
+		LoginPorLineaVariable("1161120234");
+		irA("facturaci\u00f3n");
+		sleep(12000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","notas de cr\u00e9dito y d\u00e9bito");
+		sleep(8000);
+		String Fecha = driver.findElement(By.id("itemContainer")).findElements(By.className("table-row")).get(0).findElements(By.cssSelector(".col-xs-7.col-sm-2.col-md-2.col-lg-2")).get(0).findElement(By.tagName("span")).getText();
+		String NumFact = driver.findElement(By.id("itemContainer")).findElements(By.className("table-row")).get(0).findElements(By.cssSelector(".col-xs-7.col-sm-2.col-md-2.col-lg-2")).get(1).findElement(By.tagName("span")).getText();
+		Fecha = Fecha.replace("/", "_");
+		String Fecha2 = Fecha;
+			if(Fecha.charAt(3)=='0')
+				Fecha2= Fecha.substring(0,3)+Fecha.substring(4,Fecha.length());
+			if(Fecha.charAt(0)=='0')
+				Fecha2= Fecha2.substring(1,Fecha2.length());
+		driver.findElement(By.className("dev-lnk-descargar")).click();
+		sleep(15000);
+		boolean exito = false;
+		AbrirTab(driver);
+		ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+		sleep(5000);
+		try {
+			driver.switchTo().window(tabs2.get(1));
+			driver.get("file:///C:/Users/Sofia%20Chardin/Downloads/"+NumFact+"_"+Fecha2+".pdf");
+			exito = true;
+			PDF pdf =  new PDF();
+			System.out.println("C:\\Users\\Sofia Chardin\\Downloads\\"+NumFact+"_"+Fecha2+".pdf");
+			//Assert.assertTrue(pdf.ContenidoPDF("C:\\Users\\Sofia Chardin\\Downloads\\"+NumFact+"_"+Fecha2+".pdf").contains(NumFact));
+			sleep(12000);
+			driver.close();
+		    driver.switchTo().window(tabs2.get(0));
+		    Assert.assertTrue(exito);
+		}catch(Exception ex1) {
+			System.out.println("Fallo la descarga de la factura");
+			driver.close();
+		    driver.switchTo().window(tabs2.get(0));
+			Assert.assertTrue(false);
+		}
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Comprar_Packs_Compra_de_Packs_con_puntos_Club_MIX (){
+		imagen = "Comprar_Packs_Compra_de_Packs_con_puntos_Club_MIX";
+		LoginPorLineaVariable("1168829219");
+		irA("packs");
+		sleep(8000);
+		List <WebElement> packs = driver.findElement(By.id("collapseTwo")).findElements(By.cssSelector(".list-group-item.li-puntos-club"));
+			for(WebElement p : packs ){
+				if(p.getText().toLowerCase().equals("larga distancia internacional")){
+					p.click();
+				}
+			}
+		sleep(3000);
+		buscarYClick(driver.findElements(By.cssSelector(".panel-heading.titulo-simple")),"equals","minutos");
+		sleep(1500);
+		driver.findElement(By.id("collapseLargaDistanciaMinutos-pc")).findElement(By.cssSelector(".panel-body.lista-packs")).click();
+		sleep(8000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.pull-right")),"equals","canjear");
+		Assert.assertTrue(false);
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Comprar_Packs_Compra_de_Packs_con_puntos_Club_PRE(){
+		imagen = "Comprar_Packs_Compra_de_Packs_con_puntos_Club_PRE";
+		LoginPorLineaVariable("1164473518");
+		irA("ahorros");
+		sleep(15000);
+		buscarYClick(driver.findElements(By.cssSelector(".card-body.ng-scope")),"equals","packs destacados");
+		sleep(15000);
+		buscarYClick(driver.findElements(By.cssSelector(".list-group-item.dev-categorias.ng-scope")),"equals","roaming");
+		sleep(15000);
+		List <WebElement> packs = driver.findElement(By.id("collapseTwo")).findElements(By.cssSelector(".list-group-item.li-puntos-club"));
+			for(WebElement p : packs ){
+				if(p.getText().toLowerCase().equals("larga distancia internacional")){
+					p.click();
+				}
+			}
+		sleep(3000);
+		buscarYClick(driver.findElements(By.cssSelector(".panel-heading.titulo-simple")),"equals","minutos");
+		sleep(1500);
+		driver.findElement(By.id("collapseLargaDistanciaMinutos-pc")).findElement(By.cssSelector(".panel-body.lista-packs")).click();
+		sleep(12000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.pull-right")),"equals","canjear");
+		Assert.assertTrue(false);
+	}
 } 
