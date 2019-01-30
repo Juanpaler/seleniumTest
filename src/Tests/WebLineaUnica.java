@@ -368,15 +368,36 @@ public class WebLineaUnica extends Metodos{
 					x.click();
 			}
 		} catch(Exception e) {}
-		sleep(5000);
-		//System.out.println("Tu ciclo de facturación cierra todos los días 27 de cada mes.");
-		WebElement ciclo = driver.findElement(By.className("cuando-llega-tu-factura")).findElement(By.className("row")).findElements(By.tagName("div")).get(1).findElements(By.tagName("div")).get(1);
-		System.out.println(ciclo.getText());
-		//Assert.assertTrue(cuadro.getText().contains("Tu ciclo de facturaci\u00f3n cierra todos los d\u00edas 27 de cada mes."));
+		sleep(7000);
+		WebElement ciclo = driver.findElement(By.className("cuando-llega-tu-factura")).findElement(By.className("row")).findElements(By.tagName("div")).get(1).findElements(By.tagName("div")).get(1).findElement(By.tagName("b"));
+		WebElement dist = driver.findElement(By.className("cuando-llega-tu-factura")).findElements(By.className("row")).get(1).findElements(By.tagName("div")).get(1).findElements(By.tagName("div")).get(1).findElement(By.tagName("b"));
+		WebElement venc = driver.findElement(By.className("cuando-llega-tu-factura")).findElements(By.className("row")).get(2).findElements(By.tagName("div")).get(1).findElements(By.tagName("div")).get(1).findElement(By.tagName("b"));
+		Assert.assertTrue(ciclo.getText().matches("^\\d{2}$"));
+		Assert.assertTrue(dist.getText().matches("^\\d{2}/\\d{2}/\\d{4}$"));
+		Assert.assertTrue(venc.getText().matches("^\\d{2}/\\d{2}/\\d{4}$"));
 		
-		Assert.assertTrue(driver.findElement(By.xpath("//*[@id=\"mvc-container\"]/section/div/div[4]/div[2]/div[2]")).getText().matches("^\\d{2}/\\d{2}/\\d{4}$"));
 	}
 	
+	@Test
+	public void Facturacion_Gestiones_y_Consultas_Distribucion_de_Factura_POS() {
+		imagen = "Facturacion_Gestiones_y_Consultas_Distribucion_de_Factura_POS";
+		loginPorLinea("Pos");
+		irA("facturaci\u00f3n");
+		try {
+			for (WebElement x : driver.findElement(By.id("lista-menu-derecha")).findElements(By.tagName("li"))) {
+				if (x.getText().toLowerCase().contains("cu\u00e1ndo llega mi factura"))
+					x.click();
+			}
+		} catch(Exception e) {}
+		sleep(7000);
+		WebElement ciclo = driver.findElement(By.className("cuando-llega-tu-factura")).findElement(By.className("row")).findElements(By.tagName("div")).get(1).findElements(By.tagName("div")).get(1).findElement(By.tagName("b"));
+		WebElement dist = driver.findElement(By.className("cuando-llega-tu-factura")).findElements(By.className("row")).get(1).findElements(By.tagName("div")).get(1).findElements(By.tagName("div")).get(1).findElement(By.tagName("b"));
+		WebElement venc = driver.findElement(By.className("cuando-llega-tu-factura")).findElements(By.className("row")).get(2).findElements(By.tagName("div")).get(1).findElements(By.tagName("div")).get(1).findElement(By.tagName("b"));
+		Assert.assertTrue(ciclo.getText().matches("^\\d{2}$"));
+		Assert.assertTrue(dist.getText().matches("^\\d{2}/\\d{2}/\\d{4}$"));
+		Assert.assertTrue(venc.getText().matches("^\\d{2}/\\d{2}/\\d{4}$"));
+		
+	}
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Mi_Linea_Claves_PIN_y_PUK_PRE(){
 		imagen = "Mi_Linea_Claves_PIN_y_PUK_PRE";
