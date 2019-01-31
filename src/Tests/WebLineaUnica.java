@@ -568,4 +568,25 @@ public class WebLineaUnica extends Metodos{
 	    driver.switchTo().window(tabs2.get(0));
 	}
 	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Datos_Mi_Perfil_Cambio_de_Mail() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambio_de_Mail";
+		loginPorLinea("MIX");
+		driver.findElement(By.id("tpi-user")).click();
+		sleep(3000);
+		driver.findElement(By.cssSelector(".tpi-user-link.tpi-fix-micuenta")).click();
+		sleep(15000);
+		driver.findElement(By.id("lnkModificaMail")).click();
+		sleep(15000);
+		driver.findElement(By.cssSelector(".tpicon.tpicon-editar.form-control-feedback")).click();
+		sleep(1000);
+		driver.findElement(By.id("inputEmail")).sendKeys("alejandromza@gmail.com");
+		driver.findElement(By.id("btnGuardarMail")).click();
+		sleep(15000);
+		//Se necesita el acceso a la base para obtener el id de confirmacion 
+		Assert.assertTrue(false);
+		
+
+	}
+	
 }
