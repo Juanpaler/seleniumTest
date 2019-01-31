@@ -1,5 +1,8 @@
 package Tests;
 
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -529,7 +532,7 @@ public class WebLineaUnica extends Metodos{
 		sleep(10000);
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","reserva de turno");
 		sleep(8000);
-		completarDatos("Compra de Equipo/L\u00ednea","Buenos Aires","San Justo","Dr. Ignacio Arieta 3169","111111111","a@a.com","23/01/2019");
+		completarDatos("Compra de Equipo/L\u00ednea","Buenos Aires","San Justo","Dr. Ignacio Arieta 3169","111111111","a@a.com","20/02/2019");
 		Assert.assertTrue(driver.findElement(By.id("lblMensajeExito")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.id("lblMensajeExito")).getText().contains("Reservaste con \u00e9xito el turno para asistir a una oficina comercial"));
 		sleep(3000);
@@ -721,4 +724,144 @@ public class WebLineaUnica extends Metodos{
 			}
 		Assert.assertTrue(rompe);
 	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_SMS_Disponibles_PRE(){
+		imagen = "Mis_Consumos_SMS_Disponibles_PRE";
+		loginPorLinea("Pre");
+		irA("consumos");
+		sleep(8000);
+		boolean rompe = true;
+		List <WebElement> sms = driver.findElements(By.cssSelector(".card.card-xs.card-min.ng-scope"));
+			for(WebElement s : sms){
+				s.getText().toLowerCase().contains("sms");
+				if(s.findElement(By.tagName("span")).getText().equals("-")){
+					rompe = false;
+				}
+			}
+		Assert.assertTrue(rompe);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_Minutos_Disponibles_MIX(){
+		imagen = "Mis_Consumos_SMS_Disponibles_MIX";
+		loginPorLinea("MIX");
+		irA("consumos");
+		sleep(8000);
+		boolean rompe = true;
+		List <WebElement> sms = driver.findElements(By.cssSelector(".card.card-xs.card-min.ng-scope"));
+			for(WebElement s : sms){
+				System.out.println(s.getText());
+				s.getText().toLowerCase().contains("sms");
+				if(s.findElement(By.tagName("span")).getText().equals("-")){
+					rompe = false;
+				}
+			}
+		Assert.assertTrue(rompe);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_Minutos_Disponibles_PRE(){
+		imagen = "Mis_Consumos_SMS_Disponibles_PRE";
+		loginPorLinea("Pre");
+		irA("consumos");
+		sleep(8000);
+		boolean rompe = true;
+		List <WebElement> sms = driver.findElements(By.cssSelector(".card.card-xs.card-min.ng-scope"));
+			for(WebElement s : sms){
+				System.out.println(s.getText());
+				s.getText().toLowerCase().contains("sms");
+				if(s.findElement(By.tagName("span")).getText().equals("-")){
+					rompe = false;
+				}
+			}
+		Assert.assertTrue(rompe);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mi_Linea_Carga_Formulario_Baja_Servicio(){
+		imagen = "Mi_Linea_Carga_Formulario_Baja_Servicio";
+		loginPorLinea("MIX");
+		irA("mi l\u00ednea");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","baja del servicio");
+		sleep(10000);
+		Select doc = new Select(driver.findElement(By.id("tipodoc")));
+		doc.selectByVisibleText("DNI");
+		driver.findElement(By.id("numberdoc")).sendKeys("11232843");
+		driver.findElement(By.id("nombre")).sendKeys("pepe");
+		driver.findElement(By.id("apellido")).sendKeys("perez");
+		driver.findElement(By.id("email")).sendKeys("a@a.com");
+		driver.findElement(By.cssSelector(".form-control.areaCode")).sendKeys("11");
+		driver.findElement(By.cssSelector(".form-control.telephone1.celForm")).sendKeys("62735148");
+		Select dias = new Select(driver.findElement(By.id("diascontacto")));
+		dias.selectByVisibleText("Lunes");
+		Select hora = new Select(driver.findElement(By.id("horacontacto")));
+		hora.selectByIndex(1);
+		Select baja = new Select(driver.findElement(By.id("motivobaja")));
+		baja.selectByIndex(1);
+		driver.findElement(By.id("submit_fef510d6-2fbe-4f16-ac62-d4fc398de2c3")).click();
+		sleep(39000);
+		Assert.assertTrue(driver.findElement(By.id("tformtagBajaLinea")).isDisplayed());
+		
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mi_Linea_Carga_Formulario_Cambio_Titularidad(){
+		imagen = "Mi_Linea_Carga_Formulario_Cambio_Titularidad";
+		loginPorLinea("MIX");
+		irA("mi l\u00ednea");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","cambio de titularidad");
+		sleep(14000);
+		driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.hidden-xs.hidden-sm")).get(1).click();
+		sleep(8000);
+		driver.findElement(By.id("txtNombre")).sendKeys("pepe");
+		driver.findElement(By.id("txtApellido")).sendKeys("perez");
+		Select doc = new Select(driver.findElement(By.id("slcTipoDni")));
+		doc.selectByVisibleText("DNI");
+		driver.findElement(By.id("txtNroDoc")).sendKeys("11232843");
+		driver.findElement(By.id("txtFecNac-dia")).sendKeys("10");
+		Select mes = new Select(driver.findElement(By.id("txtFecNac-mes")));
+		mes.selectByVisibleText("Octubre");
+		driver.findElement(By.id("txtFecNac-anio")).sendKeys("1979");
+		driver.findElement(By.id("chkGenero")).findElement(By.tagName("input")).click();
+		driver.findElement(By.id("txtDireccion")).sendKeys("falsa");
+		driver.findElement(By.id("txtNumeroCalle")).sendKeys("1234");
+		driver.findElement(By.id("txtPiso")).sendKeys("1");
+		driver.findElement(By.id("txtDepto")).sendKeys("a");
+		driver.findElement(By.id("txtCodPostal")).sendKeys("1428");
+		Select prov = new Select(driver.findElement(By.id("prov-prov")));
+		prov.selectByVisibleText("Buenos Aires");
+		sleep(3000);
+		Select loca = new Select (driver.findElement(By.id("prov-loc")));
+		loca.selectByIndex(1);
+		Select iva = new Select (driver.findElement(By.id("txtIVA")));
+		iva.selectByIndex(1);
+		driver.findElement(By.id("txtEmail")).sendKeys("a@a.com");
+		driver.findElement(By.cssSelector(".form-control.areaCode")).sendKeys("11");
+		driver.findElement(By.cssSelector(".form-control.telephone1.celForm")).sendKeys("62735148");
+		driver.findElement(By.id("btnConfirm")).click();
+		sleep(8000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.hidden-xs.hidden-sm")),"equals","confirmar");
+		sleep(30000);
+		Assert.assertTrue(driver.findElements(By.cssSelector("text-center")).contains("La carga de datos fue exitosa"));
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary")),"contains","finalizar");
+		
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mi_Linea_Carga_Formulario_Autorizado(){
+		imagen = "Mi_Linea_Carga_Formulario_Autorizado";
+		loginPorLinea("MIX");
+		irA("mi l\u00ednea");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","autorizar l\u00edneas no titulares");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.btnMedia")),"equals","agregar autorizado");
+		sleep(8000);
+		Assert.assertTrue(false);
+	}
+	
+	
 }

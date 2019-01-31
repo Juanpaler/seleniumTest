@@ -27,7 +27,7 @@ public class WebLineaVariable extends Metodos{
 	
 	String imagen;
 
-	//@BeforeClass (alwaysRun = true)
+	@BeforeClass (alwaysRun = true)
 	public void apis(){
 		driver = setup();
 		driver.get("https://resourcesuat.telecom.com.ar/styles/v1/css/tpstyle.css");
@@ -38,7 +38,7 @@ public class WebLineaVariable extends Metodos{
 	}
 	
 	@BeforeMethod (alwaysRun = true)
-	public void before(){
+		public void before(){
 		driver = setup();
 	}
 	
@@ -139,7 +139,7 @@ public class WebLineaVariable extends Metodos{
 	
 	@Test(groups = "AutogestionIndividuosWeb") 
 	public void Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activacion_MIX(){
-		imagen = "Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activaci�n_MIX";
+		imagen = "Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activacion_MIX";
 		String ln = "1162735148";
 		ln = ln.substring(ln.length()-8);
 		LoginPorLineaVariable("1164461283");
@@ -741,6 +741,69 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.getCurrentUrl().equals("https://www.todopago.com.ar/"));
 		driver.close();
 		driver.switchTo().window(tabs.get(0));
+	}
+
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_MIX(){
+		imagen = "Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_MIX";
+		LoginPorLineaVariable("1162749941");
+		driver.findElement(By.id("tpi-user")).click();
+		sleep(3000);
+		driver.findElement(By.cssSelector(".tpi-user-link.tpi-fix-micuenta")).click();
+		sleep(15000);
+		driver.findElement(By.id("lnkDomicilioFacturacion")).click();
+		sleep(8000);
+		driver.findElement(By.id("btnAction")).click();
+		sleep(3000);
+		driver.findElement(By.id("inputDni")).sendKeys("33851579");
+		Select prov = new Select(driver.findElement(By.id("lstProvincia")));
+		prov.selectByVisibleText("Capital Federal y GBA");
+		driver.findElement(By.id("inputNumeroCalle")).clear();
+		driver.findElement(By.id("inputNumeroCalle")).sendKeys("4682");
+		driver.findElement(By.id("btnAction")).click();
+		Assert.assertTrue(false);
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_POS(){
+		imagen = "Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_POS";
+		LoginPorLineaVariable("1145642605");
+		driver.findElement(By.id("tpi-user")).click();
+		sleep(3000);
+		driver.findElement(By.cssSelector(".tpi-user-link.tpi-fix-micuenta")).click();
+		sleep(15000);
+		driver.findElement(By.id("lnkDomicilioFacturacion")).click();
+		sleep(8000);
+		driver.findElement(By.id("btnAction")).click();
+		sleep(3000);
+		driver.findElement(By.id("inputDni")).sendKeys("21976636");
+		Select prov = new Select(driver.findElement(By.id("lstProvincia")));
+		prov.selectByVisibleText("Capital Federal y GBA");
+		driver.findElement(By.id("inputNumeroCalle")).clear();
+		driver.findElement(By.id("inputNumeroCalle")).sendKeys("4682");
+		driver.findElement(By.id("btnAction")).click();
+		Assert.assertTrue(false);
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_PRE(){
+		imagen = "Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_PRE";
+		LoginPorLineaVariable("1162745165");
+		driver.findElement(By.id("tpi-user")).click();
+		sleep(3000);
+		driver.findElement(By.cssSelector(".tpi-user-link.tpi-fix-micuenta")).click();
+		sleep(15000);
+		driver.findElement(By.id("lnkDomicilioFacturacion")).click();
+		sleep(8000);
+		driver.findElement(By.id("btnAction")).click();
+		sleep(3000);
+		driver.findElement(By.id("inputDni")).sendKeys("30500051163");
+		Select prov = new Select(driver.findElement(By.id("lstProvincia")));
+		prov.selectByVisibleText("Capital Federal y GBA");
+		driver.findElement(By.id("inputNumeroCalle")).clear();
+		driver.findElement(By.id("inputNumeroCalle")).sendKeys("4682");
+		driver.findElement(By.id("btnAction")).click();
+		Assert.assertTrue(false);
 	}
 	
 } 
