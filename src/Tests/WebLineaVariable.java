@@ -836,7 +836,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(cuota.equals("Internet X Dia"));
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.corregirBtn")),"equals","confirmar");
 		sleep(10000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".ng-binding")).getText().equals("La cuota Internet X Dia fue activada con éxito"));
+		Assert.assertTrue(driver.findElement(By.cssSelector(".ng-binding")).getText().equals("La cuota Internet X Dia fue activada con \u00e9xito"));
 		driver.findElement(By.cssSelector(".tpicon.tpicon-flechaizquierda")).click();
 		sleep(10000);
 		Assert.assertTrue(driver.findElement(By.cssSelector(".text-brand-cyanoscuro.ng-binding.ng-scope")).getText().equals("Internet X Dia"));
@@ -850,7 +850,7 @@ public class WebLineaVariable extends Metodos{
 		sleep(10000);
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","compras realizadas");
 		sleep(7000);
-		driver.findElement(By.cssSelector(".tpicon.tpicon-descargar")).click();;
+		driver.findElement(By.cssSelector(".tpicon.tpicon-descargar")).click();
 	    Assert.assertTrue(false);
 	}
 	
@@ -862,7 +862,7 @@ public class WebLineaVariable extends Metodos{
 		sleep(10000);
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","compras realizadas");
 		sleep(7000);
-		driver.findElement(By.cssSelector(".tpicon.tpicon-descargar")).click();;
+		driver.findElement(By.cssSelector(".tpicon.tpicon-descargar")).click();
 	    Assert.assertTrue(false);
 	}
 	
@@ -874,7 +874,7 @@ public class WebLineaVariable extends Metodos{
 		sleep(10000);
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","compras realizadas");
 		sleep(7000);
-		driver.findElement(By.cssSelector(".tpicon.tpicon-descargar")).click();;
+		driver.findElement(By.cssSelector(".tpicon.tpicon-descargar")).click();
 	    Assert.assertTrue(false);
 	}
 	
@@ -884,9 +884,9 @@ public class WebLineaVariable extends Metodos{
 		LoginPorLineaVariable("1162733281");
 		irA("facturaci\u00f3n");
 		sleep(10000);
-		driver.findElement(By.id("btnInformarPago")).click();;
+		driver.findElement(By.id("btnInformarPago")).click();
 		sleep(10000);
-		driver.findElement(By.id("btnInformar")).click();;
+		driver.findElement(By.id("btnInformar")).click();
 		sleep(10000);
 		Assert.assertTrue(false);
 	}
@@ -897,11 +897,42 @@ public class WebLineaVariable extends Metodos{
 		LoginPorLineaVariable("1165990597");
 		irA("facturaci\u00f3n");
 		sleep(10000);
-		driver.findElement(By.id("btnInformarPago")).click();;
+		driver.findElement(By.id("btnInformarPago")).click();
 		sleep(10000);
-		driver.findElement(By.id("btnInformar")).click();;
+		driver.findElement(By.id("btnInformar")).click();
 		sleep(10000);
 		Assert.assertTrue(false);
 	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Recargas_Recarga_con_puntos_Club_MIX() {
+		imagen = "Recargas_Recarga_con_puntos_Club_MIX";
+		LoginPorLineaVariable("1168829219");
+		irA("recargas");
+		sleep(15000);
+		buscarYClick(driver.findElements(By.cssSelector(".re-text")),"equals","con puntos club");
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".panel-title")),"equals","recargas");
+		buscarYClick(driver.findElements(By.cssSelector(".ng-binding")),"equals","cr\u00e9dito $10");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.pull-right")),"equals","canjear");
+		Assert.assertTrue(false);	
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Recargas_Recarga_con_puntos_Club_PRE() {
+		imagen = "Recargas_Recarga_con_puntos_Club_PRE";
+		LoginPorLineaVariable("1164473518");
+		irA("recargas");
+		sleep(15000);
+		buscarYClick(driver.findElements(By.cssSelector(".re-text")),"equals","con puntos club");
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".panel-title")),"equals","recargas");
+		buscarYClick(driver.findElements(By.cssSelector(".ng-binding")),"equals","cr\u00e9dito $10");
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.pull-right")),"equals","canjear");
+		sleep(10000);
+		Assert.assertTrue(false);	
+	}
+	
 	
 } 
