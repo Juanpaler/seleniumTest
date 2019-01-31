@@ -337,22 +337,22 @@ public class WebLineaUnica extends Metodos{
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
-	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseï¿½a_MIX() {
-		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseï¿½a_MIX";
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseña_MIX() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseña_MIX";
 		loginPorLinea("MIX");
 		Assert.assertTrue(cambiarClave("1357"));
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
-	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseï¿½a_PRE() {
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseña_PRE() {
 		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseï¿½a_PRE";
 		loginPorLinea("Pre");
 		Assert.assertTrue(cambiarClave("1357"));
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
-	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseï¿½a_POS() {
-		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseï¿½a_POS";
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseña_POS() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseña_POS";
 		loginPorLinea("Pos");
 		Assert.assertTrue(cambiarClave("1357"));
 	}
@@ -721,6 +721,7 @@ public class WebLineaUnica extends Metodos{
 			}
 		Assert.assertTrue(rompe);
 	}
+	
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Mis_Datos_Mi_Perfil_Cambio_de_Mail() {
 		imagen = "Mis_Datos_Mi_Perfil_Cambio_de_Mail";
@@ -739,7 +740,46 @@ public class WebLineaUnica extends Metodos{
 		//Se necesita el acceso a la base para obtener el id de confirmacion 
 		Assert.assertTrue(false);
 		
-
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_MIX() {
+		imagen = "Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_MIX";
+		loginPorLinea("MIX");
+		irA("facturaci\\u00f3n");
+		driver.findElement(By.className("fo-text")).click();
+		sleep(15000);
+		driver.findElement(By.id("inputEmail")).sendKeys("alejandromza@gmail.com");
+		//driver.findElement(By.id("btn_Adherirme")).click();
+		//Se necesita el acceso a la base para obtener el id de confirmacion del mail 
+		Assert.assertTrue(false);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_POS() {
+		imagen = "Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_MIX";
+		loginPorLinea("Pos");
+		irA("facturaci\\u00f3n");
+		driver.findElement(By.className("fo-text")).click();
+		sleep(15000);
+		driver.findElement(By.id("inputEmail")).sendKeys("alejandromza@gmail.com");
+		//driver.findElement(By.id("btn_Adherirme")).click();
+		//Se necesita el acceso a la base para obtener el id de confirmacion del mail 
+		Assert.assertTrue(false);
+	}
+	
+	@Test (groups = {"AutogestionIndividuosWeb"}, dependsOnMethods="Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_MIX")
+	public void Facturacion_Facturacion_Digital_Desuscripcion_a_Factura_Online_MIX(){
+		imagen = "Facturacion_Facturacion_Digital_Desuscripcion_a_Factura_Online_MIX";
+		loginPorLinea("MIX");
+	    //SIN TERMINAR - NO SE PUEDE COMPLETAR HASTA QUE FUNCIONE LA ADHESION
+	}
+	
+	@Test (groups = {"AutogestionIndividuosWeb"}, dependsOnMethods="Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_POS")
+	public void Facturacion_Facturacion_Digital_Desuscripcion_a_Factura_Online_POS(){
+		imagen = "Facturacion_Facturacion_Digital_Desuscripcion_a_Factura_Online_POS";
+		loginPorLinea("pos");
+	    //SIN TERMINAR - NO SE PUEDE COMPLETAR HASTA QUE FUNCIONE LA ADHESION
 	}
 	
 }
