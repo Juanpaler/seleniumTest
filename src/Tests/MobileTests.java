@@ -449,6 +449,181 @@ public class MobileTests extends Metodos {
     public void Login_Iniciar_Sesion_con_Linea_PreActiva() {
     	loginPorLineaMobileVariable(driver, "1162645152");
     	scrollAndClick("xpath", "//android.widget.TextView[@text='MIS SERVICIOS']");
-    	Assert.assertTrue(false);
+    	Assert.assertTrue(false);  //No se visualiza el mensaje de linea pre desactivada
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP")
+    public void Comprar_Packs_Compra_de_Packs_con_puntos_Club_MIX() {
+    	loginPorLineaMobileVariable(driver, "1168829219");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='PAGOS, RECARGAS Y PACKS']");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='Con Puntos Club Personal']");
+    	sleep(5000);
+    	scrollAndClick("xpath", "//android.view.View[@text='ROAMING']");
+    	scrollAndClick("xpath", "//android.view.View[@text='SMS']");
+    	scrollAndClick("xpath", "//android.view.View[contains(text(),'NUEVO PREMIO PACK SMS Roaming Lim\u00edtrofes Pack de 10 SMS')]");
+    	scrollAndClick("xpath", "//android.view.View[@text='CANJEAR']");
+    	Assert.assertTrue(false);  //Mensaje de error al querer canjear
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP")
+    public void Comprar_Packs_Compra_de_Packs_con_puntos_Club_PRE() {
+    	loginPorLineaMobileVariable(driver, "1164473518");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='RECARGAS Y PACKS']");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='Con Puntos Club Personal']");
+    	sleep(5000);
+    	scrollAndClick("xpath", "//android.view.View[@text='ROAMING']");
+    	scrollAndClick("xpath", "//android.view.View[@text='SMS']");
+    	scrollAndClick("xpath", "//android.view.View[contains(text(),'NUEVO PREMIO PACK SMS Roaming Lim\u00edtrofes Pack de 10 SMS')]");
+    	scrollAndClick("xpath", "//android.view.View[@text='CANJEAR']");
+    	Assert.assertTrue(false);  //Mensaje de error al querer canjear
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP")
+    public void Facturacion_Ver_Facturas_MIX() {
+    	boolean cantFacturas = false;
+    	loginPorLineaMobileVariable(driver, "1162733281");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='INICIO']");
+    	driver.swipe(237, 854, 251, 231, 672);
+        driver.findElement(By.xpath("//*[@id='button_component_layout' and ./*[@text='Mis facturas']]")).click();
+        sleep(5000);
+        driver.findElement(By.xpath("//*[@id='imageview_component_image' and ./parent::*[(./preceding-sibling::* | ./following-sibling::*)[./*[@id='double_component_main']] and ./parent::*[@id='double_component_main']]]")).click();
+        sleep(40000);
+        List<AndroidElement> facturas = driver.findElements(By.className("android.view.ViewGroup"));
+        for (int i=0; i<facturas.size(); i++) {
+        	if (facturas.size() > 1)
+        		cantFacturas = true;
+        }
+        driver.navigate().back();
+        Assert.assertTrue(cantFacturas);
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP")
+    public void Facturacion_Ver_Facturas_POS() {
+    	boolean cantFacturas = false;
+    	loginPorLineaMobileVariable(driver, "1165990597");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='INICIO']");
+    	driver.swipe(237, 854, 251, 231, 672);
+        driver.findElement(By.xpath("//*[@id='button_component_layout' and ./*[@text='Mis facturas']]")).click();
+        sleep(5000);
+        driver.findElement(By.xpath("//*[@id='imageview_component_image' and ./parent::*[(./preceding-sibling::* | ./following-sibling::*)[./*[@id='double_component_main']] and ./parent::*[@id='double_component_main']]]")).click();
+        sleep(40000);
+        List<AndroidElement> facturas = driver.findElements(By.className("android.view.ViewGroup"));
+        for (int i=0; i<facturas.size(); i++) {
+        	if (facturas.size() > 1)
+        		cantFacturas = true;
+        }
+        driver.navigate().back();
+        Assert.assertTrue(cantFacturas);
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP")
+    public void Facturacion_Pagar_Factura_MIX() {
+    	boolean factura = false;
+    	loginPorLineaMobileVariable(driver, "1162733281");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='PAGOS, RECARGAS Y PACKS']");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='Mis Facturas']");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='Pagar']");
+    	sleep(5000);
+    	for (WebElement x : driver.findElements(By.className("android.view.View"))) {
+    		if (x.getText().contains("Detalles del pago"))
+    			factura = true;
+    	}
+    	Assert.assertTrue(factura);
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP")
+    public void Facturacion_Pagar_Factura_POS() {
+    	boolean factura = false;
+    	loginPorLineaMobileVariable(driver, "1165990597");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='PAGOS Y PACKS']");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='Mis Facturas']");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='Pagar']");
+    	sleep(5000);
+    	for (WebElement x : driver.findElements(By.className("android.view.View"))) {
+    		if (x.getText().contains("Detalles del pago"))
+    			factura = true;
+    	}
+    	Assert.assertTrue(factura);
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP")
+    public void Facturacion_Informar_un_Pago_MIX() {
+    	loginPorLineaMobileVariable(driver, "1162733281");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='PAGOS, RECARGAS Y PACKS']");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='Informar Pago']");
+    	driver.findElement(By.id("textinput_component_edittext")).sendKeys("29/01/2019");
+    	driver.findElement(By.id("textinput_component_edittext_currency")).sendKeys("150.00");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='ENVIAR']");
+    	scrollAndClick("id", "button2");
+    	scrollAndClick("id", "button1");
+    	sleep(5000);
+    	scrollAndClick("id", "button1");
+    	Assert.assertTrue(false);  //Mensaje de error no se puede informar un pago por el momento
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP")
+    public void Facturacion_Informar_un_Pago_POS() {
+    	loginPorLineaMobileVariable(driver, "3413130145");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='PAGOS Y PACKS']");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='Informar Pago']");
+    	driver.findElement(By.id("textinput_component_edittext")).sendKeys("29/01/2019");
+    	driver.findElement(By.id("textinput_component_edittext_currency")).sendKeys("150.00");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='ENVIAR']");
+    	scrollAndClick("id", "button2");
+    	scrollAndClick("id", "button1");
+    	sleep(5000);
+    	scrollAndClick("id", "button1");
+    	Assert.assertTrue(false);  //Mensaje de error no se puede informar un pago por el momento
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP")
+    public void Facturacion_Notas_de_Credito_y_Debito_MIX() {
+    	loginPorLineaMobileVariable(driver, "1161120234");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='PAGOS, RECARGAS Y PACKS']");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='Mis Facturas']");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='Notas fiscales']");
+    	for (WebElement x : driver.findElements(By.className("android.view.View"))) {
+    		if (x.getText().contains("Descargar")) {
+    			x.click();
+    			break;
+    		}
+    	}
+    	sleep(5000);
+    	driver.swipe(159, 28, 145, 498, 289);
+        scrollAndClick("xpath", "//android.widget.TextView[@text='MiPersonal UAT']");
+        sleep(5000);
+        try {
+        	Assert.assertTrue(driver.findElement(By.id("projector_toolbar")).isDisplayed());
+         	driver.navigate().back();
+        } catch(NoSuchElementException e) {
+        	driver.navigate().back();
+         	Assert.assertTrue(false);
+        }
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP")
+    public void Facturacion_Notas_de_Credito_y_Debito_POS() {
+    	Assert.assertTrue(false);  //No estan funcionando las lineas Pos
+    	/*loginPorLineaMobile(driver, "Pos");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='RECARGAS Y PACKS']");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='Mis Facturas']");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='Notas fiscales']");
+    	for (WebElement x : driver.findElements(By.className("android.view.View"))) {
+    		if (x.getText().contains("Descargar")) {
+    			x.click();
+    			break;
+    		}
+    	}
+    	sleep(5000);
+    	driver.swipe(159, 28, 145, 498, 289);
+        scrollAndClick("xpath", "//android.widget.TextView[@text='MiPersonal UAT']");
+        sleep(5000);
+        try {
+        	Assert.assertTrue(driver.findElement(By.id("projector_toolbar")).isDisplayed());
+         	driver.navigate().back();
+        } catch(NoSuchElementException e) {
+        	driver.navigate().back();
+         	Assert.assertTrue(false);
+        }*/
     }
 }

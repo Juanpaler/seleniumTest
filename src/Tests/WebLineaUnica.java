@@ -337,22 +337,22 @@ public class WebLineaUnica extends Metodos{
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
-	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseña_MIX() {
-		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseña_MIX";
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseï¿½a_MIX() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseï¿½a_MIX";
 		loginPorLinea("MIX");
 		Assert.assertTrue(cambiarClave("1357"));
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
-	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseña_PRE() {
-		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseña_PRE";
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseï¿½a_PRE() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseï¿½a_PRE";
 		loginPorLinea("Pre");
 		Assert.assertTrue(cambiarClave("1357"));
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
-	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseña_POS() {
-		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseña_POS";
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseï¿½a_POS() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseï¿½a_POS";
 		loginPorLinea("Pos");
 		Assert.assertTrue(cambiarClave("1357"));
 	}
@@ -568,6 +568,159 @@ public class WebLineaUnica extends Metodos{
 	    driver.switchTo().window(tabs2.get(0));
 	}
 	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_Detalle_de_credito_MIX(){
+		imagen = "Mis_Consumos_Detalle_de_credito_MIX";
+		loginPorLinea("MIX");
+		irA("consumos");
+		boolean check = true;
+		List<WebElement> cardconsu = driver.findElements(By.cssSelector(".card-flipper.card-flipper-md"));
+			for(WebElement c : cardconsu){
+				if(c.getText().toLowerCase().contains("informaci\u00f3n no disponible")){
+					System.out.println(c.getText());
+					check = false;
+				}
+			}
+		Assert.assertTrue(check);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_Detalle_de_credito_PRE(){
+		imagen = "Mis_Consumos_Detalle_de_credito_PRE";
+		loginPorLinea("Pre");
+		irA("consumos");
+		boolean check = true;
+		List<WebElement> cardconsu = driver.findElements(By.cssSelector(".card-flipper.card-flipper-md"));
+			for(WebElement c : cardconsu){
+				if(c.getText().toLowerCase().contains("informaci\u00f3n no disponible")){
+					System.out.println(c.getText());
+					check = false;
+				}
+			}
+		Assert.assertTrue(check);
+	}
+	
+	@Test (groups = {"AutogestionIndividuosWeb"}, dependsOnMethods="Recargas_Gestiones_y_Consultas_Ultimas_Recargas_MIX")
+	public void Mis_Consumos_Detalle_de_credito_Historial_de_recargas_MIX(){
+		imagen = "Mis_Consumos_Detalle_de_credito_MIX";
+		loginPorLinea("MIX");
+		Assert.assertTrue(true);
+		sleep(3000);
+	}
+	
+	@Test (groups = {"AutogestionIndividuosWeb"}, dependsOnMethods="Recargas_Gestiones_y_Consultas_Ultimas_Recargas_PRE")
+	public void Mis_Consumos_Detalle_de_credito_Historial_de_recargas_PRE(){
+		imagen = "Mis_Consumos_Detalle_de_credito_PRE";
+		loginPorLinea("Pre");
+		Assert.assertTrue(true);
+		sleep(3000);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_Compra_Internet_MIX(){
+		imagen = "Mis_Consumos_Compra_Internet_MIX";
+		loginPorLinea("MIX");
+		irA("consumos");
+		boolean check = true;
+		List<WebElement> inetconsu = driver.findElements(By.cssSelector(".card.card-md.card-front.ng-scope"));
+			for(WebElement i : inetconsu){
+				if(i.getText().toLowerCase().contains("se produjo un error, int\u00e9ntalo de nuevo m\u00e1s tarde.")){
+					System.out.println(i.getText());
+					check = false;
+				}
+			}
+		Assert.assertTrue(check);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_Compra_Internet_PRE(){
+		imagen = "Mis_Consumos_Compra_Internet_PRE";
+		loginPorLinea("Pre");
+		irA("consumos");
+		boolean check = true;
+		List<WebElement> inetconsu = driver.findElements(By.cssSelector(".card.card-md.card-front.ng-scope"));
+			for(WebElement i : inetconsu){
+				if(i.getText().toLowerCase().contains("se produjo un error, int\u00e9ntalo de nuevo m\u00e1s tarde.")){
+					System.out.println(i.getText());
+					check = false;
+				}
+			}
+		Assert.assertTrue(check);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_Internet_de_mi_Plan_MIX(){
+		imagen = "Mis_Consumos_Internet_de_mi_Plan_MIX";
+		loginPorLinea("MIX");
+		irA("consumos");
+		sleep(8000);
+		driver.findElement(By.id("divCardFlipInternet")).findElement(By.cssSelector(".list-group-item-full.arrow-ic.adicional")).click();
+		sleep(8000);
+		boolean a = false;
+		List <WebElement> inetmiplan =driver.findElements(By.cssSelector(".card.card-md.ng-scope.ng-isolate-scope"));
+			for(WebElement i : inetmiplan){
+				if(i.getText().toLowerCase().contains("internet de mi plan")){
+					i.isDisplayed();
+					a = true;
+				}
+			}
+		Assert.assertTrue(a);	
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_Internet_Adicional_MIX(){
+		imagen = "Mis_Consumos_Internet_Adicional_MIX";
+		loginPorLinea("MIX");
+		irA("consumos");
+		sleep(8000);
+		driver.findElement(By.id("divCardFlipInternet")).findElement(By.cssSelector(".list-group-item-full.arrow-ic.adicional")).click();
+		sleep(8000);
+		boolean a = false;
+		List <WebElement> inetmiplan =driver.findElements(By.cssSelector(".card.ng-scope"));
+			for(WebElement i : inetmiplan){
+				if(i.getText().toLowerCase().contains("internet adicional")){
+					i.isDisplayed();
+					a = true;
+				}
+			}
+		Assert.assertTrue(a);	
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_Internet_Adicional_PRE(){
+		imagen = "Mis_Consumos_Internet_Adicional_PRE";
+		loginPorLinea("Pre");
+		irA("consumos");
+		sleep(8000);
+		driver.findElement(By.id("divCardFlipInternet")).findElement(By.cssSelector(".list-group-item-full.arrow-ic")).click();
+		sleep(8000);
+		boolean a = false;
+		List <WebElement> inetmiplan =driver.findElements(By.cssSelector(".card.ng-scope"));
+			for(WebElement i : inetmiplan){
+				if(i.getText().toLowerCase().contains("internet de mi plan")){
+					i.isDisplayed();
+					a = true;
+				}
+			}
+		Assert.assertTrue(a);	
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_SMS_Disponibles_MIX(){
+		imagen = "Mis_Consumos_SMS_Disponibles_MIX";
+		loginPorLinea("MIX");
+		irA("consumos");
+		sleep(8000);
+		boolean rompe = true;
+		List <WebElement> sms = driver.findElements(By.cssSelector(".card.card-xs.card-min.ng-scope"));
+			for(WebElement s : sms){
+				s.getText().toLowerCase().contains("sms");
+				if(s.findElement(By.tagName("span")).getText().equals("-")){
+					rompe = false;
+				}
+			}
+		Assert.assertTrue(rompe);
+	}
 	@Test (groups = "AutogestionIndividuosWeb")
 	public void Mis_Datos_Mi_Perfil_Cambio_de_Mail() {
 		imagen = "Mis_Datos_Mi_Perfil_Cambio_de_Mail";
