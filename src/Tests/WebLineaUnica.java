@@ -39,17 +39,20 @@ public class WebLineaUnica extends Metodos{
 		driver = setup();
 	}
 	
-	//@AfterMethod (alwaysRun = true)
+	@AfterMethod (alwaysRun = true)
 	public void after(){
 		tomarCaptura(driver,imagen);
-		driver.findElement(By.id("tpi-user")).click();
-		sleep(7000);
-		driver.findElement(By.id("tpi-form-logoff")).click();
-		sleep(7000);
-		driver.close();
+		try {
+			driver.findElement(By.id("tpi-user")).click();
+			sleep(7000);
+			driver.findElement(By.id("tpi-form-logoff")).click();
+			sleep(7000);
+			driver.close();
+		}catch(Exception ex1){	driver.close();
+		}
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","packs"})
 	public void Comprar_Packs_Compra_de_Packs_MIX(){
 		imagen = "Comprar_Packs_Compra_de_Packs_MIX";
 		loginPorLinea("MIX");
@@ -64,7 +67,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(driver.findElement(By.id("principalExito")).isDisplayed());			
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","packs"})
 	public void Comprar_Packs_Compra_de_Packs_PRE(){
 		imagen = "Comprar_Packs_Compra_de_Packs_PRE";
 		loginPorLinea("Pre");
@@ -81,7 +84,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(driver.findElement(By.id("principalExito")).isDisplayed());			
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","packs"})
 	public void Comprar_Packs_Consultar_Comprobantes_MIX() {
 		imagen = "Comprar_Packs_Consultar_Comprobantes_MIX";
 		loginPorLinea("MIX");
@@ -93,7 +96,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(false);
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","packs"})
 	public void Comprar_Packs_Consultar_Comprobantes_PRE() {
 		imagen = "Comprar_Packs_Consultar_Comprobantes_PRE";
 		loginPorLinea("Pre");
@@ -106,7 +109,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(false);
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Consumos_Detalles_de_Consumos_MIX() {
 		imagen = "Consumos_Detalles_de_Consumos_MIX";
 		boolean tabla = false, detalles = false;
@@ -124,7 +127,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(tabla && detalles);
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Consumos_Packs_Activos_MIX(){
 		imagen = "Consumos_Packs_Activos_MIX";
 		loginPorLinea("MIX");
@@ -136,7 +139,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(tabla.isDisplayed());
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Consumos_Packs_Activos_PRE(){
 		imagen = "Consumos_Packs_Activos_PRE";
 		loginPorLinea("Pre");
@@ -148,7 +151,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(tabla.isDisplayed());
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb") 
+	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Baja_de_Suscripciones_MIX(){
 		imagen = "Mi_Linea_Baja_de_Suscripciones_MIX";
 		loginPorLinea("MIX");
@@ -165,7 +168,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(alert.isDisplayed());
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Baja_de_Suscripciones_PRE(){
 		imagen = "Mi_Linea_Baja_de_Suscripciones_PRE";
 		loginPorLinea("Pre");
@@ -182,7 +185,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(alert.isDisplayed());
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Baja_de_Suscripciones_POS(){
 		imagen = "Mi_Linea_Baja_de_Suscripciones_POS";
 		loginPorLinea("Pos");
@@ -199,7 +202,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(alert.isDisplayed());
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Consumos_Detalles_de_Consumos_POS() {
 		imagen = "Consumos_Detalles_de_Consumos_POS";
 		boolean tabla = false;
@@ -219,7 +222,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(tabla);
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Consumos_Detalles_de_Consumos_PRE() {
 		imagen = "Consumos_Detalles_de_Consumos_PRE";
 		boolean tabla = false, detalles = false;
@@ -237,7 +240,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(tabla && detalles);
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","recargas"})
 	public void Recargas_Gestiones_y_Consultas_Recargar_Ahora_MIX() {
 		imagen = "Recargas_Gestiones_y_Consultas_Recargar_Ahora_MIX";
 		loginPorLinea("MIX");
@@ -278,7 +281,7 @@ public class WebLineaUnica extends Metodos{
 		sleep(5000);
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","recargas"})
 	public void Recargas_Gestiones_y_Consultas_Recargar_Ahora_PRE() {
 		imagen = "Recargas_Gestiones_y_Consultas_Recargar_Ahora_PRE";
 		loginPorLinea("Pre");
@@ -319,7 +322,7 @@ public class WebLineaUnica extends Metodos{
 		sleep(5000);
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","recargas"})
 	public void Recargas_Gestiones_y_Consultas_Ultimas_Recargas_MIX() {
 		imagen = "Recargas_Gestiones_y_Consultas_Ultimas_Recargas_MIX";
 		loginPorLinea("MIX");
@@ -329,7 +332,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".list-store.detalle-consumo")).isDisplayed());
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","recargas"})
 	public void Recargas_Gestiones_y_Consultas_Ultimas_Recargas_PRE() {
 		imagen = "Recargas_Gestiones_y_Consultas_Ultimas_Recargas_PRE";
 		loginPorLinea("Pre");
@@ -339,28 +342,28 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".list-store.detalle-consumo")).isDisplayed());
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
-	public void Mis_Datos_Mi_Perfil_Cambiar_Contrase�a_MIX() {
+	@Test (groups ={ "AutogestionIndividuosWeb","mis datos"})
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contrasenia_MIX() {
 		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contrase�a_MIX";
 		loginPorLinea("MIX");
 		Assert.assertTrue(cambiarClave("1357"));
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
-	public void Mis_Datos_Mi_Perfil_Cambiar_Contrase�a_PRE() {
-		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contrase�a_PRE";
+	@Test (groups ={ "AutogestionIndividuosWeb","mis datos"})
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contrasenia_PRE() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contrasena_PRE";
 		loginPorLinea("Pre");
 		Assert.assertTrue(cambiarClave("1357"));
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
-	public void Mis_Datos_Mi_Perfil_Cambiar_Contrase�a_POS() {
-		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contrase�a_POS";
+	@Test (groups ={ "AutogestionIndividuosWeb","mis datos"})
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contrasenia_POS() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contrasenia_POS";
 		loginPorLinea("Pos");
 		Assert.assertTrue(cambiarClave("1357"));
 	}
 	
-	@Test
+	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"})
 	public void Facturacion_Gestiones_y_Consultas_Distribucion_de_Factura_MIX() {
 		imagen = "Facturacion_Gestiones_y_Consultas_Distribucion_de_Factura_MIX";
 		loginPorLinea("MIX");
@@ -381,7 +384,7 @@ public class WebLineaUnica extends Metodos{
 		
 	}
 	
-	@Test
+	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"})
 	public void Facturacion_Gestiones_y_Consultas_Distribucion_de_Factura_POS() {
 		imagen = "Facturacion_Gestiones_y_Consultas_Distribucion_de_Factura_POS";
 		loginPorLinea("Pos");
@@ -401,7 +404,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(venc.getText().matches("^\\d{2}/\\d{2}/\\d{4}$"));
 		
 	}
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Claves_PIN_y_PUK_PRE(){
 		imagen = "Mi_Linea_Claves_PIN_y_PUK_PRE";
 		loginPorLinea("Pre");
@@ -418,7 +421,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(puk.isDisplayed());
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Claves_PIN_y_PUK_POS(){
 		imagen = "Mi_Linea_Claves_PIN_y_PUK_POS";
 		loginPorLinea("Pos");
@@ -435,7 +438,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(puk.isDisplayed());
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Claves_PIN_y_PUK_MIX(){
 		imagen = "Mi_Linea_Claves_PIN_y_PUK_MIX";
 		loginPorLinea("MIX");
@@ -452,7 +455,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(puk.isDisplayed());
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","recargas"})
 	public void Recargas_Recarga_SOS_MIX(){
 		imagen = "Recargas_Recarga_SOS_MIX";
 		loginPorLinea("MIX");
@@ -473,7 +476,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(driver.findElement(By.id("lblErrorGlobal")).getText().toLowerCase().equals("la recarga s.o.s no pudo completarse porque ten\u00e9s pendiente el pago de la anterior."));
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","recargas"})
 	public void Recargas_Recarga_SOS_PRE(){
 		imagen = "Recargas_Recarga_SOS_PRE";
 		loginPorLinea("MIX");
@@ -494,7 +497,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(driver.findElement(By.id("lblErrorGlobal")).getText().toLowerCase().equals("la recarga s.o.s no pudo completarse porque ten\u00e9s pendiente el pago de la anterior."));
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_MI_Plan_MIX(){
 		imagen = "Mi_Linea_MI_Plan_MIX";
 		loginPorLinea("MIX");
@@ -509,7 +512,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(driver.findElement(By.id("legalDP")).findElement(By.tagName("div")).isDisplayed());
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_MI_Plan_POS(){
 		imagen = "Mi_Linea_MI_Plan_POS";
 		loginPorLinea("Pos");
@@ -524,7 +527,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(driver.findElement(By.id("legalDP")).findElement(By.tagName("div")).isDisplayed());
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_MI_Plan_POS_Plan_Black(){
 		imagen = "Mi_Linea_MI_Plan_POS_Plan_Black";
 		loginPorLinea("Pos");
@@ -543,7 +546,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(driver.findElement(By.id("btnPedirOtroTurno")).isDisplayed());
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"})
 	public void Facturacion_Ver_Formas_de_Pago_MIX(){
 		imagen="Facturacion_Ver_Formas_de_Pago_MIX";
 		loginPorLinea("MIX");
@@ -557,7 +560,7 @@ public class WebLineaUnica extends Metodos{
 	    driver.switchTo().window(tabs2.get(0));
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"})
 	public void Facturacion_Ver_Formas_de_Pago_POS(){
 		imagen="Facturacion_Ver_Formas_de_Pago_POS";
 		loginPorLinea("Pos");
@@ -571,7 +574,7 @@ public class WebLineaUnica extends Metodos{
 	    driver.switchTo().window(tabs2.get(0));
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_Detalle_de_credito_MIX(){
 		imagen = "Mis_Consumos_Detalle_de_credito_MIX";
 		loginPorLinea("MIX");
@@ -587,7 +590,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(check);
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_Detalle_de_credito_PRE(){
 		imagen = "Mis_Consumos_Detalle_de_credito_PRE";
 		loginPorLinea("Pre");
@@ -603,7 +606,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(check);
 	}
 	
-	@Test (groups = {"AutogestionIndividuosWeb"}, dependsOnMethods="Recargas_Gestiones_y_Consultas_Ultimas_Recargas_MIX")
+	@Test (groups ={ "AutogestionIndividuosWeb","consumos"}, dependsOnMethods="Recargas_Gestiones_y_Consultas_Ultimas_Recargas_MIX")
 	public void Mis_Consumos_Detalle_de_credito_Historial_de_recargas_MIX(){
 		imagen = "Mis_Consumos_Detalle_de_credito_MIX";
 		loginPorLinea("MIX");
@@ -611,7 +614,7 @@ public class WebLineaUnica extends Metodos{
 		sleep(3000);
 	}
 	
-	@Test (groups = {"AutogestionIndividuosWeb"}, dependsOnMethods="Recargas_Gestiones_y_Consultas_Ultimas_Recargas_PRE")
+	@Test (groups ={ "AutogestionIndividuosWeb","consumos"}, dependsOnMethods="Recargas_Gestiones_y_Consultas_Ultimas_Recargas_PRE")
 	public void Mis_Consumos_Detalle_de_credito_Historial_de_recargas_PRE(){
 		imagen = "Mis_Consumos_Detalle_de_credito_PRE";
 		loginPorLinea("Pre");
@@ -619,7 +622,7 @@ public class WebLineaUnica extends Metodos{
 		sleep(3000);
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_Compra_Internet_MIX(){
 		imagen = "Mis_Consumos_Compra_Internet_MIX";
 		loginPorLinea("MIX");
@@ -635,7 +638,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(check);
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_Compra_Internet_PRE(){
 		imagen = "Mis_Consumos_Compra_Internet_PRE";
 		loginPorLinea("Pre");
@@ -651,7 +654,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(check);
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_Internet_de_mi_Plan_MIX(){
 		imagen = "Mis_Consumos_Internet_de_mi_Plan_MIX";
 		loginPorLinea("MIX");
@@ -670,7 +673,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(a);	
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_Internet_Adicional_MIX(){
 		imagen = "Mis_Consumos_Internet_Adicional_MIX";
 		loginPorLinea("MIX");
@@ -689,7 +692,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(a);	
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_Internet_Adicional_PRE(){
 		imagen = "Mis_Consumos_Internet_Adicional_PRE";
 		loginPorLinea("Pre");
@@ -708,7 +711,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(a);	
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_SMS_Disponibles_MIX(){
 		imagen = "Mis_Consumos_SMS_Disponibles_MIX";
 		loginPorLinea("MIX");
@@ -725,7 +728,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(rompe);
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","mis datos"})
 	public void Mis_Datos_Mi_Perfil_Cambio_de_Mail() {
 		imagen = "Mis_Datos_Mi_Perfil_Cambio_de_Mail";
 		loginPorLinea("MIX");
@@ -745,7 +748,7 @@ public class WebLineaUnica extends Metodos{
 		
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"})
 	public void Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_MIX() {
 		imagen = "Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_MIX";
 		loginPorLinea("MIX");
@@ -758,7 +761,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(false);
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"})
 	public void Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_POS() {
 		imagen = "Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_MIX";
 		loginPorLinea("Pos");
@@ -771,14 +774,14 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(false);
 	}
 	
-	@Test (groups = {"AutogestionIndividuosWeb"}, dependsOnMethods="Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_MIX")
+	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"}, dependsOnMethods="Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_MIX")
 	public void Facturacion_Facturacion_Digital_Desuscripcion_a_Factura_Online_MIX(){
 		imagen = "Facturacion_Facturacion_Digital_Desuscripcion_a_Factura_Online_MIX";
 		loginPorLinea("MIX");
 	    //SIN TERMINAR - NO SE PUEDE COMPLETAR HASTA QUE FUNCIONE LA ADHESION
 	}
 	
-	@Test (groups = {"AutogestionIndividuosWeb"}, dependsOnMethods="Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_POS")
+	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"}, dependsOnMethods="Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_POS")
 	public void Facturacion_Facturacion_Digital_Desuscripcion_a_Factura_Online_POS(){
 		imagen = "Facturacion_Facturacion_Digital_Desuscripcion_a_Factura_Online_POS";
 		loginPorLinea("pos");
@@ -786,7 +789,7 @@ public class WebLineaUnica extends Metodos{
 	}
 	
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_SMS_Disponibles_PRE(){
 		imagen = "Mis_Consumos_SMS_Disponibles_PRE";
 		loginPorLinea("Pre");
@@ -803,7 +806,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(rompe);
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_Minutos_Disponibles_MIX(){
 		imagen = "Mis_Consumos_SMS_Disponibles_MIX";
 		loginPorLinea("MIX");
@@ -821,7 +824,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(rompe);
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_Minutos_Disponibles_PRE(){
 		imagen = "Mis_Consumos_SMS_Disponibles_PRE";
 		loginPorLinea("Pre");
@@ -839,7 +842,7 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(rompe);
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Carga_Formulario_Baja_Servicio(){
 		imagen = "Mi_Linea_Carga_Formulario_Baja_Servicio";
 		loginPorLinea("MIX");
@@ -867,7 +870,7 @@ public class WebLineaUnica extends Metodos{
 		
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Carga_Formulario_Cambio_Titularidad(){
 		imagen = "Mi_Linea_Carga_Formulario_Cambio_Titularidad";
 		loginPorLinea("MIX");
@@ -911,7 +914,7 @@ public class WebLineaUnica extends Metodos{
 		
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Carga_Formulario_Autorizado(){
 		imagen = "Mi_Linea_Carga_Formulario_Autorizado";
 		loginPorLinea("MIX");
