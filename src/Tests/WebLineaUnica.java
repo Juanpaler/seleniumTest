@@ -1,5 +1,8 @@
 package Tests;
 
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -337,22 +340,22 @@ public class WebLineaUnica extends Metodos{
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
-	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseña_MIX() {
-		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseña_MIX";
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseï¿½a_MIX() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseï¿½a_MIX";
 		loginPorLinea("MIX");
 		Assert.assertTrue(cambiarClave("1357"));
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
-	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseña_PRE() {
-		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseña_PRE";
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseï¿½a_PRE() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseï¿½a_PRE";
 		loginPorLinea("Pre");
 		Assert.assertTrue(cambiarClave("1357"));
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
-	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseña_POS() {
-		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseña_POS";
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contraseï¿½a_POS() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contraseï¿½a_POS";
 		loginPorLinea("Pos");
 		Assert.assertTrue(cambiarClave("1357"));
 	}
@@ -529,7 +532,7 @@ public class WebLineaUnica extends Metodos{
 		sleep(10000);
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","reserva de turno");
 		sleep(8000);
-		completarDatos("Compra de Equipo/L\u00ednea","Buenos Aires","San Justo","Dr. Ignacio Arieta 3169","111111111","a@a.com","23/01/2019");
+		completarDatos("Compra de Equipo/L\u00ednea","Buenos Aires","San Justo","Dr. Ignacio Arieta 3169","111111111","a@a.com","20/02/2019");
 		Assert.assertTrue(driver.findElement(By.id("lblMensajeExito")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.id("lblMensajeExito")).getText().contains("Reservaste con \u00e9xito el turno para asistir a una oficina comercial"));
 		sleep(3000);
@@ -567,5 +570,359 @@ public class WebLineaUnica extends Metodos{
 	    driver.close();
 	    driver.switchTo().window(tabs2.get(0));
 	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_Detalle_de_credito_MIX(){
+		imagen = "Mis_Consumos_Detalle_de_credito_MIX";
+		loginPorLinea("MIX");
+		irA("consumos");
+		boolean check = true;
+		List<WebElement> cardconsu = driver.findElements(By.cssSelector(".card-flipper.card-flipper-md"));
+			for(WebElement c : cardconsu){
+				if(c.getText().toLowerCase().contains("informaci\u00f3n no disponible")){
+					System.out.println(c.getText());
+					check = false;
+				}
+			}
+		Assert.assertTrue(check);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_Detalle_de_credito_PRE(){
+		imagen = "Mis_Consumos_Detalle_de_credito_PRE";
+		loginPorLinea("Pre");
+		irA("consumos");
+		boolean check = true;
+		List<WebElement> cardconsu = driver.findElements(By.cssSelector(".card-flipper.card-flipper-md"));
+			for(WebElement c : cardconsu){
+				if(c.getText().toLowerCase().contains("informaci\u00f3n no disponible")){
+					System.out.println(c.getText());
+					check = false;
+				}
+			}
+		Assert.assertTrue(check);
+	}
+	
+	@Test (groups = {"AutogestionIndividuosWeb"}, dependsOnMethods="Recargas_Gestiones_y_Consultas_Ultimas_Recargas_MIX")
+	public void Mis_Consumos_Detalle_de_credito_Historial_de_recargas_MIX(){
+		imagen = "Mis_Consumos_Detalle_de_credito_MIX";
+		loginPorLinea("MIX");
+		Assert.assertTrue(true);
+		sleep(3000);
+	}
+	
+	@Test (groups = {"AutogestionIndividuosWeb"}, dependsOnMethods="Recargas_Gestiones_y_Consultas_Ultimas_Recargas_PRE")
+	public void Mis_Consumos_Detalle_de_credito_Historial_de_recargas_PRE(){
+		imagen = "Mis_Consumos_Detalle_de_credito_PRE";
+		loginPorLinea("Pre");
+		Assert.assertTrue(true);
+		sleep(3000);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_Compra_Internet_MIX(){
+		imagen = "Mis_Consumos_Compra_Internet_MIX";
+		loginPorLinea("MIX");
+		irA("consumos");
+		boolean check = true;
+		List<WebElement> inetconsu = driver.findElements(By.cssSelector(".card.card-md.card-front.ng-scope"));
+			for(WebElement i : inetconsu){
+				if(i.getText().toLowerCase().contains("se produjo un error, int\u00e9ntalo de nuevo m\u00e1s tarde.")){
+					System.out.println(i.getText());
+					check = false;
+				}
+			}
+		Assert.assertTrue(check);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_Compra_Internet_PRE(){
+		imagen = "Mis_Consumos_Compra_Internet_PRE";
+		loginPorLinea("Pre");
+		irA("consumos");
+		boolean check = true;
+		List<WebElement> inetconsu = driver.findElements(By.cssSelector(".card.card-md.card-front.ng-scope"));
+			for(WebElement i : inetconsu){
+				if(i.getText().toLowerCase().contains("se produjo un error, int\u00e9ntalo de nuevo m\u00e1s tarde.")){
+					System.out.println(i.getText());
+					check = false;
+				}
+			}
+		Assert.assertTrue(check);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_Internet_de_mi_Plan_MIX(){
+		imagen = "Mis_Consumos_Internet_de_mi_Plan_MIX";
+		loginPorLinea("MIX");
+		irA("consumos");
+		sleep(8000);
+		driver.findElement(By.id("divCardFlipInternet")).findElement(By.cssSelector(".list-group-item-full.arrow-ic.adicional")).click();
+		sleep(8000);
+		boolean a = false;
+		List <WebElement> inetmiplan =driver.findElements(By.cssSelector(".card.card-md.ng-scope.ng-isolate-scope"));
+			for(WebElement i : inetmiplan){
+				if(i.getText().toLowerCase().contains("internet de mi plan")){
+					i.isDisplayed();
+					a = true;
+				}
+			}
+		Assert.assertTrue(a);	
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_Internet_Adicional_MIX(){
+		imagen = "Mis_Consumos_Internet_Adicional_MIX";
+		loginPorLinea("MIX");
+		irA("consumos");
+		sleep(8000);
+		driver.findElement(By.id("divCardFlipInternet")).findElement(By.cssSelector(".list-group-item-full.arrow-ic.adicional")).click();
+		sleep(8000);
+		boolean a = false;
+		List <WebElement> inetmiplan =driver.findElements(By.cssSelector(".card.ng-scope"));
+			for(WebElement i : inetmiplan){
+				if(i.getText().toLowerCase().contains("internet adicional")){
+					i.isDisplayed();
+					a = true;
+				}
+			}
+		Assert.assertTrue(a);	
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_Internet_Adicional_PRE(){
+		imagen = "Mis_Consumos_Internet_Adicional_PRE";
+		loginPorLinea("Pre");
+		irA("consumos");
+		sleep(8000);
+		driver.findElement(By.id("divCardFlipInternet")).findElement(By.cssSelector(".list-group-item-full.arrow-ic")).click();
+		sleep(8000);
+		boolean a = false;
+		List <WebElement> inetmiplan =driver.findElements(By.cssSelector(".card.ng-scope"));
+			for(WebElement i : inetmiplan){
+				if(i.getText().toLowerCase().contains("internet de mi plan")){
+					i.isDisplayed();
+					a = true;
+				}
+			}
+		Assert.assertTrue(a);	
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_SMS_Disponibles_MIX(){
+		imagen = "Mis_Consumos_SMS_Disponibles_MIX";
+		loginPorLinea("MIX");
+		irA("consumos");
+		sleep(8000);
+		boolean rompe = true;
+		List <WebElement> sms = driver.findElements(By.cssSelector(".card.card-xs.card-min.ng-scope"));
+			for(WebElement s : sms){
+				s.getText().toLowerCase().contains("sms");
+				if(s.findElement(By.tagName("span")).getText().equals("-")){
+					rompe = false;
+				}
+			}
+		Assert.assertTrue(rompe);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Datos_Mi_Perfil_Cambio_de_Mail() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambio_de_Mail";
+		loginPorLinea("MIX");
+		driver.findElement(By.id("tpi-user")).click();
+		sleep(3000);
+		driver.findElement(By.cssSelector(".tpi-user-link.tpi-fix-micuenta")).click();
+		sleep(15000);
+		driver.findElement(By.id("lnkModificaMail")).click();
+		sleep(15000);
+		driver.findElement(By.cssSelector(".tpicon.tpicon-editar.form-control-feedback")).click();
+		sleep(1000);
+		driver.findElement(By.id("inputEmail")).sendKeys("alejandromza@gmail.com");
+		driver.findElement(By.id("btnGuardarMail")).click();
+		sleep(15000);
+		//Se necesita el acceso a la base para obtener el id de confirmacion 
+		Assert.assertTrue(false);
+		
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_MIX() {
+		imagen = "Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_MIX";
+		loginPorLinea("MIX");
+		irA("facturaci\\u00f3n");
+		driver.findElement(By.className("fo-text")).click();
+		sleep(15000);
+		driver.findElement(By.id("inputEmail")).sendKeys("alejandromza@gmail.com");
+		//driver.findElement(By.id("btn_Adherirme")).click();
+		//Se necesita el acceso a la base para obtener el id de confirmacion del mail 
+		Assert.assertTrue(false);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_POS() {
+		imagen = "Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_MIX";
+		loginPorLinea("Pos");
+		irA("facturaci\\u00f3n");
+		driver.findElement(By.className("fo-text")).click();
+		sleep(15000);
+		driver.findElement(By.id("inputEmail")).sendKeys("alejandromza@gmail.com");
+		//driver.findElement(By.id("btn_Adherirme")).click();
+		//Se necesita el acceso a la base para obtener el id de confirmacion del mail 
+		Assert.assertTrue(false);
+	}
+	
+	@Test (groups = {"AutogestionIndividuosWeb"}, dependsOnMethods="Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_MIX")
+	public void Facturacion_Facturacion_Digital_Desuscripcion_a_Factura_Online_MIX(){
+		imagen = "Facturacion_Facturacion_Digital_Desuscripcion_a_Factura_Online_MIX";
+		loginPorLinea("MIX");
+	    //SIN TERMINAR - NO SE PUEDE COMPLETAR HASTA QUE FUNCIONE LA ADHESION
+	}
+	
+	@Test (groups = {"AutogestionIndividuosWeb"}, dependsOnMethods="Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_POS")
+	public void Facturacion_Facturacion_Digital_Desuscripcion_a_Factura_Online_POS(){
+		imagen = "Facturacion_Facturacion_Digital_Desuscripcion_a_Factura_Online_POS";
+		loginPorLinea("pos");
+	    //SIN TERMINAR - NO SE PUEDE COMPLETAR HASTA QUE FUNCIONE LA ADHESION
+	}
+	
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_SMS_Disponibles_PRE(){
+		imagen = "Mis_Consumos_SMS_Disponibles_PRE";
+		loginPorLinea("Pre");
+		irA("consumos");
+		sleep(8000);
+		boolean rompe = true;
+		List <WebElement> sms = driver.findElements(By.cssSelector(".card.card-xs.card-min.ng-scope"));
+			for(WebElement s : sms){
+				s.getText().toLowerCase().contains("sms");
+				if(s.findElement(By.tagName("span")).getText().equals("-")){
+					rompe = false;
+				}
+			}
+		Assert.assertTrue(rompe);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_Minutos_Disponibles_MIX(){
+		imagen = "Mis_Consumos_SMS_Disponibles_MIX";
+		loginPorLinea("MIX");
+		irA("consumos");
+		sleep(8000);
+		boolean rompe = true;
+		List <WebElement> sms = driver.findElements(By.cssSelector(".card.card-xs.card-min.ng-scope"));
+			for(WebElement s : sms){
+				System.out.println(s.getText());
+				s.getText().toLowerCase().contains("sms");
+				if(s.findElement(By.tagName("span")).getText().equals("-")){
+					rompe = false;
+				}
+			}
+		Assert.assertTrue(rompe);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mis_Consumos_Minutos_Disponibles_PRE(){
+		imagen = "Mis_Consumos_SMS_Disponibles_PRE";
+		loginPorLinea("Pre");
+		irA("consumos");
+		sleep(8000);
+		boolean rompe = true;
+		List <WebElement> sms = driver.findElements(By.cssSelector(".card.card-xs.card-min.ng-scope"));
+			for(WebElement s : sms){
+				System.out.println(s.getText());
+				s.getText().toLowerCase().contains("sms");
+				if(s.findElement(By.tagName("span")).getText().equals("-")){
+					rompe = false;
+				}
+			}
+		Assert.assertTrue(rompe);
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mi_Linea_Carga_Formulario_Baja_Servicio(){
+		imagen = "Mi_Linea_Carga_Formulario_Baja_Servicio";
+		loginPorLinea("MIX");
+		irA("mi l\u00ednea");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","baja del servicio");
+		sleep(10000);
+		Select doc = new Select(driver.findElement(By.id("tipodoc")));
+		doc.selectByVisibleText("DNI");
+		driver.findElement(By.id("numberdoc")).sendKeys("11232843");
+		driver.findElement(By.id("nombre")).sendKeys("pepe");
+		driver.findElement(By.id("apellido")).sendKeys("perez");
+		driver.findElement(By.id("email")).sendKeys("a@a.com");
+		driver.findElement(By.cssSelector(".form-control.areaCode")).sendKeys("11");
+		driver.findElement(By.cssSelector(".form-control.telephone1.celForm")).sendKeys("62735148");
+		Select dias = new Select(driver.findElement(By.id("diascontacto")));
+		dias.selectByVisibleText("Lunes");
+		Select hora = new Select(driver.findElement(By.id("horacontacto")));
+		hora.selectByIndex(1);
+		Select baja = new Select(driver.findElement(By.id("motivobaja")));
+		baja.selectByIndex(1);
+		driver.findElement(By.id("submit_fef510d6-2fbe-4f16-ac62-d4fc398de2c3")).click();
+		sleep(39000);
+		Assert.assertTrue(driver.findElement(By.id("tformtagBajaLinea")).isDisplayed());
+		
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mi_Linea_Carga_Formulario_Cambio_Titularidad(){
+		imagen = "Mi_Linea_Carga_Formulario_Cambio_Titularidad";
+		loginPorLinea("MIX");
+		irA("mi l\u00ednea");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","cambio de titularidad");
+		sleep(14000);
+		driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.hidden-xs.hidden-sm")).get(1).click();
+		sleep(8000);
+		driver.findElement(By.id("txtNombre")).sendKeys("pepe");
+		driver.findElement(By.id("txtApellido")).sendKeys("perez");
+		Select doc = new Select(driver.findElement(By.id("slcTipoDni")));
+		doc.selectByVisibleText("DNI");
+		driver.findElement(By.id("txtNroDoc")).sendKeys("11232843");
+		driver.findElement(By.id("txtFecNac-dia")).sendKeys("10");
+		Select mes = new Select(driver.findElement(By.id("txtFecNac-mes")));
+		mes.selectByVisibleText("Octubre");
+		driver.findElement(By.id("txtFecNac-anio")).sendKeys("1979");
+		driver.findElement(By.id("chkGenero")).findElement(By.tagName("input")).click();
+		driver.findElement(By.id("txtDireccion")).sendKeys("falsa");
+		driver.findElement(By.id("txtNumeroCalle")).sendKeys("1234");
+		driver.findElement(By.id("txtPiso")).sendKeys("1");
+		driver.findElement(By.id("txtDepto")).sendKeys("a");
+		driver.findElement(By.id("txtCodPostal")).sendKeys("1428");
+		Select prov = new Select(driver.findElement(By.id("prov-prov")));
+		prov.selectByVisibleText("Buenos Aires");
+		sleep(3000);
+		Select loca = new Select (driver.findElement(By.id("prov-loc")));
+		loca.selectByIndex(1);
+		Select iva = new Select (driver.findElement(By.id("txtIVA")));
+		iva.selectByIndex(1);
+		driver.findElement(By.id("txtEmail")).sendKeys("a@a.com");
+		driver.findElement(By.cssSelector(".form-control.areaCode")).sendKeys("11");
+		driver.findElement(By.cssSelector(".form-control.telephone1.celForm")).sendKeys("62735148");
+		driver.findElement(By.id("btnConfirm")).click();
+		sleep(8000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.hidden-xs.hidden-sm")),"equals","confirmar");
+		sleep(30000);
+		Assert.assertTrue(driver.findElements(By.cssSelector("text-center")).contains("La carga de datos fue exitosa"));
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary")),"contains","finalizar");
+		
+	}
+	
+	@Test (groups = "AutogestionIndividuosWeb")
+	public void Mi_Linea_Carga_Formulario_Autorizado(){
+		imagen = "Mi_Linea_Carga_Formulario_Autorizado";
+		loginPorLinea("MIX");
+		irA("mi l\u00ednea");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","autorizar l\u00edneas no titulares");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.btnMedia")),"equals","agregar autorizado");
+		sleep(8000);
+		Assert.assertTrue(false);
+	}
+	
 	
 }

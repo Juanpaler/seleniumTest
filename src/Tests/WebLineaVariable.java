@@ -1,7 +1,13 @@
 package Tests;
 
 import java.awt.AWTException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -18,6 +24,12 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
+import com.jcraft.jsch.SftpException;
+
 import PageMetodos.Metodos;
 import PageMetodos.PDF;
 
@@ -27,7 +39,7 @@ public class WebLineaVariable extends Metodos{
 	
 	String imagen;
 
-	//@BeforeClass (alwaysRun = true)
+	@BeforeClass (alwaysRun = true)
 	public void apis(){
 		driver = setup();
 		driver.get("https://resourcesuat.telecom.com.ar/styles/v1/css/tpstyle.css");
@@ -38,7 +50,7 @@ public class WebLineaVariable extends Metodos{
 	}
 	
 	@BeforeMethod (alwaysRun = true)
-	public void before(){
+		public void before(){
 		driver = setup();
 	}
 	
@@ -139,7 +151,7 @@ public class WebLineaVariable extends Metodos{
 	
 	@Test(groups = "AutogestionIndividuosWeb") 
 	public void Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activacion_MIX(){
-		imagen = "Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activaciï¿½n_MIX";
+		imagen = "Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activacion_MIX";
 		String ln = "1162735148";
 		ln = ln.substring(ln.length()-8);
 		LoginPorLineaVariable("1164461283");
@@ -742,5 +754,248 @@ public class WebLineaVariable extends Metodos{
 		driver.close();
 		driver.switchTo().window(tabs.get(0));
 	}
+
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_MIX(){
+		imagen = "Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_MIX";
+		LoginPorLineaVariable("1162749941");
+		driver.findElement(By.id("tpi-user")).click();
+		sleep(3000);
+		driver.findElement(By.cssSelector(".tpi-user-link.tpi-fix-micuenta")).click();
+		sleep(15000);
+		driver.findElement(By.id("lnkDomicilioFacturacion")).click();
+		sleep(8000);
+		driver.findElement(By.id("btnAction")).click();
+		sleep(3000);
+		driver.findElement(By.id("inputDni")).sendKeys("33851579");
+		Select prov = new Select(driver.findElement(By.id("lstProvincia")));
+		prov.selectByVisibleText("Capital Federal y GBA");
+		driver.findElement(By.id("inputNumeroCalle")).clear();
+		driver.findElement(By.id("inputNumeroCalle")).sendKeys("4682");
+		driver.findElement(By.id("btnAction")).click();
+		Assert.assertTrue(false);
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_POS(){
+		imagen = "Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_POS";
+		LoginPorLineaVariable("1145642605");
+		driver.findElement(By.id("tpi-user")).click();
+		sleep(3000);
+		driver.findElement(By.cssSelector(".tpi-user-link.tpi-fix-micuenta")).click();
+		sleep(15000);
+		driver.findElement(By.id("lnkDomicilioFacturacion")).click();
+		sleep(8000);
+		driver.findElement(By.id("btnAction")).click();
+		sleep(3000);
+		driver.findElement(By.id("inputDni")).sendKeys("21976636");
+		Select prov = new Select(driver.findElement(By.id("lstProvincia")));
+		prov.selectByVisibleText("Capital Federal y GBA");
+		driver.findElement(By.id("inputNumeroCalle")).clear();
+		driver.findElement(By.id("inputNumeroCalle")).sendKeys("4682");
+		driver.findElement(By.id("btnAction")).click();
+		Assert.assertTrue(false);
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_PRE(){
+		imagen = "Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_PRE";
+		LoginPorLineaVariable("1162745165");
+		driver.findElement(By.id("tpi-user")).click();
+		sleep(3000);
+		driver.findElement(By.cssSelector(".tpi-user-link.tpi-fix-micuenta")).click();
+		sleep(15000);
+		driver.findElement(By.id("lnkDomicilioFacturacion")).click();
+		sleep(8000);
+		driver.findElement(By.id("btnAction")).click();
+		sleep(3000);
+		driver.findElement(By.id("inputDni")).sendKeys("30500051163");
+		Select prov = new Select(driver.findElement(By.id("lstProvincia")));
+		prov.selectByVisibleText("Capital Federal y GBA");
+		driver.findElement(By.id("inputNumeroCalle")).clear();
+		driver.findElement(By.id("inputNumeroCalle")).sendKeys("4682");
+		driver.findElement(By.id("btnAction")).click();
+		Assert.assertTrue(false);
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Mi_Linea_Capro(){
+		imagen = "Mi_Linea_Capro";
+		LoginPorLineaVariable("1164520012");
+		irA("mi l\u00ednea");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","mejorar mi plan");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-block.btn-primary.btn-lg")),"equals","lo quiero");
+		sleep(10000);
+		driver.findElement(By.id("llamame-core-number0")).sendKeys("11");
+		driver.findElement(By.id("llamame-core-number1")).sendKeys("32465432");
+		driver.findElement(By.id("llamame-core-submit")).click();
+		sleep(5000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".llamame-br-label1")).getText().equals("Te estamos llamando"));
+		}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Mis_Consumos_Modificar_Cuota_de_Datos() throws FileNotFoundException, UnsupportedEncodingException, JSchException, SftpException{
+		imagen = "Mis_Consumos_Modificar_Cuota_de_Datos";
+		
+		//Genero el archivo para realizar el consumo de 1mb
+		String linea="1152292615";
+		String fecha = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
+		String consumo="1048576";
+		String mitadconsumo="524288";
+		int x = (int)(Math.random() * 99999 + 10000);
+		int z = (int)(Math.random() * 999999999 + 100000000);
+		int y = (int)(Math.random() * 999999 + 100000);
+	
+		String echo="|||||0||3|1||||" + fecha + "105100|0|54" + linea + "|||||2000||||" + consumo + "|" + mitadconsumo + "|" + mitadconsumo + "||||||||||||||||||||||||||||||||||"
+				+ "3000|||||100.71.211.86||65.170.31.0|65.170.31.0|||||datos.personal.comID" + x + "|||0400|72234||||722-34-12345-41315||||||||||||||" + z + "|||" + consumo + "|"
+						+ "180|" + consumo + "|" + consumo + "|||||";
+		
+		String filename="GPRS_" + fecha + "_" + y + ".unl";
+		PrintWriter writer = new PrintWriter(filename, "UTF-8");
+		writer.println(echo);
+		writer.close();
+		
+		//Realizo conexion ftp para subir el archivo
+		JSch jsch = new JSch();
+		Session session = jsch.getSession("adptftp","10.75.198.17", 22);
+		session.setPassword("CA3DS2_21");
+		java.util.Properties config = new java.util.Properties(); 
+		config.put("StrictHostKeyChecking", "no");
+		session.setConfig(config);
+		session.connect();
+		ChannelSftp sftpChannel = (ChannelSftp) session.openChannel("sftp");
+		sftpChannel.connect();
+		sftpChannel.put(filename, "/home/onip/offcdr_mount/offcdr_nfs/cbpadpt451/input/cbs/data/scan_file/"+filename);
+		sftpChannel.disconnect();
+		session.disconnect();
+		
+		//Borro el archivo
+		File file = new File(filename);
+		file.delete();
+        
+		//Loguin en la web
+		LoginPorLineaVariable(linea);
+		irA("consumos");
+		Assert.assertTrue(driver.findElement(By.cssSelector(".text-brand-cyanoscuro.ng-binding.ng-scope")).getText().equals("Internet X Dia"));
+		buscarYClick(driver.findElements(By.cssSelector(".ng-scope")),"equals","modificar la cuota diaria");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.pull-right")),"equals","seleccionar");
+		sleep(10000);
+		String cuota = driver.findElement(By.cssSelector(".col-xs-12.col-lg-offset-1.col-lg-10.col-lg-offset-1")).findElements(By.cssSelector(".col-xs-12.col-lg-5.text-center.margin-top-20")).get(1).findElement(By.cssSelector(".text-destacado.text-destacado-xs.text-primary")).getText();
+		Assert.assertTrue(cuota.equals("Internet 200MB por Dia"));
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.corregirBtn")),"equals","confirmar");
+		sleep(10000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".text-primary.ng-scope")).getText().equals("¡Felicitaciones!"));
+		driver.findElement(By.cssSelector(".tpicon.tpicon-flechaizquierda")).click();
+		sleep(10000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".text-brand-cyanoscuro.ng-binding.ng-scope")).getText().equals("Internet 200MB por Dia"));
+		buscarYClick(driver.findElements(By.cssSelector(".ng-scope")),"equals","modificar la cuota diaria");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.pull-right")),"equals","seleccionar");
+		sleep(10000);
+		cuota = driver.findElement(By.cssSelector(".col-xs-12.col-lg-offset-1.col-lg-10.col-lg-offset-1")).findElements(By.cssSelector(".col-xs-12.col-lg-5.text-center.margin-top-20")).get(1).findElement(By.cssSelector(".text-destacado.text-destacado-xs.text-primary")).getText();
+		Assert.assertTrue(cuota.equals("Internet X Dia"));
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.corregirBtn")),"equals","confirmar");
+		sleep(10000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".ng-binding")).getText().equals("La cuota Internet X Dia fue activada con \u00e9xito"));
+		driver.findElement(By.cssSelector(".tpicon.tpicon-flechaizquierda")).click();
+		sleep(10000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".text-brand-cyanoscuro.ng-binding.ng-scope")).getText().equals("Internet X Dia"));
+		}
+
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Facturacion_Compras_Realizadas_Descargar_Comprobante_MIX() {
+		imagen = "Facturacion_Compras_Realizadas_Descargar_Comprobante_MIX";
+		LoginPorLineaVariable("1164599468");
+		irA("facturaci\u00f3n");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","compras realizadas");
+		sleep(7000);
+		driver.findElement(By.cssSelector(".tpicon.tpicon-descargar")).click();
+	    Assert.assertTrue(false);
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Facturacion_Compras_Realizadas_Descargar_Comprobante_POS() {
+		imagen = "Facturacion_Compras_Realizadas_Descargar_Comprobante_POS";
+		LoginPorLineaVariable("1164599450");
+		irA("facturaci\u00f3n");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","compras realizadas");
+		sleep(7000);
+		driver.findElement(By.cssSelector(".tpicon.tpicon-descargar")).click();
+	    Assert.assertTrue(false);
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Facturacion_Compras_Realizadas_Descargar_Comprobante_PRE() {
+		imagen = "Facturacion_Compras_Realizadas_Descargar_Comprobante_PRE";
+		LoginPorLineaVariable("1162745165");
+		irA("facturaci\u00f3n");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","compras realizadas");
+		sleep(7000);
+		driver.findElement(By.cssSelector(".tpicon.tpicon-descargar")).click();
+	    Assert.assertTrue(false);
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Facturacion_Informar_un_Pago_MIX() {
+		imagen = "Facturacion_Informar_un_Pago_MIX";
+		LoginPorLineaVariable("1162733281");
+		irA("facturaci\u00f3n");
+		sleep(10000);
+		driver.findElement(By.id("btnInformarPago")).click();
+		sleep(10000);
+		driver.findElement(By.id("btnInformar")).click();
+		sleep(10000);
+		Assert.assertTrue(false);
+	}
+
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Facturacion_Informar_un_Pago_POS() {
+		imagen = "Facturacion_Informar_un_Pago_POS";
+		LoginPorLineaVariable("1165990597");
+		irA("facturaci\u00f3n");
+		sleep(10000);
+		driver.findElement(By.id("btnInformarPago")).click();
+		sleep(10000);
+		driver.findElement(By.id("btnInformar")).click();
+		sleep(10000);
+		Assert.assertTrue(false);
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Recargas_Recarga_con_puntos_Club_MIX() {
+		imagen = "Recargas_Recarga_con_puntos_Club_MIX";
+		LoginPorLineaVariable("1168829219");
+		irA("recargas");
+		sleep(15000);
+		buscarYClick(driver.findElements(By.cssSelector(".re-text")),"equals","con puntos club");
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".panel-title")),"equals","recargas");
+		buscarYClick(driver.findElements(By.cssSelector(".ng-binding")),"equals","cr\u00e9dito $10");
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.pull-right")),"equals","canjear");
+		Assert.assertTrue(false);	
+	}
+	
+	@Test(groups = "AutogestionIndividuosWeb") 
+	public void Recargas_Recarga_con_puntos_Club_PRE() {
+		imagen = "Recargas_Recarga_con_puntos_Club_PRE";
+		LoginPorLineaVariable("1164473518");
+		irA("recargas");
+		sleep(15000);
+		buscarYClick(driver.findElements(By.cssSelector(".re-text")),"equals","con puntos club");
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".panel-title")),"equals","recargas");
+		buscarYClick(driver.findElements(By.cssSelector(".ng-binding")),"equals","cr\u00e9dito $10");
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.pull-right")),"equals","canjear");
+		sleep(10000);
+		Assert.assertTrue(false);	
+	}
+	
 	
 } 

@@ -31,6 +31,7 @@ public class Metodos {
 		System.setProperty("webdriver.chrome.driver", "Chromedriver.exe");
 		ChromeOptions Options = new ChromeOptions();
 		Options.addArguments("start-maximized");
+		Options.addArguments("disable-infobars");
 		driver = new ChromeDriver(Options);
 		return driver;
 	}
