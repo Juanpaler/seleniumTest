@@ -340,22 +340,22 @@ public class WebLineaUnica extends Metodos{
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
-	public void Mis_Datos_Mi_Perfil_Cambiar_Contrase�a_MIX() {
-		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contrase�a_MIX";
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contrasena_MIX() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contrasena_MIX";
 		loginPorLinea("MIX");
 		Assert.assertTrue(cambiarClave("1357"));
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
-	public void Mis_Datos_Mi_Perfil_Cambiar_Contrase�a_PRE() {
-		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contrase�a_PRE";
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contrasena_PRE() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contrasena_PRE";
 		loginPorLinea("Pre");
 		Assert.assertTrue(cambiarClave("1357"));
 	}
 	
 	@Test (groups = "AutogestionIndividuosWeb")
-	public void Mis_Datos_Mi_Perfil_Cambiar_Contrase�a_POS() {
-		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contrase�a_POS";
+	public void Mis_Datos_Mi_Perfil_Cambiar_Contrasena_POS() {
+		imagen = "Mis_Datos_Mi_Perfil_Cambiar_Contrasena_POS";
 		loginPorLinea("Pos");
 		Assert.assertTrue(cambiarClave("1357"));
 	}
