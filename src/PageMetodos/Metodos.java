@@ -102,7 +102,7 @@ public class Metodos {
 	}
 	
 	public void loginPorLineaMobile(WebDriver driver, String linea) {
-		sleep(10000);
+		sleep(15000);
 		driver.findElement(By.id("editTextLinea")).sendKeys(linea);
         driver.findElement(By.id("btn_log_in")).click();
         driver.findElement(By.id("editTextPin")).sendKeys("1469");

@@ -1008,4 +1008,33 @@ public class MobileTests extends Metodos {
     	}
     	Assert.assertTrue(pee && ca && pcc);
     }
+    
+    @Test (groups = "AutogestionIndividuosAPP")
+    public void Mis_Consumos_DataSharing_Alta_MIX() {
+    	boolean activ = false, modif = false, elim = false;
+    	loginPorLineaMobile(driver, "1164493210");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='MIS SERVICIOS']");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='Compart\u00ed Gigas']");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='COMENZAR']");
+    	driver.findElement(By.className("android.widget.EditText")).sendKeys("11");
+    	driver.findElements(By.className("android.widget.EditText")).get(1).sendKeys("64480754");
+    	driver.findElements(By.className("android.widget.EditText")).get(2).sendKeys("1");
+    	scrollAndClick("xpath", "//android.widget.TextView[@text='AGREGAR']");
+    	if (driver.findElement(By.id("dialog_alert_message")).getText().contains("Felicitaciones! El n\u00famero para compartir Internet se agreg\u00f3 con \u00e9xito."))
+    		activ = true;
+    	scrollAndClick("xpath", "//android.widget.Button[@text='ACEPTAR']");
+    	driver.findElement(By.xpath("(//*[@id='double_component_main' and ./parent::*[./parent::*[@id='double_component_main']]]/*/*[@id='imageview_component_image'])[2]")).click();
+    	driver.findElement(By.className("android.widget.EditText")).clear();
+    	driver.findElement(By.className("android.widget.EditText")).sendKeys("2");
+    	scrollAndClick("id", "button_component_layout");
+    	if (driver.findElement(By.id("dialog_alert_message")).getText().contains("Se modific\u00f3 a 2 GB el limite de consumo de la l\u00ednea 1164480754"))
+    		modif = true;
+    	scrollAndClick("id", "button1");
+    	driver.findElement(By.xpath("(//*[@id='double_component_main' and ./parent::*[./parent::*[@id='double_component_main']]]/*/*[@id='imageview_component_image'])[1]")).click();
+    	scrollAndClick("id", "button1");
+    	if (driver.findElement(By.id("dialog_alert_message")).getText().contains("El n\u00famero se elimin\u00f3 con \u00e9xito!"))
+    		elim = true;
+    	scrollAndClick("id", "button1");
+    	Assert.assertTrue(activ && modif && elim);
+    }
 }
