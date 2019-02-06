@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Funcionalidades W1" parallel="tests" thread-count="1">
+
+<!-- ************************************************** Mi  LINEA  ****************************************************** -->
+  <test name="mi linea">
+   <groups>
+    	<run>
+     	 					<include name="mi linea"/>
+    	</run>
+  </groups>
+    <classes>
+    						<class name="Tests.WebLineaUnica"/>
+    						<class name="Tests.WebLineaVariable"/>
+    						
+    </classes>
+  </test> 
+  
+  <!-- ************************************************** CONSUMOS ****************************************************** -->
+  
+  <!-- <test name="consumos">
+   <groups>
+    	<run>
+     	 					<include name="consumos"/>
+    	</run>
+  </groups>
+    <classes>
+    						<class name="Tests.WebLineaUnica"/>
+    						<class name="Tests.WebLineaVariable"/>
+    						
+    </classes>
+  </test> -->
+ 
+ <!-- ************************************************** PACKS ****************************************************** -->
+  
+  <!-- <test name="packs">
+   <groups>
+    	<run>
+     	 					<include name="packs"/>
+    	</run>
+  </groups>
+    <classes>
+    						<class name="Tests.WebLineaUnica"/>
+    						<class name="Tests.WebLineaVariable"/>
+    						
+    </classes>
+  </test> -->
+  
+   <!-- ************************************************** RECARGAS ****************************************************** -->
+   
+  <!--<test name="recargas">
+   <groups>
+    	<run>
+     	 					<include name="recargas"/>
+    	</run>
+  </groups>
+    <classes>
+    						<class name="Tests.WebLineaUnica"/>
+    						<class name="Tests.WebLineaVariable"/>
+    						
+    </classes>
+  </test> -->
+  
+   <!-- ************************************************** MIS DATOS ****************************************************** -->
+   
+  <!--<test name="mis datos">
+   <groups>
+    	<run>
+     	 					<include name="mis datos"/>
+    	</run>
+  </groups>
+    <classes>
+    						<class name="Tests.WebLineaUnica"/>
+    						<class name="Tests.WebLineaVariable"/>
+    						
+    </classes>
+  </test>-->
+  
+   <!-- ************************************************** FACTURACION ****************************************************** -->
+   
+ <!-- <test name="facturacion">
+   <groups>
+    	<run>
+     	 					<include name="facturacion"/>
+    	</run>
+  </groups>
+    <classes>
+    						<class name="Tests.WebLineaUnica"/>
+    						<class name="Tests.WebLineaVariable"/>
+    						
+    </classes>
+  </test>-->
+  
+   <!-- ************************************************** LOGIN ****************************************************** -->
+   
+  <!--<test name="login">
+   <groups>
+    	<run>
+     	 					<include name="login"/>
+    	</run>
+  </groups>
+    <classes>
+    						<class name="Tests.WebLineaUnica"/>
+    						<class name="Tests.WebLineaVariable"/>
+    						
+    </classes>
+  </test>-->
+  
+ </suite>

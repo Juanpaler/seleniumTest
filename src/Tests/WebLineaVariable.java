@@ -39,7 +39,7 @@ public class WebLineaVariable extends Metodos{
 	
 	String imagen;
 
-	@BeforeClass (alwaysRun = true)
+	//@BeforeClass (alwaysRun = true)
 	public void apis(){
 		driver = setup();
 		driver.get("https://resourcesuat.telecom.com.ar/styles/v1/css/tpstyle.css");
@@ -54,17 +54,20 @@ public class WebLineaVariable extends Metodos{
 		driver = setup();
 	}
 	
-	//@AfterMethod (alwaysRun = true)
+	@AfterMethod (alwaysRun = true)
 	public void after(){
 		tomarCaptura(driver,imagen);
-		driver.findElement(By.id("tpi-user")).click();
-		sleep(7000);
-		driver.findElement(By.id("tpi-form-logoff")).click();
-		sleep(7000);
-		driver.close();
+		try {
+			driver.findElement(By.id("tpi-user")).click();
+			sleep(7000);
+			driver.findElement(By.id("tpi-form-logoff")).click();
+			sleep(7000);
+			driver.close();
+		}catch(Exception ex1){driver.close();
+		}
 	}
 	
-	@Test (groups = "AutogestionIndividuosWeb")   
+	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void Mi_Linea_Transferencia_de_Llamadas_POS(){
 		imagen = "Mi_Linea_Transferencia_de_Llamadas_POS";
 		LoginPorLineaVariable("1166248383");
@@ -84,9 +87,9 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(msj.isDisplayed());
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Destransferencia_de_Llamadas_POS(){
-		imagen = "Mi_L�nea_Destransferencia_de_Llamadas_POS";
+		imagen = "Mi_Linea_Destransferencia_de_Llamadas_POS";
 		LoginPorLineaVariable("1166248383");
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -101,7 +104,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(msj.isDisplayed());
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb")
+	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void MI_Linea_Roaming_y_LDI_habilitado_MIX(){
 		imagen = "MI_Linea_Roaming_y_LDI_habilitado_MIX";
 		LoginPorLineaVariable("3496652414");
@@ -117,7 +120,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(lid.getText().toLowerCase().contains("habilitado"));
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb")
+	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void MI_Linea_Roaming_y_LDI_habilitado_POS(){
 		imagen = "MI_Linea_Roaming_y_LDI_habilitado_POS";
 		LoginPorLineaVariable("3794601129");
@@ -133,7 +136,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(lid.getText().toLowerCase().contains("habilitado"));
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void MI_Linea_Roaming_y_LDI_habilitado_PRE(){
 		imagen = "MI_Linea_Roaming_y_LDI_habilitado_PRE";
 		LoginPorLineaVariable("1164520012");
@@ -149,7 +152,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(lid.getText().toLowerCase().contains("habilitado"));
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activacion_MIX(){
 		imagen = "Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activacion_MIX";
 		String ln = "1162735148";
@@ -173,7 +176,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".alert.alert-dismissable.alert-success.ng-binding")).getText().toLowerCase().contains(" registraste el n\u00famero gratis con \u00e9xito"));
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activacion_PRE(){
 		imagen = "Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Activaci�n_PRE";
 		String ln = "1162735148";
@@ -197,7 +200,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".alert.alert-dismissable.alert-success.ng-binding")).getText().toLowerCase().contains(" registraste el n\u00famero gratis con \u00e9xito"));
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Eliminacion_MIX(){
 		imagen = "Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Eliminacion_MIX";
 		String ln = "1162735148";
@@ -214,7 +217,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.id("divListNroSMS")).findElement(By.className("text-muted")).isDisplayed());
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Eliminacion_PRE(){
 		imagen = "Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Eliminacion_PRE";
 		String ln = "1162735148";
@@ -231,7 +234,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.id("divListNroSMS")).findElement(By.className("text-muted")).isDisplayed());
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void Mi_Linea_Seguimineto_de_Gestiones_MIX(){
 		imagen = "Mi_Linea_Seguimineto_de_Gestiones_MIX";
 		LoginPorLineaVariable("1162755344");
@@ -245,7 +248,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(false);
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void Mi_Linea_Seguimineto_de_Gestiones_PRE(){
 		imagen = "Mi_Linea_Seguimineto_de_Gestiones_PRE";
 		LoginPorLineaVariable("1164405558");
@@ -259,7 +262,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(false);
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void Mi_Linea_Seguimineto_de_Gestiones_POS(){
 		imagen = "Mi_Linea_Seguimineto_de_Gestiones_POS";
 		LoginPorLineaVariable("1166248383");
@@ -273,7 +276,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(false);
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","consumos"}) 
 	public void Mis_Consumos_DataSharing_Alta_MIX(){
 		imagen = "Mis_Consumos_DataSharing_Alta_MIX";
 		String num = "64480754";
@@ -298,7 +301,7 @@ public class WebLineaVariable extends Metodos{
 		
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","consumos"}) 
 	public void Mis_Consumos_DataSharing_Modificacion_MIX(){
 		imagen = "Mis_Consumos_DataSharing_Modificacion_MIX";
 		LoginPorLineaVariable("1164493210");
@@ -321,7 +324,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElements(By.id("divExito")).get(1).getText().toLowerCase().contains("el l\u00edmite se modific\u00f3 con \u00e9xito"));
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","consumos"}) 
 	public void Mis_Consumos_DataSharing_Baja_MIX(){
 		imagen = "Mis_Consumos_DataSharing_Baja_MIX";
 		LoginPorLineaVariable("1164493210");
@@ -336,7 +339,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElements(By.id("divExito")).get(1).getText().toLowerCase().contains("el n\u00famero se elimin\u00f3 con \u00e9xito"));
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Imprimir_cupon_de_pago_MIX(){
 		imagen = "Facturacion_Imprimir_cupon_de_pago_MIX";
 		LoginPorLineaVariable("1162733281");
@@ -352,7 +355,7 @@ public class WebLineaVariable extends Metodos{
 	
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"})  
 	public void Facturacion_Imprimir_cupon_de_pago_POS() throws AWTException{
 		imagen = "Facturacion_Imprimir_cupon_de_pago_POS";
 		LoginPorLineaVariable("3413130145");
@@ -368,7 +371,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(false);
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Ver_Facturas_MIX() throws AWTException{
 		imagen ="Facturacion_Ver_Facturas_MIX";
 		LoginPorLineaVariable("1162733281");
@@ -410,7 +413,7 @@ public class WebLineaVariable extends Metodos{
 		
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Ver_Facturas_POS() throws AWTException{
 		imagen ="Facturacion_Ver_Facturas_POS";
 		LoginPorLineaVariable("1165990597");
@@ -450,7 +453,7 @@ public class WebLineaVariable extends Metodos{
 		}
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Alarmas_POS(){
 		imagen = "Facturacion_Alarmas_POS";
 		LoginPorLineaVariable("1166248383");
@@ -467,7 +470,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.id("lblMensajeExito")).getText().contains("Modificaste tus alarmas con \u00e9xito"));
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Alarmas_MIX(){
 		imagen = "Facturacion_Alarmas_MIX";
 		LoginPorLineaVariable("1162733281");
@@ -484,7 +487,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.id("lblMensajeExito")).getText().contains("Modificaste tus alarmas con \u00e9xito"));
 	}
 		
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","login"}) 
 	public void Login_Iniciar_Sesion_con_Linea_Inexistente(){
 		imagen = "Login_Iniciar_Sesion_con_Linea_Inexistente";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -500,7 +503,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".fa.alert-message-icon")).isDisplayed());
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","login"})  
 	public void Login_Iniciar_Sesion_con_clave_Incorrecta(){
 		imagen = "Login_Iniciar_Sesion_con_clave_Incorrecta";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -516,7 +519,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".fa.alert-message-icon")).isDisplayed());
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","login"}) 
 	public void Login_Iniciar_Sesion_con_Linea_PreActiva(){
 		imagen = "Login_Iniciar_Sesion_con_clave_Incorrecta";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -541,7 +544,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(asd);
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Notas_de_Credito_y_Debito_MIX() throws AWTException{
 		imagen = "Facturacion_Notas_de_Credito_y_Debito_MIX";
 		LoginPorLineaVariable("1161120234");
@@ -584,7 +587,7 @@ public class WebLineaVariable extends Metodos{
 		}
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Notas_de_Credito_y_Debito_POS() throws AWTException{
 		imagen = "Facturacion_Notas_de_Credito_y_Debito_POS";
 		LoginPorLineaVariable("1161120234");
@@ -625,7 +628,7 @@ public class WebLineaVariable extends Metodos{
 		}
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test (groups ={ "AutogestionIndividuosWeb","packs"}) 
 	public void Comprar_Packs_Compra_de_Packs_con_puntos_Club_MIX (){
 		imagen = "Comprar_Packs_Compra_de_Packs_con_puntos_Club_MIX";
 		LoginPorLineaVariable("1168829219");
@@ -646,7 +649,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(false);
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","packs"}) 
 	public void Comprar_Packs_Compra_de_Packs_con_puntos_Club_PRE(){
 		imagen = "Comprar_Packs_Compra_de_Packs_con_puntos_Club_PRE";
 		LoginPorLineaVariable("1164473518");
@@ -671,7 +674,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(false);
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Pagar_Factura_MIX(){
 		imagen = "Facturacion_Pagar_Factura_MIX";
 		LoginPorLineaVariable("1162733281");
@@ -713,7 +716,7 @@ public class WebLineaVariable extends Metodos{
 		driver.switchTo().window(tabs.get(0));
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"})  
 	public void Facturacion_Pagar_Factura_POS(){
 		imagen = "Facturacion_Pagar_Factura_POS";
 		LoginPorLineaVariable("1165990597");
@@ -755,7 +758,7 @@ public class WebLineaVariable extends Metodos{
 		driver.switchTo().window(tabs.get(0));
 	}
 
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","mis datos"}) 
 	public void Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_MIX(){
 		imagen = "Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_MIX";
 		LoginPorLineaVariable("1162749941");
@@ -776,7 +779,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(false);
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","mis datos"}) 
 	public void Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_POS(){
 		imagen = "Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_POS";
 		LoginPorLineaVariable("1145642605");
@@ -797,7 +800,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(false);
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","mis datos"}) 
 	public void Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_PRE(){
 		imagen = "Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_PRE";
 		LoginPorLineaVariable("1162745165");
@@ -818,7 +821,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(false);
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void Mi_Linea_Capro(){
 		imagen = "Mi_Linea_Capro";
 		LoginPorLineaVariable("1164520012");
@@ -835,7 +838,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".llamame-br-label1")).getText().equals("Te estamos llamando"));
 		}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","consumos"}) 
 	public void Mis_Consumos_Modificar_Cuota_de_Datos() throws FileNotFoundException, UnsupportedEncodingException, JSchException, SftpException{
 		imagen = "Mis_Consumos_Modificar_Cuota_de_Datos";
 		
@@ -905,7 +908,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".text-brand-cyanoscuro.ng-binding.ng-scope")).getText().equals("Internet X Dia"));
 		}
 
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Compras_Realizadas_Descargar_Comprobante_MIX() {
 		imagen = "Facturacion_Compras_Realizadas_Descargar_Comprobante_MIX";
 		LoginPorLineaVariable("1164599468");
@@ -917,7 +920,7 @@ public class WebLineaVariable extends Metodos{
 	    Assert.assertTrue(false);
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"})  
 	public void Facturacion_Compras_Realizadas_Descargar_Comprobante_POS() {
 		imagen = "Facturacion_Compras_Realizadas_Descargar_Comprobante_POS";
 		LoginPorLineaVariable("1164599450");
@@ -929,7 +932,7 @@ public class WebLineaVariable extends Metodos{
 	    Assert.assertTrue(false);
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Compras_Realizadas_Descargar_Comprobante_PRE() {
 		imagen = "Facturacion_Compras_Realizadas_Descargar_Comprobante_PRE";
 		LoginPorLineaVariable("1162745165");
@@ -941,7 +944,7 @@ public class WebLineaVariable extends Metodos{
 	    Assert.assertTrue(false);
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Informar_un_Pago_MIX() {
 		imagen = "Facturacion_Informar_un_Pago_MIX";
 		LoginPorLineaVariable("1162733281");
@@ -954,7 +957,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(false);
 	}
 
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"})  
 	public void Facturacion_Informar_un_Pago_POS() {
 		imagen = "Facturacion_Informar_un_Pago_POS";
 		LoginPorLineaVariable("1165990597");
@@ -967,7 +970,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(false);
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test (groups ={ "AutogestionIndividuosWeb","recargas"}) 
 	public void Recargas_Recarga_con_puntos_Club_MIX() {
 		imagen = "Recargas_Recarga_con_puntos_Club_MIX";
 		LoginPorLineaVariable("1168829219");
@@ -982,7 +985,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(false);	
 	}
 	
-	@Test(groups = "AutogestionIndividuosWeb") 
+	@Test(groups ={ "AutogestionIndividuosWeb","recargas"}) 
 	public void Recargas_Recarga_con_puntos_Club_PRE() {
 		imagen = "Recargas_Recarga_con_puntos_Club_PRE";
 		LoginPorLineaVariable("1164473518");
@@ -997,5 +1000,16 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(false);	
 	}
 	
+	@Test(groups ={ "AutogestionIndividuosWeb","mis datos"}) 
+	public void Mis_Datos_Mi_Perfil_Ir_a_club_Personal(){
+		imagen = "Mis_Datos_Mi_Perfil_Ir_a_club_Personal";
+		//Linea adherida a club
+		LoginPorLineaVariable("1162816939");
+		driver.findElement(By.id("tpi-user")).click();
+		sleep(3000);
+		buscarYClick(driver.findElements(By.cssSelector(".tpi-user-link")),"equals","canjear puntos");
+		sleep(15000);
+		Assert.assertTrue(driver.getCurrentUrl().equals("http://clubuat.personal.com.ar:8090/fe/#/filtros/a-mi-alcance/"));
+	}
 	
 } 
