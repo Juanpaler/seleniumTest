@@ -999,5 +999,16 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(false);	
 	}
 	
+	@Test(groups ={ "AutogestionIndividuosWeb","mis datos"}) 
+	public void Mis_Datos_Mi_Perfil_Ir_a_club_Personal(){
+		imagen = "Mis_Datos_Mi_Perfil_Ir_a_club_Personal";
+		//Linea adherida a club
+		LoginPorLineaVariable("1162816939");
+		driver.findElement(By.id("tpi-user")).click();
+		sleep(3000);
+		buscarYClick(driver.findElements(By.cssSelector(".tpi-user-link")),"equals","canjear puntos");
+		sleep(15000);
+		Assert.assertTrue(driver.getCurrentUrl().equals("http://clubuat.personal.com.ar:8090/fe/#/filtros/a-mi-alcance/"));
+	}
 	
 } 

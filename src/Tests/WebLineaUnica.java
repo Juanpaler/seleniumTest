@@ -927,5 +927,44 @@ public class WebLineaUnica extends Metodos{
 		Assert.assertTrue(false);
 	}
 	
+	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"})
+	public void Facturacion_Links(){
+		imagen = "Facturacion_Links";
+		loginPorLinea("MIX");
+		irA("facturaci\u00f3n");
+		buscarYClick(driver.findElements(By.cssSelector(".col-sm-6.col-md-12.col-lg-6")),"equals","consultas generales de facturaci\u00f3n");
+		sleep(10000);
+	    ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+	    driver.switchTo().window(tabs.get(1));
+	    Assert.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/tag/c-facturacion-y-pagos/17487"));
+		driver.close();
+		driver.switchTo().window(tabs.get(0));
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".col-sm-6.col-md-12.col-lg-6")),"equals","pagos");
+		sleep(10000);
+	    tabs = new ArrayList<String> (driver.getWindowHandles());
+	    driver.switchTo().window(tabs.get(1));
+	    Assert.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/tag/c-facturacion-y-pagos/17487"));
+		driver.close();
+		driver.switchTo().window(tabs.get(0));
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".col-sm-6.col-md-12.col-lg-6")),"equals","suscripciones y trivias");
+		sleep(10000);
+	    tabs = new ArrayList<String> (driver.getWindowHandles());
+	    driver.switchTo().window(tabs.get(1));
+	    Assert.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/tag/c-facturacion-y-pagos/17487"));
+		driver.close();
+		driver.switchTo().window(tabs.get(0));
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".col-sm-6.col-md-12.col-lg-6")),"equals","consumos");
+		sleep(10000);
+	    tabs = new ArrayList<String> (driver.getWindowHandles());
+	    driver.switchTo().window(tabs.get(1));
+	    Assert.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/article/que-es-el-limite-de-consumo-asignado/208372"));
+		driver.close();
+		driver.switchTo().window(tabs.get(0));
+		sleep(5000);
+	}
 	
+
 }
