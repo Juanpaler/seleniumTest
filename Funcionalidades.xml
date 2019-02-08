@@ -3,7 +3,7 @@
 <suite name="Funcionalidades W1" parallel="tests" thread-count="1">
 
 <!-- ************************************************** Mi  LINEA  ****************************************************** -->
-  <test name="mi linea">
+<!--  <test name="mi linea">
    <groups>
     	<run>
      	 					<include name="mi linea"/>
@@ -15,10 +15,10 @@
     						
     </classes>
   </test> 
-  
+  -->
   <!-- ************************************************** CONSUMOS ****************************************************** -->
   
-  <!-- <test name="consumos">
+ <!--  <test name="consumos">
    <groups>
     	<run>
      	 					<include name="consumos"/>
@@ -29,8 +29,8 @@
     						<class name="Tests.WebLineaVariable"/>
     						
     </classes>
-  </test> -->
- 
+  </test> 
+ -->
  <!-- ************************************************** PACKS ****************************************************** -->
   
   <!-- <test name="packs">
@@ -44,11 +44,11 @@
     						<class name="Tests.WebLineaVariable"/>
     						
     </classes>
-  </test> -->
-  
+  </test>
+  -->
    <!-- ************************************************** RECARGAS ****************************************************** -->
-   
-  <!--<test name="recargas">
+    <!--
+  <test name="recargas">
    <groups>
     	<run>
      	 					<include name="recargas"/>
@@ -59,11 +59,11 @@
     						<class name="Tests.WebLineaVariable"/>
     						
     </classes>
-  </test> -->
-  
+  </test> 
+  -->
    <!-- ************************************************** MIS DATOS ****************************************************** -->
-   
-  <!--<test name="mis datos">
+    <!--
+  <test name="mis datos">
    <groups>
     	<run>
      	 					<include name="mis datos"/>
@@ -74,26 +74,26 @@
     						<class name="Tests.WebLineaVariable"/>
     						
     </classes>
-  </test>-->
-  
+  </test>
+  -->
    <!-- ************************************************** FACTURACION ****************************************************** -->
    
- <!-- <test name="facturacion">
+  <test name="facturacion">
    <groups>
     	<run>
      	 					<include name="facturacion"/>
     	</run>
   </groups>
     <classes>
-    						<class name="Tests.WebLineaUnica"/>
+    					 <!--	<class name="Tests.WebLineaUnica"/>-->
     						<class name="Tests.WebLineaVariable"/>
     						
     </classes>
-  </test>-->
+  </test>
   
    <!-- ************************************************** LOGIN ****************************************************** -->
-   
-  <!--<test name="login">
+    <!--
+  <test name="login">
    <groups>
     	<run>
      	 					<include name="login"/>
@@ -104,6 +104,6 @@
     						<class name="Tests.WebLineaVariable"/>
     						
     </classes>
-  </test>-->
-  
+  </test>
+  -->
  </suite>
