@@ -26,12 +26,19 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.DataProvider;
 
+import com.github.bogdanlivadariu.gifwebdriver.GifScreenshotWorker;
+import com.github.bogdanlivadariu.gifwebdriver.GifWebDriver;
+
 import DataProvider.ExcelUtils;
 
 public class Metodos {
 	
 	static WebDriver driver;
-		
+	
+	public static String lineaMIX = "1162735148";
+	public static String lineaPre = "1162745165";
+	public static String lineaPos = "1145642605";
+	
 	public static WebDriver setup(){
 		System.setProperty("webdriver.chrome.driver", "Chromedriver.exe");
 		ChromeOptions Options = new ChromeOptions();
@@ -499,4 +506,40 @@ public class Metodos {
 		 return (testObjArray);
 		}
 		
+/*
+		public void sampleGifDriver(){
+	    // initialize your desired driver
+	 //   WebDriver driver=new GifWebDriver(new ChromeDriver());
+	    //WebDriver driver = new GifWebDriver(new FirefoxDriver());
+	    //WebDriver driver = new GifWebDriver(new RemoteWebDriver());
+	    // you can use either driver webdriver/gifdriver instance
+	    GifWebDriver gifDriver= new GifWebDriver(driver);
+	    // screenshots will be taken implicitly on click events
+	//    driver.findElement(By.id("someIDon a page")).click();
+	    // if you want to control when gifs are generated you can do it through the API
+	    File gifFile=gifDriver.getGifScreenshotWorker().createGif();
+	    //of course you can create screenshots explicitly
+	    gifDriver.getGifScreenshotWorker().takeScreenshot();
+	    // on quit the driver will generate the gifs
+	  //  driver.quit();
+	    // if you don't know where the screenshots are taken or where the gifs are created
+	    String rootFolder=gifDriver.getGifScreenshotWorker().getRootDir();
+	    // more options about where the gifs are created can be accomplished by using these methods
+	    GifScreenshotWorker gifWorker=gifDriver.getGifScreenshotWorker();
+	    gifWorker.setTimeBetweenFramesInMilliseconds(1000);
+	    File directory;
+		directory = new File("IMG");
+	    gifWorker.setRootDir("IMG");
+	    gifWorker.setLoopContinuously(true);
+	    // these properties can be set during initialization as well
+	    GifScreenshotWorker myPreciousWorker=new GifScreenshotWorker(
+	    new ChromeDriver(),
+	    "rootDir",
+	    "screenshots folder name",
+	    "generatedGifs folder name",
+	    true
+	    );
+	    WebDriver myPreciousDriver=new GifWebDriver(new ChromeDriver(),myPreciousWorker);
+	    // and from here it's pretty much all the same
+	}*/
 }
