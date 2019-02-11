@@ -4,10 +4,16 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
@@ -18,14 +24,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.DataProvider;
+
+import com.github.bogdanlivadariu.gifwebdriver.GifScreenshotWorker;
+import com.github.bogdanlivadariu.gifwebdriver.GifWebDriver;
+
+import DataProvider.ExcelUtils;
 
 public class Metodos {
 	
 	static WebDriver driver;
+	
 	public static String lineaMIX = "1162735148";
 	public static String lineaPre = "1162745165";
 	public static String lineaPos = "1145642605";
-	
 	
 	public static WebDriver setup(){
 		System.setProperty("webdriver.chrome.driver", "Chromedriver.exe");
@@ -40,7 +52,7 @@ public class Metodos {
 		try {Thread.sleep(miliseconds);} catch (InterruptedException ex) {Thread.currentThread().interrupt();}
 	}
 	
-	public void loginPorLinea(String tipoDeLinea) {
+	public void loginPorLinea(String sLinea) {
 		driver.get("https://autogestionuat.personal.com.ar");
 		/*driver.findElement(By.id("modal-ingresar")).click();
 		sleep(4000);
@@ -56,17 +68,8 @@ public class Metodos {
 		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
 		//driver.findElement(By.id("linea-numero")).clear();
 		//sleep(5000);
-		switch(tipoDeLinea) {
-		case "MIX":
-			driver.findElement(By.id("idToken1")).sendKeys(lineaMIX);
-			break;
-		case "Pre":
-			driver.findElement(By.id("idToken1")).sendKeys(lineaPre);
-			break;
-		case "Pos":
-			driver.findElement(By.id("idToken1")).sendKeys(lineaPos);
-			break;
-		}
+		driver.findElement(By.id("idToken1")).sendKeys(sLinea);
+		
 		//driver.findElement(By.id("btn-login")).click();;
 		//sleep(25000);
 		driver.findElement(By.id("idToken2")).clear();
@@ -261,4 +264,282 @@ public class Metodos {
 		r.keyRelease(KeyEvent.VK_CONTROL);
 		r.keyRelease(KeyEvent.VK_T);
 	}
+	
+	//Metodo para obtener el dato deseado del excel indicando la hoja o pesta;a donde se encuentra (se agrupa por modulo)
+		public String buscarCampoExcel(int hoja, String desc, int columna) throws IOException
+		{
+			String Campo = null;
+			 File archivo = new File("Lineas.xlsx");
+			 FileInputStream file = new FileInputStream(archivo);
+		     XSSFWorkbook workbook = new XSSFWorkbook(file); 
+		     XSSFSheet sheet = workbook.getSheetAt(hoja);
+		     Iterator<Row> rows = sheet.rowIterator();
+		    // rows.next();
+		     System.out.println("Aquiiiii");
+		     System.out.println(rows.next().getCell(0).getStringCellValue());
+		     while (rows.hasNext()) {
+		    	 
+			    XSSFRow row = (XSSFRow) rows.next();
+			   // System.out.println(row.getCell(0).getStringCellValue());
+			    if (row.getCell(0).getStringCellValue().toLowerCase().contains(desc.toLowerCase())){
+			    	try {Campo = row.getCell(columna).getStringCellValue();}
+			    	catch (java.lang.IllegalStateException ex1) 
+			    	{  
+			    		Campo = Double.toString(row.getCell(columna).getNumericCellValue());
+			    		if(Campo.contains("E")) 
+			    		{	
+			    			Campo = Double.toString(row.getCell(columna).getNumericCellValue());
+			    			Campo = Campo.substring(0, Campo.indexOf("E")).replace(".","" );
+			    		}
+			    	}
+			    	break;
+			    }
+			 }
+			return (Campo);
+		}
+		
+							
+		@DataProvider
+		public Object[][] MIX() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Mix");
+
+		 return (testObjArray);
+
+		}
+		
+		@DataProvider
+		public Object[][] PRE() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Pre");
+
+		 return (testObjArray);
+
+		}
+		@DataProvider
+		public Object[][] POS() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Pos");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] Nota_de_Credito_MIX() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Nota de Credito MIX");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] Numeros_Amigos_Sms_Activar_MIX() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Numeros Amigos Sms Activar MIX");
+
+		 return (testObjArray);
+		}
+		@DataProvider
+		public Object[][] Seguimiento_de_Gestion_MIX() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Seguimiento de Gestion MIX");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] Roaming_LDI_Habilitado_MIX() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Roaming LDI Habilitado MIX");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] Imprimir_cupon_de_pago_MIX() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Imprimir cupon de pago MIX");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] DataSharing_Alta_MIX() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"DataSharing Alta MIX");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] Recargas_puntos_club_MIX() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Recargas puntos club MIX");
+
+		 return (testObjArray);
+		}
+		@DataProvider
+		public Object[][] Cambio_de_domicilio_MIX() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Cambio de domicilio MIX");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] Compras_descargar_comprobante_MIX() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Compras descargar comprobante MIX");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] Roaming_LDI_Habilitado_PRE() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Roaming LDI Habilitado PRE");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] Numeros_Amigos_Sms_Activar_PRE() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Numeros Amigos Sms Activar PRE");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] Seguimiento_de_Gestion_PRE() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Seguimiento de Gestion PRE");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] Recargas_puntos_club_PRE() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Recargas puntos club PRE");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] Cambio_de_domicilio_PRE() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Cambio de domicilio PRE");
+
+		 return (testObjArray);
+		}
+
+		@DataProvider
+		public Object[][] Nota_de_Credito_POS() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Nota de Credito POS");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] Roaming_LDI_Habilitado_POS() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Roaming LDI Habilitado POS");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] Imprimir_cupon_de_pago_POS() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Imprimir cupon de pago POS");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] pagar_factura_POS() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"pagar factura POS");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] transferencia_de_llamada_POS() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"transferencia de llamada POS");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] Compras_descargar_comprobante_POS() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Compras descargar comprobante POS");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] Cambio_de_domicilio_POS() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Cambio de domicilio POS");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] Linea_Capro() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Mi linea capro");
+
+		 return (testObjArray);
+		}
+		
+		@DataProvider
+		public Object[][] Modificar_cuota_de_datos() throws Exception{
+
+		 Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx","TodasLasLineas",1,1,1,"Modificar Cuota de Datos");
+
+		 return (testObjArray);
+		}
+		
+/*
+		public void sampleGifDriver(){
+	    // initialize your desired driver
+	 //   WebDriver driver=new GifWebDriver(new ChromeDriver());
+	    //WebDriver driver = new GifWebDriver(new FirefoxDriver());
+	    //WebDriver driver = new GifWebDriver(new RemoteWebDriver());
+	    // you can use either driver webdriver/gifdriver instance
+	    GifWebDriver gifDriver= new GifWebDriver(driver);
+	    // screenshots will be taken implicitly on click events
+	//    driver.findElement(By.id("someIDon a page")).click();
+	    // if you want to control when gifs are generated you can do it through the API
+	    File gifFile=gifDriver.getGifScreenshotWorker().createGif();
+	    //of course you can create screenshots explicitly
+	    gifDriver.getGifScreenshotWorker().takeScreenshot();
+	    // on quit the driver will generate the gifs
+	  //  driver.quit();
+	    // if you don't know where the screenshots are taken or where the gifs are created
+	    String rootFolder=gifDriver.getGifScreenshotWorker().getRootDir();
+	    // more options about where the gifs are created can be accomplished by using these methods
+	    GifScreenshotWorker gifWorker=gifDriver.getGifScreenshotWorker();
+	    gifWorker.setTimeBetweenFramesInMilliseconds(1000);
+	    File directory;
+		directory = new File("IMG");
+	    gifWorker.setRootDir("IMG");
+	    gifWorker.setLoopContinuously(true);
+	    // these properties can be set during initialization as well
+	    GifScreenshotWorker myPreciousWorker=new GifScreenshotWorker(
+	    new ChromeDriver(),
+	    "rootDir",
+	    "screenshots folder name",
+	    "generatedGifs folder name",
+	    true
+	    );
+	    WebDriver myPreciousDriver=new GifWebDriver(new ChromeDriver(),myPreciousWorker);
+	    // and from here it's pretty much all the same
+	}*/
 }
