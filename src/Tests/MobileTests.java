@@ -108,7 +108,7 @@ public class MobileTests extends Metodos {
     	scrollAndClickAndroid(driver, "xpath", "//android.widget.TextView[@text='PAGOS, RECARGAS Y PACKS']");
     	scrollAndClickAndroid(driver, "xpath", "//android.widget.TextView[@text='Compras con cr\u00e9dito Personal']");
     	sleep(15000);
-    	scrollAndClickAndroid(driver, "xpath", "//android.view.View[@text='i']");
+    	driver.findElement(By.xpath("//*[@text='i' and @class='UIAImage' and ./*[@class='UIAStaticText'] and ./parent::*[./parent::*[(./preceding-sibling::* | ./following-sibling::*)[./*[@text='11/02/2019 03:39:54']]]]]")).click();
     	Assert.assertTrue(false); //Mensaje de error en descarga de comprobante
     }
     
@@ -118,7 +118,7 @@ public class MobileTests extends Metodos {
     	scrollAndClickAndroid(driver, "xpath", "//android.widget.TextView[@text='RECARGAS Y PACKS']");
     	scrollAndClickAndroid(driver, "xpath", "//android.widget.TextView[@text='Historial de compras de Packs']");
     	sleep(15000);
-    	scrollAndClickAndroid(driver, "xpath", "//android.view.View[@text='i']");
+    	driver.findElement(By.xpath("//*[@text='i' and @class='UIAImage' and ./*[@class='UIAStaticText'] and ./parent::*[./parent::*[(./preceding-sibling::* | ./following-sibling::*)[./*[@text='11/02/2019 03:39:54']]]]]")).click();
     	Assert.assertTrue(false); //Mensaje de error en descarga de comprobante
     }
     

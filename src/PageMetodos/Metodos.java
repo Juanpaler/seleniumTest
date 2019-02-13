@@ -31,8 +31,6 @@ import DataProvider.ExcelUtils;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.ios.IOSElement;
 
 public class Metodos {
 	
@@ -493,29 +491,6 @@ public class Metodos {
 	 * myPreciousDriver=new GifWebDriver(new ChromeDriver(),myPreciousWorker); //
 	 * and from here it's pretty much all the same }
 	 */
-		
-	public void scrollAndClickiOS(IOSDriver<IOSElement> driver, String by, String using) {
-		if (driver.findElement(by, using).isDisplayed()) {
-			driver.findElement(by, using).click();
-			sleep(7000);
-		} else {
-			IOSElement element = null;
-			int numberOfTimes = 10;
-			Dimension size = driver.manage().window().getSize();
-			for (int i=0; i<numberOfTimes; i++) {
-				try {
-					driver.swipe(size.width / 3, (int) (size.height * 0.8), size.width / 3, (int) (size.height * 0.8) - 200, 300);
-					sleep(2000);
-					element = (IOSElement) driver.findElement(by, using);
-					i = numberOfTimes;
-				} catch(NoSuchElementException e) {
-					System.out.println(String.format("Element not available. Scrolling (%s) times...", i + 1));
-				}
-			}
-			element.click();
-			sleep(7000);
-		}
-	}
 		
 	public void scrollAndClickAndroid(AndroidDriver<AndroidElement> driver, String by, String using) {
         AndroidElement element = null;
