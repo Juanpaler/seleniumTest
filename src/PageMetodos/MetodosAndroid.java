@@ -342,6 +342,36 @@ public class MetodosAndroid {
     	return false;  //Mensaje de error no se puede informar un pago por el momento
 	}
 	
+	public boolean verificarDescargaNotaDeCreditoYDebito(AndroidDriver<AndroidElement> driver) {
+		boolean descarga = false;
+		try {
+			scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='PAGOS, RECARGAS Y PACKS']");
+		} catch(Exception e) {
+			scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='PAGOS Y PACKS']");
+		}
+		scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='Mis Facturas']");
+    	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='Notas fiscales']");
+    	for (WebElement x : driver.findElements(By.className("android.view.View"))) {
+    		if (x.getText().contains("Descargar")) {
+    			x.click();
+    			break;
+    		}
+    	}
+    	sleep(5000);
+    	driver.swipe(159, 28, 145, 498, 289);
+        scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='MiPersonal UAT']");
+        sleep(5000);
+        try {
+        	if (driver.findElement(By.id("projector_toolbar")).isDisplayed())
+        		descarga = true;
+         	driver.navigate().back();
+         	return descarga;
+        } catch(NoSuchElementException e) {
+        	driver.navigate().back();
+         	return false;
+        }
+	}
+	
 	public boolean activYElimVozYSMS(AndroidDriver<AndroidElement> driver, String tipoDeLinea) {
     	boolean actVoz = false, actSMS = false, elimVoz = false, elimSMS = false;
     	switch(tipoDeLinea) {

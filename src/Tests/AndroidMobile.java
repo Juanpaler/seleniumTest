@@ -7,7 +7,6 @@ import io.appium.java_client.remote.MobileCapabilityType;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
@@ -46,7 +45,7 @@ public class AndroidMobile extends MetodosAndroid {
         driver.setLogLevel(Level.INFO);
     }
     
-    @AfterMethod (groups = "AutogestionIndividuosAPP")
+    //@AfterMethod (groups = "AutogestionIndividuosAPP")
     public void after() {
     	sleep(5000);
     	int menu = 0;
@@ -197,8 +196,8 @@ public class AndroidMobile extends MetodosAndroid {
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 22)
     public void Ayuda_Acceder_a_AYUDA_y_seleccionar_alguna_opcion() {
-    	boolean ayuda = false;
     	loginPorLineaMobile(driver, lineaPre);
+    	boolean ayuda = false;
     	driver.swipe(315, 154, -12, 154, 84);
     	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='AYUDA']");
     	driver.findElement(By.xpath("//*[@text='d. T\u00e9cnico | Personal Help - Argentina']")).click();
@@ -286,52 +285,13 @@ public class AndroidMobile extends MetodosAndroid {
     @Test (groups = "AutogestionIndividuosAPP", priority = 35)
     public void Facturacion_Notas_de_Credito_y_Debito_MIX() {
     	loginPorLineaMobile(driver, "1161120234");
-    	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='PAGOS, RECARGAS Y PACKS']");
-    	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='Mis Facturas']");
-    	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='Notas fiscales']");
-    	for (WebElement x : driver.findElements(By.className("android.view.View"))) {
-    		if (x.getText().contains("Descargar")) {
-    			x.click();
-    			break;
-    		}
-    	}
-    	sleep(5000);
-    	driver.swipe(159, 28, 145, 498, 289);
-        scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='MiPersonal UAT']");
-        sleep(5000);
-        try {
-        	Assert.assertTrue(driver.findElement(By.id("projector_toolbar")).isDisplayed());
-         	driver.navigate().back();
-        } catch(NoSuchElementException e) {
-        	driver.navigate().back();
-         	Assert.assertTrue(false);
-        }
+    	Assert.assertTrue(verificarDescargaNotaDeCreditoYDebito(driver));
     }
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 36)
     public void Facturacion_Notas_de_Credito_y_Debito_POS() {
     	loginPorLineaMobile(driver, lineaPos);
-    	Assert.assertTrue(false);  //No estan funcionando las lineas Pos
-    	/*scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='RECARGAS Y PACKS']");
-    	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='Mis Facturas']");
-    	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='Notas fiscales']");
-    	for (WebElement x : driver.findElements(By.className("android.view.View"))) {
-    		if (x.getText().contains("Descargar")) {
-    			x.click();
-    			break;
-    		}
-    	}
-    	sleep(5000);
-    	driver.swipe(159, 28, 145, 498, 289);
-        scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='MiPersonal UAT']");
-        sleep(5000);
-        try {
-        	Assert.assertTrue(driver.findElement(By.id("projector_toolbar")).isDisplayed());
-         	driver.navigate().back();
-        } catch(NoSuchElementException e) {
-        	driver.navigate().back();
-         	Assert.assertTrue(false);
-        }*/
+    	Assert.assertTrue(verificarDescargaNotaDeCreditoYDebito(driver));
     }
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 37)
@@ -487,8 +447,8 @@ public class AndroidMobile extends MetodosAndroid {
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 61)
     public void Mis_Consumos_DataSharing_Alta_MIX() {
-    	boolean activ = false, modif = false, elim = false;
     	loginPorLineaMobile(driver, "1164493210");
+    	boolean activ = false, modif = false, elim = false;
     	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='MIS SERVICIOS']");
     	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='Compart\u00ed Gigas']");
     	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='COMENZAR']");

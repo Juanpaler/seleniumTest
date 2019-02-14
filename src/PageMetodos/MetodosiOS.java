@@ -90,12 +90,44 @@ public class MetodosiOS {
     	return false;  //Mensaje de error al intentar canjear
     }
     
-    public boolean verificarDetallesDeConsumos(IOSDriver<IOSElement> driver) {
+    public boolean verificarDescargaComprobante(IOSDriver<IOSElement> driver) {
+    	try {
+    		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
+    	} catch(Exception e) {
+    		scrollAndClick(driver, "id", "Recargas y Packs");
+    	} 
+    	scrollAndClick(driver, "id", "Compras con cr\u00e9dito Personal");
+    	sleep(15000);
+    	driver.findElement(By.xpath("//*[@text='i' and @class='UIAImage' and ./*[@class='UIAStaticText'] and ./parent::*[./parent::*[(./preceding-sibling::* | ./following-sibling::*)[./*[@text='11/02/2019 03:39:54']]]]]")).click();
+    	return false;  //No se pueden descargar los comprobantes
+    }
+    
+    public boolean verificarDetallesDeConsumos(IOSDriver<IOSElement> driver, String tipoDeLinea) {
+    	boolean detalle = false, descripcion = false, destino = false;
     	scrollAndClick(driver, "id", "Inicio");
     	scrollAndClick(driver, "id", "Detalle de consumos");
-    	scrollAndClick(driver, "id", "Consultar");
-    	scrollAndClick(driver, "id", "Recarga");
-    	return driver.findElement(By.className("UIATable")).isEnabled();
+    	switch(tipoDeLinea) {
+    	case "MIX o Pre":
+    		scrollAndClick(driver, "id", "Consultar");
+        	scrollAndClick(driver, "id", "Recarga");
+        	if (driver.findElement(By.className("UIATable")).isEnabled())
+        		detalle = true;
+        	break;
+    	case "Pos":
+    		scrollAndClick(driver, "id", "CONSULTAR");
+    		sleep(5000);
+    		for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    			if (x.getText().contains("DESCRIPCI\u00d3N"))
+    				descripcion = true;
+    			if (x.getText().contains("DESTINO"))
+    				destino = true;
+    		}
+    		break;
+    	}
+    	if (detalle == true || (descripcion == true && destino == true))
+    		return true;
+    	else
+    		return false;
     }
     
     public boolean descargaComprobanteDeCompra(IOSDriver<IOSElement> driver, String tipoDeLinea) {
@@ -116,6 +148,50 @@ public class MetodosiOS {
     	scrollAndClick(driver, "id", "Guardar en Archivos");
     	for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
     		if (x.getText().contains("Factura"))
+    			descarga = true;
+    	}
+    	scrollAndClick(driver, "id", "Cancelar");
+    	return descarga;
+    }
+    
+    public boolean imprimirCuponDePago(IOSDriver<IOSElement> driver) {
+    	try {
+    		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
+    	} catch(Exception e) {
+    		scrollAndClick(driver, "id", "Pagos y Packs");	
+    	}
+    	scrollAndClick(driver, "id", "Mis Facturas");
+    	scrollAndClick(driver, "id", "Cup\u00f3n de pago");
+    	driver.findElement(By.className("UIATextField")).sendKeys("10.00");
+    	//scrollAndClick(driver, "id", "Descargar");
+    	return false;  //Mensaje de error al intentar descargar el cupon
+    }
+    
+    public boolean informarUnPago(IOSDriver<IOSElement> driver) {
+    	try {
+    		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
+    	} catch(Exception e) {
+    		scrollAndClick(driver, "id", "Pagos y Packs");	
+    	}
+    	scrollAndClick(driver, "id", "Informar Pago");
+    	return false;  //No deja ingresar el importe
+    }
+    
+    public boolean descargaNotaDeCreditoYDebito(IOSDriver<IOSElement> driver) {
+    	boolean descarga = false;
+    	try {
+    		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
+    	} catch(Exception e) {
+    		scrollAndClick(driver, "id", "Pagos y Packs");	
+    	}
+    	scrollAndClick(driver, "id", "Mis Facturas");
+    	driver.swipe(361, 783, 394, 461, 128);
+    	driver.findElement(By.id("Notas fiscales")).click();
+    	sleep(10000);
+    	scrollAndClick(driver, "id", "Descargar");
+    	scrollAndClick(driver, "id", "Guardar en Archivos");
+    	for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    		if (x.getText().contains("NotaFiscal"))
     			descarga = true;
     	}
     	scrollAndClick(driver, "id", "Cancelar");
@@ -159,7 +235,7 @@ public class MetodosiOS {
         return cantFacturas;
     }
     
-    public boolean bajaDeSuscripcioniOS(IOSDriver<IOSElement> driver) {
+    public boolean bajaDeSuscripcion(IOSDriver<IOSElement> driver) {
     	boolean bajaSus = false;
     	scrollAndClick(driver, "id", "Mis Servicios");
     	scrollAndClick(driver, "id", "Mis suscripciones a servicios");
