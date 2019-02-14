@@ -18,7 +18,7 @@ import java.net.URL;
 import java.net.MalformedURLException;
 import java.util.logging.Level;
 
-public class MobileTests extends MetodosAndroid {
+public class AndroidMobile extends MetodosAndroid {
 	
 	private String reportDirectory = "reports";
     private String reportFormat = "xml";
