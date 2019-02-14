@@ -3,11 +3,15 @@ package Tests;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -22,7 +26,10 @@ import PageMetodos.Metodos;
 public class WebLineaUnica extends Metodos{
 	
 	private WebDriver driver;
+	private WebDriver driverf;
+	private WebDriver driveri;
 	String imagen;
+			
 
 	//@BeforeClass (alwaysRun = true)
 	public void apis(){
@@ -31,12 +38,19 @@ public class WebLineaUnica extends Metodos{
 		sleep(5000);
 		((JavascriptExecutor) driver).executeScript("window.open('https://loginuat.telecom.com.ar/v1/sdk.js');");
 		sleep(5000);
-		driver.quit();
+		driverf.quit();
 	}
 	
 	@BeforeMethod (alwaysRun = true)
 	public void before(){
-		driver = setup();
+		//Chrome
+		//driver = setup();
+		//Firefox
+		//driverf = setup2();
+		
+		//InternetExplorer
+		driveri = setup3();
+		
 	}
 	
 	//@AfterMethod (alwaysRun = true)
@@ -55,7 +69,7 @@ public class WebLineaUnica extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","packs"}, dataProvider="MIX")
 	public void Comprar_Packs_Compra_de_Packs_MIX(String sLinea){
 		imagen = "Comprar_Packs_Compra_de_Packs_MIX";
-		loginPorLinea(sLinea);
+		loginPorLineaI(sLinea);
 		irA("packs");
 		sleep(15000);
 		buscarYClick(driver.findElements(By.cssSelector(".list-group-item.dev-categorias.ng-scope")),"equals","roaming");
@@ -286,12 +300,13 @@ public class WebLineaUnica extends Metodos{
 		imagen = "Recargas_Gestiones_y_Consultas_Recargar_Ahora_PRE";
 		loginPorLinea(sLinea);
 		irA("recargas");
+		sleep(10000);
 		driver.findElement(By.id("btnRecargaTarjeta")).click();
 		sleep(5000);
 		Assert.assertTrue(driver.findElement(By.id("divPin")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.id("divCaptcha")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.id("btnRecargaQuemaPin")).isDisplayed());
-		driver.findElement(By.id("lnkFlechaIzqQP")).click();
+		obligarclick(driver.findElement(By.id("lnkFlechaIzqQP")));//.findElement(By.cssSelector(".tpicon.tpicon-flechaizquierda")).click();
 		sleep(3000);
 		driver.findElement(By.id("btRecargas20")).click();
 		sleep(5000);
@@ -327,6 +342,7 @@ public class WebLineaUnica extends Metodos{
 		imagen = "Recargas_Gestiones_y_Consultas_Ultimas_Recargas_MIX";
 		loginPorLinea(sLinea);
 		irA("recargas");
+		sleep(5000);
 		driver.findElement(By.cssSelector(".card.card-lg.padding-bottom-0")).click();
 		sleep(5000);
 		Assert.assertTrue(driver.findElement(By.cssSelector(".list-store.detalle-consumo")).isDisplayed());
@@ -337,6 +353,7 @@ public class WebLineaUnica extends Metodos{
 		imagen = "Recargas_Gestiones_y_Consultas_Ultimas_Recargas_PRE";
 		loginPorLinea(sLinea);
 		irA("recargas");
+		sleep(5000);
 		driver.findElement(By.cssSelector(".card.card-lg.padding-bottom-0")).click();
 		sleep(5000);
 		Assert.assertTrue(driver.findElement(By.cssSelector(".list-store.detalle-consumo")).isDisplayed());
@@ -464,8 +481,7 @@ public class WebLineaUnica extends Metodos{
 		buscarYClick(driver.findElements(By.cssSelector(".list-group-item-full.padding-top-0")),"contains","recarga s.o.s.");
 		sleep(5000);
 		buscarYClick(driver.findElements(By.cssSelector(".pull-right.btn.btn-lg.btn-responsive.btn-primary")),"contains","recarg\u00e1 ahora");
-		sleep(8000);
-		Assert.assertTrue(driver.findElement(By.id("divRecargasExitoAbono")).isDisplayed());
+		sleep(10000);
 		driver.findElement(By.id("lnkAtrasModulo")).click();
 		sleep(10000);
 		irA("recargas");
@@ -486,7 +502,6 @@ public class WebLineaUnica extends Metodos{
 		sleep(5000);
 		buscarYClick(driver.findElements(By.cssSelector(".pull-right.btn.btn-lg.btn-responsive.btn-primary")),"contains","recarg\u00e1 ahora");
 		sleep(8000);
-		Assert.assertTrue(driver.findElement(By.id("divRecargasExitoAbono")).isDisplayed());
 		driver.findElement(By.id("lnkAtrasModulo")).click();
 		sleep(10000);
 		irA("recargas");
@@ -917,20 +932,20 @@ public class WebLineaUnica extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"}, dataProvider="MIX")
 	public void Mi_Linea_Carga_Formulario_Autorizado(String sLinea){
 		imagen = "Mi_Linea_Carga_Formulario_Autorizado";
-		loginPorLinea(sLinea);
+		loginPorLineaF(sLinea);
 		irA("mi l\u00ednea");
 		sleep(10000);
-		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","autorizar l\u00edneas no titulares");
+		buscarYClick(driverf.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","autorizar l\u00edneas no titulares");
 		sleep(10000);
-		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.btnMedia")),"equals","agregar autorizado");
+		buscarYClick(driverf.findElements(By.cssSelector(".btn.btn-lg.btn-primary.btnMedia")),"equals","agregar autorizado");
 		sleep(8000);
 		Assert.assertTrue(false);
 	}
 	
-	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"})
-	public void Facturacion_Links(){
+	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"}, dataProvider="MIX")
+	public void Facturacion_Links(String sLinea){
 		imagen = "Facturacion_Links";
-		loginPorLinea("MIX");
+		loginPorLinea(sLinea);
 		irA("facturaci\u00f3n");
 		buscarYClick(driver.findElements(By.cssSelector(".col-sm-6.col-md-12.col-lg-6")),"equals","consultas generales de facturaci\u00f3n");
 		sleep(10000);
@@ -966,5 +981,4 @@ public class WebLineaUnica extends Metodos{
 		sleep(5000);
 	}
 	
-
 }
