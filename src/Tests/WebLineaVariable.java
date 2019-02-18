@@ -54,7 +54,7 @@ public class WebLineaVariable extends Metodos{
 		driver = setup();
 	}
 	
-	@AfterMethod (alwaysRun = true)
+	//@AfterMethod (alwaysRun = true)
 	public void after(){
 		tomarCaptura(driver,imagen);
 		try {
@@ -838,7 +838,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".llamame-br-label1")).getText().equals("Te estamos llamando"));
 	}
 
-	@Test(groups ={ "AutogestionIndividuosWeb","consumos"},dataProvider="Modificar_cuota_de_datos") 
+	//@Test(groups ={ "AutogestionIndividuosWeb","consumos"},dataProvider="Modificar_cuota_de_datos") 
 	public void Mis_Consumos_Modificar_Cuota_de_Datos(String sLinea) throws FileNotFoundException, UnsupportedEncodingException, JSchException, SftpException{
 		imagen = "Mis_Consumos_Modificar_Cuota_de_Datos";
 		
@@ -1011,4 +1011,109 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.getCurrentUrl().equals("http://clubuat.personal.com.ar:8090/fe/#/filtros/a-mi-alcance/"));
 	}
 	
+
+	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_con_el_caracter_enie(String sLinea){
+		loginPorLinea(sLinea);
+		irA("facturaci\u00f3n");
+		sleep(10000);
+		driver.findElement(By.id("card-adhesion-fol")).click();
+		sleep(10000);
+		driver.findElement(By.id("inputEmail")).sendKeys("\u00f1");
+		driver.findElement(By.id("btn_Adherirme")).click();
+		sleep(3000);
+		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
+	}
+	
+	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_caracteres_luego_del_arroba(String sLinea){
+		loginPorLinea(sLinea);
+		irA("facturaci\u00f3n");
+		sleep(10000);
+		driver.findElement(By.id("card-adhesion-fol")).click();
+		sleep(10000);
+		driver.findElement(By.id("inputEmail")).sendKeys("asd@");
+		driver.findElement(By.id("btn_Adherirme")).click();
+		sleep(3000);
+		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
+	}
+	
+	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_caracteres_antes_del_arroba(String sLinea){
+		loginPorLinea(sLinea);
+		irA("facturaci\u00f3n");
+		sleep(10000);
+		driver.findElement(By.id("card-adhesion-fol")).click();
+		sleep(10000);
+		driver.findElement(By.id("inputEmail")).sendKeys("@gmail");
+		driver.findElement(By.id("btn_Adherirme")).click();
+		sleep(3000);
+		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
+	}
+	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_caracteres_luego_del_punto_posterior_al_arroba(String sLinea){
+		loginPorLinea(sLinea);
+		irA("facturaci\u00f3n");
+		sleep(10000);
+		driver.findElement(By.id("card-adhesion-fol")).click();
+		sleep(10000);
+		driver.findElement(By.id("inputEmail")).sendKeys("asd@gmail.");
+		driver.findElement(By.id("btn_Adherirme")).click();
+		sleep(3000);
+		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
+	}
+	
+	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_arroba(String sLinea){
+		loginPorLinea(sLinea);
+		irA("facturaci\u00f3n");
+		sleep(10000);
+		driver.findElement(By.id("card-adhesion-fol")).click();
+		sleep(10000);
+		driver.findElement(By.id("inputEmail")).sendKeys("asdgmail.com");
+		driver.findElement(By.id("btn_Adherirme")).click();
+		sleep(3000);
+		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
+	}
+	
+	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_punto(String sLinea){
+		loginPorLinea(sLinea);
+		irA("facturaci\u00f3n");
+		sleep(10000);
+		driver.findElement(By.id("card-adhesion-fol")).click();
+		sleep(10000);
+		driver.findElement(By.id("inputEmail")).sendKeys("asdgmailcom");
+		driver.findElement(By.id("btn_Adherirme")).click();
+		sleep(3000);
+		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
+	}
+	
+	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_dato(String sLinea){
+		loginPorLinea(sLinea);
+		irA("facturaci\u00f3n");
+		sleep(10000);
+		driver.findElement(By.id("card-adhesion-fol")).click();
+		sleep(10000);
+		driver.findElement(By.id("inputEmail")).sendKeys("");
+		driver.findElement(By.id("btn_Adherirme")).click();
+		sleep(3000);
+		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
+	}
+	
+	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	public void DIGITAL_WEB_IND_FACTURACION_INFORMAR_PAGO_MIX_IMPORTE_INPUT_MONEDA_OBLIGAT_OBLIGATORIO(String sLinea){
+		loginPorLinea(sLinea);
+		irA("facturaci\u00f3n");
+		sleep(10000);
+		driver.findElement(By.id("btnInformarPago")).click();
+		sleep(10000);
+		driver.findElement(By.id("txtImporte")).clear();
+		driver.findElement(By.id("txtImporte")).sendKeys("");
+		sleep(2000);
+		obligarclick(driver.findElement(By.id("btnInformar")));
+		sleep(7000);
+		Assert.assertTrue(driver.findElement(By.id("inputError")).getText().toLowerCase().contains("ingrese un importe"));
+	}
 } 

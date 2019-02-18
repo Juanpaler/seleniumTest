@@ -14,8 +14,11 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -23,14 +26,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.DataProvider;
 
 import DataProvider.ExcelUtils;
 
+
 public class Metodos {
 	
 	static WebDriver driver;
+	static WebDriver driverf;
+	static WebDriver driveri;
 	
 	public static String lineaMIX = "1162735148";
 	public static String lineaPre = "1162745165";
@@ -43,6 +54,22 @@ public class Metodos {
 		Options.addArguments("disable-infobars");
 		driver = new ChromeDriver(Options);
 		return driver;
+	}
+		
+	public static WebDriver setup2(){
+		System.setProperty("webdriver.geckod.driver", "geckodriver.exe");
+		FirefoxOptions Options = new FirefoxOptions();
+		driverf = new FirefoxDriver(Options);
+		return driverf;
+	}
+	
+		public static WebDriver setup3(){
+		System.setProperty("webdriver.ie.driver", "IEDriverServer.exe");
+		DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+		capabilities.setCapability(InternetExplorerDriver.IGNORE_ZOOM_SETTING, false);
+		driveri = new InternetExplorerDriver(capabilities);
+		return driveri;
+		
 	}
 		
 	public static void sleep(int miliseconds) {
@@ -72,6 +99,60 @@ public class Metodos {
 		driver.findElement(By.id("idToken2")).clear();
 		driver.findElement(By.id("idToken2")).sendKeys("1469");
 		driver.findElement(By.id("loginButton_0")).click();
+		//driver.switchTo().window(parentWindowHandler);
+		sleep(20000);
+	}
+	
+	public void loginPorLineaF(String sLinea) {
+		driverf.get("https://autogestionuat.personal.com.ar");
+		/*driver.findElement(By.id("modal-ingresar")).click();
+		sleep(4000);
+		String parentWindowHandler = driver.getWindowHandle();
+		String subWindowHandler = null;
+		Set<String> handles = driver.getWindowHandles();
+		Iterator<String> iterator = handles.iterator();
+		while (iterator.hasNext()) {
+			subWindowHandler = iterator.next();
+		}
+		driver.switchTo().window(subWindowHandler);*/
+		sleep(10000);
+		driverf.switchTo().frame(cambioFrame(driverf, By.id("idToken1")));
+		//driver.findElement(By.id("linea-numero")).clear();
+		//sleep(5000);
+		driverf.findElement(By.id("idToken1")).sendKeys(sLinea);
+		
+		//driver.findElement(By.id("btn-login")).click();;
+		//sleep(25000);
+		driverf.findElement(By.id("idToken2")).clear();
+		driverf.findElement(By.id("idToken2")).sendKeys("1469");
+		driverf.findElement(By.id("loginButton_0")).click();
+		//driver.switchTo().window(parentWindowHandler);
+		sleep(20000);
+	}
+	
+	public void loginPorLineaI(String sLinea) {
+		driveri.get("https://autogestionuat.personal.com.ar");
+		/*driver.findElement(By.id("modal-ingresar")).click();
+		sleep(4000);
+		String parentWindowHandler = driver.getWindowHandle();
+		String subWindowHandler = null;
+		Set<String> handles = driver.getWindowHandles();
+		Iterator<String> iterator = handles.iterator();
+		while (iterator.hasNext()) {
+			subWindowHandler = iterator.next();
+		}
+		driver.switchTo().window(subWindowHandler);*/
+		sleep(10000);
+		driveri.switchTo().frame(cambioFrame(driveri, By.id("idToken1")));
+		//driver.findElement(By.id("linea-numero")).clear();
+		//sleep(5000);
+		driveri.findElement(By.id("idToken1")).sendKeys(sLinea);
+		
+		//driver.findElement(By.id("btn-login")).click();;
+		//sleep(25000);
+		driveri.findElement(By.id("idToken2")).clear();
+		driveri.findElement(By.id("idToken2")).sendKeys("1469");
+		driveri.findElement(By.id("loginButton_0")).click();
 		//driver.switchTo().window(parentWindowHandler);
 		sleep(20000);
 	}
@@ -440,6 +521,12 @@ public class Metodos {
 	@DataProvider
 	public Object[][] Modificar_cuota_de_datos() throws Exception {
 		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Modificar Cuota de Datos");
+		return (testObjArray);
+	}
+	
+	@DataProvider
+	public Object[][] Input_mail() throws Exception {
+		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Input Mail");
 		return (testObjArray);
 	}
 }
