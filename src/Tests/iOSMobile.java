@@ -204,4 +204,143 @@ public class iOSMobile extends MetodosiOS {
     	loginPorLineaMobile(driver, lineaPre);
     	Assert.assertTrue(bajaDeSuscripcion(driver));
     }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 24)
+    public void MI_Linea_Roaming_y_LDI_habilitado_MIX() {
+    	loginPorLineaMobile(driver, "3496652414");
+    	Assert.assertTrue(verificarRoamingYLDIActivos(driver));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 25)
+    public void MI_Linea_Roaming_y_LDI_habilitado_POS() {
+    	loginPorLineaMobile(driver, "3794601129");
+    	Assert.assertTrue(verificarRoamingYLDIActivos(driver));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 26)
+    public void MI_Linea_Roaming_y_LDI_habilitado_PRE() {
+    	loginPorLineaMobile(driver, "1164520012");
+    	Assert.assertTrue(verificarRoamingYLDIActivos(driver));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 27)
+    public void Recargas_Gestiones_y_Consultas_Recargar_Ahora_MIX() {
+    	loginPorLineaMobile(driver, lineaMIX);
+    	Assert.assertTrue(verificarMetodosDeRecarga(driver));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 28)
+    public void Recargas_Gestiones_y_Consultas_Recargar_Ahora_PRE() {
+    	loginPorLineaMobile(driver, lineaPre);
+    	Assert.assertTrue(verificarMetodosDeRecarga(driver));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 29)
+    public void Recargas_Recarga_SOS_MIX() {
+    	loginPorLineaMobile(driver, lineaMIX);
+    	Assert.assertTrue(verificarRecargaSOS(driver));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 30)
+    public void Recargas_Recarga_SOS_PRE() {
+    	loginPorLineaMobile(driver, lineaPre);
+    	Assert.assertTrue(verificarRecargaSOS(driver));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 31)
+    public void Recargas_Recarga_con_puntos_Club_MIX() {
+    	loginPorLineaMobile(driver, "3854041917");
+    	Assert.assertTrue(verificarRecargaPuntosClub(driver));  //Mensaje de error al hacer click en canjear
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 32)
+    public void Recargas_Recarga_con_puntos_Club_PRE() {
+    	loginPorLineaMobile(driver, "1164473518");
+    	Assert.assertTrue(verificarRecargaPuntosClub(driver));  //Mensaje de error al hacer click en canjear
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 33)
+    public void Recargas_Gestiones_y_Consultas_Ultimas_Recargas_MIX() {
+    	loginPorLineaMobile(driver, lineaMIX);
+    	Assert.assertTrue(verificarUltimasRecargas(driver));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 34)
+    public void Recargas_Gestiones_y_Consultas_Ultimas_Recargas_PRE() {
+    	loginPorLineaMobile(driver, lineaPre);
+    	Assert.assertTrue(verificarUltimasRecargas(driver));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 35)
+    public void Ayuda_Acceder_a_AYUDA_y_seleccionar_alguna_opcion() {
+    	loginPorLineaMobile(driver, lineaPre);
+    	boolean ayuda = false;
+    	scrollAndClick(driver, "id", "Ayuda");
+    	sleep(10000);
+    	scrollAndClick(driver, "id", "Mi equipo no reconoce la Sim");
+    	if (driver.findElement(By.id("Mi equipo no reconoce la Sim")).isEnabled())
+    		ayuda = true;
+    	Assert.assertTrue(ayuda);
+    }
+    
+    @Test (groups = "SinAfterMethod", priority = 36)
+    public void Login_Iniciar_Sesion_con_clave_Incorrecta() {
+    	loginPorLineaMobile(driver, lineaMIX);
+    	Assert.assertTrue(verificarLogin(driver, "Password invalido y linea inexistente", lineaMIX, "1470"));
+    }
+    
+    @Test (groups = "SinAfterMethod", priority = 37)
+    public void Login_Iniciar_Sesion_sin_clave() {
+    	loginPorLineaMobile(driver, lineaMIX);
+    	Assert.assertTrue(verificarLogin(driver, "Sin password", lineaMIX, ""));
+    }
+    
+    @Test (groups = "SinAfterMethod", priority = 38)
+    public void Login_Iniciar_Sesion_con_Linea_Inexistente() {
+    	loginPorLineaMobile(driver, lineaMIX);
+    	Assert.assertTrue(verificarLogin(driver, "Password invalido y linea inexistente", "1192735149", "1469"));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 39)
+    public void Login_Iniciar_Sesion_con_Linea_PreActiva() {
+    	loginPorLineaMobile(driver, "1162645152");
+    	scrollAndClick(driver, "id", "Mis Servicios");
+    	Assert.assertTrue(false);  //No se visualiza el mensaje de linea pre desactivada
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 40)
+    public void Inicio_Detalle_de_credito_MIX() {
+    	loginPorLineaMobile(driver, lineaMIX);
+    	Assert.assertTrue(verificarDetalleDeCredito(driver));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 41)
+    public void Inicio_Detalle_de_credito_PRE() {
+    	loginPorLineaMobile(driver, lineaPre);
+    	Assert.assertTrue(verificarDetalleDeCredito(driver));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 42)
+    public void Inicio_Mis_disponibles_Internet_MIX() {
+    	loginPorLineaMobile(driver, lineaMIX);
+    	Assert.assertTrue(verifDisponibles(driver, "MIX"));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 43)
+    public void Inicio_Mis_disponibles_Internet_PRE() {
+    	loginPorLineaMobile(driver, lineaPre);
+    	Assert.assertTrue(verifDisponibles(driver, "Pre"));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 44)
+    public void Inicio_Mis_disponibles_Mis_Facturas_MIX() {
+    	loginPorLineaMobile(driver, lineaMIX);
+        Assert.assertTrue(verificarFactura(driver));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 45)
+    public void Inicio_Mis_disponibles_Mis_Facturas_POS() {
+    	loginPorLineaMobile(driver, "1164599450");
+    	Assert.assertTrue(verificarFactura(driver));  //No funciona la linea POS
+    }
 }
