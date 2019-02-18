@@ -1116,4 +1116,402 @@ public class WebLineaVariable extends Metodos{
 		sleep(7000);
 		Assert.assertTrue(driver.findElement(By.id("inputError")).getText().toLowerCase().contains("ingrese un importe"));
 	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"})
+	public void Login_Linea_Input_Numero_Caracter_Letra(){
+		imagen = "Login_Linea_Input_Numero_Caracter_Letra";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("a");
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 s\u00f3lo n\u00fameros"));
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"})
+	public void Login_Linea_Input_Numero_Caracter_Combinado(){
+		imagen = "Login_Linea_Input_Numero_Caracter_Combinado";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1134A");
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("Debes ingresar una l\u00ednea de Personal"));
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"})
+	public void Login_Linea_Input_Numero_Caracter_NoEstand(){
+		imagen = "Login_Linea_Input_Numero_Caracter_NoEstand";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("*");
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).isDisplayed());
+		driver.findElement(By.id("idToken1")).sendKeys("+");
+		sleep(2000);
+	    Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).isDisplayed());
+		driver.findElement(By.id("idToken1")).sendKeys("'");
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).isDisplayed());
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"})
+	public void Login_Linea_Input_Numero_Caracter_Estand(){
+		imagen = "Login_Linea_Input_Numero_Caracter_Estand";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys(".");
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).isDisplayed());
+		driver.findElement(By.id("idToken1")).sendKeys(",");
+		sleep(2000);
+	    Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).isDisplayed());
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"})
+	public void Login_Linea_Input_Numero_Mas11Digitos(){
+		imagen = "Login_Linea_Input_Numero_Mas11Digitos";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("11627451655");
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("L\u00ednea incorrecta. Verific\u00e1 los datos ingresados"));
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"})
+	public void Login_Linea_Input_Numero_Menos11Digitos(){
+		imagen = "Login_Linea_Input_Numero_Menos11Digitos";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("11627451");
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("Tu n\u00famero de l\u00ednea debe tener al menos 10 d\u00edgitos"));
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"})
+	public void Login_Linea_Input_Numero_Obligatorio(){
+		imagen = "Login_Linea_Input_Numero_Obligatorio";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken2")));
+		driver.findElement(By.id("idToken2")).sendKeys("1234");
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("Debes ingresar una l\u00ednea de Personal"));
+		Assert.assertFalse(driver.findElement(By.id("loginButton_0")).isEnabled());
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	public void Login_Clave_Input_Numero_Caracter_Letra(){
+		imagen = "Login_Clave_Input_Numero_Caracter_Letra";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1162735148");
+		sleep(2000);
+		driver.findElement(By.id("idToken2")).sendKeys("a");
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 s\u00f3lo n\u00fameros"));
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"})
+	public void Login_Clave_Input_Numero_Caracter_Combinado(){
+		imagen = "Login_Clave_Input_Numero_Caracter_Combinado";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1162735148");
+		sleep(2000);
+		driver.findElement(By.id("idToken2")).sendKeys("12a");
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 s\u00f3lo n\u00fameros"));
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"})
+	public void Login_Clave_Input_Numero_Caracter_NoEstand(){
+		imagen = "Login_Clave_Input_Numero_Caracter_NoEstand";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1162735148");
+		sleep(2000);
+		driver.findElement(By.id("idToken2")).sendKeys("*");
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).isDisplayed());
+		driver.findElement(By.id("idToken2")).sendKeys("+");
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).isDisplayed());
+		driver.findElement(By.id("idToken2")).sendKeys("'");
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).isDisplayed());
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"})
+	public void Login_Clave_Input_Numero_Caracter_Estand(){
+		imagen = "Login_Clave_Input_Numero_Caracter_Estand";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1162735148");
+		sleep(2000);
+		driver.findElement(By.id("idToken2")).sendKeys(".");
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).isDisplayed());
+		driver.findElement(By.id("idToken2")).sendKeys(",");
+		sleep(2000);
+	    Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).isDisplayed());
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"})
+	public void Login_Clave_Input_Numero_Max10Digitos(){
+		imagen = "Login_Clave_Input_Numero_Max10Digitos";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("11627451655");
+		sleep(2000);
+		driver.findElement(By.id("idToken2")).sendKeys("012345678913452");
+		sleep(2000);
+		String number=driver.findElement(By.id("idToken2")).getAttribute("value");
+		Assert.assertEquals(number.length(), 10);
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"})
+	public void Login_Clave_Input_Numero_Menos4Digitos(){
+		imagen = "Login_Clave_Input_Numero_Menos4Digitos";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1162735148");
+		sleep(2000);
+		driver.findElement(By.id("idToken2")).sendKeys("123");
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 al menos 4 n\u00fameros"));
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	public void Login_Clave_Input_Numero_Obligatorio(){
+		imagen = "Login_Clave_Input_Numero_Obligatorio";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1162735148");
+		sleep(2000);
+		Assert.assertFalse(driver.findElement(By.id("loginButton_0")).isEnabled());
+		
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	public void Login_Generar_CambiarClave_Numeros_Repetidos(){
+		imagen = "Login_Generar_CambiarClave_Numeros_Repetidos";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1162735148");
+		sleep(2000);
+		driver.findElement(By.id("password-generation-page")).click();
+		sleep(10000);
+		driver.findElement(By.id("txtSms")).sendKeys("5384");
+		sleep(2000);
+		driver.findElement(By.id("txtPin")).sendKeys("1111");
+		sleep(2000);
+		driver.findElement(By.id("btnCambiarPin")).click();
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	public void Login_Generar_CambiarClave_Numeros_Consecutivos(){
+		imagen = "Login_Generar_CambiarClave_Numeros_Consecutivos";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1162735148");
+		sleep(2000);
+		driver.findElement(By.id("password-generation-page")).click();
+		sleep(10000);
+		driver.findElement(By.id("txtSms")).sendKeys("5384");
+		sleep(2000);
+		driver.findElement(By.id("txtPin")).sendKeys("1234");
+		sleep(2000);
+		driver.findElement(By.id("btnCambiarPin")).click();
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	public void Login_Generar_CambiarClave_Numeros_Linea(){
+		imagen = "Login_Generar_CambiarClave_Numeros_Linea";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1162735148");
+		sleep(2000);
+		driver.findElement(By.id("password-generation-page")).click();
+		sleep(10000);
+		driver.findElement(By.id("txtSms")).sendKeys("5384");
+		sleep(2000);
+		driver.findElement(By.id("txtPin")).sendKeys("5148");
+		sleep(2000);
+		driver.findElement(By.id("btnCambiarPin")).click();
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	public void Login_Generar_CambiarClave_3Digitos(){
+		imagen = "Login_Generar_CambiarClave_3Digitos";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1162735148");
+		sleep(2000);
+		driver.findElement(By.id("password-generation-page")).click();
+		sleep(10000);
+		driver.findElement(By.id("txtSms")).sendKeys("5384");
+		sleep(2000);
+		driver.findElement(By.id("txtPin")).sendKeys("195");
+		sleep(2000);
+		driver.findElement(By.id("btnCambiarPin")).click();
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	public void Login_Generar_CambiarClave_11Digitos(){
+		imagen = "Login_Generar_CambiarClave_11Digitos";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1162735148");
+		sleep(2000);
+		driver.findElement(By.id("password-generation-page")).click();
+		sleep(10000);
+		driver.findElement(By.id("txtSms")).sendKeys("5384");
+		sleep(2000);
+		driver.findElement(By.id("txtPin")).sendKeys("012345678913452");
+		sleep(2000); 
+		String number=driver.findElement(By.id("txtPin")).getAttribute("value");
+		Assert.assertEquals(number.length(), 10); 
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	public void Login_Generar_CambiarClave_letras(){
+		imagen = "Login_Generar_CambiarClave_letras";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1162735148");
+		sleep(2000);
+		driver.findElement(By.id("password-generation-page")).click();
+		sleep(10000);
+		driver.findElement(By.id("txtSms")).sendKeys("5384");
+		sleep(2000);
+		driver.findElement(By.id("txtPin")).sendKeys("letras");
+		sleep(2000); 
+		String number=driver.findElement(By.id("txtPin")).getAttribute("value");
+		Assert.assertEquals(number.length(), 0); 
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	public void Login_Generar_CambiarClave_CaracteresCombinados(){
+		imagen = "Login_Generar_CambiarClave_CaracteresCombinados";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1162735148");
+		sleep(2000);
+		driver.findElement(By.id("password-generation-page")).click();
+		sleep(10000);
+		driver.findElement(By.id("txtSms")).sendKeys("5384");
+		sleep(2000);
+		driver.findElement(By.id("txtPin")).sendKeys("14ab");
+		sleep(2000); 
+		String number=driver.findElement(By.id("txtPin")).getAttribute("value");
+		Assert.assertEquals(number.length(), 2); 
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	public void Login_Generar_CambiarClave_CaracteresNoEstandar(){
+		imagen = "Login_Generar_CambiarClave_CaracteresNoEstandar";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1162735148");
+		sleep(2000);
+		driver.findElement(By.id("password-generation-page")).click();
+		sleep(10000);
+		driver.findElement(By.id("txtSms")).sendKeys("5384");
+		sleep(2000);
+		driver.findElement(By.id("txtPin")).sendKeys("'");
+		sleep(2000); 
+		String number=driver.findElement(By.id("txtPin")).getAttribute("value");
+		Assert.assertEquals(number.length(), 0);
+		driver.findElement(By.id("txtPin")).sendKeys("*");
+		sleep(2000); 
+		number=driver.findElement(By.id("txtPin")).getAttribute("value");
+		Assert.assertEquals(number.length(), 0); 	
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	public void Login_Generar_CambiarClave_CaracteresEstandar(){
+		imagen = "Login_Generar_CambiarClave_CaracteresEstandar";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1162735148");
+		sleep(2000);
+		driver.findElement(By.id("password-generation-page")).click();
+		sleep(10000);
+		driver.findElement(By.id("txtSms")).sendKeys("5384");
+		sleep(2000);
+		driver.findElement(By.id("txtPin")).sendKeys(",");
+		sleep(2000); 
+		String number=driver.findElement(By.id("txtPin")).getAttribute("value");
+		Assert.assertEquals(number.length(), 0);
+		driver.findElement(By.id("txtPin")).sendKeys(".");
+		sleep(2000); 
+		number=driver.findElement(By.id("txtPin")).getAttribute("value");
+		Assert.assertEquals(number.length(), 0); 	
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	public void Login_Generar_CambiarClave_NumeroObligatorio(){
+		imagen = "Login_Generar_CambiarClave_CaracteresEstandar";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1162735148");
+		sleep(2000);
+		driver.findElement(By.id("password-generation-page")).click();
+		sleep(10000);
+		driver.findElement(By.id("txtSms")).sendKeys("5384");
+		sleep(2000);
+		driver.findElement(By.id("btnCambiarPin")).click();
+		sleep(2000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
+	}
+	
+	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	public void Login_Generar_CambiarClave_CodigoSMSIncorrecto(){
+		imagen = "Login_Generar_CambiarClave_CodigoSMSIncorrecto";
+		driver.get("https://autogestionuat.personal.com.ar");
+		sleep(15000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys("1162735148");
+		sleep(2000);
+		driver.findElement(By.id("password-generation-page")).click();
+		sleep(10000);
+		driver.findElement(By.id("txtSms")).sendKeys("5384");
+		sleep(2000);
+		driver.findElement(By.id("txtPin")).sendKeys("4104");
+		sleep(2000);
+		driver.findElement(By.id("btnCambiarPin")).click();
+		sleep(5000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".alert-text")).isDisplayed());
+	}
+	
 } 
