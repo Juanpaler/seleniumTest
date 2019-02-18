@@ -523,4 +523,10 @@ public class Metodos {
 		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Modificar Cuota de Datos");
 		return (testObjArray);
 	}
+	
+	@DataProvider
+	public Object[][] Input_mail() throws Exception {
+		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Input Mail");
+		return (testObjArray);
+	}
 }

@@ -44,12 +44,13 @@ public class WebLineaUnica extends Metodos{
 	@BeforeMethod (alwaysRun = true)
 	public void before(){
 		//Chrome
-		//driver = setup();
+		driver = setup();
+		
 		//Firefox
 		//driverf = setup2();
 		
 		//InternetExplorer
-		driveri = setup3();
+		//driveri = setup3();
 		
 	}
 	
@@ -69,7 +70,7 @@ public class WebLineaUnica extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","packs"}, dataProvider="MIX")
 	public void Comprar_Packs_Compra_de_Packs_MIX(String sLinea){
 		imagen = "Comprar_Packs_Compra_de_Packs_MIX";
-		loginPorLineaI(sLinea);
+		loginPorLinea(sLinea);
 		irA("packs");
 		sleep(15000);
 		buscarYClick(driver.findElements(By.cssSelector(".list-group-item.dev-categorias.ng-scope")),"equals","roaming");
@@ -980,5 +981,189 @@ public class WebLineaUnica extends Metodos{
 		driver.switchTo().window(tabs.get(0));
 		sleep(5000);
 	}
+		@Test (groups ={ "Usabilidad","navegacion","crhome"}, dataProvider="MIX")
+		public void DIGITAL_WEB_CHR_IND_USABILIDAD_NAVEGACION_PRINCIPAL(String sLinea){
+			loginPorLinea(sLinea);
+			irA("consumos");
+			Assert.assertTrue(driver.findElement(By.id("section-ui-view")).getText().toLowerCase().contains("cr\u00e9dito"));
+			irA("recargas");
+			Assert.assertTrue(driver.findElement(By.id("divDashboard")).getText().toLowerCase().contains("recarg\u00e1 ahora"));
+			irA("packs");
+			sleep(3000);
+			boolean a = false;
+			List<WebElement> roam = driver.findElements(By.cssSelector(".list-group-item.dev-categorias.ng-scope"));
+				for(WebElement r : roam){
+					System.out.println(r.getText());
+					if(r.getText().toLowerCase().equals("roaming")){
+						a = true;	
+					}
+				}
+			irA("facturaci\u00f3n");
+			sleep(3000);
+			Assert.assertTrue(driver.findElement(By.id("adhesionfol")).getText().toLowerCase().contains("adherite a factura online"));
+			boolean b = false;
+			irA("mi l\u00ednea");
+			List<WebElement> linea = driver.findElements(By.className("card-title"));
+				for(WebElement l : linea){
+					System.out.println("el otro" + l.getText());
+					if(l.getText().toLowerCase().contains("estado de l\u00ednea")){
+					b=true;	
+					}
+				}
+			Assert.assertTrue(a);
+			Assert.assertTrue(b);
+		}
 	
+		@Test (groups ={ "Usabilidad","navegacion","Iexplorer"}, dataProvider="MIX")
+		public void DIGITAL_WEB_IEX_IND_USABILIDAD_NAVEGACION_PRINCIPAL(String sLinea){
+			loginPorLineaI(sLinea);
+			irA("consumos");
+			Assert.assertTrue(driver.findElement(By.id("section-ui-view")).getText().toLowerCase().contains("cr\u00e9dito"));
+			irA("recargas");
+			Assert.assertTrue(driver.findElement(By.id("divDashboard")).getText().toLowerCase().contains("recarg\u00e1 ahora"));
+			irA("packs");
+			sleep(3000);
+			boolean a = false;
+			List<WebElement> roam = driver.findElements(By.cssSelector(".list-group-item.dev-categorias.ng-scope"));
+				for(WebElement r : roam){
+					System.out.println(r.getText());
+					if(r.getText().toLowerCase().equals("roaming")){
+						a = true;	
+					}
+				}
+			irA("facturaci\u00f3n");
+			sleep(3000);
+			Assert.assertTrue(driver.findElement(By.id("adhesionfol")).getText().toLowerCase().contains("adherite a factura online"));
+			boolean b = false;
+			irA("mi l\u00ednea");
+			List<WebElement> linea = driver.findElements(By.className("card-title"));
+				for(WebElement l : linea){
+					System.out.println("el otro" + l.getText());
+					if(l.getText().toLowerCase().contains("estado de l\u00ednea")){
+					b=true;	
+					}
+				}
+			Assert.assertTrue(a);
+			Assert.assertTrue(b);
+		}
+		
+
+		@Test (groups ={ "Usabilidad","navegacion","crhome"}, dataProvider="MIX")
+		public void DIGITAL_WEB_CHR_IND_USABILIDAD_NAVEGACION_MI_CUENTA_HOME_PERSONAL_CLUB_PERSONAL(String sLinea){
+			loginPorLinea(sLinea);
+			driver.findElement(By.id("tpi-logo")).click();
+			sleep(5000);
+			Assert.assertTrue(driver.findElement(By.className("contacto-telefono-numero")).isDisplayed());
+			buscarYClick(driver.findElements(By.cssSelector(".tpi-navbar-item-link")),"equals","club personal");
+			sleep(3000);
+			Assert.assertTrue(driver.findElement(By.className("about")).getText().toLowerCase().contains("club personal"));
+		}
+		
+		@Test (groups ={ "Usabilidad","navegacion","Iexplorer"}, dataProvider="MIX")
+		public void DIGITAL_WEB_IEX_IND_USABILIDAD_NAVEGACION_MI_CUENTA_HOME_PERSONAL_CLUB_PERSONAL(String sLinea){
+			loginPorLineaI(sLinea);
+			driver.findElement(By.id("tpi-logo")).click();
+			sleep(5000);
+			Assert.assertTrue(driver.findElement(By.className("contacto-telefono-numero")).isDisplayed());
+			buscarYClick(driver.findElements(By.cssSelector(".tpi-navbar-item-link")),"equals","club personal");
+			sleep(3000);
+			Assert.assertTrue(driver.findElement(By.className("about")).getText().toLowerCase().contains("club personal"));
+		}
+		
+		@Test (groups ={ "Usabilidad","navegacion","crhome"}, dataProvider="MIX")
+		public void DIGITAL_WEB_IND_USABILIDAD_IDENTIDAD_LOGO(String sLinea){
+			loginPorLinea(sLinea);
+			Assert.assertTrue(driver.findElement(By.id("tpi-logo")).isDisplayed());
+		}
+		
+		@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="MIX")
+		public void DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_LETRA(String sLinea){
+			loginPorLinea(sLinea);
+			irA("facturaci\u00f3n");
+			sleep(10000);
+			driver.findElement(By.id("lnk-descargar-cupon-pagos")).click();
+			sleep(10000);
+			driver.findElement(By.id("inputImporte")).sendKeys("asd");
+			driver.findElement(By.id("btnDescargar")).click();
+			sleep(3000);
+			Assert.assertTrue(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("ingrese un importe v\u00e1lido."));
+		}
+		
+		@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="MIX")
+		public void DIGITAL_WEB_IND_FACTURACION_GENERAR_CUPON_PAGO_MIX_IMPORTE_INPUT_MONEDA_OBLIGAT_OBLIGATORIO(String sLinea){
+			loginPorLinea(sLinea);
+			irA("facturaci\u00f3n");
+			sleep(10000);
+			driver.findElement(By.id("lnk-descargar-cupon-pagos")).click();
+			sleep(10000);
+			driver.findElement(By.id("inputImporte")).sendKeys(" ");
+			driver.findElement(By.id("btnDescargar")).click();
+			sleep(3000);
+			Assert.assertTrue(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("ingrese un importe"));
+		}
+		
+		@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="MIX")
+		public void DIGITAL_WEB_IND_FACTURACION_GENERAR_CUPON_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_DECIMAL_Con_separador_coma(String sLinea){
+			loginPorLinea(sLinea);
+			irA("facturaci\u00f3n");
+			sleep(10000);
+			driver.findElement(By.id("lnk-descargar-cupon-pagos")).click();
+			sleep(10000);
+			driver.findElement(By.id("inputImporte")).sendKeys("12,25");
+			driver.findElement(By.id("btnDescargar")).click();
+			sleep(3000);
+			Assert.assertFalse(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("ingrese un importe v\u00e1lido."));
+		}
+		
+		@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="MIX")
+		public void DIGITAL_WEB_IND_FACTURACION_GENERAR_CUPON_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_DECIMAL_Con_separador_punto(String sLinea){
+			loginPorLinea(sLinea);
+			irA("facturaci\u00f3n");
+			sleep(10000);
+			driver.findElement(By.id("lnk-descargar-cupon-pagos")).click();
+			sleep(10000);
+			driver.findElement(By.id("inputImporte")).sendKeys("12.25");
+			driver.findElement(By.id("btnDescargar")).click();
+			sleep(3000);
+			Assert.assertFalse(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("ingrese un importe v\u00e1lido."));
+		}
+		
+		@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="MIX")
+		public void DIGITAL_WEB_IND_FACTURACION_GENERAR_CUPON_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_NEUTRO_Valor_Neutro_0(String sLinea){
+			loginPorLinea(sLinea);
+			irA("facturaci\u00f3n");
+			sleep(10000);
+			driver.findElement(By.id("lnk-descargar-cupon-pagos")).click();
+			sleep(10000);
+			driver.findElement(By.id("inputImporte")).sendKeys("0");
+			driver.findElement(By.id("btnDescargar")).click();
+			sleep(3000);
+			Assert.assertFalse(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("ingrese un importe v\u00e1lido."));
+		}
+		
+		@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="MIX")
+		public void DIGITAL_WEB_IND_FACTURACION_GENERAR_CUPON_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_NEGAT_Valores_Negarivos(String sLinea){
+			loginPorLinea(sLinea);
+			irA("facturaci\u00f3n");
+			sleep(10000);
+			driver.findElement(By.id("lnk-descargar-cupon-pagos")).click();
+			sleep(10000);
+			driver.findElement(By.id("inputImporte")).sendKeys("-2");
+			driver.findElement(By.id("btnDescargar")).click();
+			sleep(3000);
+			Assert.assertFalse(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("ingrese un importe v\u00e1lido."));
+		}
+		
+		@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="MIX")
+		public void DIGITAL_WEB_IND_FACTURACION_GENERAR_CUPON_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_COMBIN(String sLinea){
+			loginPorLinea("sLinea");
+			irA("facturaci\u00f3n");
+			sleep(10000);
+			driver.findElement(By.id("lnk-descargar-cupon-pagos")).click();
+			sleep(10000);
+			driver.findElement(By.id("inputImporte")).sendKeys("2A0.35 ");
+			driver.findElement(By.id("btnDescargar")).click();
+			sleep(3000);
+			Assert.assertTrue(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("ingrese un importe v\u00e1lido."));
+		}
 }
