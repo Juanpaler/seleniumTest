@@ -343,4 +343,52 @@ public class iOSMobile extends MetodosiOS {
     	loginPorLineaMobile(driver, "1164599450");
     	Assert.assertTrue(verificarFactura(driver));  //No funciona la linea POS
     }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 46)
+    public void Pagos_Paga_con_Tarjeta_de_Credito_MIX() {
+    	loginPorLineaMobile(driver, lineaMIX);
+    	Assert.assertTrue(verificarPagoConTarjetaDeCredito(driver));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 47)
+    public void Pagos_Paga_con_Tarjeta_de_Credito_POS() {
+    	loginPorLineaMobile(driver, "1164599450");
+    	Assert.assertTrue(verificarPagoConTarjetaDeCredito(driver));  //No funciona la linea POS
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 48)
+    public void Pagos_Paga_con_Pago_Mis_Cuentas_MIX() {
+    	loginPorLineaMobile(driver, lineaMIX);
+    	Assert.assertTrue(verificarPagoConPagoMisCuentas(driver));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 49)
+    public void Pagos_Paga_con_Pago_Mis_Cuentas_POS() {
+    	loginPorLineaMobile(driver, "1164599450");
+    	Assert.assertTrue(verificarPagoConPagoMisCuentas(driver));  //No funciona la linea POS
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 50)
+    public void Pagos_Pago_online_MIX() {
+    	loginPorLineaMobile(driver, lineaMIX);
+    	Assert.assertTrue(verificarPagoOnline(driver));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 51)
+    public void Pagos_Pago_online_POS() {
+    	loginPorLineaMobile(driver, "1164599450");
+    	Assert.assertTrue(verificarPagoOnline(driver));  //No funciona la linea POS
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 52)
+    public void Pagos_Pago_Presencial_MIX() {
+    	loginPorLineaMobile(driver, lineaMIX);
+    	Assert.assertTrue(verificarPagoPresencial(driver));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 53)
+    public void Pagos_Pago_Presencial_POS() {
+    	loginPorLineaMobile(driver, "1164599450");
+    	Assert.assertTrue(verificarPagoPresencial(driver));  //No funciona la linea POS
+    }
 }

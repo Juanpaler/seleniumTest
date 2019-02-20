@@ -417,4 +417,86 @@ public class MetodosiOS {
         }
         return factura;
 	}
+    
+    public boolean verificarPagoConTarjetaDeCredito(IOSDriver<IOSElement> driver) {
+		boolean factura = false;
+		try {
+    		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
+    	} catch(Exception e) {
+    		scrollAndClick(driver, "id", "Pagos y Packs");
+    	}
+		driver.swipe(242, 748, 249, 431, 1697);
+		sleep(5000);
+		driver.findElement(By.xpath("((//*[@class='UIATable' and ./parent::*[./parent::*[@class='UIATable'] and (./preceding-sibling::* | ./following-sibling::*)[./*[@class='UIAButton']]]]/*[@class='UIAView'])[15]/*[@class='UIAButton'])[2]")).click();
+		sleep(7000);
+    	for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    		if (x.getText().contains("Complet\u00e1 el siguiente formulario para finalizar el pago"))
+    			factura = true;
+    	}
+    	return factura;
+	}
+    
+    public boolean verificarPagoConPagoMisCuentas(IOSDriver<IOSElement> driver) {
+		boolean pmc = false;
+		try {
+    		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
+    	} catch(Exception e) {
+    		scrollAndClick(driver, "id", "Pagos y Packs");
+    	}
+		driver.swipe(242, 748, 249, 431, 1697);
+		sleep(5000);
+		driver.findElement(By.xpath("((//*[@class='UIATable' and ./parent::*[./parent::*[@class='UIATable'] and (./preceding-sibling::* | ./following-sibling::*)[./*[@class='UIAButton']]]]/*[@class='UIAView'])[15]/*[@class='UIAButton'])[1]")).click();
+		sleep(5000);
+    	for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    		if (x.getText().contains("Pago con Pago Mis Cuentas: Paso a paso"))
+    			pmc = true;
+    	}
+    	return pmc;
+	}
+    
+    public boolean verificarPagoOnline(IOSDriver<IOSElement> driver) {
+		boolean tdc = false, hb = false, pmc = false, pagos = false;
+		try {
+    		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
+    	} catch(Exception e) {
+    		scrollAndClick(driver, "id", "Pagos y Packs");
+    	}
+		driver.swipe(242, 748, 249, 431, 1697);
+		sleep(5000);
+		driver.findElement(By.id("Pago online")).click();
+		sleep(5000);
+    	for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    		if (x.getText().contains("Tarjetas de Cr\u00e9dito"))
+    			tdc = true;
+    		if (x.getText().contains("Home Banking"))
+    			hb = true;
+    		if (x.getText().contains("Pago Mis Cuentas"))
+    			pmc = true;
+    		if (x.getText().contains("Link Pagos"))
+    			pagos = true;
+    	}
+    	return tdc && hb && pmc && pagos;
+	}
+    
+    public boolean verificarPagoPresencial(IOSDriver<IOSElement> driver) {
+		boolean pee = false, ca = false, pcc = false;
+		try {
+    		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
+    	} catch(Exception e) {
+    		scrollAndClick(driver, "id", "Pagos y Packs");
+    	}
+		driver.swipe(242, 800, 249, 431, 1697);
+		sleep(5000);
+		driver.findElement(By.id("Pago Presencial")).click();
+		sleep(5000);
+    	for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    		if (x.getText().contains("Pagos en efectivo"))
+    			pee = true;
+    		if (x.getText().contains("Cajeros Autom\u00e1ticos"))
+    			ca = true;
+    		if (x.getText().contains("Pagos con Cheque"))
+    			pcc = true;
+    	}
+    	return pee && ca && pcc;
+	}
 }
