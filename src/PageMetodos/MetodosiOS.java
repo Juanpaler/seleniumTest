@@ -499,4 +499,45 @@ public class MetodosiOS {
     	}
     	return pee && ca && pcc;
 	}
+    
+    public boolean verificarActivYDesactDobleBlue(IOSDriver<IOSElement> driver, String tipoDeLinea) {
+		boolean activ = false, desact = false;
+		scrollAndClick(driver, "id", "Compr\u00e1 m\u00e1s internet");
+    	scrollAndClick(driver, "id", "CAMBIAR A CUOTA NACIONAL 200 MB");
+    	scrollAndClick(driver, "id", "CONFIRMAR");
+    	switch(tipoDeLinea) {
+    	case "MIX":
+    		for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    			if (x.getText().contains("La Cuota Internet 200MB por Dia fue activada con \u00e9xito"))
+            		activ = true;
+    		}
+    		break;
+    	case "Pre":
+    		for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    			if (x.getText().contains("La Cuota Internet 200MB por Dia fue activada con \u00e9xito"))
+            		activ = true;
+    		}
+    		break;
+    	}
+    	scrollAndClick(driver, "id", "CONFIRMAR");
+    	scrollAndClick(driver, "id", "Compr\u00e1 m\u00e1s internet");
+    	scrollAndClick(driver, "id", "CAMBIAR A CUOTA NAC Y ROAMING");
+    	scrollAndClick(driver, "id", "CONFIRMAR");
+    	switch(tipoDeLinea) {
+    	case "MIX":
+    		for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    			if (x.getText().contains("La Cuota Internet por Dia Limitrofe  fue activada con éxito"))
+            		desact = true;
+    		}
+    		break;
+    	case "Pre":
+    		for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    			if (x.getText().contains("La Cuota Internet por Dia Limitrofe  fue activada con \u00e9xito"))
+            		desact = true;
+    		}
+    		break;
+    	}
+    	scrollAndClick(driver, "id", "ACEPTAR");
+    	return activ && desact;
+	}
 }

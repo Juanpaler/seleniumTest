@@ -391,4 +391,10 @@ public class iOSMobile extends MetodosiOS {
     	loginPorLineaMobile(driver, "1164599450");
     	Assert.assertTrue(verificarPagoPresencial(driver));  //No funciona la linea POS
     }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 54)
+    public void Mis_Consumos_Doble_Blue_Activar_PRE() {
+    	loginPorLineaMobile(driver, "1164477818");
+    	Assert.assertTrue(verificarActivYDesactDobleBlue(driver, "Pre"));
+    }
 }
