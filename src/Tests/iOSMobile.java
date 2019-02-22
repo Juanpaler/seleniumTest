@@ -22,7 +22,7 @@ public class iOSMobile extends MetodosiOS {
     private String reportFormat = "xml";
     private String testName = "Untitled";
     private String nroUDID = "c2ced461f2d136211a630c1f06668a1771abd2b2";
-    protected IOSDriver<IOSElement> driver = null;
+    private IOSDriver<IOSElement> driver = null;
     DesiredCapabilities dc = new DesiredCapabilities();
     
     
@@ -44,7 +44,7 @@ public class iOSMobile extends MetodosiOS {
         } catch(Exception e) {}
     }
     
-    //@AfterMethod (alwaysRun = true)
+    @AfterMethod (alwaysRun = true)
     public void after() {
     	sleep(5000);
     	int menu = 0;

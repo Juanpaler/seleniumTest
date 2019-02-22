@@ -45,7 +45,7 @@ public class AndroidMobile extends MetodosAndroid {
         driver.setLogLevel(Level.INFO);
     }
     
-    //@AfterMethod (groups = "AutogestionIndividuosAPP")
+    @AfterMethod (groups = "AutogestionIndividuosAPP")
     public void after() {
     	sleep(5000);
     	int menu = 0;
@@ -62,153 +62,153 @@ public class AndroidMobile extends MetodosAndroid {
     }   
     
     
-    @Test (groups = "AutogestionIndividuosAPP", priority = 0)
-    public void Comprar_Packs_Compra_de_Packs_MIX() {
-    	loginPorLineaMobile(driver, lineaMIX);
-    	Assert.assertTrue(verificarCompraDePacks(driver));
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 1)
-    public void Comprar_Packs_Compra_de_Packs_PRE() {
-    	loginPorLineaMobile(driver, lineaPre);
-    	Assert.assertTrue(verificarCompraDePacks(driver));
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 2)
-    public void Comprar_Packs_Consultar_Comprobantes_MIX() {
-    	loginPorLineaMobile(driver, lineaMIX);
-    	Assert.assertTrue(verificarDescargaDeComprobante(driver)); //Mensaje de error en descarga de comprobante
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 3)
-    public void Comprar_Packs_Consultar_Comprobantes_PRE() {
-    	loginPorLineaMobile(driver, lineaPre);
-    	Assert.assertTrue(verificarDescargaDeComprobante(driver)); //Mensaje de error en descarga de comprobante
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 4)
-    public void Consumos_Detalles_de_Consumos_MIX() {
-    	loginPorLineaMobile(driver, lineaMIX);
-    	Assert.assertTrue(verificarDetallesDeConsumos(driver, "MIX o Pre"));
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 5)
-    public void Consumos_Detalles_de_Consumos_POS() {
-    	loginPorLineaMobile(driver, lineaPos);
-    	Assert.assertTrue(verificarDetallesDeConsumos(driver, "Pos"));
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 6)
-    public void Consumos_Detalles_de_Consumos_PRE() {
-    	loginPorLineaMobile(driver, lineaPre);
-    	Assert.assertTrue(verificarDetallesDeConsumos(driver, "MIX o Pre"));
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 7)
-    public void Recargas_Gestiones_y_Consultas_Recargar_Ahora_PRE() {
-    	loginPorLineaMobile(driver, lineaPre);
-    	Assert.assertTrue(verificarMetodosDeRecarga(driver, "Pre"));
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 8)
-    public void Recargas_Gestiones_y_Consultas_Recargar_Ahora_MIX() {
-    	loginPorLineaMobile(driver, lineaMIX);
-    	Assert.assertTrue(verificarMetodosDeRecarga(driver, "MIX"));
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 9)
-    public void Facturacion_Compras_Realizadas_Descargar_Comprobante_MIX() {
-    	loginPorLineaMobile(driver, "1164599468");
-    	Assert.assertTrue(descargaComprobanteDeCompra(driver, "MIX"));
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 10)
-    public void Facturacion_Compras_Realizadas_Descargar_Comprobante_POS() {
-    	loginPorLineaMobile(driver, "1164599450");
-    	Assert.assertTrue(descargaComprobanteDeCompra(driver, "Pos"));
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 11)
-    public void MI_Linea_Roaming_y_LDI_habilitado_MIX() {
-    	loginPorLineaMobile(driver, "3496652414");
-    	Assert.assertTrue(verificarRoamingYLDIActivos(driver));
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 12)
-    public void MI_Linea_Roaming_y_LDI_habilitado_POS() {
-    	loginPorLineaMobile(driver, "3794601129");
-    	Assert.assertTrue(verificarRoamingYLDIActivos(driver));
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 13)
-    public void MI_Linea_Roaming_y_LDI_habilitado_PRE() {
-    	loginPorLineaMobile(driver, "1164520012");
-    	Assert.assertTrue(verificarRoamingYLDIActivos(driver));
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 14)
-    public void Facturacion_Imprimir_cupon_de_pago_MIX() {
-    	loginPorLineaMobile(driver, "1162733281");
-    	Assert.assertTrue(verificarImprimirCupon(driver));  //Mensaje de error al intentar descargar el cupon
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 15)
-    public void Facturacion_Imprimir_cupon_de_pago_POS() {
-    	loginPorLineaMobile(driver, "3413130145");
-    	Assert.assertTrue(verificarImprimirCupon(driver));  //Mensaje de error al intentar descargar el cupon
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 16)
-    public void Recargas_Recarga_SOS_MIX() {
-    	loginPorLineaMobile(driver, lineaMIX);
-    	Assert.assertTrue(verificarRecargaSOS(driver));
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 17)
-    public void Recargas_Recarga_SOS_PRE() {
-    	loginPorLineaMobile(driver, lineaPre);
-    	Assert.assertTrue(verificarRecargaSOS(driver));
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 18)
-    public void Recargas_Recarga_con_puntos_Club_MIX() {
-    	loginPorLineaMobile(driver, "1168829219");
-    	Assert.assertTrue(verificarRecargaPuntosClub(driver));  //Mensaje de error al hacer click en canjear
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 19)
-    public void Recargas_Recarga_con_puntos_Club_PRE() {
-    	loginPorLineaMobile(driver, "1164473518");
-    	Assert.assertTrue(verificarRecargaPuntosClub(driver));  //Mensaje de error al hacer click en canjear
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 20)
-    public void Recargas_Gestiones_y_Consultas_Ultimas_Recargas_MIX() {
-    	loginPorLineaMobile(driver, lineaMIX);
-    	Assert.assertTrue(verificarUltimasRecargas(driver));
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 21)
-    public void Recargas_Gestiones_y_Consultas_Ultimas_Recargas_PRE() {
-    	loginPorLineaMobile(driver, lineaPre);
-    	Assert.assertTrue(verificarUltimasRecargas(driver));
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 22)
-    public void Ayuda_Acceder_a_AYUDA_y_seleccionar_alguna_opcion() {
-    	loginPorLineaMobile(driver, lineaPre);
-    	boolean ayuda = false;
-    	driver.swipe(315, 154, -12, 154, 84);
-    	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='AYUDA']");
-    	driver.findElement(By.xpath("//*[@text='d. T\u00e9cnico | Personal Help - Argentina']")).click();
-    	sleep(7000);
-    	for (WebElement x : driver.findElements(By.className("android.view.View"))) {
-    		if (x.getText().contains("Mi equipo no reconoce la Sim"))
-    			ayuda = true;
-    	}
-    	Assert.assertTrue(ayuda);
-    }
-    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 0)
+//    public void Comprar_Packs_Compra_de_Packs_MIX() {
+//    	loginPorLineaMobile(driver, lineaMIX);
+//    	Assert.assertTrue(verificarCompraDePacks(driver));
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 1)
+//    public void Comprar_Packs_Compra_de_Packs_PRE() {
+//    	loginPorLineaMobile(driver, lineaPre);
+//    	Assert.assertTrue(verificarCompraDePacks(driver));
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 2)
+//    public void Comprar_Packs_Consultar_Comprobantes_MIX() {
+//    	loginPorLineaMobile(driver, lineaMIX);
+//    	Assert.assertTrue(verificarDescargaDeComprobante(driver)); //Mensaje de error en descarga de comprobante
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 3)
+//    public void Comprar_Packs_Consultar_Comprobantes_PRE() {
+//    	loginPorLineaMobile(driver, lineaPre);
+//    	Assert.assertTrue(verificarDescargaDeComprobante(driver)); //Mensaje de error en descarga de comprobante
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 4)
+//    public void Consumos_Detalles_de_Consumos_MIX() {
+//    	loginPorLineaMobile(driver, lineaMIX);
+//    	Assert.assertTrue(verificarDetallesDeConsumos(driver, "MIX o Pre"));
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 5)
+//    public void Consumos_Detalles_de_Consumos_POS() {
+//    	loginPorLineaMobile(driver, lineaPos);
+//    	Assert.assertTrue(verificarDetallesDeConsumos(driver, "Pos"));
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 6)
+//    public void Consumos_Detalles_de_Consumos_PRE() {
+//    	loginPorLineaMobile(driver, lineaPre);
+//    	Assert.assertTrue(verificarDetallesDeConsumos(driver, "MIX o Pre"));
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 7)
+//    public void Recargas_Gestiones_y_Consultas_Recargar_Ahora_PRE() {
+//    	loginPorLineaMobile(driver, lineaPre);
+//    	Assert.assertTrue(verificarMetodosDeRecarga(driver, "Pre"));
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 8)
+//    public void Recargas_Gestiones_y_Consultas_Recargar_Ahora_MIX() {
+//    	loginPorLineaMobile(driver, lineaMIX);
+//    	Assert.assertTrue(verificarMetodosDeRecarga(driver, "MIX"));
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 9)
+//    public void Facturacion_Compras_Realizadas_Descargar_Comprobante_MIX() {
+//    	loginPorLineaMobile(driver, "1164599468");
+//    	Assert.assertTrue(descargaComprobanteDeCompra(driver, "MIX"));
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 10)
+//    public void Facturacion_Compras_Realizadas_Descargar_Comprobante_POS() {
+//    	loginPorLineaMobile(driver, "1164599450");
+//    	Assert.assertTrue(descargaComprobanteDeCompra(driver, "Pos"));
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 11)
+//    public void MI_Linea_Roaming_y_LDI_habilitado_MIX() {
+//    	loginPorLineaMobile(driver, "3496652414");
+//    	Assert.assertTrue(verificarRoamingYLDIActivos(driver));
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 12)
+//    public void MI_Linea_Roaming_y_LDI_habilitado_POS() {
+//    	loginPorLineaMobile(driver, "3794601129");
+//    	Assert.assertTrue(verificarRoamingYLDIActivos(driver));
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 13)
+//    public void MI_Linea_Roaming_y_LDI_habilitado_PRE() {
+//    	loginPorLineaMobile(driver, "1164520012");
+//    	Assert.assertTrue(verificarRoamingYLDIActivos(driver));
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 14)
+//    public void Facturacion_Imprimir_cupon_de_pago_MIX() {
+//    	loginPorLineaMobile(driver, "1162733281");
+//    	Assert.assertTrue(verificarImprimirCupon(driver));  //Mensaje de error al intentar descargar el cupon
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 15)
+//    public void Facturacion_Imprimir_cupon_de_pago_POS() {
+//    	loginPorLineaMobile(driver, "3413130145");
+//    	Assert.assertTrue(verificarImprimirCupon(driver));  //Mensaje de error al intentar descargar el cupon
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 16)
+//    public void Recargas_Recarga_SOS_MIX() {
+//    	loginPorLineaMobile(driver, lineaMIX);
+//    	Assert.assertTrue(verificarRecargaSOS(driver));
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 17)
+//    public void Recargas_Recarga_SOS_PRE() {
+//    	loginPorLineaMobile(driver, lineaPre);
+//    	Assert.assertTrue(verificarRecargaSOS(driver));
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 18)
+//    public void Recargas_Recarga_con_puntos_Club_MIX() {
+//    	loginPorLineaMobile(driver, "1168829219");
+//    	Assert.assertTrue(verificarRecargaPuntosClub(driver));  //Mensaje de error al hacer click en canjear
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 19)
+//    public void Recargas_Recarga_con_puntos_Club_PRE() {
+//    	loginPorLineaMobile(driver, "1164473518");
+//    	Assert.assertTrue(verificarRecargaPuntosClub(driver));  //Mensaje de error al hacer click en canjear
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 20)
+//    public void Recargas_Gestiones_y_Consultas_Ultimas_Recargas_MIX() {
+//    	loginPorLineaMobile(driver, lineaMIX);
+//    	Assert.assertTrue(verificarUltimasRecargas(driver));
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 21)
+//    public void Recargas_Gestiones_y_Consultas_Ultimas_Recargas_PRE() {
+//    	loginPorLineaMobile(driver, lineaPre);
+//    	Assert.assertTrue(verificarUltimasRecargas(driver));
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 22)
+//    public void Ayuda_Acceder_a_AYUDA_y_seleccionar_alguna_opcion() {
+//    	loginPorLineaMobile(driver, lineaPre);
+//    	boolean ayuda = false;
+//    	driver.swipe(315, 154, -12, 154, 84);
+//    	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='AYUDA']");
+//    	driver.findElement(By.xpath("//*[@text='d. T\u00e9cnico | Personal Help - Argentina']")).click();
+//    	sleep(7000);
+//    	for (WebElement x : driver.findElements(By.className("android.view.View"))) {
+//    		if (x.getText().contains("Mi equipo no reconoce la Sim"))
+//    			ayuda = true;
+//    	}
+//    	Assert.assertTrue(ayuda);
+//    }
+//    
     @Test (groups = "SinAfterMethod", priority = 23)
     public void Login_Iniciar_Sesion_con_clave_Incorrecta() {
     	loginPorLineaMobile(driver, lineaMIX);
@@ -226,49 +226,49 @@ public class AndroidMobile extends MetodosAndroid {
     	loginPorLineaMobile(driver, lineaMIX);
     	Assert.assertTrue(verificarLogin(driver, "1192735149", "1469"));
     }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 26)
-    public void Login_Iniciar_Sesion_con_Linea_PreActiva() {
-    	loginPorLineaMobile(driver, "1162645152");
-    	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='MIS SERVICIOS']");
-    	Assert.assertTrue(false);  //No se visualiza el mensaje de linea pre desactivada
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 27)
-    public void Comprar_Packs_Compra_de_Packs_con_puntos_Club_MIX() {
-    	loginPorLineaMobile(driver, "1168829219");
-    	Assert.assertTrue(compraDePacksPuntosClub(driver));  //Mensaje de error al querer canjear
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 28)
-    public void Comprar_Packs_Compra_de_Packs_con_puntos_Club_PRE() {
-    	loginPorLineaMobile(driver, "1164473518");
-    	Assert.assertTrue(compraDePacksPuntosClub(driver));  //Mensaje de error al querer canjear
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 29)
-    public void Facturacion_Ver_Facturas_MIX() {
-    	loginPorLineaMobile(driver, "1162733281");
-    	Assert.assertTrue(verFacturas(driver));
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 30)
-    public void Facturacion_Ver_Facturas_POS() {
-    	loginPorLineaMobile(driver, "1165990597");
-    	Assert.assertTrue(verFacturas(driver));
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 31)
-    public void Facturacion_Pagar_Factura_MIX() {
-    	loginPorLineaMobile(driver, "1162733281");
-    	Assert.assertTrue(verificarDetalleDePagoConTarjeta(driver));
-    }
-    
-    @Test (groups = "AutogestionIndividuosAPP", priority = 32)
-    public void Facturacion_Pagar_Factura_POS() {
-    	loginPorLineaMobile(driver, "1165990597");
-    	Assert.assertTrue(verificarDetalleDePagoConTarjeta(driver));
-    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 26)
+//    public void Login_Iniciar_Sesion_con_Linea_PreActiva() {
+//    	loginPorLineaMobile(driver, "1162645152");
+//    	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='MIS SERVICIOS']");
+//    	Assert.assertTrue(false);  //No se visualiza el mensaje de linea pre desactivada
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 27)
+//    public void Comprar_Packs_Compra_de_Packs_con_puntos_Club_MIX() {
+//    	loginPorLineaMobile(driver, "1168829219");
+//    	Assert.assertTrue(compraDePacksPuntosClub(driver));  //Mensaje de error al querer canjear
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 28)
+//    public void Comprar_Packs_Compra_de_Packs_con_puntos_Club_PRE() {
+//    	loginPorLineaMobile(driver, "1164473518");
+//    	Assert.assertTrue(compraDePacksPuntosClub(driver));  //Mensaje de error al querer canjear
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 29)
+//    public void Facturacion_Ver_Facturas_MIX() {
+//    	loginPorLineaMobile(driver, "1162733281");
+//    	Assert.assertTrue(verFacturas(driver));
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 30)
+//    public void Facturacion_Ver_Facturas_POS() {
+//    	loginPorLineaMobile(driver, "1165990597");
+//    	Assert.assertTrue(verFacturas(driver));
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 31)
+//    public void Facturacion_Pagar_Factura_MIX() {
+//    	loginPorLineaMobile(driver, "1162733281");
+//    	Assert.assertTrue(verificarDetalleDePagoConTarjeta(driver));
+//    }
+//    
+//    @Test (groups = "AutogestionIndividuosAPP", priority = 32)
+//    public void Facturacion_Pagar_Factura_POS() {
+//    	loginPorLineaMobile(driver, "1165990597");
+//    	Assert.assertTrue(verificarDetalleDePagoConTarjeta(driver));
+//    }
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 33)
     public void Facturacion_Informar_un_Pago_MIX() {
