@@ -1092,14 +1092,7 @@ public class WebLineaUnica extends Metodos{
 			imagen="DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_LETRA";
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
-			sleep(10000);
-			buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"contains","adherir a d\u00e9bito autom\u00e1tico");
-			sleep(10000);
-			Select bco = new Select(driver.findElement(By.id("lstBancos")));
-			bco.selectByIndex(1);
-			driver.findElement(By.id("inputCBU")).sendKeys("asdfa");
-			driver.findElement(By.id("btnAdherir")).click();
-			sleep(3000);
+			IngresarCBU("asdfa");
 			Assert.assertTrue(driver.findElement(By.id("inputCBU")).getAttribute("value").isEmpty());
 		}
 		
@@ -1108,14 +1101,7 @@ public class WebLineaUnica extends Metodos{
 			imagen="DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_COMBIN";
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
-			sleep(10000);
-			buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"contains","adherir a d\u00e9bito autom\u00e1tico");
-			sleep(10000);
-			Select bco = new Select(driver.findElement(By.id("lstBancos")));
-			bco.selectByIndex(1);
-			driver.findElement(By.id("inputCBU")).sendKeys("12&41%");
-			driver.findElement(By.id("btnAdherir")).click();
-			sleep(3000);
+			IngresarCBU("12&41%");
 			System.out.println(driver.findElement(By.id("inputCBU")).getAttribute("value"));
 			Assert.assertTrue(driver.findElement(By.id("inputCBU")).getAttribute("value").equals("1241"));
 			Assert.assertTrue(driver.findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("el cbu debe tener 22 d\u00edgitos y ser num\u00e9rico."));
@@ -1127,14 +1113,7 @@ public class WebLineaUnica extends Metodos{
 			imagen="DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_NOESTAND";
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
-			sleep(10000);
-			buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"contains","adherir a d\u00e9bito autom\u00e1tico");
-			sleep(10000);
-			Select bco = new Select(driver.findElement(By.id("lstBancos")));
-			bco.selectByIndex(1);
-			driver.findElement(By.id("inputCBU")).sendKeys("'&^*");
-			driver.findElement(By.id("btnAdherir")).click();
-			sleep(3000);
+			IngresarCBU("'&^*");
 			Assert.assertTrue(driver.findElement(By.id("inputCBU")).getAttribute("value").isEmpty());
 		}
 		
@@ -1143,14 +1122,7 @@ public class WebLineaUnica extends Metodos{
 			imagen="DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_ESTAND";
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
-			sleep(10000);
-			buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"contains","adherir a d\u00e9bito autom\u00e1tico");
-			sleep(10000);
-			Select bco = new Select(driver.findElement(By.id("lstBancos")));
-			bco.selectByIndex(1);
-			driver.findElement(By.id("inputCBU")).sendKeys(".,.");
-			driver.findElement(By.id("btnAdherir")).click();
-			sleep(3000);
+			IngresarCBU(".,.");
 			Assert.assertTrue(driver.findElement(By.id("inputCBU")).getAttribute("value").isEmpty());
 		}
 		
@@ -1159,12 +1131,7 @@ public class WebLineaUnica extends Metodos{
 			imagen="DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_OBLIGAT_OBLIGATORIO";
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
-			sleep(10000);
-			buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"contains","adherir a d\u00e9bito autom\u00e1tico");
-			sleep(10000);
-			Select bco = new Select(driver.findElement(By.id("lstBancos")));
-			bco.selectByIndex(1);
-			driver.findElement(By.id("inputCBU")).sendKeys("");
+			IngresarCBU("");
 			driver.findElement(By.id("btnAdherir")).click();
 			sleep(3000);
 			System.out.println(driver.findElement(By.cssSelector(".control-label.dev-alert-danger")).getText());
@@ -1176,12 +1143,7 @@ public class WebLineaUnica extends Metodos{
 			imagen="DIGITAL_WEB_IND_FACTURACION_GENERAR_CUPON_PAGO_MIX_IMPORTE_INPUT_MONEDA_OBLIGAT_OBLIGATORIO";
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
-			sleep(10000);
-			driver.findElement(By.id("lnk-descargar-cupon-pagos")).click();
-			sleep(10000);
-			driver.findElement(By.id("inputImporte")).sendKeys(" ");
-			driver.findElement(By.id("btnDescargar")).click();
-			sleep(3000);
+			IngresarCuponPago(" ");
 			Assert.assertTrue(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("ingrese un importe"));
 		}
 		
@@ -1190,12 +1152,7 @@ public class WebLineaUnica extends Metodos{
 			imagen="DIGITAL_WEB_IND_FACTURACION_GENERAR_CUPON_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_DECIMAL_Con_separador_coma";
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
-			sleep(10000);
-			driver.findElement(By.id("lnk-descargar-cupon-pagos")).click();
-			sleep(10000);
-			driver.findElement(By.id("inputImporte")).sendKeys("12,25");
-			driver.findElement(By.id("btnDescargar")).click();
-			sleep(5000);
+			IngresarCuponPago("12,25");
 			System.out.println(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText());
 			Assert.assertFalse(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("ingrese un importe v\u00e1lido."));
 		}
@@ -1205,12 +1162,7 @@ public class WebLineaUnica extends Metodos{
 			imagen="DIGITAL_WEB_IND_FACTURACION_GENERAR_CUPON_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_DECIMAL_Con_separador_punto";
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
-			sleep(10000);
-			driver.findElement(By.id("lnk-descargar-cupon-pagos")).click();
-			sleep(10000);
-			driver.findElement(By.id("inputImporte")).sendKeys("12.25");
-			driver.findElement(By.id("btnDescargar")).click();
-			sleep(3000);
+			IngresarCuponPago("12.25");
 			Assert.assertTrue(false);
 			// =================== Falta validar cuando funcione la pagina siguiente de generar el cupon de pago ================= 
 		}
@@ -1220,12 +1172,7 @@ public class WebLineaUnica extends Metodos{
 			imagen="DIGITAL_WEB_IND_FACTURACION_GENERAR_CUPON_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_NEUTRO_Valor_Neutro_0";
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
-			sleep(10000);
-			driver.findElement(By.id("lnk-descargar-cupon-pagos")).click();
-			sleep(10000);
-			driver.findElement(By.id("inputImporte")).sendKeys("0");
-			driver.findElement(By.id("btnDescargar")).click();
-			sleep(3000);
+			IngresarCuponPago("0");
 			Assert.assertFalse(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).isDisplayed());
 		}
 		
@@ -1234,12 +1181,7 @@ public class WebLineaUnica extends Metodos{
 			imagen="DIGITAL_WEB_IND_FACTURACION_GENERAR_CUPON_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_NEGAT_Valores_Negativos";
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
-			sleep(10000);
-			driver.findElement(By.id("lnk-descargar-cupon-pagos")).click();
-			sleep(10000);
-			driver.findElement(By.id("inputImporte")).sendKeys("-2");
-			driver.findElement(By.id("btnDescargar")).click();
-			sleep(3000);
+			IngresarCuponPago("-2");
 			Assert.assertTrue(driver.findElement(By.id("divMuestraMsj")).isDisplayed());
 		}
 		
@@ -1248,12 +1190,7 @@ public class WebLineaUnica extends Metodos{
 			imagen="DIGITAL_WEB_IND_FACTURACION_GENERAR_CUPON_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_COMBIN";
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
-			sleep(10000);
-			driver.findElement(By.id("lnk-descargar-cupon-pagos")).click();
-			sleep(10000);
-			driver.findElement(By.id("inputImporte")).sendKeys("2A0.35");
-			driver.findElement(By.id("btnDescargar")).click();
-			sleep(3000);
+			IngresarCuponPago("2A0.35");
 			Assert.assertTrue(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("ingrese un importe v\u00e1lido."));
 		}
 		
@@ -1262,13 +1199,7 @@ public class WebLineaUnica extends Metodos{
 			imagen="DIGITAL_WEB_IND_FACTURACION_INFORMAR_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_COMBIN";
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
-			sleep(10000);
-			driver.findElement(By.id("btnInformarPago")).click();
-			sleep(5000);
-			driver.findElement(By.id("txtImporte")).clear();
-			driver.findElement(By.id("txtImporte")).sendKeys("20.%0");
-			driver.findElement(By.id("btnInformar")).click();
-			sleep(3000);
+			InformarPago("20.%0");
 			Assert.assertTrue(driver.findElement(By.id("inputError")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("el formato es incorrecto. debe ser xx,xx"));
 		}
 		
@@ -1277,13 +1208,7 @@ public class WebLineaUnica extends Metodos{
 			imagen="DIGITAL_WEB_IND_FACTURACION_INFORMAR_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_NEGAT_Valores_Negarivos";
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
-			sleep(10000);
-			driver.findElement(By.id("btnInformarPago")).click();
-			sleep(5000);
-			driver.findElement(By.id("txtImporte")).clear();
-			driver.findElement(By.id("txtImporte")).sendKeys("-2");
-			driver.findElement(By.id("btnInformar")).click();
-			sleep(3000);
+			InformarPago("-2");
 			Assert.assertTrue(driver.findElement(By.id("divMuestraMsj")).isDisplayed());
 		}
 		
@@ -1292,13 +1217,7 @@ public class WebLineaUnica extends Metodos{
 			imagen="DIGITAL_WEB_IND_FACTURACION_INFORMAR_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_NEUTRO_Valor_Neutro_cero";
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
-			sleep(10000);
-			driver.findElement(By.id("btnInformarPago")).click();
-			sleep(5000);
-			driver.findElement(By.id("txtImporte")).clear();
-			driver.findElement(By.id("txtImporte")).sendKeys("0");
-			driver.findElement(By.id("btnInformar")).click();
-			sleep(3000);
+			InformarPago("0");
 			Assert.assertTrue(driver.findElement(By.id("divMuestraMsj")).isDisplayed());
 		}
 		
@@ -1307,13 +1226,7 @@ public class WebLineaUnica extends Metodos{
 			imagen="DIGITAL_WEB_IND_FACTURACION_INFORMAR_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_DECIMAL_Con_separador_punto_Entero_Decimal";
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
-			sleep(10000);
-			driver.findElement(By.id("btnInformarPago")).click();
-			sleep(5000);
-			driver.findElement(By.id("txtImporte")).clear();
-			driver.findElement(By.id("txtImporte")).sendKeys("12.78");
-			driver.findElement(By.id("btnInformar")).click();
-			sleep(3000);
+			InformarPago("12.78");
 			Assert.assertTrue(driver.findElement(By.id("divMuestraMsj")).isDisplayed());
 		}
 		
@@ -1322,13 +1235,7 @@ public class WebLineaUnica extends Metodos{
 			imagen="DIGITAL_WEB_IND_FACTURACION_INFORMAR_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_DECIMAL_Con_separador_coma_Entero_Decimal";
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
-			sleep(10000);
-			driver.findElement(By.id("btnInformarPago")).click();
-			sleep(5000);
-			driver.findElement(By.id("txtImporte")).clear();
-			driver.findElement(By.id("txtImporte")).sendKeys("12,78");
-			driver.findElement(By.id("btnInformar")).click();
-			sleep(9000);
+			InformarPago("12,78");
 			Assert.assertTrue(driver.findElement(By.id("divMuestraMsj")).isDisplayed());
 		}
 		
@@ -1337,13 +1244,7 @@ public class WebLineaUnica extends Metodos{
 			imagen="DIGITAL_WEB_IND_FACTURACION_INFORMAR_PAGO_MIX_IMPORTE_INPUT_MONEDA_OBLIGAT_OBLIGATORIO";
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
-			sleep(10000);
-			driver.findElement(By.id("btnInformarPago")).click();
-			sleep(5000);
-			driver.findElement(By.id("txtImporte")).clear();
-			driver.findElement(By.id("txtImporte")).sendKeys("");
-			driver.findElement(By.id("btnInformar")).click();
-			sleep(3000);
+			InformarPago("");
 			Assert.assertTrue(driver.findElement(By.id("inputError")).findElement(By.cssSelector(".control-label.dev-alert-danger")).isDisplayed());
 			Assert.assertTrue(driver.findElement(By.id("inputError")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("ingrese un importe"));
 		}
@@ -1354,14 +1255,7 @@ public class WebLineaUnica extends Metodos{
 			String a = "12345678901234567890123"; 
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
-			sleep(10000);
-			buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"contains","adherir a d\u00e9bito autom\u00e1tico");
-			sleep(10000);
-			Select bco = new Select(driver.findElement(By.id("lstBancos")));
-			bco.selectByIndex(1);
-			driver.findElement(By.id("inputCBU")).sendKeys(a);
-			driver.findElement(By.id("btnAdherir")).click();
-			sleep(3000);
+			IngresarCBU(a);
 			System.out.println(driver.findElement(By.id("inputCBU")).getAttribute("value"));
 			Assert.assertFalse(driver.findElement(By.id("inputCBU")).getAttribute("value").equals(a));
 			
@@ -1372,14 +1266,7 @@ public class WebLineaUnica extends Metodos{
 			imagen="DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_MAX_Menos_de_22_digitos";
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
-			sleep(10000);
-			buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"contains","adherir a d\u00e9bito autom\u00e1tico");
-			sleep(10000);
-			Select bco = new Select(driver.findElement(By.id("lstBancos")));
-			bco.selectByIndex(1);
-			driver.findElement(By.id("inputCBU")).sendKeys("1234567890123456789");
-			driver.findElement(By.id("btnAdherir")).click();
-			sleep(3000);
+			IngresarCBU("1234567890123456789");
 			Assert.assertTrue(driver.findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("el cbu debe tener 22 d\u00edgitos y ser num\u00e9rico."));
 		}
 }

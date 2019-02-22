@@ -77,7 +77,7 @@
   </test>
   -->
    <!-- ************************************************** FACTURACION ****************************************************** -->
-   
+   <!-- 
   <test name="facturacion">
    <groups>
     	<run>
@@ -85,18 +85,47 @@
     	</run>
   </groups>
     <classes>
-    					 <!--	<class name="Tests.WebLineaUnica"/>-->
+    					 	<class name="Tests.WebLineaUnica"/>
     						<class name="Tests.WebLineaVariable"/>
     						
     </classes>
   </test>
-  
+    -->
    <!-- ************************************************** LOGIN ****************************************************** -->
     <!--
   <test name="login">
    <groups>
     	<run>
      	 					<include name="login"/>
+    	</run>
+  </groups>
+    <classes>
+    						<class name="Tests.WebLineaUnica"/>
+    						<class name="Tests.WebLineaVariable"/>
+    						
+    </classes>
+  </test>
+  -->
+  <!-- ************************************************** INPUTS ****************************************************** -->
+   <!--
+  <test name="Inputs">
+   <groups>
+    	<run>
+     	 					<include name="Inputs"/>
+    	</run>
+  </groups>
+    <classes>
+    					 	<class name="Tests.WebLineaUnica"/>
+    						<class name="Tests.WebLineaVariable"/>
+    						
+    </classes>
+  </test>  -->
+  <!-- **************************************************USABILIDAD ****************************************************** -->
+    <!--
+  <test name="Usabilidad">
+   <groups>
+    	<run>
+     	 					<include name="Usabilidad"/>
     	</run>
   </groups>
     <classes>
