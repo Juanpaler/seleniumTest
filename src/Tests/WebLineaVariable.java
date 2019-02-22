@@ -633,9 +633,10 @@ public class WebLineaVariable extends Metodos{
 		imagen = "Comprar_Packs_Compra_de_Packs_con_puntos_Club_MIX";
 		LoginPorLineaVariable(sLinea);
 		irA("packs");
-		sleep(8000);
-		List <WebElement> packs = driver.findElement(By.id("collapseTwo")).findElements(By.cssSelector(".list-group-item.li-puntos-club"));
+		sleep(10000);
+		List <WebElement> packs = driver.findElement(By.id("accordionEjemplo2")).findElements(By.cssSelector(".list-group-item.li-puntos-club"));
 			for(WebElement p : packs ){
+				System.out.println(p.getText());
 				if(p.getText().toLowerCase().equals("larga distancia internacional")){
 					p.click();
 				}
@@ -1012,8 +1013,9 @@ public class WebLineaVariable extends Metodos{
 	}
 	
 
-	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_con_el_caracter_enie(String sLinea){
+		imagen="DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_con_el_caracter_enie";
 		loginPorLinea(sLinea);
 		irA("facturaci\u00f3n");
 		sleep(10000);
@@ -1025,8 +1027,9 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
 	
-	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_caracteres_luego_del_arroba(String sLinea){
+		imagen="DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_caracteres_luego_del_arroba";
 		loginPorLinea(sLinea);
 		irA("facturaci\u00f3n");
 		sleep(10000);
@@ -1038,8 +1041,9 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
 	
-	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_caracteres_antes_del_arroba(String sLinea){
+		imagen="DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_caracteres_antes_del_arroba";
 		loginPorLinea(sLinea);
 		irA("facturaci\u00f3n");
 		sleep(10000);
@@ -1050,8 +1054,9 @@ public class WebLineaVariable extends Metodos{
 		sleep(3000);
 		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
-	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_caracteres_luego_del_punto_posterior_al_arroba(String sLinea){
+		imagen="DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_caracteres_luego_del_punto_posterior_al_arroba";
 		loginPorLinea(sLinea);
 		irA("facturaci\u00f3n");
 		sleep(10000);
@@ -1063,8 +1068,9 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
 	
-	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_arroba(String sLinea){
+		imagen="DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_arroba";
 		loginPorLinea(sLinea);
 		irA("facturaci\u00f3n");
 		sleep(10000);
@@ -1076,8 +1082,9 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
 	
-	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_punto(String sLinea){
+		imagen="DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_punto";
 		loginPorLinea(sLinea);
 		irA("facturaci\u00f3n");
 		sleep(10000);
@@ -1089,8 +1096,9 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
 	
-	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_dato(String sLinea){
+		imagen="DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_dato";
 		loginPorLinea(sLinea);
 		irA("facturaci\u00f3n");
 		sleep(10000);
@@ -1102,8 +1110,9 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
 	
-	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
 	public void DIGITAL_WEB_IND_FACTURACION_INFORMAR_PAGO_MIX_IMPORTE_INPUT_MONEDA_OBLIGAT_OBLIGATORIO(String sLinea){
+		imagen="DIGITAL_WEB_IND_FACTURACION_INFORMAR_PAGO_MIX_IMPORTE_INPUT_MONEDA_OBLIGAT_OBLIGATORIO";
 		loginPorLinea(sLinea);
 		irA("facturaci\u00f3n");
 		sleep(10000);
