@@ -844,7 +844,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".llamame-br-label1")).getText().equals("Te estamos llamando"));
 	}
 
-	//@Test(groups ={ "AutogestionIndividuosWeb","consumos"},dataProvider="Modificar_cuota_de_datos") 
+    @Test(groups ={ "AutogestionIndividuosWeb","consumos"},dataProvider="Modificar_cuota_de_datos") 
 	public void Mis_Consumos_Modificar_Cuota_de_Datos(String sLinea) throws FileNotFoundException, UnsupportedEncodingException, JSchException, SftpException{
 		imagen = "Mis_Consumos_Modificar_Cuota_de_Datos";
 		
@@ -1086,7 +1086,7 @@ public class WebLineaVariable extends Metodos{
 	}
 	
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Linea_Input_Numero_Caracter_Letra(){
 		imagen = "Login_Linea_Input_Numero_Caracter_Letra";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1097,7 +1097,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 s\u00f3lo n\u00fameros"));
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Linea_Input_Numero_Caracter_Combinado(){
 		imagen = "Login_Linea_Input_Numero_Caracter_Combinado";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1108,7 +1108,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("Debes ingresar una l\u00ednea de Personal"));
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Linea_Input_Numero_Caracter_NoEstand(){
 		imagen = "Login_Linea_Input_Numero_Caracter_NoEstand";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1125,7 +1125,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).isDisplayed());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Linea_Input_Numero_Caracter_Estand(){
 		imagen = "Login_Linea_Input_Numero_Caracter_Estand";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1139,7 +1139,7 @@ public class WebLineaVariable extends Metodos{
 	    Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).isDisplayed());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Linea_Input_Numero_Mas11Digitos(){
 		imagen = "Login_Linea_Input_Numero_Mas11Digitos";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1150,7 +1150,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("L\u00ednea incorrecta. Verific\u00e1 los datos ingresados"));
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Linea_Input_Numero_Menos11Digitos(){
 		imagen = "Login_Linea_Input_Numero_Menos11Digitos";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1161,7 +1161,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("Tu n\u00famero de l\u00ednea debe tener al menos 10 d\u00edgitos"));
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Linea_Input_Numero_Obligatorio(){
 		imagen = "Login_Linea_Input_Numero_Obligatorio";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1173,7 +1173,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertFalse(driver.findElement(By.id("loginButton_0")).isEnabled());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Clave_Input_Numero_Caracter_Letra(){
 		imagen = "Login_Clave_Input_Numero_Caracter_Letra";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1186,7 +1186,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 s\u00f3lo n\u00fameros"));
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Clave_Input_Numero_Caracter_Combinado(){
 		imagen = "Login_Clave_Input_Numero_Caracter_Combinado";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1199,7 +1199,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 s\u00f3lo n\u00fameros"));
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Clave_Input_Numero_Caracter_NoEstand(){
 		imagen = "Login_Clave_Input_Numero_Caracter_NoEstand";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1218,7 +1218,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).isDisplayed());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Clave_Input_Numero_Caracter_Estand(){
 		imagen = "Login_Clave_Input_Numero_Caracter_Estand";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1234,7 +1234,7 @@ public class WebLineaVariable extends Metodos{
 	    Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).isDisplayed());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Clave_Input_Numero_Max10Digitos(){
 		imagen = "Login_Clave_Input_Numero_Max10Digitos";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1248,7 +1248,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertEquals(number.length(), 10);
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Clave_Input_Numero_Menos4Digitos(){
 		imagen = "Login_Clave_Input_Numero_Menos4Digitos";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1261,7 +1261,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 al menos 4 n\u00fameros"));
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Clave_Input_Numero_Obligatorio(){
 		imagen = "Login_Clave_Input_Numero_Obligatorio";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1273,7 +1273,7 @@ public class WebLineaVariable extends Metodos{
 		
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_Numeros_Repetidos(){
 		imagen = "Login_Generar_CambiarClave_Numeros_Repetidos";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1292,7 +1292,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_Numeros_Consecutivos(){
 		imagen = "Login_Generar_CambiarClave_Numeros_Consecutivos";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1311,7 +1311,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_Numeros_Linea(){
 		imagen = "Login_Generar_CambiarClave_Numeros_Linea";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1330,7 +1330,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_3Digitos(){
 		imagen = "Login_Generar_CambiarClave_3Digitos";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1349,7 +1349,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_11Digitos(){
 		imagen = "Login_Generar_CambiarClave_11Digitos";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1367,7 +1367,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertEquals(number.length(), 10); 
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_letras(){
 		imagen = "Login_Generar_CambiarClave_letras";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1385,7 +1385,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertEquals(number.length(), 0); 
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_CaracteresCombinados(){
 		imagen = "Login_Generar_CambiarClave_CaracteresCombinados";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1403,7 +1403,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertEquals(number.length(), 2); 
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_CaracteresNoEstandar(){
 		imagen = "Login_Generar_CambiarClave_CaracteresNoEstandar";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1425,7 +1425,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertEquals(number.length(), 0); 	
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_CaracteresEstandar(){
 		imagen = "Login_Generar_CambiarClave_CaracteresEstandar";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1447,7 +1447,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertEquals(number.length(), 0); 	
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_NumeroObligatorio(){
 		imagen = "Login_Generar_CambiarClave_CaracteresEstandar";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1464,7 +1464,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_CodigoSMSIncorrecto(){
 		imagen = "Login_Generar_CambiarClave_CodigoSMSIncorrecto";
 		driver.get("https://autogestionuat.personal.com.ar");
