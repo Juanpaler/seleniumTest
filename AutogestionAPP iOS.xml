@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Autogestion APP iOS" parallel="tests" thread-count="1">
+
+	<!-- ****************************************************  AUTOGESTION INDIVIDUOS APP IOS  ************************************************ -->
+
+	<test name="Autogestion Individuos APP iOS">
+		<groups>
+			<run>
+				<include name="AutogestionIndividuosAPP" />
+			</run>
+		</groups>
+		<classes>
+			<class name="Tests.iOSMobile" />
+		</classes>
+	</test>
+	
+	<!-- *********************************************  AUTOGESTION INDIVIDUOS APP IOS SIN AFTERMETHOD  *************************************** -->
+
+	<test name="Autogestion Individuos APP iOS Sin AfterMethod">
+		<groups>
+			<run>
+				<include name="SinAfterMethod" />
+			</run>
+		</groups>
+		<classes>
+			<class name="Tests.iOSMobile" />
+		</classes>
+	</test>
+	
+ </suite>

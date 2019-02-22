@@ -7,6 +7,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 
@@ -247,4 +248,296 @@ public class MetodosiOS {
     	scrollAndClick(driver, "id", "ACEPTAR");
     	return bajaSus;
     }
+    
+    public boolean verificarRoamingYLDIActivos(IOSDriver<IOSElement> driver) {
+    	boolean roaming = false, ldi = false;
+    	scrollAndClick(driver, "id", "Mis Servicios");
+    	scrollAndClick(driver, "id", "Roaming");
+    	scrollAndClick(driver, "id", "Pod\u00e9s usar tu Personal fuera del Pa\u00eds.");
+    	if (driver.findElement(By.id("Roaming Activo")).isEnabled())
+    		roaming = true;
+    	driver.findElement(By.id("Atr\u00e1s")).click();
+    	driver.findElement(By.id("Atr\u00e1s")).click();
+    	scrollAndClick(driver, "id", "Larga Distancia Internacional");
+    	if (driver.findElement(By.id("Larga Distancia Internacional Activado")).isEnabled())
+    		ldi = true;
+    	return roaming && ldi;
+    }
+    
+    public boolean verificarMetodosDeRecarga(IOSDriver<IOSElement> driver) {
+    	boolean sos = false, puntosClub = false, tdc = false;
+    	try {
+    		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
+    	} catch(Exception e) {
+    		scrollAndClick(driver, "id", "Recargas y Packs");
+    	}
+    	scrollAndClick(driver, "id", "S.O.S.");
+    	if (driver.findElement(By.id("RECARG\u00c1 AHORA")).isEnabled())
+    		sos = true;
+    	driver.findElement(By.id("Atr\u00e1s")).click();
+    	sleep(3000);
+    	scrollAndClick(driver, "id", "Puntos Club");
+    	sleep(10000);
+    	if (driver.findElement(By.id("Recarga con Puntos Club")).isEnabled())
+    		puntosClub = true;
+    	driver.findElement(By.id("Atr\u00e1s")).click();
+    	sleep(3000);
+    	scrollAndClick(driver, "id", "Tarjeta de Cr\u00e9dito");
+    	sleep(10000);
+    	if (driver.findElement(By.id("Recarga con Tarjeta de Cr\u00e9dito")).isEnabled())
+    		tdc = true;
+    	return sos && puntosClub && tdc;
+    }
+    
+    public boolean verificarRecargaSOS(IOSDriver<IOSElement> driver) {
+    	boolean msj = false;
+    	try {
+    		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
+    	} catch(Exception e) {
+    		scrollAndClick(driver, "id", "Recargas y Packs");
+    	}
+    	scrollAndClick(driver, "id", "RECARGA S.O.S.");
+    	scrollAndClick(driver, "id", "RECARG\u00c1 AHORA");
+    	for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    		if (x.getText().contains("La recarga S.O.S. se realiz\u00f3 con \u00e9xito!"))
+    			msj = true;
+    	}
+    	scrollAndClick(driver, "id", "ACEPTAR");
+    	return msj;
+    }
+    
+    public boolean verificarRecargaPuntosClub(IOSDriver<IOSElement> driver) {
+    	try {
+    		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
+    	} catch(Exception e) {
+    		scrollAndClick(driver, "id", "Recargas y Packs");
+    	}
+    	scrollAndClick(driver, "id", "Puntos Club");
+    	sleep(15000);
+    	scrollAndClick(driver, "id", "RECARGAS");
+    	scrollAndClick(driver, "id", "Cr\u00e9dito $10");
+    	scrollAndClick(driver, "id", "CANJEAR");
+    	return false;  //Mensaje de error al hacer click en canjear
+    }
+    
+    public boolean verificarUltimasRecargas(IOSDriver<IOSElement> driver) {
+    	int recargas = 0;
+    	try {
+    		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
+    	} catch(Exception e) {
+    		scrollAndClick(driver, "id", "Recargas y Packs");
+    	}
+    	scrollAndClick(driver, "id", "Historial de Recargas");
+    	List<MobileElement> tabla = driver.findElement(By.className("UIATable")).findElements(By.className("UIAStaticText"));
+    	for (int i=0; i<tabla.size(); i++) {
+    		if (tabla.get(i).getText().contains("Recarga por Tarjeta de Credito"))
+    			recargas++;
+    	}
+		return recargas >= 1;
+	}
+    
+    public boolean verificarLogin(IOSDriver<IOSElement> driver, String tipoDeLogin, String linea, String clave) {
+    	boolean password = false;
+    	sleep(5000);
+    	driver.findElement(By.id("SideMenu")).click();
+    	sleep(5000);
+    	driver.findElement(By.xpath("//*[@text='Cerrar Sesi\u00f3n']")).click();
+    	sleep(5000);
+    	driver.findElement(By.className("UIATextField")).sendKeys(linea);
+        driver.findElement(By.id("INGRESAR CON CLAVE PERSONAL")).click();
+        driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave numérica'] and ./parent::*[@class='UIAView']]")).sendKeys(clave);
+        driver.findElement(By.id("INGRESAR A MI PERSONAL UAT")).click();
+        sleep(10000);
+        switch(tipoDeLogin) {
+        case "Password invalido y linea inexistente":
+        	if (driver.findElement(By.id("Los datos ingresados son incorrectos")).getText().contains("Los datos ingresados son incorrectos"))
+            	password = true;
+        	break;
+        case "Sin password":
+        	if (driver.findElement(By.id("Debes completar los campos!")).getText().contains("Debes completar los campos!"))
+        		password = true;
+        }
+        scrollAndClick(driver, "id", "Aceptar");
+        driver.quit();
+        return password;
+    }
+    
+    public boolean verificarDetalleDeCredito(IOSDriver<IOSElement> driver) {
+		boolean credito = false;
+		scrollAndClick(driver, "id", "Inicio");
+		for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+			if (x.getText().contains("Cr\u00e9dito de mi l\u00ednea"))
+    			credito = true;
+		}
+    	return credito;
+	}
+    
+    public boolean verifDisponibles(IOSDriver<IOSElement> driver, String tipoDeLinea) {
+    	boolean internet = false, minutos = false, sms = false;
+    	scrollAndClick(driver, "id", "Internet");
+    	for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    		if (x.getText().contains("Compr\u00e1 m\u00e1s internet")) {
+    			internet = true;
+    			break;
+    		}
+    	}
+    	scrollAndClick(driver, "id", "Minutos");
+    	for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    		if (x.getText().contains("Compr\u00e1 m\u00e1s minutos")) {
+    			minutos = true;
+    			break;
+    		}
+    	}
+    	scrollAndClick(driver, "id", "SMS");
+    	switch(tipoDeLinea) {
+    	case "MIX":
+    		for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+        		if (x.getText().contains("SMS ilimitados a todas las compa\u00f1\u00edas")) {
+        			sms = true;
+        			break;
+        		}
+        	}
+    	case "Pre":
+    		for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+        		if (x.getText().contains("Compr\u00e1 m\u00e1s SMS")) {
+        			sms = true;
+        			break;
+        		}
+        	}
+    	}
+    	return internet && minutos && sms;
+    }
+    
+    public boolean verificarFactura(IOSDriver<IOSElement> driver) {
+		boolean factura = false;
+    	scrollAndClick(driver, "id", "Mis facturas");
+        for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+        	if (x.getText().contains("Cup\u00f3n de pago"))
+        		factura = true;
+        }
+        return factura;
+	}
+    
+    public boolean verificarPagoConTarjetaDeCredito(IOSDriver<IOSElement> driver) {
+		boolean factura = false;
+		try {
+    		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
+    	} catch(Exception e) {
+    		scrollAndClick(driver, "id", "Pagos y Packs");
+    	}
+		driver.swipe(242, 748, 249, 431, 1697);
+		sleep(5000);
+		driver.findElement(By.xpath("((//*[@class='UIATable' and ./parent::*[./parent::*[@class='UIATable'] and (./preceding-sibling::* | ./following-sibling::*)[./*[@class='UIAButton']]]]/*[@class='UIAView'])[15]/*[@class='UIAButton'])[2]")).click();
+		sleep(7000);
+    	for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    		if (x.getText().contains("Complet\u00e1 el siguiente formulario para finalizar el pago"))
+    			factura = true;
+    	}
+    	return factura;
+	}
+    
+    public boolean verificarPagoConPagoMisCuentas(IOSDriver<IOSElement> driver) {
+		boolean pmc = false;
+		try {
+    		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
+    	} catch(Exception e) {
+    		scrollAndClick(driver, "id", "Pagos y Packs");
+    	}
+		driver.swipe(242, 748, 249, 431, 1697);
+		sleep(5000);
+		driver.findElement(By.xpath("((//*[@class='UIATable' and ./parent::*[./parent::*[@class='UIATable'] and (./preceding-sibling::* | ./following-sibling::*)[./*[@class='UIAButton']]]]/*[@class='UIAView'])[15]/*[@class='UIAButton'])[1]")).click();
+		sleep(5000);
+    	for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    		if (x.getText().contains("Pago con Pago Mis Cuentas: Paso a paso"))
+    			pmc = true;
+    	}
+    	return pmc;
+	}
+    
+    public boolean verificarPagoOnline(IOSDriver<IOSElement> driver) {
+		boolean tdc = false, hb = false, pmc = false, pagos = false;
+		try {
+    		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
+    	} catch(Exception e) {
+    		scrollAndClick(driver, "id", "Pagos y Packs");
+    	}
+		driver.swipe(242, 748, 249, 431, 1697);
+		sleep(5000);
+		driver.findElement(By.id("Pago online")).click();
+		sleep(5000);
+    	for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    		if (x.getText().contains("Tarjetas de Cr\u00e9dito"))
+    			tdc = true;
+    		if (x.getText().contains("Home Banking"))
+    			hb = true;
+    		if (x.getText().contains("Pago Mis Cuentas"))
+    			pmc = true;
+    		if (x.getText().contains("Link Pagos"))
+    			pagos = true;
+    	}
+    	return tdc && hb && pmc && pagos;
+	}
+    
+    public boolean verificarPagoPresencial(IOSDriver<IOSElement> driver) {
+		boolean pee = false, ca = false, pcc = false;
+		try {
+    		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
+    	} catch(Exception e) {
+    		scrollAndClick(driver, "id", "Pagos y Packs");
+    	}
+		driver.swipe(242, 800, 249, 431, 1697);
+		sleep(5000);
+		driver.findElement(By.id("Pago Presencial")).click();
+		sleep(5000);
+    	for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    		if (x.getText().contains("Pagos en efectivo"))
+    			pee = true;
+    		if (x.getText().contains("Cajeros Autom\u00e1ticos"))
+    			ca = true;
+    		if (x.getText().contains("Pagos con Cheque"))
+    			pcc = true;
+    	}
+    	return pee && ca && pcc;
+	}
+    
+    public boolean verificarActivYDesactDobleBlue(IOSDriver<IOSElement> driver, String tipoDeLinea) {
+		boolean activ = false, desact = false;
+		scrollAndClick(driver, "id", "Compr\u00e1 m\u00e1s internet");
+    	scrollAndClick(driver, "id", "CAMBIAR A CUOTA NACIONAL 200 MB");
+    	scrollAndClick(driver, "id", "CONFIRMAR");
+    	switch(tipoDeLinea) {
+    	case "MIX":
+    		for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    			if (x.getText().contains("La Cuota Internet 200MB por Dia fue activada con \u00e9xito"))
+            		activ = true;
+    		}
+    		break;
+    	case "Pre":
+    		for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    			if (x.getText().contains("La Cuota Internet 200MB por Dia fue activada con \u00e9xito"))
+            		activ = true;
+    		}
+    		break;
+    	}
+    	scrollAndClick(driver, "id", "CONFIRMAR");
+    	scrollAndClick(driver, "id", "Compr\u00e1 m\u00e1s internet");
+    	scrollAndClick(driver, "id", "CAMBIAR A CUOTA NAC Y ROAMING");
+    	scrollAndClick(driver, "id", "CONFIRMAR");
+    	switch(tipoDeLinea) {
+    	case "MIX":
+    		for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    			if (x.getText().contains("La Cuota Internet por Dia Limitrofe  fue activada con éxito"))
+            		desact = true;
+    		}
+    		break;
+    	case "Pre":
+    		for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
+    			if (x.getText().contains("La Cuota Internet por Dia Limitrofe  fue activada con \u00e9xito"))
+            		desact = true;
+    		}
+    		break;
+    	}
+    	scrollAndClick(driver, "id", "ACEPTAR");
+    	return activ && desact;
+	}
 }

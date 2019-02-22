@@ -25,7 +25,7 @@ public class MetodosAndroid {
 	}
 	
 	public void loginPorLineaMobile(WebDriver driver, String linea) {
-		sleep(15000);
+		sleep(7000);
 		driver.findElement(By.id("editTextLinea")).sendKeys(linea);
         driver.findElement(By.id("btn_log_in")).click();
         driver.findElement(By.id("editTextPin")).sendKeys("1469");
@@ -237,7 +237,7 @@ public class MetodosAndroid {
 		}
     	driver.findElement(By.xpath("//*[@class='android.widget.RelativeLayout' and ./*[@text='Puntos Club']]")).click();
     	scrollAndClick(driver, "xpath", "//android.view.View[@text='RECARGAS']");
-    	scrollAndClick(driver, "xpath", "//android.view.View[contains(text(),'Cr\u00e9dito $10')]");
+    	scrollAndClick(driver, "xpath", "//android.view.View[contains(text(),'Cr\u00e9dito $10')]"); 
     	//scrollAndClick(driver, "xpath", "//android.view.View[@text='CANJEAR']");
     	return false;  //Mensaje de error al hacer click en canjear
 	}
