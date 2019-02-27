@@ -4,10 +4,7 @@ import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 import java.awt.event.KeyEvent;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.openqa.selenium.Alert;
@@ -57,7 +54,7 @@ public class WebLineaUnica extends Metodos{
 		
 	}
 	
-	@AfterMethod (alwaysRun = true)
+	//@AfterMethod (alwaysRun = true)
 	public void after(){
 		tomarCaptura(driver,imagen);
 		try {
@@ -547,15 +544,14 @@ public class WebLineaUnica extends Metodos{
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"}, dataProvider="POS")
-	public void Mi_Linea_Reserva_De_Turno_Plan_Black(String sLinea){
-		imagen = "Mi_Linea_Reserva_De_Turno_Plan_Black";
+	public void Mi_Linea_MI_Plan_POS_Plan_Black(String sLinea){
+		imagen = "Mi_Linea_MI_Plan_POS_Plan_Black";
 		loginPorLinea(sLinea);
 		irA("mi l\u00ednea");
 		sleep(10000);
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","reserva de turno");
-		sleep(15000);
-		String fechaFutura = GetStringDatePlusDays(5);
-		completarDatos("Compra de Equipo/L\u00ednea","Buenos Aires","San Justo","Dr. Ignacio Arieta 3169","111111111","a@a.com",fechaFutura);
+		sleep(8000);
+		completarDatos("Compra de Equipo/L\u00ednea","Buenos Aires","San Justo","Dr. Ignacio Arieta 3169","111111111","a@a.com","20/02/2019");
 		Assert.assertTrue(driver.findElement(By.id("lblMensajeExito")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.id("lblMensajeExito")).getText().contains("Reservaste con \u00e9xito el turno para asistir a una oficina comercial"));
 		sleep(3000);
@@ -929,15 +925,14 @@ public class WebLineaUnica extends Metodos{
 		sleep(8000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.hidden-xs.hidden-sm")),"equals","confirmar");
 		sleep(30000);
-		List<WebElement> elementos = driver.findElements(By.cssSelector(".text-center"));
-		Boolean elementoEncontraado = false;		
-		for (WebElement elemento : elementos) {
-		    if(elemento.getText().contains("La carga de datos fue exitosa"))
-		    {
-		    	elementoEncontraado = true;
-		    }		    
-		}
-		Assert.assertTrue(elementoEncontraado);
+		boolean textoencontrado = false;
+		List<WebElement> exito = driver.findElements(By.cssSelector(".text-center"));
+			for(WebElement e : exito){
+				if (e.getText().toLowerCase().contains("la carga de datos fue exitosa")){
+					textoencontrado = true;
+				}
+			}
+		Assert.assertTrue(textoencontrado);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary")),"contains","finalizar");
 		
 	}
@@ -1069,12 +1064,19 @@ public class WebLineaUnica extends Metodos{
 		public void DIGITAL_WEB_CHR_IND_USABILIDAD_NAVEGACION_MI_CUENTA_HOME_PERSONAL_CLUB_PERSONAL(String sLinea){
 			imagen="DIGITAL_WEB_CHR_IND_USABILIDAD_NAVEGACION_MI_CUENTA_HOME_PERSONAL_CLUB_PERSONAL";
 			loginPorLinea(sLinea);
+			obligarclick(driver.findElement(By.id("tpi-user")));
 			driver.findElement(By.id("tpi-logo")).click();
 			sleep(5000);
-			Assert.assertTrue(driver.findElement(By.className("contacto-telefono-numero")).isDisplayed());
+			driver.findElement(By.id("tpi-user")).click();
+			sleep(2000);
+			Assert.assertTrue(driver.findElement(By.id("tpi-user-info")).getText().contains(sLinea));
 			buscarYClick(driver.findElements(By.cssSelector(".tpi-navbar-item-link")),"equals","club personal");
-			sleep(3000);
-			Assert.assertTrue(driver.findElement(By.className("about")).getText().toLowerCase().contains("club personal"));
+			sleep(5000);
+			System.out.println(driver.findElement(By.id("tpi-user-info")).getText());
+			driver.findElement(By.id("tpi-user")).click();
+			sleep(2000);
+			Assert.assertTrue(driver.findElement(By.id("tpi-user-info")).getText().contains(sLinea));
+			
 		}
 		
 		@Test (groups ={ "Usabilidad","navegacionIe","Iexplorer"}, dataProvider="MIX")
@@ -1099,7 +1101,7 @@ public class WebLineaUnica extends Metodos{
 			Assert.assertTrue(driver.findElement(By.id("tpi-logo")).isDisplayed());
 		}
 				
-		@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
+		@Test (groups ={ "Robustez","Inputs","Debito"}, dataProvider="Input_mail")
 		public void DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_LETRA(String sLinea){
 			imagen="DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_LETRA";
 			loginPorLinea(sLinea);
@@ -1108,7 +1110,7 @@ public class WebLineaUnica extends Metodos{
 			Assert.assertTrue(driver.findElement(By.id("inputCBU")).getAttribute("value").isEmpty());
 		}
 		
-		@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
+		@Test (groups ={ "Robustez","Inputs","Debito"}, dataProvider="Input_mail")
 		public void DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_COMBIN(String sLinea){
 			imagen="DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_COMBIN";
 			loginPorLinea(sLinea);
@@ -1120,7 +1122,7 @@ public class WebLineaUnica extends Metodos{
 			
 		}
 		
-		@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
+		@Test (groups ={ "Robustez","Inputs","Debito"}, dataProvider="Input_mail")
 		public void DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_NOESTAND(String sLinea){
 			imagen="DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_NOESTAND";
 			loginPorLinea(sLinea);
@@ -1129,7 +1131,7 @@ public class WebLineaUnica extends Metodos{
 			Assert.assertTrue(driver.findElement(By.id("inputCBU")).getAttribute("value").isEmpty());
 		}
 		
-		@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
+		@Test (groups ={ "Robustez","Inputs","Debito"}, dataProvider="Input_mail")
 		public void DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_ESTAND(String sLinea){
 			imagen="DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_ESTAND";
 			loginPorLinea(sLinea);
@@ -1138,7 +1140,7 @@ public class WebLineaUnica extends Metodos{
 			Assert.assertTrue(driver.findElement(By.id("inputCBU")).getAttribute("value").isEmpty());
 		}
 		
-		@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
+		@Test (groups ={ "Robustez","Inputs","Debito"}, dataProvider="Input_mail")
 		public void DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_OBLIGAT_OBLIGATORIO(String sLinea){
 			imagen="DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_OBLIGAT_OBLIGATORIO";
 			loginPorLinea(sLinea);
@@ -1185,7 +1187,7 @@ public class WebLineaUnica extends Metodos{
 			loginPorLinea(sLinea);
 			irA("facturaci\u00f3n");
 			IngresarCuponPago("0");
-			Assert.assertFalse(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).isDisplayed());
+			Assert.assertTrue(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).isDisplayed());
 		}
 		
 		@Test (groups ={ "Robustez","Inputs"}, dataProvider="MIX")
@@ -1195,6 +1197,7 @@ public class WebLineaUnica extends Metodos{
 			irA("facturaci\u00f3n");
 			IngresarCuponPago("-2");
 			Assert.assertTrue(driver.findElement(By.id("divMuestraMsj")).isDisplayed());
+			// en el resultado esperado dice que acepta valores negativos.
 		}
 		
 		@Test (groups ={ "Robustez","Inputs"}, dataProvider="MIX")
