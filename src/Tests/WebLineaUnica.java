@@ -4,7 +4,10 @@ import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 import java.awt.event.KeyEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.openqa.selenium.Alert;
@@ -54,7 +57,7 @@ public class WebLineaUnica extends Metodos{
 		
 	}
 	
-	//@AfterMethod (alwaysRun = true)
+	@AfterMethod (alwaysRun = true)
 	public void after(){
 		tomarCaptura(driver,imagen);
 		try {
@@ -544,14 +547,15 @@ public class WebLineaUnica extends Metodos{
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"}, dataProvider="POS")
-	public void Mi_Linea_MI_Plan_POS_Plan_Black(String sLinea){
-		imagen = "Mi_Linea_MI_Plan_POS_Plan_Black";
+	public void Mi_Linea_Reserva_De_Turno_Plan_Black(String sLinea){
+		imagen = "Mi_Linea_Reserva_De_Turno_Plan_Black";
 		loginPorLinea(sLinea);
 		irA("mi l\u00ednea");
 		sleep(10000);
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","reserva de turno");
-		sleep(8000);
-		completarDatos("Compra de Equipo/L\u00ednea","Buenos Aires","San Justo","Dr. Ignacio Arieta 3169","111111111","a@a.com","20/02/2019");
+		sleep(15000);
+		String fechaFutura = GetStringDatePlusDays(5);
+		completarDatos("Compra de Equipo/L\u00ednea","Buenos Aires","San Justo","Dr. Ignacio Arieta 3169","111111111","a@a.com",fechaFutura);
 		Assert.assertTrue(driver.findElement(By.id("lblMensajeExito")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.id("lblMensajeExito")).getText().contains("Reservaste con \u00e9xito el turno para asistir a una oficina comercial"));
 		sleep(3000);
@@ -925,7 +929,15 @@ public class WebLineaUnica extends Metodos{
 		sleep(8000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.hidden-xs.hidden-sm")),"equals","confirmar");
 		sleep(30000);
-		Assert.assertTrue(driver.findElements(By.cssSelector("text-center")).contains("La carga de datos fue exitosa"));
+		List<WebElement> elementos = driver.findElements(By.cssSelector(".text-center"));
+		Boolean elementoEncontraado = false;		
+		for (WebElement elemento : elementos) {
+		    if(elemento.getText().contains("La carga de datos fue exitosa"))
+		    {
+		    	elementoEncontraado = true;
+		    }		    
+		}
+		Assert.assertTrue(elementoEncontraado);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary")),"contains","finalizar");
 		
 	}

@@ -6,6 +6,8 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -398,6 +400,15 @@ public class Metodos {
 		obligarclick(driver.findElement(By.id("btnInformar")));
 		sleep(7000);
 	}
+	
+	public String GetStringDatePlusDays(int days){
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Calendar cal = Calendar.getInstance();
+		System.out.println("Current Date: "+sdf.format(cal.getTime()));		   
+	    cal.add(Calendar.DAY_OF_MONTH, days);  
+		String newDate = sdf.format(cal.getTime());  		
+		return newDate;
+	   }
 	
 	@DataProvider
 	public Object[][] MIX() throws Exception {
