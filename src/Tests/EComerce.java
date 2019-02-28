@@ -41,7 +41,6 @@ public class EComerce extends Metodos{
 			driver.findElement(By.id("vtexIdUI-google-plus")).click();
 			sleep(5000);
 			ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
-			System.out.println(tabs2.size());
 			driver.switchTo().window(tabs2.get(1));
 			driver.findElement(By.id("identifierId")).sendKeys("ecomerce.testing@gmail.com");
 			driver.findElement(By.id("identifierNext")).click();
@@ -55,7 +54,7 @@ public class EComerce extends Metodos{
 		
 	}
 	
-	@AfterMethod (alwaysRun = true)
+	//@AfterMethod (alwaysRun = true)
 	public void after(){
 		tomarCaptura(driver,imagen);
 		try{
@@ -69,6 +68,30 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
 	public void TS001(){
-		
+		imagen = "TS001";
+		Boolean precio = false;
+		List<WebElement> precios = driver.findElements(By.cssSelector(".product-list__price--leyend"));
+			for(WebElement p : precios){
+				if(p.getText().contains("\u0024")){
+				precio = true;	
+				}
+			}
+		Assert.assertTrue(precio);
 	}
+	
+	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
+	public void TS002(){
+		imagen = "TS002";
+		Boolean precio = false;
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		sleep(5000);
+		List<WebElement> precios = driver.findElements(By.cssSelector(".font-platform-regular.text-primary"));
+			for(WebElement p : precios){
+				if(p.getText().contains("\u0024")){
+				precio = true;	
+				}
+			}
+		Assert.assertTrue(precio);
+	}
+	
 }
