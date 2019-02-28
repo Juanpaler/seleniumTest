@@ -23,9 +23,10 @@ public class MetodosiOS {
 	}
 	
 	public void loginPorLineaMobile(IOSDriver<IOSElement> driver, String linea) {
-		sleep(15000);
+		sleep(7000);
 		driver.findElement(By.className("UIATextField")).sendKeys(linea);
         driver.findElement(By.id("INGRESAR CON CLAVE PERSONAL")).click();
+        sleep(2000);
         driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave numérica'] and ./parent::*[@class='UIAView']]")).sendKeys("1469");
         driver.findElement(By.id("INGRESAR A MI PERSONAL UAT")).click();
         sleep(10000);

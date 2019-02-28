@@ -18,22 +18,18 @@ import java.net.MalformedURLException;
 import java.util.logging.Level;
 
 public class AndroidMobile extends MetodosAndroid {
-	
-	private String reportDirectory = "reports";
-    private String reportFormat = "xml";
-    private String testName = "Untitled";
-    private String nroUDID = "42004754d431448d";
+
     private AndroidDriver<AndroidElement> driver = null;
-    DesiredCapabilities dc = new DesiredCapabilities();
+    private DesiredCapabilities dc = new DesiredCapabilities();
     
     
     @BeforeClass (alwaysRun = true)
     public void init() {
-    	dc.setCapability("reportDirectory", reportDirectory);
-        dc.setCapability("reportFormat", reportFormat);
-        dc.setCapability("testName", testName);
+    	dc.setCapability("reportDirectory", "reports");
+        dc.setCapability("reportFormat", "xml");
+        dc.setCapability("testName", "Untitled");
         dc.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
-        dc.setCapability(MobileCapabilityType.UDID, nroUDID);
+        dc.setCapability(MobileCapabilityType.UDID, "42004754d431448d");
         dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "ar.com.personal.bandaruattp");
         dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "ar.com.personal.app.activities.bandar.SplashActivity");
         dc.setCapability(MobileCapabilityType.NO_RESET, true);
@@ -59,7 +55,7 @@ public class AndroidMobile extends MetodosAndroid {
     	driver.findElement(By.xpath("//*[@text='Cerrar Sesi\u00f3n']")).click();
     	sleep(5000);
     	driver.quit();
-    }   
+    }
     
     
 //    @Test (groups = "AutogestionIndividuosAPP", priority = 0)
@@ -346,7 +342,7 @@ public class AndroidMobile extends MetodosAndroid {
     	driver.findElement(By.className("android.widget.EditText")).clear();
     	driver.findElement(By.className("android.widget.EditText")).sendKeys("testmail@gmail.com");
     	//scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='GUARDAR']");
-    	Assert.assertTrue(false);  //Mensaje de error no se puede modificar mail en este momento
+    	Assert.fail();  //Mensaje de error no se puede modificar mail en este momento
     }
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 45)
