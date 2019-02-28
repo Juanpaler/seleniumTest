@@ -364,7 +364,43 @@ public class Metodos {
 		}
 		return (Campo);
 	}		
-							
+	
+	public void IngresarCBU(String cbu){
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"contains","adherir a d\u00e9bito autom\u00e1tico");
+		sleep(8000);
+		Select bco = new Select(driver.findElement(By.id("lstBancos")));
+		bco.selectByIndex(1);
+		driver.findElement(By.id("inputCBU")).sendKeys(cbu);
+		driver.findElement(By.id("btnAdherir")).click();
+		sleep(3000);
+	}
+	
+	public void IngresarCuponPago(String CP){
+		driver.findElement(By.id("lnk-descargar-cupon-pagos")).click();
+		sleep(10000);
+		driver.findElement(By.id("inputImporte")).sendKeys(CP);
+		driver.findElement(By.id("btnDescargar")).click();
+		sleep(3000);
+	}
+	
+	public void IngresarFacturaOnline(String mail){
+		driver.findElement(By.id("card-adhesion-fol")).click();
+		sleep(10000);
+		driver.findElement(By.id("inputEmail")).sendKeys(mail);
+		driver.findElement(By.id("btn_Adherirme")).click();
+		sleep(3000);
+	}
+	
+	public void InformarPago(String pago){
+		driver.findElement(By.id("btnInformarPago")).click();
+		sleep(10000);
+		driver.findElement(By.id("txtImporte")).clear();
+		driver.findElement(By.id("txtImporte")).sendKeys(pago);
+		sleep(2000);
+		obligarclick(driver.findElement(By.id("btnInformar")));
+		sleep(7000);
+	}
+	
 	@DataProvider
 	public Object[][] MIX() throws Exception {
 		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Mix");

@@ -633,9 +633,10 @@ public class WebLineaVariable extends Metodos{
 		imagen = "Comprar_Packs_Compra_de_Packs_con_puntos_Club_MIX";
 		LoginPorLineaVariable(sLinea);
 		irA("packs");
-		sleep(8000);
+		sleep(15000);
 		List <WebElement> packs = driver.findElement(By.id("collapseTwo")).findElements(By.cssSelector(".list-group-item.li-puntos-club"));
 			for(WebElement p : packs ){
+				System.out.println(p.getText());
 				if(p.getText().toLowerCase().equals("larga distancia internacional")){
 					p.click();
 				}
@@ -646,7 +647,9 @@ public class WebLineaVariable extends Metodos{
 		driver.findElement(By.id("collapseLargaDistanciaMinutos-pc")).findElement(By.cssSelector(".panel-body.lista-packs")).click();
 		sleep(8000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.pull-right")),"equals","canjear");
-		Assert.assertTrue(false);
+		sleep(120000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".card-body.recarga-exito")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.cssSelector(".card-body.recarga-exito")).getText().toLowerCase().contains("canjeaste tus puntos con \u00e9xito"));
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","packs"},dataProvider="Recargas_puntos_club_PRE") 
@@ -660,18 +663,21 @@ public class WebLineaVariable extends Metodos{
 		buscarYClick(driver.findElements(By.cssSelector(".list-group-item.dev-categorias.ng-scope")),"equals","roaming");
 		sleep(15000);
 		List <WebElement> packs = driver.findElement(By.id("collapseTwo")).findElements(By.cssSelector(".list-group-item.li-puntos-club"));
-			for(WebElement p : packs ){
-				if(p.getText().toLowerCase().equals("larga distancia internacional")){
-					p.click();
-				}
+		for(WebElement p : packs ){
+			System.out.println(p.getText());
+			if(p.getText().toLowerCase().equals("larga distancia internacional")){
+				p.click();
 			}
+		}
 		sleep(3000);
 		buscarYClick(driver.findElements(By.cssSelector(".panel-heading.titulo-simple")),"equals","minutos");
 		sleep(1500);
 		driver.findElement(By.id("collapseLargaDistanciaMinutos-pc")).findElement(By.cssSelector(".panel-body.lista-packs")).click();
 		sleep(12000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.pull-right")),"equals","canjear");
-		Assert.assertTrue(false);
+		sleep(120000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".card-body.recarga-exito")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.cssSelector(".card-body.recarga-exito")).getText().toLowerCase().contains("canjeaste tus puntos con \u00e9xito"));
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"},dataProvider="Imprimir_cupon_de_pago_MIX") 
@@ -838,7 +844,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".llamame-br-label1")).getText().equals("Te estamos llamando"));
 	}
 
-	//@Test(groups ={ "AutogestionIndividuosWeb","consumos"},dataProvider="Modificar_cuota_de_datos") 
+    @Test(groups ={ "AutogestionIndividuosWeb","consumos"},dataProvider="Modificar_cuota_de_datos") 
 	public void Mis_Consumos_Modificar_Cuota_de_Datos(String sLinea) throws FileNotFoundException, UnsupportedEncodingException, JSchException, SftpException{
 		imagen = "Mis_Consumos_Modificar_Cuota_de_Datos";
 		
@@ -981,7 +987,11 @@ public class WebLineaVariable extends Metodos{
 		buscarYClick(driver.findElements(By.cssSelector(".ng-binding")),"equals","cr\u00e9dito $10");
 		sleep(10000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.pull-right")),"equals","canjear");
-		Assert.assertTrue(false);	
+		sleep(15000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".col-xs-12.col-sm-6.col-md-6.col-lg-6.text-center-xs")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.cssSelector(".col-xs-12.col-sm-6.col-md-6.col-lg-6.text-center-xs")).getText().toLowerCase().contains("canjeaste tus puntos con \u00e9xito"));
+		
+		
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","recargas"},dataProvider="Recargas_puntos_club_PRE") 
@@ -995,8 +1005,9 @@ public class WebLineaVariable extends Metodos{
 		buscarYClick(driver.findElements(By.cssSelector(".panel-title")),"equals","recargas");
 		buscarYClick(driver.findElements(By.cssSelector(".ng-binding")),"equals","cr\u00e9dito $10");
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.pull-right")),"equals","canjear");
-		sleep(10000);
-		Assert.assertTrue(false);	
+		sleep(15000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".col-xs-12.col-sm-6.col-md-6.col-lg-6.text-center-xs")).isDisplayed());
+		Assert.assertTrue(driver.findElement(By.cssSelector(".col-xs-12.col-sm-6.col-md-6.col-lg-6.text-center-xs")).getText().toLowerCase().contains("canjeaste tus puntos con \u00e9xito"));
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","mis datos"}) 
@@ -1012,112 +1023,70 @@ public class WebLineaVariable extends Metodos{
 	}
 	
 
-	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_con_el_caracter_enie(String sLinea){
+		imagen="DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_con_el_caracter_enie";
 		loginPorLinea(sLinea);
 		irA("facturaci\u00f3n");
-		sleep(10000);
-		driver.findElement(By.id("card-adhesion-fol")).click();
-		sleep(10000);
-		driver.findElement(By.id("inputEmail")).sendKeys("\u00f1");
-		driver.findElement(By.id("btn_Adherirme")).click();
-		sleep(3000);
+		IngresarFacturaOnline("\u00f1");
 		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
 	
-	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_caracteres_luego_del_arroba(String sLinea){
+		imagen="DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_caracteres_luego_del_arroba";
 		loginPorLinea(sLinea);
 		irA("facturaci\u00f3n");
-		sleep(10000);
-		driver.findElement(By.id("card-adhesion-fol")).click();
-		sleep(10000);
-		driver.findElement(By.id("inputEmail")).sendKeys("asd@");
-		driver.findElement(By.id("btn_Adherirme")).click();
-		sleep(3000);
+		IngresarFacturaOnline("asd@");
 		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
 	
-	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_caracteres_antes_del_arroba(String sLinea){
+		imagen="DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_caracteres_antes_del_arroba";
 		loginPorLinea(sLinea);
 		irA("facturaci\u00f3n");
-		sleep(10000);
-		driver.findElement(By.id("card-adhesion-fol")).click();
-		sleep(10000);
-		driver.findElement(By.id("inputEmail")).sendKeys("@gmail");
-		driver.findElement(By.id("btn_Adherirme")).click();
-		sleep(3000);
+		IngresarFacturaOnline("@gmail");
 		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
-	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_caracteres_luego_del_punto_posterior_al_arroba(String sLinea){
+		imagen="DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_caracteres_luego_del_punto_posterior_al_arroba";
 		loginPorLinea(sLinea);
 		irA("facturaci\u00f3n");
-		sleep(10000);
-		driver.findElement(By.id("card-adhesion-fol")).click();
-		sleep(10000);
-		driver.findElement(By.id("inputEmail")).sendKeys("asd@gmail.");
-		driver.findElement(By.id("btn_Adherirme")).click();
-		sleep(3000);
+		IngresarFacturaOnline("asd@gmail.");
 		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
 	
-	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_arroba(String sLinea){
+		imagen="DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_arroba";
 		loginPorLinea(sLinea);
 		irA("facturaci\u00f3n");
-		sleep(10000);
-		driver.findElement(By.id("card-adhesion-fol")).click();
-		sleep(10000);
-		driver.findElement(By.id("inputEmail")).sendKeys("asdgmail.com");
-		driver.findElement(By.id("btn_Adherirme")).click();
-		sleep(3000);
+		IngresarFacturaOnline("asdgmail.com");
 		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
 	
-	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_punto(String sLinea){
+		imagen="DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_punto";
 		loginPorLinea(sLinea);
 		irA("facturaci\u00f3n");
-		sleep(10000);
-		driver.findElement(By.id("card-adhesion-fol")).click();
-		sleep(10000);
-		driver.findElement(By.id("inputEmail")).sendKeys("asdgmailcom");
-		driver.findElement(By.id("btn_Adherirme")).click();
-		sleep(3000);
+		IngresarFacturaOnline("asdgmailcom");
 		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
 	
-	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
+	@Test (groups ={ "Robustez","Inputs"}, dataProvider="Input_mail")
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_dato(String sLinea){
+		imagen="DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_dato";
 		loginPorLinea(sLinea);
 		irA("facturaci\u00f3n");
-		sleep(10000);
-		driver.findElement(By.id("card-adhesion-fol")).click();
-		sleep(10000);
-		driver.findElement(By.id("inputEmail")).sendKeys("");
-		driver.findElement(By.id("btn_Adherirme")).click();
-		sleep(3000);
+		IngresarFacturaOnline("");
 		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
 	
-	@Test (groups ={ "Robustez","Inputs","crhome"}, dataProvider="Input_mail")
-	public void DIGITAL_WEB_IND_FACTURACION_INFORMAR_PAGO_MIX_IMPORTE_INPUT_MONEDA_OBLIGAT_OBLIGATORIO(String sLinea){
-		loginPorLinea(sLinea);
-		irA("facturaci\u00f3n");
-		sleep(10000);
-		driver.findElement(By.id("btnInformarPago")).click();
-		sleep(10000);
-		driver.findElement(By.id("txtImporte")).clear();
-		driver.findElement(By.id("txtImporte")).sendKeys("");
-		sleep(2000);
-		obligarclick(driver.findElement(By.id("btnInformar")));
-		sleep(7000);
-		Assert.assertTrue(driver.findElement(By.id("inputError")).getText().toLowerCase().contains("ingrese un importe"));
-	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Linea_Input_Numero_Caracter_Letra(){
 		imagen = "Login_Linea_Input_Numero_Caracter_Letra";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1128,7 +1097,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 s\u00f3lo n\u00fameros"));
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Linea_Input_Numero_Caracter_Combinado(){
 		imagen = "Login_Linea_Input_Numero_Caracter_Combinado";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1139,7 +1108,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("Debes ingresar una l\u00ednea de Personal"));
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Linea_Input_Numero_Caracter_NoEstand(){
 		imagen = "Login_Linea_Input_Numero_Caracter_NoEstand";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1156,7 +1125,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).isDisplayed());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Linea_Input_Numero_Caracter_Estand(){
 		imagen = "Login_Linea_Input_Numero_Caracter_Estand";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1170,7 +1139,7 @@ public class WebLineaVariable extends Metodos{
 	    Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).isDisplayed());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Linea_Input_Numero_Mas11Digitos(){
 		imagen = "Login_Linea_Input_Numero_Mas11Digitos";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1181,7 +1150,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("L\u00ednea incorrecta. Verific\u00e1 los datos ingresados"));
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Linea_Input_Numero_Menos11Digitos(){
 		imagen = "Login_Linea_Input_Numero_Menos11Digitos";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1192,7 +1161,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("Tu n\u00famero de l\u00ednea debe tener al menos 10 d\u00edgitos"));
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Linea_Input_Numero_Obligatorio(){
 		imagen = "Login_Linea_Input_Numero_Obligatorio";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1204,7 +1173,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertFalse(driver.findElement(By.id("loginButton_0")).isEnabled());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Clave_Input_Numero_Caracter_Letra(){
 		imagen = "Login_Clave_Input_Numero_Caracter_Letra";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1217,7 +1186,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 s\u00f3lo n\u00fameros"));
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Clave_Input_Numero_Caracter_Combinado(){
 		imagen = "Login_Clave_Input_Numero_Caracter_Combinado";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1230,7 +1199,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 s\u00f3lo n\u00fameros"));
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Clave_Input_Numero_Caracter_NoEstand(){
 		imagen = "Login_Clave_Input_Numero_Caracter_NoEstand";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1249,7 +1218,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).isDisplayed());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Clave_Input_Numero_Caracter_Estand(){
 		imagen = "Login_Clave_Input_Numero_Caracter_Estand";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1265,7 +1234,7 @@ public class WebLineaVariable extends Metodos{
 	    Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).isDisplayed());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Clave_Input_Numero_Max10Digitos(){
 		imagen = "Login_Clave_Input_Numero_Max10Digitos";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1279,7 +1248,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertEquals(number.length(), 10);
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"})
+	@Test(groups ={ "Robustez","Inputs"})
 	public void Login_Clave_Input_Numero_Menos4Digitos(){
 		imagen = "Login_Clave_Input_Numero_Menos4Digitos";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1292,7 +1261,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 al menos 4 n\u00fameros"));
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Clave_Input_Numero_Obligatorio(){
 		imagen = "Login_Clave_Input_Numero_Obligatorio";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1304,7 +1273,7 @@ public class WebLineaVariable extends Metodos{
 		
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_Numeros_Repetidos(){
 		imagen = "Login_Generar_CambiarClave_Numeros_Repetidos";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1323,7 +1292,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_Numeros_Consecutivos(){
 		imagen = "Login_Generar_CambiarClave_Numeros_Consecutivos";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1342,7 +1311,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_Numeros_Linea(){
 		imagen = "Login_Generar_CambiarClave_Numeros_Linea";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1361,7 +1330,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_3Digitos(){
 		imagen = "Login_Generar_CambiarClave_3Digitos";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1380,7 +1349,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_11Digitos(){
 		imagen = "Login_Generar_CambiarClave_11Digitos";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1398,7 +1367,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertEquals(number.length(), 10); 
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_letras(){
 		imagen = "Login_Generar_CambiarClave_letras";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1416,7 +1385,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertEquals(number.length(), 0); 
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_CaracteresCombinados(){
 		imagen = "Login_Generar_CambiarClave_CaracteresCombinados";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1434,7 +1403,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertEquals(number.length(), 2); 
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_CaracteresNoEstandar(){
 		imagen = "Login_Generar_CambiarClave_CaracteresNoEstandar";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1456,7 +1425,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertEquals(number.length(), 0); 	
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_CaracteresEstandar(){
 		imagen = "Login_Generar_CambiarClave_CaracteresEstandar";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1478,7 +1447,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertEquals(number.length(), 0); 	
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_NumeroObligatorio(){
 		imagen = "Login_Generar_CambiarClave_CaracteresEstandar";
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -1495,7 +1464,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
 	}
 	
-	@Test(groups ={ "Robustez","Inputs","crhome"}) 
+	@Test(groups ={ "Robustez","Inputs"}) 
 	public void Login_Generar_CambiarClave_CodigoSMSIncorrecto(){
 		imagen = "Login_Generar_CambiarClave_CodigoSMSIncorrecto";
 		driver.get("https://autogestionuat.personal.com.ar");
