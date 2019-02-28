@@ -18,20 +18,16 @@ import java.util.logging.Level;
 
 public class iOSMobile extends MetodosiOS {
 
-	private String reportDirectory = "reports";
-    private String reportFormat = "xml";
-    private String testName = "Untitled";
-    private String nroUDID = "c2ced461f2d136211a630c1f06668a1771abd2b2";
     private IOSDriver<IOSElement> driver = null;
-    DesiredCapabilities dc = new DesiredCapabilities();
+    private DesiredCapabilities dc = new DesiredCapabilities();
     
     
-	@BeforeClass (alwaysRun = true)
+	@BeforeClass (groups = "AutogestionIndividuosAPP")
 	public void init() {
-		dc.setCapability("reportDirectory", reportDirectory);
-		dc.setCapability("reportFormat", reportFormat);
-		dc.setCapability("testName", testName);
-		dc.setCapability(MobileCapabilityType.UDID, nroUDID);
+		dc.setCapability("reportDirectory", "reports");
+		dc.setCapability("reportFormat", "xml");
+		dc.setCapability("testName", "Untitled");
+		dc.setCapability(MobileCapabilityType.UDID, "c2ced461f2d136211a630c1f06668a1771abd2b2");
 		dc.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.personal.misconsumos.uat");
 	}
     
@@ -61,7 +57,7 @@ public class iOSMobile extends MetodosiOS {
     }
     
     
-    @Test (groups = "AutogestionIndividuosAPP", priority = 0)
+    /*@Test (groups = "AutogestionIndividuosAPP", priority = 0)
     public void Comprar_Packs_Compra_de_Packs_MIX() {
     	loginPorLineaMobile(driver, lineaMIX);
     	Assert.assertTrue(verificarCompraDePacks(driver));
@@ -95,7 +91,7 @@ public class iOSMobile extends MetodosiOS {
     public void Comprar_Packs_Consultar_Comprobantes_PRE() {
     	loginPorLineaMobile(driver, lineaPre);
     	Assert.assertTrue(verificarDescargaComprobante(driver));  //No se pueden descargar los comprobantes
-    }
+    }*/
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 6)
     public void Consumos_Detalles_de_Consumos_MIX() {
@@ -305,7 +301,7 @@ public class iOSMobile extends MetodosiOS {
     public void Login_Iniciar_Sesion_con_Linea_PreActiva() {
     	loginPorLineaMobile(driver, "1162645152");
     	scrollAndClick(driver, "id", "Mis Servicios");
-    	Assert.assertTrue(false);  //No se visualiza el mensaje de linea pre desactivada
+    	Assert.fail();  //No se visualiza el mensaje de linea pre desactivada
     }
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 40)

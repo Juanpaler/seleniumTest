@@ -6,8 +6,6 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -368,6 +366,8 @@ public class Metodos {
 	}		
 	
 	public void IngresarCBU(String cbu){
+		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"contains","adherir a d\u00e9bito autom\u00e1tico");
+		sleep(8000);
 		Select bco = new Select(driver.findElement(By.id("lstBancos")));
 		bco.selectByIndex(1);
 		driver.findElement(By.id("inputCBU")).sendKeys(cbu);
@@ -400,15 +400,6 @@ public class Metodos {
 		obligarclick(driver.findElement(By.id("btnInformar")));
 		sleep(7000);
 	}
-	
-	public String GetStringDatePlusDays(int days){
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Calendar cal = Calendar.getInstance();
-		System.out.println("Current Date: "+sdf.format(cal.getTime()));		   
-	    cal.add(Calendar.DAY_OF_MONTH, days);  
-		String newDate = sdf.format(cal.getTime());  		
-		return newDate;
-	   }
 	
 	@DataProvider
 	public Object[][] MIX() throws Exception {
