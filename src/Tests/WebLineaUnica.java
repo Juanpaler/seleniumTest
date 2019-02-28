@@ -263,38 +263,27 @@ public class WebLineaUnica extends Metodos{
 		imagen = "Recargas_Gestiones_y_Consultas_Recargar_Ahora_MIX";
 		loginPorLinea(sLinea);
 		irA("recargas");
+		sleep(10000);
 		driver.findElement(By.id("btnRecargaTarjeta")).click();
-		sleep(5000);
+		sleep(10000);
 		Assert.assertTrue(driver.findElement(By.id("divPin")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.id("divCaptcha")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.id("btnRecargaQuemaPin")).isDisplayed());
-		driver.findElement(By.id("lnkFlechaIzqQP")).click();
-		sleep(3000);
+		//obligarclick(driver.findElement(By.id("lnkFlechaIzqQP")));
+		driver.findElement(By.id("lnkFlechaIzqQP")).click();			
+		sleep(6000);
 		driver.findElement(By.id("btRecargas20")).click();
-		sleep(5000);
-		Assert.assertTrue(driver.findElement(By.id("divNuevaTC")).isDisplayed());
+		sleep(10000);
+		//Assert.assertTrue(driver.findElement(By.id("divNuevaTC")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.id("divIngresoVto")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.id("divIngresoCodSeguridad")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("divCaptcha")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("btnContinuarTC")).isDisplayed());
 		driver.findElement(By.id("lnkFlechaIzqTC")).click();
-		sleep(3000);
-		driver.findElement(By.id("btnRecargaPuntosClub")).click();
-		sleep(5000);
-		driver.findElements(By.className("panel-heading")).get(2).click();
-		sleep(3000);
-		driver.findElement(By.cssSelector(".panel-body.list-group")).findElement(By.tagName("div")).click();
-		Assert.assertTrue(driver.findElement(By.cssSelector(".btn.btn-lg.btn-primary.pull-right.disabled")).isDisplayed());
-		for (int i=0; i<3; i++) {
-			for (WebElement x : driver.findElements(By.cssSelector(".card.card-lg.recarga-puntosclub")))
-				if (x.getText().toLowerCase().contains("puntos club disponibles")) {
-					x.findElement(By.cssSelector(".tpicon.tpicon-flechaizquierda")).click();
-				i++;
-			}
-		}
+		sleep(6000);
 		driver.findElement(By.id("btnRecargaOtrosMedios")).click();
 		sleep(7000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".aivohc-search-container.mat-card")).isDisplayed());
+		Assert.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/tag/f-recargas-y-packs/17495")); 
 		driver.navigate().back();
 		sleep(5000);
 	}
@@ -306,37 +295,25 @@ public class WebLineaUnica extends Metodos{
 		irA("recargas");
 		sleep(10000);
 		driver.findElement(By.id("btnRecargaTarjeta")).click();
-		sleep(5000);
+		sleep(10000);
 		Assert.assertTrue(driver.findElement(By.id("divPin")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.id("divCaptcha")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.id("btnRecargaQuemaPin")).isDisplayed());
-		obligarclick(driver.findElement(By.id("lnkFlechaIzqQP")));//.findElement(By.cssSelector(".tpicon.tpicon-flechaizquierda")).click();
-		sleep(3000);
+		//obligarclick(driver.findElement(By.id("lnkFlechaIzqQP")));
+		driver.findElement(By.id("lnkFlechaIzqQP")).click();			
+		sleep(6000);
 		driver.findElement(By.id("btRecargas20")).click();
-		sleep(5000);
-		Assert.assertTrue(driver.findElement(By.id("divNuevaTC")).isDisplayed());
+		sleep(10000);
+		//Assert.assertTrue(driver.findElement(By.id("divNuevaTC")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.id("divIngresoVto")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.id("divIngresoCodSeguridad")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("divCaptcha")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("btnContinuarTC")).isDisplayed());
 		driver.findElement(By.id("lnkFlechaIzqTC")).click();
-		sleep(3000);
-		driver.findElement(By.id("btnRecargaPuntosClub")).click();
-		sleep(5000);
-		driver.findElements(By.className("panel-heading")).get(2).click();
-		sleep(3000);
-		driver.findElement(By.cssSelector(".panel-body.list-group")).findElement(By.tagName("div")).click();
-		Assert.assertTrue(driver.findElement(By.cssSelector(".btn.btn-lg.btn-primary.pull-right.disabled")).isDisplayed());
-		for (int i=0; i<3; i++) {
-			for (WebElement x : driver.findElements(By.cssSelector(".card.card-lg.recarga-puntosclub")))
-				if (x.getText().toLowerCase().contains("puntos club disponibles")) {
-					x.findElement(By.cssSelector(".tpicon.tpicon-flechaizquierda")).click();
-				i++;
-			}
-		}
+		sleep(6000);
 		driver.findElement(By.id("btnRecargaOtrosMedios")).click();
 		sleep(7000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".aivohc-search-container.mat-card")).isDisplayed());
+		Assert.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/tag/f-recargas-y-packs/17495")); 
 		driver.navigate().back();
 		sleep(5000);
 	}
