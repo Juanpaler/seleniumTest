@@ -444,7 +444,7 @@ public class MetodosiOS {
     	} catch(Exception e) {
     		scrollAndClick(driver, "id", "Pagos y Packs");
     	}
-		driver.swipe(242, 748, 249, 431, 1697);
+		driver.swipe(242, 200, 249, 431, 1697);
 		sleep(5000);
 		driver.findElement(By.xpath("((//*[@class='UIATable' and ./parent::*[./parent::*[@class='UIATable'] and (./preceding-sibling::* | ./following-sibling::*)[./*[@class='UIAButton']]]]/*[@class='UIAView'])[15]/*[@class='UIAButton'])[1]")).click();
 		sleep(5000);
@@ -504,7 +504,7 @@ public class MetodosiOS {
     public boolean verificarActivYDesactDobleBlue(IOSDriver<IOSElement> driver, String tipoDeLinea) {
 		boolean activ = false, desact = false;
 		scrollAndClick(driver, "id", "Compr\u00e1 m\u00e1s internet");
-    	scrollAndClick(driver, "id", "CAMBIAR A CUOTA NACIONAL 200 MB");
+    	scrollAndClick(driver, "id", "AMPLIAR MI CUOTA A 200 MB");
     	scrollAndClick(driver, "id", "CONFIRMAR");
     	switch(tipoDeLinea) {
     	case "MIX":
