@@ -40,7 +40,7 @@ public class iOSMobile extends MetodosiOS {
         } catch(Exception e) {}
     }
     
-    @AfterMethod (alwaysRun = true)
+    //@AfterMethod (alwaysRun = true)
     public void after() {
     	sleep(5000);
     	int menu = 0;
@@ -337,7 +337,7 @@ public class iOSMobile extends MetodosiOS {
     @Test (groups = "AutogestionIndividuosAPP", priority = 45)
     public void Inicio_Mis_disponibles_Mis_Facturas_POS() {
     	loginPorLineaMobile(driver, "1164599450");
-    	Assert.assertTrue(verificarFactura(driver));  //No funciona la linea POS
+    	Assert.assertTrue(verificarFactura(driver));
     }
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 46)
@@ -349,7 +349,7 @@ public class iOSMobile extends MetodosiOS {
     @Test (groups = "AutogestionIndividuosAPP", priority = 47)
     public void Pagos_Paga_con_Tarjeta_de_Credito_POS() {
     	loginPorLineaMobile(driver, "1164599450");
-    	Assert.assertTrue(verificarPagoConTarjetaDeCredito(driver));  //No funciona la linea POS
+    	Assert.assertTrue(verificarPagoConTarjetaDeCredito(driver));
     }
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 48)
@@ -361,7 +361,7 @@ public class iOSMobile extends MetodosiOS {
     @Test (groups = "AutogestionIndividuosAPP", priority = 49)
     public void Pagos_Paga_con_Pago_Mis_Cuentas_POS() {
     	loginPorLineaMobile(driver, "1164599450");
-    	Assert.assertTrue(verificarPagoConPagoMisCuentas(driver));  //No funciona la linea POS
+    	Assert.assertTrue(verificarPagoConPagoMisCuentas(driver));
     }
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 50)
@@ -373,7 +373,7 @@ public class iOSMobile extends MetodosiOS {
     @Test (groups = "AutogestionIndividuosAPP", priority = 51)
     public void Pagos_Pago_online_POS() {
     	loginPorLineaMobile(driver, "1164599450");
-    	Assert.assertTrue(verificarPagoOnline(driver));  //No funciona la linea POS
+    	Assert.assertTrue(verificarPagoOnline(driver));
     }
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 52)
@@ -385,12 +385,18 @@ public class iOSMobile extends MetodosiOS {
     @Test (groups = "AutogestionIndividuosAPP", priority = 53)
     public void Pagos_Pago_Presencial_POS() {
     	loginPorLineaMobile(driver, "1164599450");
-    	Assert.assertTrue(verificarPagoPresencial(driver));  //No funciona la linea POS
+    	Assert.assertTrue(verificarPagoPresencial(driver));
     }
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 54)
     public void Mis_Consumos_Doble_Blue_Activar_PRE() {
     	loginPorLineaMobile(driver, "1164477818");
     	Assert.assertTrue(verificarActivYDesactDobleBlue(driver, "Pre"));
+    }
+    
+    @Test (groups = "AutogestionIndividuosAPP", priority = 55)
+    public void Mis_Consumos_Doble_Blue_Activar_MIX() {
+    	loginPorLineaMobile(driver, "1164491372");
+    	Assert.assertTrue(verificarActivYDesactDobleBlue(driver, "MIX"));
     }
 }
