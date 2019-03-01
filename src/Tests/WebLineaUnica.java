@@ -521,14 +521,15 @@ public class WebLineaUnica extends Metodos{
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"}, dataProvider="POS")
-	public void Mi_Linea_MI_Plan_POS_Plan_Black(String sLinea){
-		imagen = "Mi_Linea_MI_Plan_POS_Plan_Black";
+	public void Mi_Linea_Reserva_De_Turno_Plan_Black(String sLinea){
+		imagen = "Mi_Linea_Reserva_De_Turno_Plan_Black";
 		loginPorLinea(sLinea);
 		irA("mi l\u00ednea");
 		sleep(10000);
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","reserva de turno");
 		sleep(8000);
-		completarDatos("Compra de Equipo/L\u00ednea","Buenos Aires","San Justo","Dr. Ignacio Arieta 3169","111111111","a@a.com","20/02/2019");
+		String FechaFutura = GetStringDatePlusDay(5);
+		completarDatos("Compra de Equipo/L\u00ednea","Buenos Aires","San Justo","Dr. Ignacio Arieta 3169","111111111","a@a.com",FechaFutura);
 		Assert.assertTrue(driver.findElement(By.id("lblMensajeExito")).isDisplayed());
 		Assert.assertTrue(driver.findElement(By.id("lblMensajeExito")).getText().contains("Reservaste con \u00e9xito el turno para asistir a una oficina comercial"));
 		sleep(3000);
