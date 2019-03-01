@@ -395,10 +395,12 @@ public class WebLineaVariable extends Metodos{
 		sleep(5000);
 		try {
 			driver.switchTo().window(tabs2.get(1));
-			driver.get("file:///C:/Users/Sofia%20Chardin/Downloads/"+NumFact+"-"+Fecha2+".pdf");
+			String pathDownloads = GetUserDownloadPath();
+
+			driver.get("file:///"+pathDownloads+NumFact+"-"+Fecha2+".pdf");
 			exito = true;
 			PDF pdf =  new PDF();
-			Assert.assertTrue(pdf.ContenidoPDF("C:\\Users\\Sofia Chardin\\Downloads\\"+NumFact+"-"+Fecha2+".pdf").contains(NumFact));
+			Assert.assertTrue(pdf.ContenidoPDF(pathDownloads+NumFact+"-"+Fecha2+".pdf").contains(NumFact));
 			sleep(12000);
 			driver.close();
 		    driver.switchTo().window(tabs2.get(0));
@@ -437,10 +439,11 @@ public class WebLineaVariable extends Metodos{
 		sleep(5000);
 		try {
 			driver.switchTo().window(tabs2.get(1));
-			driver.get("file:///C:/Users/Sofia%20Chardin/Downloads/"+NumFact+"-"+Fecha2+".pdf");
+			String pathDownloads = GetUserDownloadPath();
+			driver.get("file:///"+pathDownloads+NumFact+"-"+Fecha2+".pdf");
 			exito = true;
 			PDF pdf =  new PDF();
-			Assert.assertTrue(pdf.ContenidoPDF("C:\\Users\\Sofia Chardin\\Downloads\\"+NumFact+"-"+Fecha2+".pdf").contains(NumFact));
+			Assert.assertTrue(pdf.ContenidoPDF(pathDownloads+NumFact+"-"+Fecha2+".pdf").contains(NumFact));
 			sleep(12000);
 			driver.close();
 		    driver.switchTo().window(tabs2.get(0));
@@ -571,7 +574,8 @@ public class WebLineaVariable extends Metodos{
 		sleep(5000);
 		try {
 			driver.switchTo().window(tabs2.get(1));
-			driver.get("file:///C:/Users/Sofia%20Chardin/Downloads/"+NumFact+"_"+Fecha2+".pdf");
+			String DownloadPath = GetUserDownloadPath();
+			driver.get("file:///"+ DownloadPath + NumFact+"_"+Fecha2+".pdf");
 			exito = true;
 			PDF pdf =  new PDF();
 			//Assert.assertTrue(pdf.ContenidoPDF("C:\\Users\\Sofia Chardin\\Downloads\\"+NumFact+"_"+Fecha2+".pdf").contains(NumFact));
@@ -611,10 +615,12 @@ public class WebLineaVariable extends Metodos{
 		sleep(5000);
 		try {
 			driver.switchTo().window(tabs2.get(1));
-			driver.get("file:///C:/Users/Sofia%20Chardin/Downloads/"+NumFact+"_"+Fecha2+".pdf");
+			String DownloadPath = GetUserDownloadPath();
+			driver.get("file:///"+ DownloadPath + NumFact+"_"+Fecha2+".pdf");
+			//driver.get("file:///C:/Users/Sofia%20Chardin/Downloads/"+NumFact+"_"+Fecha2+".pdf");
 			exito = true;
-			PDF pdf =  new PDF();
-			System.out.println("C:\\Users\\Sofia Chardin\\Downloads\\"+NumFact+"_"+Fecha2+".pdf");
+			//PDF pdf =  new PDF();
+			System.out.println("C:\\"+DownloadPath+NumFact+"_"+Fecha2+".pdf");
 			//Assert.assertTrue(pdf.ContenidoPDF("C:\\Users\\Sofia Chardin\\Downloads\\"+NumFact+"_"+Fecha2+".pdf").contains(NumFact));
 			sleep(12000);
 			driver.close();
@@ -895,7 +901,7 @@ public class WebLineaVariable extends Metodos{
 		Assert.assertTrue(cuota.equals("Internet 200MB por Dia"));
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.corregirBtn")),"equals","confirmar");
 		sleep(10000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".text-primary.ng-scope")).getText().equals("¡Felicitaciones!"));
+		Assert.assertTrue(driver.findElement(By.cssSelector(".text-primary.ng-scope")).getText().equals("ï¿½Felicitaciones!"));
 		driver.findElement(By.cssSelector(".tpicon.tpicon-flechaizquierda")).click();
 		sleep(10000);
 		Assert.assertTrue(driver.findElement(By.cssSelector(".text-brand-cyanoscuro.ng-binding.ng-scope")).getText().equals("Internet 200MB por Dia"));
