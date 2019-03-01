@@ -408,9 +408,15 @@ public class Metodos {
 		System.out.println("Current Date" +sdf.format(cal.getTime()));
 		cal.add(Calendar.DAY_OF_MONTH, days);
 		String newDate = sdf.format(cal.getTime());
-		return newDate;
-		
+		return newDate;		
 	}
+	
+	public String GetUserDownloadPath (){
+		String path = System.getProperty("user.home") +"\\Downloads\\";
+		return path;		
+	}
+	
+	
 	@DataProvider
 	public Object[][] MIX() throws Exception {
 		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Mix");
