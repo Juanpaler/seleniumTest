@@ -69,13 +69,15 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
-	public void TS001(){
-		imagen = "TS001";
+	public void Visualizacion_de_productos_en_cliente_No_logueado(){
+		imagen = "Visualizacion_de_productos_en_cliente_No_logueado";
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
 		Boolean precio = false;
 		List<WebElement> precios = driver.findElements(By.cssSelector(".product-list__price--leyend"));
 			for(WebElement p : precios){
 				if(p.getText().contains("\u0024")){
-				precio = true;	
+					precio = true;	
 				}
 			}
 		Assert.assertTrue(precio);
