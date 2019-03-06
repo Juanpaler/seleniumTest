@@ -84,15 +84,16 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
-	public void TS002(){
-		imagen = "TS002";
+	public void Visualizacion_de_catalogo_de_equipos_disponibles(){
+		imagen = "Visualizacion_de_catalogo_de_equipos_disponibles";
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
 		Boolean precio = false;
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
-		sleep(5000);
 		List<WebElement> precios = driver.findElements(By.cssSelector(".font-platform-regular.text-primary"));
 			for(WebElement p : precios){
 				if(p.getText().contains("\u0024")){
-				precio = true;	
+					precio = true;	
 				}
 			}
 		Assert.assertTrue(precio);
