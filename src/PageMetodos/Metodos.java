@@ -3,9 +3,11 @@ package PageMetodos;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -408,9 +410,52 @@ public class Metodos {
 		System.out.println("Current Date" +sdf.format(cal.getTime()));
 		cal.add(Calendar.DAY_OF_MONTH, days);
 		String newDate = sdf.format(cal.getTime());
-		return newDate;
+		return newDate;		
+	}
+	
+	public String GetUserDownloadPath (){
+		String path = System.getProperty("user.home") +"\\Downloads\\";
+		return path;		
+	}
+	
+	
+	public Boolean RechargeLine (String lineNumber, String amount){
+		
+		try {
+			String appPath = new File(".").getCanonicalPath();
+			ProcessBuilder builder = new ProcessBuilder(
+			        "cmd.exe", "/c", "cd \""+ appPath +"\\UtilsLinea\" && UtilsLinea.exe recarga "+ lineNumber +" "+ amount + " --ambiente OCS");
+			    builder.redirectErrorStream(true);
+			    Process p = builder.start();
+			    BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			    String line;
+			    String salida ="";
+			    while (true) {
+			        line = r.readLine();
+			        salida = salida + line;
+			        if (line == null) { break; }
+			        System.out.println(line);
+			    }
+			    Boolean succeeded = false;
+			    if(salida.contains("\"Succeeded\": true"))
+			    {
+			        System.out.println("Recarga exitosa");
+			        succeeded = true;
+			    }
+			    else{
+			        System.out.println("Recarga fallida");
+			        succeeded = false;
+			    }		
+			    
+			    return succeeded;
+			    
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
 		
 	}
+	
 	@DataProvider
 	public Object[][] MIX() throws Exception {
 		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Mix");
