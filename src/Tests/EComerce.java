@@ -181,19 +181,17 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Filtros"}) 
-	public void TS010(){
-		imagen="TS010";;
-		sleep(10000);
+	public void Filtro_Marcas(){
+		imagen="Filtro_Marcas";
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.cssSelector(".filter__item--mark.filter__item--mark-Todas.las.marcas")).click();
-		sleep(3000);
 		driver.findElement(By.cssSelector(".filter__item.filter__item--mark.filter__item--mark-samsung")).click();
-		sleep(10000);
 		List<WebElement> elementos = driver.findElements(By.cssSelector(".shelf-product-list"));
-		Boolean elementoEncontraado = true;		
+		Boolean elementoEncontraado = false;		
 		for (WebElement elemento : elementos) {
 		    if(!elemento.getText().contains("Samsung"))
 		    {
-		    	elementoEncontraado = false;
+		    	elementoEncontraado = true;
 		    }		    
 		}
 		Assert.assertTrue(elementoEncontraado); 		
