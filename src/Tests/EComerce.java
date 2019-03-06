@@ -102,15 +102,14 @@ public class EComerce extends Metodos{
 	
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void TS003(){
-		imagen="TS003";
-		sleep(10000);
+	public void Cliente_no_logueado_ingresa_a_Planes(){
+		imagen="Cliente_no_logueado_ingresa_a_Planes";
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
 		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item2"));
 		Actions action = new Actions(driver);
 		action.moveToElement(searchBtn).perform();
-		sleep(3000);
 		driver.findElement(By.linkText("Pasate a Personal")).click();
-		sleep(3000);
 		Assert.assertTrue(driver.getCurrentUrl().equals("https://www.personal.com.ar/portabilidad/"));
 	}
 	
