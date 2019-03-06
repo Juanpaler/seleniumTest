@@ -124,8 +124,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void TS005(){
-		imagen="TS005";;
+	public void Cliente_no_logueado_ingresa_a_Temas_de_Ayuda(){
+		imagen="Cliente_no_logueado_ingresa_a_Temas_de_Ayuda";;
 		sleep(10000);
 		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item5"));
 		Actions action = new Actions(driver);
@@ -135,8 +135,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void TS006(){
-		imagen="TS006";;
+	public void Cliente_no_logueado_ingresa_a_Soporte_Tecnico(){
+		imagen="Cliente_no_logueado_ingresa_a_Soporte_Tecnico";;
 		sleep(10000);
 		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item5"));
 		Actions action = new Actions(driver);
