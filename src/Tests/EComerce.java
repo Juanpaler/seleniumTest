@@ -160,15 +160,13 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void TS008(){
-		imagen="TS008";;
-		sleep(10000);
+	public void RegresionEcommerce_Busqueda_de_resultados_relacionados(){
+		imagen="RegresionEcommerce_Busqueda_de_resultados_relacionados";;
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
 		driver.findElement(By.cssSelector(".tpi-search")).click();
-		sleep(3000);
 		driver.findElement(By.id("searchable1")).sendKeys("linea");
-		sleep(3000);
 		driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Tienda Online'])[1]/following::p[1]")).click();
-		sleep(3000);
 		Assert.assertTrue(driver.getCurrentUrl().equals("https://tienda.personal.com.ar/"));
 	}
 	
