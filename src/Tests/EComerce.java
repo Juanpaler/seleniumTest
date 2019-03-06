@@ -160,8 +160,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void RegresionEcommerce_Busqueda_de_resultados_relacionados(){
-		imagen="RegresionEcommerce_Busqueda_de_resultados_relacionados";;
+	public void Busqueda_de_resultados_relacionados(){
+		imagen="Busqueda_de_resultados_relacionados";;
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		driver.findElement(By.cssSelector(".tpi-search")).click();
