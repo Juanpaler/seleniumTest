@@ -148,15 +148,14 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void TS007(){
-		imagen="TS007";;
-		sleep(10000);
+	public void Cliente_no_logueado_ingresa_a_Ayuda_Lineas(){
+		imagen="Cliente_no_logueado_ingresa_a_Ayuda_Lineas";;
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
 		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item5"));
 		Actions action = new Actions(driver);
 		action.moveToElement(searchBtn).perform();
-		sleep(3000);
 		driver.findElement(By.linkText("Lineas")).click();
-		sleep(3000);
 		Assert.assertTrue(driver.getCurrentUrl().equals("https://uat.personal.com.ar/ayudaysoporte/#/individuos/soporte/lineas"));
 	}
 	
