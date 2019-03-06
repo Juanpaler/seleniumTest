@@ -37,7 +37,7 @@ public class EComerce extends Metodos{
 	@BeforeMethod (alwaysRun = true)
 		public void before(){
 		driver = setup();
-		driver.get("https://personaluat.vtexcommercestable.com.br/");
+		driver.get("https://personaluat.vtexcommercestable.com.br/Admin/Site/Login.aspx?ReturnUrl=%2f");
 		sleep(8000);
 		try {
 			driver.findElement(By.id("vtexIdUI-google-plus")).click();
@@ -173,15 +173,12 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void TS009(){
-		imagen="TS009";;
-		sleep(10000);
+	public void Busqueda_de_resultado(){
+		imagen="Busqueda_de_resultado";
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.cssSelector(".tpi-search")).click();
-		sleep(3000);
 		driver.findElement(By.id("searchable1")).sendKeys("cambio de equipo");
-		sleep(3000);
 		driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Tienda Online'])[1]/following::p[1]")).click();
-		sleep(3000);
 		Assert.assertTrue(driver.getCurrentUrl().equals("https://tienda.personal.com.ar/"));
 	}
 	
