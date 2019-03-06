@@ -114,15 +114,14 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void TS004(){
-		imagen="TS004";
-		sleep(10000);
+	public void Cliente_no_logueado_ingresa_a_Autogestion(){
+		imagen="Cliente_no_logueado_ingresa_a_Autogestion";
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
 		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item3"));
 		Actions action = new Actions(driver);
 		action.moveToElement(searchBtn).perform();
-		sleep(3000);
 		driver.findElement(By.linkText("Comprar packs")).click();
-		sleep(3000);
 		Assert.assertTrue(driver.getCurrentUrl().equals("https://autogestionuat.personal.com.ar/login/"));
 	}
 	
