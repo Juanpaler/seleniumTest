@@ -198,18 +198,15 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Filtros"}) 
-	public void TS012(){
-		imagen="TS012";;
-		sleep(10000);
+	public void Limite_de_comparador_de_Equipos(){
+		imagen="Limite_de_comparador_de_Equipos";;
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
-		sleep(10000);                                      
 		List<WebElement> elementos = driver.findElements(By.cssSelector(".comparator__checkbox.icn.checkbox"));
 		for (WebElement elemento : elementos) {
 		    elemento.click();
-		    sleep(2000);
 		}
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary")),"contains","comparar");
-		sleep(10000); 
 		elementos = driver.findElements(By.cssSelector(".buy-button.btn.btn-danger"));
 		Boolean elementoEncontraado = true;		
 		for (WebElement elemento : elementos) {
