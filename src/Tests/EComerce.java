@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -229,5 +230,44 @@ public class EComerce extends Metodos{
 	}
 	
 	
+	@Test (groups ={"Interna Producto","Entrega"}) 
+	public void TS032(){
+		imagen="TS032";
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		buscarYClick(driver.findElements(By.cssSelector(".icon__shipping--product")),"contains","ver plazos");
+		List<WebElement> elementos = driver.findElements(By.cssSelector(".modal-body-shipping"));
+		Boolean elementoEncontrado = false;
+		for (WebElement elemento : elementos)
+		{
+			if(elemento.getText().contains("ENV\u00CDO A TODO EL PA\u00CDS"))
+			{
+				elementoEncontrado = true;
+			}
+		}		
+		Assert.assertTrue(elementoEncontrado);		
+	}
+	
+	@Test (groups ={"Interna Producto","Financiacion"}) 
+	public void TS033(){
+		imagen="TS033";
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.product-main__btn--payment")),"contains","financiaci\u00F3n");
+		List<WebElement> elementos = driver.findElements(By.cssSelector(".calculator__title"));
+		Boolean elementoEncontrado = false;
+		for (WebElement elemento : elementos)
+		{
+			if(elemento.getText().contains("El Personal que quer\u00E9s, con la financiaci\u00F3n que necesit\u00E1s"))
+			{
+				elementoEncontrado = true;
+			}
+		}		
+		Assert.assertTrue(elementoEncontrado);		
+	}
 
 }
