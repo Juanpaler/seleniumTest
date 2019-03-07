@@ -312,4 +312,61 @@ public class EComerce extends Metodos{
 	}
 
 
+	@Test (groups ={"Home Tienda","Filtros"}) 
+	public void Ordenamiento_Precio_Mayor(){
+		imagen="Ordenamiento_Precio_Mayor";
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","destacados");
+		buscarYClick(driver.findElements(By.cssSelector(".filter__item")),"contains","mayor precio");
+		sleep(10000);
+	    List<WebElement> precios = driver.findElements(By.cssSelector(".product-list__price--leyend"));
+	    int tamanio=precios.size();
+	    double temp = 0;
+	    Boolean elementoEncontrado = true;
+	    for (int i = 0; i < tamanio; i++) {
+	    	String precioS=precios.get(i).getText();
+	    	if (!precioS.equals("")) {
+	    	precioS=precioS.replace("$","");
+	    	precioS=precioS.replace(".","");
+	    	double value = Double.parseDouble(precioS);
+	    	System.out.println(value); 
+	    	if (i>0) {
+	    		if (temp<value) {
+	    			elementoEncontrado = false;
+	    		}		
+	    	}
+           temp=value;
+	    	}
+	    }
+	    Assert.assertTrue(elementoEncontrado);	    
+	}
+	
+	@Test (groups ={"Home Tienda","Filtros"}) 
+	public void Ordenamiento_Precio_Menor(){
+		imagen="Ordenamiento_Precio_Mayor";
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","destacados");
+		buscarYClick(driver.findElements(By.cssSelector(".filter__item")),"contains","menor precio");
+		sleep(10000);
+	    List<WebElement> precios = driver.findElements(By.cssSelector(".product-list__price--leyend"));
+	    int tamanio=precios.size();
+	    double temp = 0;
+	    Boolean elementoEncontrado = true;
+	    for (int i = 0; i < tamanio; i++) {
+	    	String precioS=precios.get(i).getText();
+	    	if (!precioS.equals("")) {
+	    	precioS=precioS.replace("$","");
+	    	precioS=precioS.replace(".","");
+	    	double value = Double.parseDouble(precioS);
+	    	System.out.println(value); 
+	    	if (i>0) {
+	    		if (temp>value) {
+	    			elementoEncontrado = false;
+	    		}		
+	    	}
+           temp=value;
+	    	}
+	    }
+	    Assert.assertTrue(elementoEncontrado);	    
+	}
 }
