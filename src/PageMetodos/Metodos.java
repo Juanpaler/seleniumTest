@@ -191,7 +191,7 @@ public class Metodos {
 		switch (match) {
 		case "contains":
 			for (WebElement x : elements) {
-				if (x.getText().toLowerCase().contains(texto)) {
+				if (x.getText().toLowerCase().contains(texto.toLowerCase())) {
 					x.click();
 					break;
 				}
@@ -199,7 +199,7 @@ public class Metodos {
 			break;
 		case "equals":
 			for (WebElement x : elements) {
-				if (x.getText().toLowerCase().equals(texto)) {
+				if (x.getText().toLowerCase().equals(texto.toLowerCase())) {
 					x.click();
 					break;
 				}
