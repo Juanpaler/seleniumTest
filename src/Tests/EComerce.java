@@ -197,6 +197,37 @@ public class EComerce extends Metodos{
 		Assert.assertTrue(elementoEncontraado); 		
 	}
 	
+	
+	@Test (groups ={"Home Tienda","Filtros"}) 
+	public void Filtro_Tipo_de_Camara(){
+		imagen="Filtro_Tipo_de_Camara";
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","Tipos de camara");
+		buscarYClick(driver.findElements(By.cssSelector(".filter__item")),"contains","10Mpx a 15Mpx");
+		
+		List<WebElement> resultadoBusqueda = driver.findElements(By.cssSelector(".btn.btn-default.btn-lg.product-list__link"));
+		Boolean filtroValido = true;
+		for (int i = 0; i <= 0; ++i) {
+		    resultadoBusqueda.get(i).click();
+		    
+			List<WebElement> elementosDetalle = driver.findElements(By.cssSelector(".detail__title--item"));
+			for(WebElement detalle : elementosDetalle)
+			{
+				if(detalle.getText().contains("Mpx"))
+				{
+					String tipoCamara = detalle.getText();
+					int index = tipoCamara.indexOf("Mpx");
+					int valorMpx = Integer.parseInt(tipoCamara.substring(index -2, index));
+					filtroValido = (filtroValido == (valorMpx >= 10 && valorMpx <= 15));					
+				}
+			}	
+			driver.navigate().back();
+			driver.navigate().back();
+		}
+		Assert.assertTrue(filtroValido); 			
+	}
+	
 	@Test (groups ={"Home Tienda","Filtros"}) 
 	public void Limite_de_comparador_de_Equipos(){
 		imagen="Limite_de_comparador_de_Equipos";;
