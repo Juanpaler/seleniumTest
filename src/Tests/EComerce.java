@@ -292,5 +292,24 @@ public class EComerce extends Metodos{
 		}		
 		Assert.assertTrue(elementoEncontrado);		
 	}
+	
+	@Test (groups ={"Interna Producto","Financiacion"}) 
+	public void opciones_de_Cuotas(){
+		imagen="opciones_de_Cuotas";
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.product-main__btn--payment")),"contains","financiaci\u00F3n");
+		WebElement comboCuotas = driver.findElement(By.cssSelector(".tp-selector__view"));
+		Boolean elementoEncontrado = false;
+		if(comboCuotas.getText().contains("cuotas"))
+		{
+			elementoEncontrado = true;
+		}
+			
+		Assert.assertTrue(elementoEncontrado);		
+	}
+
 
 }
