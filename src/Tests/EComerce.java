@@ -251,9 +251,11 @@ public class EComerce extends Metodos{
 	}
 	
 	
+	
+	
 	@Test (groups ={"Interna Producto","Entrega"}) 
-	public void TS032(){
-		imagen="TS032";
+	public void plazos_y_opciones_de_entrega(){
+		imagen="plazos_y_opciones_de_entrega";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
@@ -272,8 +274,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Interna Producto","Financiacion"}) 
-	public void TS033(){
-		imagen="TS033";
+	public void opciones_de_financiacion(){
+		imagen="opciones_de_financiacion";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
