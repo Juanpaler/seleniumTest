@@ -423,4 +423,39 @@ public class EComerce extends Metodos{
 		
 		Assert.assertTrue(camposVacios);		
 	}
+	
+	@Test (groups ={"Interna Accesorio","Financiacion"}) 
+	public void Compra_Accesorio_Carro_de_compra(){
+		imagen="Compra_Accesorio_Carro_de_compra(TS035)";
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		//TODO: Cuando est� disponible, acceder al accesorio mediante el men� "Todos los accesorios"
+		//buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		driver.navigate().to("https://personaluat.vtexcommercestable.com.br/accesorio-lg-prueba-alg12345n/p");
+		driver.findElement(By.cssSelector(".buy-button.buy-button-ref")).click();
+			
+		Boolean carroCompras = false;		
+		carroCompras = driver.findElement(By.cssSelector(".cart__title--container")).getText().equals("Resumen de compra");	
+		Assert.assertTrue(carroCompras);		
+	}
+	
+	@Test (groups ={"Interna Accesorio","Financiacion"}) 
+	public void Compra_Accesorio_Mail_no_registrado(){
+		imagen="Compra_Accesorio_Mail_no_registrado(TS052)";
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		//TODO: Cuando est� disponible, acceder al accesorio mediante el men� "Todos los accesorios"
+		//buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		driver.navigate().to("https://personaluat.vtexcommercestable.com.br/accesorio-lg-prueba-alg12345n/p");
+		driver.findElement(By.cssSelector(".buy-button.buy-button-ref")).click();
+		driver.findElement(By.cssSelector(".action__go-to-checkout.btn.btn-primary.btn-lg.col-md-3.col-sm-6.col-xs-12")).click();
+		driver.findElement(By.id("client-pre-email")).sendKeys("correo@electronico.com");
+		driver.findElement(By.id("btn-client-pre-email")).click();		
+		
+		Boolean camposVacios = false;		
+		camposVacios = driver.findElement(By.id("client-first-name")).getText().isEmpty();		
+		camposVacios = (camposVacios == driver.findElement(By.id("client-last-name")).getText().isEmpty());
+		
+		Assert.assertTrue(camposVacios);		
+	}
 }
