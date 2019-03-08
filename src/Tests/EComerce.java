@@ -402,4 +402,25 @@ public class EComerce extends Metodos{
 	    }
 	    Assert.assertTrue(elementoEncontrado);	    
 	}
+	
+	@Test (groups ={"Interna Producto","Financiacion"}) 
+	public void Compra_equipo_linea_nueva_Mail_no_registrado(){
+		imagen="Compra_equipo_linea_nueva_Mail_no_registrado";
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		driver.findElement(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary.js-steps")).click();
+		driver.findElement(By.cssSelector(".product-main__btn.btn.btn-default.js-select-plan.js-steps")).click();
+		buscarYClick(driver.findElements(By.cssSelector(".plan__btn.product-main__btn.btn.btn-default")),"contains","Quiero este plan");
+		driver.findElement(By.cssSelector(".action__go-to-checkout.btn.btn-primary.btn-lg.col-md-3.col-sm-6.col-xs-12")).click();
+		driver.findElement(By.id("client-pre-email")).sendKeys("correo@electronico.com");
+		driver.findElement(By.id("btn-client-pre-email")).click();		
+		
+		Boolean camposVacios = false;		
+		camposVacios = driver.findElement(By.id("client-first-name")).getText().isEmpty();		
+		camposVacios = (camposVacios == driver.findElement(By.id("client-last-name")).getText().isEmpty());
+		
+		Assert.assertTrue(camposVacios);		
+	}
 }
