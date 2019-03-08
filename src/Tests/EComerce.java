@@ -69,8 +69,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
-	public void Visualizacion_de_productos_en_cliente_No_logueado(){
-		imagen = "Visualizacion_de_productos_en_cliente_No_logueado";
+	public void C28_Visualizacion_de_productos_en_cliente_No_logueado(){
+		imagen = "C28_Visualizacion_de_productos_en_cliente_No_logueado";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		Boolean precio = false;
@@ -84,8 +84,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
-	public void Visualizacion_de_catalogo_de_equipos_disponibles(){
-		imagen = "Visualizacion_de_catalogo_de_equipos_disponibles";
+	public void C27_Visualizacion_de_catalogo_de_equipos_disponibles(){
+		imagen = "C27_Visualizacion_de_catalogo_de_equipos_disponibles";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		Boolean precio = false;
@@ -102,8 +102,8 @@ public class EComerce extends Metodos{
 	
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void Cliente_no_logueado_ingresa_a_Planes(){
-		imagen="Cliente_no_logueado_ingresa_a_Planes";
+	public void C31_Cliente_no_logueado_ingresa_a_Planes(){
+		imagen="C31_Cliente_no_logueado_ingresa_a_Planes";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item2"));
@@ -114,8 +114,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void Cliente_no_logueado_ingresa_a_Autogestion(){
-		imagen="Cliente_no_logueado_ingresa_a_Autogestion";
+	public void C29_Cliente_no_logueado_ingresa_a_Autogestion(){
+		imagen="C29_Cliente_no_logueado_ingresa_a_Autogestion";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item3"));
@@ -148,8 +148,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void Cliente_no_logueado_ingresa_a_Ayuda_Lineas(){
-		imagen="Cliente_no_logueado_ingresa_a_Ayuda_Lineas";;
+	public void C30_Cliente_no_logueado_ingresa_a_Ayuda_Lineas(){
+		imagen="C30_Cliente_no_logueado_ingresa_a_Ayuda_Lineas";;
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item5"));
@@ -160,8 +160,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void Busqueda_de_resultados_relacionados(){
-		imagen="Busqueda_de_resultados_relacionados";;
+	public void C02_Busqueda_de_resultados_relacionados(){
+		imagen="C02_Busqueda_de_resultados_relacionados";;
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		driver.findElement(By.cssSelector(".tpi-search")).click();
@@ -171,8 +171,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void Busqueda_de_resultado(){
-		imagen="Busqueda_de_resultado";
+	public void C01_Busqueda_de_resultado(){
+		imagen="C01_Busqueda_de_resultado";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.cssSelector(".tpi-search")).click();
 		driver.findElement(By.id("searchable1")).sendKeys("cambio de equipo");
@@ -181,8 +181,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Filtros"}) 
-	public void Filtro_Marcas(){
-		imagen="Filtro_Marcas";
+	public void C09_Filtro_Marcas(){
+		imagen="C09_Filtro_Marcas";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.cssSelector(".filter__item--mark.filter__item--mark-Todas.las.marcas")).click();
 		driver.findElement(By.cssSelector(".filter__item.filter__item--mark.filter__item--mark-samsung")).click();
@@ -199,8 +199,8 @@ public class EComerce extends Metodos{
 	
 	
 	@Test (groups ={"Home Tienda","Filtros"}) 
-	public void Filtro_Tipo_de_Camara(){
-		imagen="Filtro_Tipo_de_Camara";
+	public void C11_Filtro_Tipo_de_Camara(){
+		imagen="C11_Filtro_Tipo_de_Camara";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","Tipos de camara");
@@ -229,8 +229,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Filtros"}) 
-	public void Limite_de_comparador_de_Equipos(){
-		imagen="Limite_de_comparador_de_Equipos";;
+	public void C17_Limite_de_comparador_de_Equipos(){
+		imagen="C17_Limite_de_comparador_de_Equipos";;
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
 		List<WebElement> elementos = driver.findElements(By.cssSelector(".comparator__checkbox.icn.checkbox"));
@@ -251,8 +251,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Interna Producto","Financiacion"}) 
-	public void Cliente_no_logueado_elige_linea_Nueva(){
-		imagen="Cliente_no_logueado_elige_linea_Nueva";
+	public void C52_Cliente_no_logueado_elige_linea_Nueva(){
+		imagen="C52_Cliente_no_logueado_elige_linea_Nueva";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
@@ -346,8 +346,8 @@ public class EComerce extends Metodos{
 
 
 	@Test (groups ={"Home Tienda","Filtros"}) 
-	public void Ordenamiento_Precio_Mayor(){
-		imagen="Ordenamiento_Precio_Mayor";
+	public void C23_Ordenamiento_Precio_Mayor(){
+		imagen="C23_Ordenamiento_Precio_Mayor";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","destacados");
 		buscarYClick(driver.findElements(By.cssSelector(".filter__item")),"contains","mayor precio");
@@ -375,8 +375,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Filtros"}) 
-	public void Ordenamiento_Precio_Menor(){
-		imagen="Ordenamiento_Precio_Mayor";
+	public void C25_Ordenamiento_Precio_Menor(){
+		imagen="C25_Ordenamiento_Precio_Menor";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","destacados");
 		buscarYClick(driver.findElements(By.cssSelector(".filter__item")),"contains","menor precio");
