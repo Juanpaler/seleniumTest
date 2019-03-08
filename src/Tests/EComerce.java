@@ -126,8 +126,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void Cliente_no_logueado_ingresa_a_Temas_de_Ayuda(){
-		imagen="Cliente_no_logueado_ingresa_a_Temas_de_Ayuda";;
+	public void C33_Cliente_no_logueado_ingresa_a_Temas_de_Ayuda(){
+		imagen="C33_Cliente_no_logueado_ingresa_a_Temas_de_Ayuda";;
 		sleep(10000);
 		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item5"));
 		Actions action = new Actions(driver);
@@ -137,8 +137,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void Cliente_no_logueado_ingresa_a_Soporte_Tecnico(){
-		imagen="Cliente_no_logueado_ingresa_a_Soporte_Tecnico";;
+	public void C32_Cliente_no_logueado_ingresa_a_Soporte_Tecnico(){
+		imagen="C32_Cliente_no_logueado_ingresa_a_Soporte_Tecnico";;
 		sleep(10000);
 		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item5"));
 		Actions action = new Actions(driver);
@@ -287,8 +287,8 @@ public class EComerce extends Metodos{
 	
 	
 	@Test (groups ={"Interna Producto","Entrega"}) 
-	public void plazos_y_opciones_de_entrega(){
-		imagen="plazos_y_opciones_de_entrega";
+	public void C54_plazos_y_opciones_de_entrega(){
+		imagen="C54_plazos_y_opciones_de_entrega";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
@@ -307,8 +307,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Interna Producto","Financiacion"}) 
-	public void opciones_de_financiacion(){
-		imagen="opciones_de_financiacion";
+	public void C55_opciones_de_financiacion(){
+		imagen="C55_opciones_de_financiacion";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
@@ -327,8 +327,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Interna Producto","Financiacion"}) 
-	public void opciones_de_Cuotas(){
-		imagen="opciones_de_Cuotas";
+	public void C56_opciones_de_Cuotas(){
+		imagen="C56_opciones_de_Cuotas";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
@@ -404,8 +404,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Interna Producto","Financiacion"}) 
-	public void Compra_equipo_linea_nueva_Mail_no_registrado(){
-		imagen="Compra_equipo_linea_nueva_Mail_no_registrado";
+	public void C70_Compra_equipo_linea_nueva_Mail_no_registrado(){
+		imagen="C70_Compra_equipo_linea_nueva_Mail_no_registrado";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
@@ -425,8 +425,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Interna Accesorio","Financiacion"}) 
-	public void Compra_Accesorio_Carro_de_compra(){
-		imagen="Compra_Accesorio_Carro_de_compra(TS035)";
+	public void C57_Compra_Accesorio_Carro_de_compra(){
+		imagen="C57_Compra_Accesorio_Carro_de_compra(TS035)";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		//TODO: Cuando est� disponible, acceder al accesorio mediante el men� "Todos los accesorios"
@@ -440,8 +440,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Interna Accesorio","Financiacion"}) 
-	public void Compra_Accesorio_Mail_no_registrado(){
-		imagen="Compra_Accesorio_Mail_no_registrado(TS052)";
+	public void C72_Compra_Accesorio_Mail_no_registrado(){
+		imagen="C72_Compra_Accesorio_Mail_no_registrado(TS052)";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		//TODO: Cuando est� disponible, acceder al accesorio mediante el men� "Todos los accesorios"
