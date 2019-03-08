@@ -57,7 +57,7 @@ public class iOSMobile extends MetodosiOS {
     }
     
     
-    /*@Test (groups = "AutogestionIndividuosAPP", priority = 0)
+    @Test (groups = "AutogestionIndividuosAPP", priority = 0)
     public void Comprar_Packs_Compra_de_Packs_MIX() {
     	loginPorLineaMobile(driver, lineaMIX);
     	Assert.assertTrue(verificarCompraDePacks(driver));
@@ -91,7 +91,7 @@ public class iOSMobile extends MetodosiOS {
     public void Comprar_Packs_Consultar_Comprobantes_PRE() {
     	loginPorLineaMobile(driver, lineaPre);
     	Assert.assertTrue(verificarDescargaComprobante(driver));  //No se pueden descargar los comprobantes
-    }*/
+    }
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 6)
     public void Consumos_Detalles_de_Consumos_MIX() {
@@ -390,13 +390,13 @@ public class iOSMobile extends MetodosiOS {
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 54)
     public void Mis_Consumos_Doble_Blue_Activar_PRE() {
-    	loginPorLineaMobile(driver, "1164477818");
+    	loginPorLineaMobile(driver, "1164484643");
     	Assert.assertTrue(verificarActivYDesactDobleBlue(driver, "Pre"));
     }
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 55)
     public void Mis_Consumos_Doble_Blue_Activar_MIX() {
-    	loginPorLineaMobile(driver, "1164491372");
+    	loginPorLineaMobile(driver, "1164483808");
     	Assert.assertTrue(verificarActivYDesactDobleBlue(driver, "MIX"));
     }
 }
