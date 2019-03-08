@@ -332,7 +332,7 @@ public class MetodosAndroid {
 			scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='PAGOS Y PACKS']");
 		}
     	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='Informar Pago']");
-    	driver.findElement(By.id("textinput_component_edittext")).sendKeys("29/01/2019");
+    	driver.findElement(By.id("textinput_component_edittext")).sendKeys("30/01/2019");
     	driver.findElement(By.id("textinput_component_edittext_currency")).sendKeys("150.00");
     	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='ENVIAR']");
     	scrollAndClick(driver, "id", "button2");
