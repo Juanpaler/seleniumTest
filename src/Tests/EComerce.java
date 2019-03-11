@@ -1,5 +1,7 @@
 package Tests;
 
+import static org.testng.Assert.assertTrue;
+
 import java.awt.AWTException;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -401,5 +403,62 @@ public class EComerce extends Metodos{
 	    	}
 	    }
 	    Assert.assertTrue(elementoEncontrado);	    
+	}
+	
+	@Test (groups ={"Registracion de email","Linea nueva"}) 
+	public void TS049_Cliente_no_logueado_compra_equipo_con_nueva_linea_e_ingresa_un_mail_registrado(){
+		imagen="TS049_Cliente_no_logueado_compra_equipo_con_nueva_linea_e_ingresa_un_mail_registrado";
+		driver.findElements(By.cssSelector(".col-xs-5.col-sm-12")).get(2).click();
+		sleep(8000);
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary.js-steps")),"equals","comprar");
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.btn.btn-default.js-select-plan.js-steps")),"contains","lo quiero con linea nueva");
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".plan__btn.product-main__btn.btn.btn-default")),"equals","quiero este plan");
+		sleep(8000);
+		buscarYClick(driver.findElements(By.cssSelector(".action__go-to-checkout.btn.btn-primary.btn-lg.col-md-3.col-sm-6.col-xs-12")),"equals","siguiente");
+		sleep(8000);
+		driver.findElement(By.id("client-pre-email")).sendKeys("alejandro-miguel.rubinstein@atos.net");
+		driver.findElement(By.id("btn-client-pre-email")).click();
+		sleep(6000);
+		driver.findElement(By.id("btn-identified-user-button")).click();
+		sleep(3000);
+		Assert.assertFalse(driver.findElement(By.id("client-first-name")).getAttribute("value").isEmpty());
+	}
+	
+	
+	@Test(groups ={"Registracion de email","Venta Accesorio"}) // El accesorio lo reconoce como un equipo y pregunta por la linea 
+	public void TS053_Cliente_no_logueado_compra_un_accesorio_e_ingresa_un_mail_no_registrado_y_debe_completar_todos_los_datos_en_checkout(){
+		imagen="TS053_Cliente_no_logueado_compra_un_accesorio_e_ingresa_un_mail_no_registrado_y_debe_completar_todos_los_datos_en_checkout";
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		sleep(7000);
+		List <WebElement> products = driver.findElements(By.cssSelector(".product-list__wrapper"));
+			for(WebElement p : products){
+				if (p.getText().toLowerCase().contains("vidrio templado")){
+					p.findElement(By.cssSelector(".col-xs-5.col-sm-12")).click();
+					break;
+				}
+			}
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary.js-steps")),"equals","comprar");
+		Assert.assertTrue(false);
+	}
+	
+	@Test(groups ={"Registracion de email","Venta Accesorio","cliente logueado"})  // El accesorio lo reconoce como un equipo y pregunta por la linea 
+	public void TS054_Cliente_logueado_compra_un_accesorio_e_ingresa_un_mail_cargado_en_Siebel(){
+		imagen="TS054_Cliente_logueado_compra_un_accesorio_e_ingresa_un_mail_cargado_en_Siebel";
+		loginEComerce("1164597262","1469");
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		sleep(7000);
+		List <WebElement> products = driver.findElements(By.cssSelector(".product-list__wrapper"));
+			for(WebElement p : products){
+				if (p.getText().toLowerCase().contains("vidrio templado")){
+					p.findElement(By.cssSelector(".col-xs-5.col-sm-12")).click();
+					break;
+				}
+			}
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary.js-steps")),"equals","comprar");
+		Assert.assertTrue(false);
 	}
 }

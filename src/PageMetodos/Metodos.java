@@ -456,6 +456,17 @@ public class Metodos {
 		
 	}
 	
+	public void loginEComerce(String sLinea, String sPass){
+		driver.findElement(By.id("tpi-user-login-btn")).click();
+		sleep(5000);
+		driver.findElement(By.id("linea-area-numero")).sendKeys(sLinea);
+		sleep(3000);
+		driver.findElement(By.id("btn-ingresar-clave")).click();
+		driver.findElement(By.id("txt-pin")).sendKeys(sPass);
+		driver.findElement(By.id("login-btn")).click();
+		sleep(5000);
+	}
+	
 	@DataProvider
 	public Object[][] MIX() throws Exception {
 		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Mix");
