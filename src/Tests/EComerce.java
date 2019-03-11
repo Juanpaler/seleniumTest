@@ -231,6 +231,21 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Filtros"}) 
+	public void C13_Filtro_Tipo_de_Pantalla(){
+		imagen="C13_Filtro_Tipo_de_Pantalla";
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","Tama�o de pantalla");
+		buscarYClick(driver.findElements(By.cssSelector(".filter__item")),"contains","grande");
+		
+		List<WebElement> resultadoBusqueda = driver.findElements(By.cssSelector(".btn.btn-default.btn-lg.product-list__link"));
+		Boolean filtroValido = resultadoBusqueda.size() > 0;
+		// TODO: Pendiente seg�n respuesta analistas, hacer la validaci�n de los resultados.
+
+		Assert.assertTrue(filtroValido); 			
+	}
+	
+	@Test (groups ={"Home Tienda","Filtros"}) 
 	public void C17_Limite_de_comparador_de_Equipos(){
 		imagen="C17_Limite_de_comparador_de_Equipos";;
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
