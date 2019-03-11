@@ -16,9 +16,11 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -351,7 +353,9 @@ public class EComerce extends Metodos{
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","destacados");
 		buscarYClick(driver.findElements(By.cssSelector(".filter__item")),"contains","mayor precio");
-		sleep(10000);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".product-list__price--leyend")));
+		
 	    List<WebElement> precios = driver.findElements(By.cssSelector(".product-list__price--leyend"));
 	    int tamanio=precios.size();
 	    double temp = 0;
@@ -359,16 +363,17 @@ public class EComerce extends Metodos{
 	    for (int i = 0; i < tamanio; i++) {
 	    	String precioS=precios.get(i).getText();
 	    	if (!precioS.equals("")) {
-	    	precioS=precioS.replace("$","");
-	    	precioS=precioS.replace(".","");
-	    	double value = Double.parseDouble(precioS);
-	    	System.out.println(value); 
-	    	if (i>0) {
-	    		if (temp<value) {
-	    			elementoEncontrado = false;
-	    		}		
-	    	}
-           temp=value;
+		    	precioS=precioS.replace("$","");
+		    	precioS=precioS.replace(".","");
+		    	precioS=precioS.replace(",",".");
+		    	double value = Double.parseDouble(precioS);
+		    	System.out.println(value); 
+		    	if (i>0) {
+		    		if (temp<value) {
+		    			elementoEncontrado = false;
+		    		}		
+		    	}
+		    	temp=value;
 	    	}
 	    }
 	    Assert.assertTrue(elementoEncontrado);	    
@@ -380,7 +385,10 @@ public class EComerce extends Metodos{
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","destacados");
 		buscarYClick(driver.findElements(By.cssSelector(".filter__item")),"contains","menor precio");
-		sleep(10000);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".product-list__price--leyend")));
+		
 	    List<WebElement> precios = driver.findElements(By.cssSelector(".product-list__price--leyend"));
 	    int tamanio=precios.size();
 	    double temp = 0;
@@ -388,16 +396,17 @@ public class EComerce extends Metodos{
 	    for (int i = 0; i < tamanio; i++) {
 	    	String precioS=precios.get(i).getText();
 	    	if (!precioS.equals("")) {
-	    	precioS=precioS.replace("$","");
-	    	precioS=precioS.replace(".","");
-	    	double value = Double.parseDouble(precioS);
-	    	System.out.println(value); 
-	    	if (i>0) {
-	    		if (temp>value) {
-	    			elementoEncontrado = false;
-	    		}		
-	    	}
-           temp=value;
+		    	precioS=precioS.replace("$","");
+		    	precioS=precioS.replace(".","");
+		    	precioS=precioS.replace(",",".");
+		    	double value = Double.parseDouble(precioS);
+		    	System.out.println(value); 
+		    	if (i>0) {
+		    		if (temp>value) {
+		    			elementoEncontrado = false;
+		    		}		
+		    	}
+		    	temp=value;
 	    	}
 	    }
 	    Assert.assertTrue(elementoEncontrado);	    
