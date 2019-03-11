@@ -518,8 +518,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Registracion de email","Linea nueva"}) 
-	public void TS049_Cliente_no_logueado_compra_equipo_con_nueva_linea_e_ingresa_un_mail_registrado(){
-		imagen="TS049_Cliente_no_logueado_compra_equipo_con_nueva_linea_e_ingresa_un_mail_registrado";
+	public void C69_Cliente_no_logueado_compra_equipo_con_nueva_linea_e_ingresa_un_mail_registrado(){
+		imagen="C69_Cliente_no_logueado_compra_equipo_con_nueva_linea_e_ingresa_un_mail_registrado";
 		driver.findElements(By.cssSelector(".col-xs-5.col-sm-12")).get(2).click();
 		sleep(8000);
 		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary.js-steps")),"equals","comprar");
@@ -540,8 +540,8 @@ public class EComerce extends Metodos{
 	
 	
 	@Test(groups ={"Registracion de email","Venta Accesorio"}) // El accesorio lo reconoce como un equipo y pregunta por la linea 
-	public void TS053_Cliente_no_logueado_compra_un_accesorio_e_ingresa_un_mail_no_registrado_y_debe_completar_todos_los_datos_en_checkout(){
-		imagen="TS053_Cliente_no_logueado_compra_un_accesorio_e_ingresa_un_mail_no_registrado_y_debe_completar_todos_los_datos_en_checkout";
+	public void C73_Cliente_no_logueado_compra_un_accesorio_e_ingresa_un_mail_no_registrado_y_debe_completar_todos_los_datos_en_checkout(){
+		imagen="C73_Cliente_no_logueado_compra_un_accesorio_e_ingresa_un_mail_no_registrado_y_debe_completar_todos_los_datos_en_checkout";
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
 		sleep(7000);
 		List <WebElement> products = driver.findElements(By.cssSelector(".product-list__wrapper"));
@@ -557,8 +557,8 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test(groups ={"Registracion de email","Venta Accesorio","cliente logueado"})  // El accesorio lo reconoce como un equipo y pregunta por la linea 
-	public void TS054_Cliente_logueado_compra_un_accesorio_e_ingresa_un_mail_cargado_en_Siebel(){
-		imagen="TS054_Cliente_logueado_compra_un_accesorio_e_ingresa_un_mail_cargado_en_Siebel";
+	public void C74_Cliente_logueado_compra_un_accesorio_e_ingresa_un_mail_cargado_en_Siebel(){
+		imagen="C74_Cliente_logueado_compra_un_accesorio_e_ingresa_un_mail_cargado_en_Siebel";
 		loginEComerce("1164597262","1469");
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
 		sleep(7000);
