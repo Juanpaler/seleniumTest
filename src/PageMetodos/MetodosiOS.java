@@ -30,6 +30,9 @@ public class MetodosiOS {
         driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave numérica'] and ./parent::*[@class='UIAView']]")).sendKeys("1469");
         driver.findElement(By.id("INGRESAR A MI PERSONAL UAT")).click();
         sleep(10000);
+        try {
+        	scrollAndClick(driver, "id", "En otro momento");
+        } catch(Exception e) {}
 	}
 
 	public void scrollAndClick(IOSDriver<IOSElement> driver, String by, String using) {
@@ -426,9 +429,7 @@ public class MetodosiOS {
     	} catch(Exception e) {
     		scrollAndClick(driver, "id", "Pagos y Packs");
     	}
-		driver.swipe(242, 748, 249, 431, 1697);
-		sleep(5000);
-		driver.findElement(By.xpath("((//*[@class='UIATable' and ./parent::*[./parent::*[@class='UIATable'] and (./preceding-sibling::* | ./following-sibling::*)[./*[@class='UIAButton']]]]/*[@class='UIAView'])[15]/*[@class='UIAButton'])[2]")).click();
+		driver.findElement(By.xpath("((//*[@class='UIATable' and ./parent::*[./parent::*[@class='UIATable'] and (./preceding-sibling::* | ./following-sibling::*)[./*[@class='UIAButton']]]]/*[@class='UIAView'])[2]/*[@class='UIAButton'])[2]")).click();
 		sleep(7000);
     	for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
     		if (x.getText().contains("Complet\u00e1 el siguiente formulario para finalizar el pago"))
@@ -446,7 +447,7 @@ public class MetodosiOS {
     	}
 		driver.swipe(242, 200, 249, 431, 1697);
 		sleep(5000);
-		driver.findElement(By.xpath("((//*[@class='UIATable' and ./parent::*[./parent::*[@class='UIATable'] and (./preceding-sibling::* | ./following-sibling::*)[./*[@class='UIAButton']]]]/*[@class='UIAView'])[15]/*[@class='UIAButton'])[1]")).click();
+		driver.findElement(By.xpath("((//*[@class='UIATable' and ./parent::*[./parent::*[@class='UIATable'] and (./preceding-sibling::* | ./following-sibling::*)[./*[@class='UIAButton']]]]/*[@class='UIAView'])[2]/*[@class='UIAButton'])[1]")).click();
 		sleep(5000);
     	for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
     		if (x.getText().contains("Pago con Pago Mis Cuentas: Paso a paso"))
@@ -504,7 +505,7 @@ public class MetodosiOS {
     public boolean verificarActivYDesactDobleBlue(IOSDriver<IOSElement> driver, String tipoDeLinea) {
 		boolean activ = false, desact = false;
 		scrollAndClick(driver, "id", "Compr\u00e1 m\u00e1s internet");
-    	scrollAndClick(driver, "id", "AMPLIAR MI CUOTA A 200 MB");
+    	scrollAndClick(driver, "id", "CAMBIAR A CUOTA NACIONAL 200 MB");
     	scrollAndClick(driver, "id", "CONFIRMAR");
     	switch(tipoDeLinea) {
     	case "MIX":

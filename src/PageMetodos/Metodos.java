@@ -455,6 +455,13 @@ public class Metodos {
 		}
 		
 	}
+	public WebElement HighLightElement(WebElement elemento){
+		
+		if (driver instanceof JavascriptExecutor) {
+	        ((JavascriptExecutor)driver).executeScript("arguments[0].style.border='1px solid red'", elemento);
+	    }
+		return elemento;
+	}
 	
 	public void loginEComerce(String sLinea, String sPass){
 		driver.findElement(By.id("tpi-user-login-btn")).click();
