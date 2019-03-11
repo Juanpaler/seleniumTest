@@ -455,7 +455,13 @@ public class Metodos {
 		}
 		
 	}
-	
+	public WebElement HighLightElement(WebElement elemento){
+		
+		if (driver instanceof JavascriptExecutor) {
+	        ((JavascriptExecutor)driver).executeScript("arguments[0].style.border='1px solid red'", elemento);
+	    }
+		return elemento;
+	}
 	@DataProvider
 	public Object[][] MIX() throws Exception {
 		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Mix");
