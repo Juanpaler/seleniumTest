@@ -428,6 +428,36 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Interna Producto","Financiacion"}) 
+	public void C68_Compra_equipo_linea_nueva_Mail_registrado(){
+		imagen="C68_Compra_equipo_linea_nueva_Mail_registrado";
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		driver.findElement(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary.js-steps")).click();
+		driver.findElement(By.cssSelector(".product-main__btn.btn.btn-default.js-select-plan.js-steps")).click();
+		buscarYClick(driver.findElements(By.cssSelector(".plan__btn.product-main__btn.btn.btn-default")),"contains","Quiero este plan");
+		driver.findElement(By.cssSelector(".action__go-to-checkout.btn.btn-primary.btn-lg.col-md-3.col-sm-6.col-xs-12")).click();
+		driver.findElement(By.id("client-pre-email")).sendKeys("alejandro-miguel.rubinstein@atos.net");
+
+		driver.findElement(By.id("btn-client-pre-email")).click();		
+		buscarYClick(driver.findElements(By.id("btn-identified-user-button")),"contains","continuar con la compra");
+
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("client-first-name")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("client-last-name")));
+		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+		Boolean camposLlenos = false;		
+		camposLlenos = !driver.findElement(By.id("client-first-name")).getText().isEmpty();		
+		camposLlenos = !(camposLlenos == driver.findElement(By.id("client-last-name")).getText().isEmpty());
+		
+		Assert.assertTrue(camposLlenos);		
+	}
+	
+	@Test (groups ={"Interna Producto","Financiacion"}) 
 	public void C70_Compra_equipo_linea_nueva_Mail_no_registrado(){
 		imagen="C70_Compra_equipo_linea_nueva_Mail_no_registrado";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
