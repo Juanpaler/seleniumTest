@@ -368,8 +368,11 @@ public class EComerce extends Metodos{
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","destacados");
 		buscarYClick(driver.findElements(By.cssSelector(".filter__item")),"contains","mayor precio");
+		
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);		
 		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".product-list__price--leyend")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".product-list__price--leyend")));		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);	
 		
 	    List<WebElement> precios = driver.findElements(By.cssSelector(".product-list__price--leyend"));
 	    int tamanio=precios.size();
@@ -401,9 +404,11 @@ public class EComerce extends Metodos{
 		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","destacados");
 		buscarYClick(driver.findElements(By.cssSelector(".filter__item")),"contains","menor precio");
 		
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".product-list__price--leyend")));
-		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
+
 	    List<WebElement> precios = driver.findElements(By.cssSelector(".product-list__price--leyend"));
 	    int tamanio=precios.size();
 	    double temp = 0;
