@@ -487,14 +487,12 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Interna Accesorio","Financiacion"}) 
 	public void C57_Compra_Accesorio_Carro_de_compra(){
-		imagen="C57_Compra_Accesorio_Carro_de_compra(TS035)";
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		imagen="C57_Compra_Accesorio_Carro_de_compra";
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
 		
-		//TODO: Cuando est� disponible, acceder al accesorio mediante el men� "Todos los accesorios"
-		//buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
-		driver.navigate().to("https://personaluat.vtexcommercestable.com.br/accesorio-lg-prueba-alg12345n/p");
-		driver.findElement(By.cssSelector(".buy-button.buy-button-ref")).click();
-			
+		driver.navigate().to("https://personaluat.vtexcommercestable.com.br/accesorios");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		driver.findElement(By.cssSelector(".buy-button.buy-button-ref")).click();			
 		Boolean carroCompras = false;		
 		carroCompras = driver.findElement(By.cssSelector(".cart__title--container")).getText().equals("Resumen de compra");	
 		Assert.assertTrue(carroCompras);		
@@ -505,9 +503,8 @@ public class EComerce extends Metodos{
 		imagen="C72_Compra_Accesorio_Mail_no_registrado(TS052)";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
-		//TODO: Cuando est� disponible, acceder al accesorio mediante el men� "Todos los accesorios"
-		//buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
-		driver.navigate().to("https://personaluat.vtexcommercestable.com.br/accesorio-lg-prueba-alg12345n/p");
+		driver.navigate().to("https://personaluat.vtexcommercestable.com.br/accesorios");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
 		driver.findElement(By.cssSelector(".buy-button.buy-button-ref")).click();
 		driver.findElement(By.cssSelector(".action__go-to-checkout.btn.btn-primary.btn-lg.col-md-3.col-sm-6.col-xs-12")).click();
 		driver.findElement(By.id("client-pre-email")).sendKeys("correo@electronico.com");
