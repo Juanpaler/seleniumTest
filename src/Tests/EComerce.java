@@ -540,21 +540,24 @@ public class EComerce extends Metodos{
 	}
 	
 	
-	@Test(groups ={"Registracion de email","Venta Accesorio"}) // El accesorio lo reconoce como un equipo y pregunta por la linea 
+	@Test(groups ={"Registracion de email","Venta Accesorio"}) 
 	public void C73_Cliente_no_logueado_compra_un_accesorio_e_ingresa_un_mail_no_registrado_y_debe_completar_todos_los_datos_en_checkout(){
 		imagen="C73_Cliente_no_logueado_compra_un_accesorio_e_ingresa_un_mail_no_registrado_y_debe_completar_todos_los_datos_en_checkout";
-		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
-		sleep(7000);
-		List <WebElement> products = driver.findElements(By.cssSelector(".product-list__wrapper"));
-			for(WebElement p : products){
-				if (p.getText().toLowerCase().contains("vidrio templado")){
-					p.findElement(By.cssSelector(".col-xs-5.col-sm-12")).click();
-					break;
-				}
-			}
-		sleep(5000);
-		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary.js-steps")),"equals","comprar");
-		Assert.assertTrue(false);
+		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		driver.navigate().to("https://personaluat.vtexcommercestable.com.br/accesorios");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		driver.findElement(By.cssSelector(".buy-button.buy-button-ref")).click();
+		driver.findElement(By.cssSelector(".action__go-to-checkout.btn.btn-primary.btn-lg.col-md-3.col-sm-6.col-xs-12")).click();
+		driver.findElement(By.id("client-pre-email")).sendKeys("correo@test.com");
+		driver.findElement(By.id("btn-client-pre-email")).click();		
+		
+		Boolean camposVacios = false;		
+		camposVacios = driver.findElement(By.id("client-first-name")).getText().isEmpty();		
+		camposVacios = (camposVacios == driver.findElement(By.id("client-last-name")).getText().isEmpty());
+		
+		Assert.assertTrue(camposVacios);		
 	}
 	
 	@Test(groups ={"Registracion de email","Venta Accesorio","cliente logueado"})  // El accesorio lo reconoce como un equipo y pregunta por la linea 
