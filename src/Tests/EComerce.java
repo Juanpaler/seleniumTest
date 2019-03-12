@@ -575,21 +575,4 @@ public class EComerce extends Metodos{
 		Assert.assertTrue(camposVacios);		
 	}
 	
-	@Test(groups ={"Registracion de email","Venta Accesorio","cliente logueado"})  // El accesorio lo reconoce como un equipo y pregunta por la linea 
-	public void C74_Cliente_logueado_compra_un_accesorio_e_ingresa_un_mail_cargado_en_Siebel(){
-		imagen="C74_Cliente_logueado_compra_un_accesorio_e_ingresa_un_mail_cargado_en_Siebel";
-		loginEComerce("1164597262","1469");
-		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
-		sleep(7000);
-		List <WebElement> products = driver.findElements(By.cssSelector(".product-list__wrapper"));
-			for(WebElement p : products){
-				if (p.getText().toLowerCase().contains("vidrio templado")){
-					p.findElement(By.cssSelector(".col-xs-5.col-sm-12")).click();
-					break;
-				}
-			}
-		sleep(5000);
-		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary.js-steps")),"equals","comprar");
-		Assert.assertTrue(false);
-	}
 }
