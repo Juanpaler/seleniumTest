@@ -507,14 +507,15 @@ public class EComerce extends Metodos{
 		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
 		driver.findElement(By.cssSelector(".buy-button.buy-button-ref")).click();
 		driver.findElement(By.cssSelector(".action__go-to-checkout.btn.btn-primary.btn-lg.col-md-3.col-sm-6.col-xs-12")).click();
-		driver.findElement(By.id("client-pre-email")).sendKeys("correo@electronico.com");
+		driver.findElement(By.id("client-pre-email")).sendKeys("alejandro-miguel.rubinstein@atos.net");
 		driver.findElement(By.id("btn-client-pre-email")).click();		
+		buscarYClick(driver.findElements(By.id("btn-identified-user-button")),"contains","continuar con la compra");
 		
-		Boolean camposVacios = false;		
-		camposVacios = driver.findElement(By.id("client-first-name")).getText().isEmpty();		
-		camposVacios = (camposVacios == driver.findElement(By.id("client-last-name")).getText().isEmpty());
+		Boolean camposLlenos = false;		
+		camposLlenos = !driver.findElement(By.id("client-first-name")).getText().isEmpty();		
+		camposLlenos = !(camposLlenos == driver.findElement(By.id("client-last-name")).getText().isEmpty());
 		
-		Assert.assertTrue(camposVacios);		
+		Assert.assertTrue(camposLlenos);		
 	}
 	
 	@Test (groups ={"Registracion de email","Linea nueva"}) 
