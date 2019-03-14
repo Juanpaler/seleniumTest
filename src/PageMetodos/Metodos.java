@@ -489,6 +489,15 @@ public class Metodos {
 		//Si implicitWait era mayor a cero, volver a poner el valor.
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);			
 	}
+	
+public void logoutEcommerce(){
+		
+		WaitForElement("id", "tpi-user");
+		driver.findElement(By.id("tpi-user")).click();		
+		WaitForElement("id", "tpi-form-logoff");
+		driver.findElement(By.id("tpi-form-logoff")).click();	
+	}
+	
 	public void loginEComerceWithBug(String sLinea, String sPass){
 		
 		WaitForElement("id", "tpi-login");
