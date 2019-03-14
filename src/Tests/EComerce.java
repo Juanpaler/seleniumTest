@@ -97,6 +97,18 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
+	public void C05_Cliente_loguea_en_card_y_se_actualizan_precios(){
+		imagen = "C05_Cliente_loguea_en_card_y_se_actualizan_precios";
+		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		
+		loginEComerceWithBug("1164443656","1469");		
+		
+	}	
+	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
 	public void C28_Visualizacion_de_productos_en_cliente_No_logueado(){
 		imagen = "C28_Visualizacion_de_productos_en_cliente_No_logueado";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
