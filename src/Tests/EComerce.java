@@ -135,6 +135,14 @@ public class EComerce extends Metodos{
 		Assert.assertTrue(Math.round(precioCardDouble) == Math.round(precioCatalogoDouble)); 
 	}	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
+	public void C08_Cliente_se_loguea_en_la_tienda_en_el_TPInjector(){
+		imagen = "C08_Cliente_se_loguea_en_la_tienda_en_el_TPInjector";		
+
+		loginEComerceWithBug("1164443656","1469");				
+		WaitForElement("id", "tpi-user");		
+		Assert.assertTrue(true);
+	}	
+	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
 	public void C28_Visualizacion_de_productos_en_cliente_No_logueado(){
 		imagen = "C28_Visualizacion_de_productos_en_cliente_No_logueado";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
