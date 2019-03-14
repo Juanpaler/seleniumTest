@@ -72,6 +72,19 @@ public class EComerce extends Metodos{
 		}
 	}
 	
+	
+	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
+	public void C03_Cliente_hace_logout_despues_de_login(){
+		imagen = "C03_Cliente_hace_logout_despues_de_login";
+		
+		loginEComerceWithBug("1164443656","1469");		
+		logoutEcommerce();
+		WaitForElement("id", "tpi-login");
+		
+		Assert.assertTrue(true);
+	}
+	
+	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
 	public void C28_Visualizacion_de_productos_en_cliente_No_logueado(){
 		imagen = "C28_Visualizacion_de_productos_en_cliente_No_logueado";
