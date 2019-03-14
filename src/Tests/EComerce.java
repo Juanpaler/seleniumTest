@@ -87,27 +87,22 @@ public class EComerce extends Metodos{
 	public void C04_Cliente_loguea_en_card_y_vuelve_a_home(){
 		imagen = "C04_Cliente_loguea_en_card_y_vuelve_a_home";
 		
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
-		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
-		
-		loginEComerceWithBug("1164443656","1469");		
-		
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");		
+		loginEComerceWithBug("1164443656","1469");				
 	}
 	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
 	public void C05_Cliente_loguea_en_card_y_se_actualizan_precios(){
 		imagen = "C05_Cliente_loguea_en_card_y_se_actualizan_precios";
 		
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
-		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
-		
-		loginEComerceWithBug("1164443656","1469");		
-		
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");		
+		loginEComerceWithBug("1164443656","1469");				
 	}	
+	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
 	public void C07_Clientes_logueado_ingresa_a_Interna_de_producto(){
 		imagen = "C07_Clientes_logueado_ingresa_a_Interna_de_producto";
@@ -134,6 +129,7 @@ public class EComerce extends Metodos{
 
 		Assert.assertTrue(Math.round(precioCardDouble) == Math.round(precioCatalogoDouble)); 
 	}	
+	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
 	public void C08_Cliente_se_loguea_en_la_tienda_en_el_TPInjector(){
 		imagen = "C08_Cliente_se_loguea_en_la_tienda_en_el_TPInjector";		
@@ -142,6 +138,7 @@ public class EComerce extends Metodos{
 		WaitForElement("id", "tpi-user");		
 		Assert.assertTrue(true);
 	}	
+	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
 	public void C28_Visualizacion_de_productos_en_cliente_No_logueado(){
 		imagen = "C28_Visualizacion_de_productos_en_cliente_No_logueado";
