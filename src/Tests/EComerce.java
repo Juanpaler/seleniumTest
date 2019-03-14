@@ -109,6 +109,32 @@ public class EComerce extends Metodos{
 		
 	}	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
+	public void C07_Clientes_logueado_ingresa_a_Interna_de_producto(){
+		imagen = "C07_Clientes_logueado_ingresa_a_Interna_de_producto";
+		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+		loginEComerceWithBug("1164443656","1469");		
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		
+		String precioCatalogo = driver.findElements(By.cssSelector(".product-list__price--leyend")).get(2).getText();
+		precioCatalogo = precioCatalogo.replace("$", "");
+		precioCatalogo = precioCatalogo.replace(".", "");
+		precioCatalogo = precioCatalogo.replace(",", ".");
+		
+		driver.findElements(By.cssSelector(".product-list__button")).get(2).click();
+
+		String precioCard = driver.findElement(By.cssSelector(".product-main__leyend--installment.hidden-xs.hidden-sm")).getText().replace("1 pago de $","");
+		precioCard = precioCard.replace("1 pago de $","");
+		precioCard = precioCard.replace(".","");
+		precioCard = precioCard.replace(",",".");
+		
+		Double precioCardDouble = Double.parseDouble(precioCard);
+		Double precioCatalogoDouble = Double.parseDouble(precioCatalogo);
+
+		Assert.assertTrue(Math.round(precioCardDouble) == Math.round(precioCatalogoDouble)); 
+	}	
+	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
 	public void C28_Visualizacion_de_productos_en_cliente_No_logueado(){
 		imagen = "C28_Visualizacion_de_productos_en_cliente_No_logueado";
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
