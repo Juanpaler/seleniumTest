@@ -489,6 +489,23 @@ public class Metodos {
 		//Si implicitWait era mayor a cero, volver a poner el valor.
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);			
 	}
+	public void loginEComerceWithBug(String sLinea, String sPass){
+		
+		WaitForElement("id", "tpi-login");
+		buscarYClick(driver.findElements(By.id("tpi-login")),"contains","Ingresar");
+		WaitForElement("id", "linea-area-numero");
+		driver.findElement(By.id("linea-area-numero")).sendKeys(sLinea);
+		WaitForElement("id", "btn-ingresar-clave");
+		buscarYClick(driver.findElements(By.id("btn-ingresar-clave")),"contains","Ingresar con clave personal");
+		WaitForElement("id", "txt-pin");
+		driver.findElement(By.id("txt-pin")).sendKeys(sPass);
+		WaitForElement("id", "login-btn");
+		buscarYClick(driver.findElements(By.id("login-btn")),"contains","Ingresar a Personal");
+		
+		//Esperamos que vuelva a aparecer el bot�n ingresar con clave, para redirigir a la tienda y estar logueados.
+		WaitForElement("id", "btn-ingresar-clave");
+		driver.navigate().to("https://personaluat.vtexcommercestable.com.br/");
+	}
 	public void loginEComerce(String sLinea, String sPass){
 		driver.findElement(By.id("tpi-user-login-btn")).click();
 		sleep(5000);
