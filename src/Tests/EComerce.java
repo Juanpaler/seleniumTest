@@ -617,9 +617,9 @@ public class EComerce extends Metodos{
 		imagen="C69_Cliente_no_logueado_compra_equipo_con_nueva_linea_e_ingresa_un_mail_registrado";
 		driver.findElements(By.cssSelector(".col-xs-5.col-sm-12")).get(2).click();
 		sleep(8000);
-		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary.js-steps")),"equals","comprar");
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary")),"equals","comprar");
 		sleep(5000);
-		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.btn.btn-default.js-select-plan.js-steps")),"contains","lo quiero con linea nueva");
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn--collapse.js-select-plan.js-steps")),"equals","con l\u00ednea nueva");
 		sleep(5000);
 		buscarYClick(driver.findElements(By.cssSelector(".plan__btn.product-main__btn.btn.btn-default")),"equals","quiero este plan");
 		sleep(8000);
@@ -654,4 +654,21 @@ public class EComerce extends Metodos{
 		Assert.assertTrue(camposVacios);		
 	}
 	
+	@Test(groups ={"Registracion de email","Venta Accesorio","cliente logueado"})  // El accesorio lo reconoce como un equipo y pregunta por la linea 
+	public void TS054_Cliente_logueado_compra_un_accesorio_e_ingresa_un_mail_cargado_en_Siebel(){
+		imagen="TS054_Cliente_logueado_compra_un_accesorio_e_ingresa_un_mail_cargado_en_Siebel";
+		loginEComerce("1151747938","1469");
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		sleep(7000);
+		List <WebElement> products = driver.findElements(By.cssSelector(".product-list__wrapper"));
+			for(WebElement p : products){
+				if (p.getText().toLowerCase().contains("vidrio templado")){
+					p.findElement(By.cssSelector(".col-xs-5.col-sm-12")).click();
+					break;
+				}
+			}
+		sleep(5000);
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary.js-steps")),"equals","comprar");
+		Assert.assertTrue(false);
+	}
 }
