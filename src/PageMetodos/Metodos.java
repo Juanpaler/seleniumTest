@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.ss.usermodel.Row;
@@ -37,7 +38,10 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 
 import DataProvider.ExcelUtils;
@@ -466,6 +470,54 @@ public class Metodos {
 		return elemento;
 	}
 	
+	public void WaitForElement(String by, String text) {
+		
+		//Preguntar si implicit wait es mayor a cero 
+		//(Hacer un gestor para almacenar la variable, porque no se puede recuperar por selenium)
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);		
+		
+		WebDriverWait wait = new WebDriverWait(driver, 15);
+		try {
+			switch (by) {
+			case "id":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.id(text)));	
+				break;
+			case "cssSelector":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(text)));
+				break;
+			}
+		} catch (Exception e) {
+			Assert.assertTrue(false);
+		}
+		//Si implicitWait era mayor a cero, volver a poner el valor.
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);			
+	}
+	
+public void logoutEcommerce(){
+		
+		WaitForElement("id", "tpi-user");
+		driver.findElement(By.id("tpi-user")).click();		
+		WaitForElement("id", "tpi-form-logoff");
+		driver.findElement(By.id("tpi-form-logoff")).click();	
+	}
+	
+	public void loginEComerceWithBug(String sLinea, String sPass){
+		
+		WaitForElement("id", "tpi-login");
+		buscarYClick(driver.findElements(By.id("tpi-login")),"contains","Ingresar");
+		WaitForElement("id", "linea-area-numero");
+		driver.findElement(By.id("linea-area-numero")).sendKeys(sLinea);
+		WaitForElement("id", "btn-ingresar-clave");
+		buscarYClick(driver.findElements(By.id("btn-ingresar-clave")),"contains","Ingresar con clave personal");
+		WaitForElement("id", "txt-pin");
+		driver.findElement(By.id("txt-pin")).sendKeys(sPass);
+		WaitForElement("id", "login-btn");
+		buscarYClick(driver.findElements(By.id("login-btn")),"contains","Ingresar a Personal");
+		
+		//Esperamos que vuelva a aparecer el bot�n ingresar con clave, para redirigir a la tienda y estar logueados.
+		WaitForElement("id", "btn-ingresar-clave");
+		driver.navigate().to("https://personaluat.vtexcommercestable.com.br/");
+	}
 	public void loginEComerce(String sLinea, String sPass){
 		driver.findElement(By.id("tpi-user-login-btn")).click();
 		sleep(5000);
