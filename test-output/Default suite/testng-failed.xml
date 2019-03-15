@@ -3,15 +3,12 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="WebLineaUnica">
+      <class name="Tests.EComerce">
         <methods>
-          <include name="asdd"/>
+          <include name="TS054_Cliente_logueado_compra_un_accesorio_e_ingresa_un_mail_cargado_en_Siebel"/>
           <include name="before"/>
-          <include name="apis"/>
-          <include name="after"/>
-          <include name="asd"/>
         </methods>
-      </class> <!-- WebLineaUnica -->
+      </class> <!-- Tests.EComerce -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

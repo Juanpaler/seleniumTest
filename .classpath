@@ -3,49 +3,94 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
-	<classpathentry kind="lib" path="/Telecom/lib/cglib-nodep-3.2.4.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/client-combined-3.4.0-nodeps.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/commons-codec-1.10.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/commons-collections4-4.1.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/commons-exec-1.3.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/commons-io-2.5.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/commons-lang3-3.5.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/cssparser-0.9.22.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/gson-2.8.0.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/guava-21.0.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/hamcrest-core-1.3.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/htmlunit-2.26.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/htmlunit-core-js-2.26.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/htmlunit-driver-2.26.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/httpclient-4.5.3.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/httpcore-4.4.6.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/httpmime-4.5.3.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/java-client-5.0.0-BETA9.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/javax.servlet-api-3.1.0.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/jcommander-1.27.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/jetty-io-9.4.1.v20170120.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/jetty-util-9.4.1.v20170120.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/jna-4.1.0.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/jna-platform-4.1.0.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/junit-4.12.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/neko-htmlunit-2.25.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/phantomjsdriver-1.4.0.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/poi-3.17.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/poi-examples-3.17.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/poi-excelant-3.17.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/poi-ooxml-3.17.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/poi-ooxml-schemas-3.17.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/poi-scratchpad-3.17.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/sac-1.3.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/serializer-2.7.2.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/testng-6.11.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/websocket-api-9.4.3.v20170317.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/websocket-client-9.4.3.v20170317.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/websocket-common-9.4.3.v20170317.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/xalan-2.7.2.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/xercesImpl-2.11.0.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/xml-apis-1.4.01.jar"/>
-	<classpathentry kind="lib" path="/Telecom/lib/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/appium-4.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/aspectjweaver-1.8.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/boon-0.33.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/cglib-nodep-3.2.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/client-combined-3.4.0-nodeps.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/commons-beanutils-1.9.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/commons-collections-3.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/commons-digester-1.8.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/commons-exec-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/commons-io-2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/commons-lang3-3.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/commons-lang3-3.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/commons-validator-1.5.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/cssparser-0.9.18.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/cssparser-0.9.22.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/fontbox-1.8.16.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/gson-2.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/gson-2.8.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/guava-21.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/htmlunit-2.21.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/htmlunit-2.26.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/htmlunit-core-js-2.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/htmlunit-core-js-2.26.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/htmlunit-driver-2.21.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/htmlunit-driver-2.26.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/httpclient-4.5.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/httpclient-4.5.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/httpcore-4.4.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/httpcore-4.4.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/httpmime-4.5.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/httpmime-4.5.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/java-client-5.0.0-BETA9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/javax.servlet-api-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/jcommander-1.27.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/jetty-io-9.2.15.v20160210.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/jetty-io-9.4.1.v20170120.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/jetty-util-9.2.15.v20160210.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/jetty-util-9.4.1.v20170120.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/jna-4.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/jna-platform-4.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/jsch-0.1.55.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/neko-htmlunit-2.21.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/neko-htmlunit-2.25.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/netty-3.5.7.Final.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/pdfbox-1.8.16.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/phantomjsdriver-1.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/poi-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/poi-examples-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/poi-excelant-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/poi-ooxml-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/poi-ooxml-schemas-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/poi-scratchpad-3.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/sac-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/selenium-api-2.53.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/selenium-chrome-driver-2.53.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/selenium-edge-driver-2.53.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/selenium-firefox-driver-2.53.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/selenium-ie-driver-2.53.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/selenium-java-2.53.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/selenium-leg-rc-2.53.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/selenium-remote-driver-2.53.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/selenium-safari-driver-2.53.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/selenium-support-2.53.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/serializer-2.7.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/spring-aop-4.3.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/spring-beans-4.3.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/spring-context-4.3.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/spring-core-4.3.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/spring-expression-4.3.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/testng-6.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/websocket-api-9.2.15.v20160210.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/websocket-api-9.4.3.v20170317.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/websocket-client-9.2.15.v20160210.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/websocket-client-9.4.3.v20170317.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/websocket-common-9.2.15.v20160210.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/websocket-common-9.4.3.v20170317.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/ws-commons-util-1.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/xalan-2.7.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/xercesImpl-2.11.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/xml-apis-1.4.01.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/xmlrpc-client-3.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sofia Chardin/Documents/WebPersonal/lib/xmlrpc-common-3.1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
