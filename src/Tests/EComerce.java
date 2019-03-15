@@ -208,6 +208,18 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
+	public void C34_Cliente_logueado_realiza_cater_Precio_de_venta_con_Subsidio(){
+		imagen="C34_Cliente_logueado_realiza_cater_Precio_de_venta_con_Subsidio	";;
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+		loginEComerceWithBug("1164443656","1469");				
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");	
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary")),"contains","comprar");
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn--collapse.js-select-cater.js-steps")),"contains","actual");
+	}
+	
+	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
 	public void C32_Cliente_no_logueado_ingresa_a_Soporte_Tecnico(){
 		imagen="C32_Cliente_no_logueado_ingresa_a_Soporte_Tecnico";;
 		sleep(10000);
