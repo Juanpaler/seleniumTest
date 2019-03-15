@@ -1,5 +1,7 @@
 package PageMetodos;
 
+import static org.testng.Assert.assertTrue;
+
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
@@ -39,6 +41,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.DataProvider;
 
 import DataProvider.ExcelUtils;
+import junit.framework.Assert;
 
 
 public class Metodos {

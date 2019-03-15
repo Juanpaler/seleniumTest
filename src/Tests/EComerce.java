@@ -525,9 +525,9 @@ public class EComerce extends Metodos{
 		imagen="TS049_Cliente_no_logueado_compra_equipo_con_nueva_linea_e_ingresa_un_mail_registrado";
 		driver.findElements(By.cssSelector(".col-xs-5.col-sm-12")).get(2).click();
 		sleep(8000);
-		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary.js-steps")),"equals","comprar");
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary")),"equals","comprar");
 		sleep(5000);
-		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.btn.btn-default.js-select-plan.js-steps")),"contains","lo quiero con linea nueva");
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn--collapse.js-select-plan.js-steps")),"equals","con l\u00ednea nueva");
 		sleep(5000);
 		buscarYClick(driver.findElements(By.cssSelector(".plan__btn.product-main__btn.btn.btn-default")),"equals","quiero este plan");
 		sleep(8000);
