@@ -45,7 +45,6 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 
 import DataProvider.ExcelUtils;
-import junit.framework.Assert;
 
 
 public class Metodos {
