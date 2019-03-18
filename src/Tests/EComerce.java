@@ -5,6 +5,7 @@ import static org.testng.Assert.assertTrue;
 import java.awt.AWTException;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
@@ -35,8 +36,9 @@ public class EComerce extends Metodos{
 	
 	private WebDriver driver;
 	
-	String imagen;
-
+	String nombreCaso;
+	String archivoLineas="LineasEcommerce.xlsx";
+	
 	@BeforeMethod (alwaysRun = true)
 		public void before(){
 		driver = setup();
@@ -61,7 +63,7 @@ public class EComerce extends Metodos{
 	
 	//@AfterMethod (alwaysRun = true)
 	public void after(){
-		tomarCaptura(driver,imagen);
+		tomarCaptura(driver,nombreCaso);
 		try{
 			driver.findElement(By.id("vtex-callcenter__user-logout")).click();
 			sleep(5000);
@@ -74,7 +76,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
 	public void C03_Cliente_hace_logout_despues_de_login(){
-		imagen = "C03_Cliente_hace_logout_despues_de_login";
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		
 		loginEComerceWithBug("1164443656","1469");		
 		logoutEcommerce();
@@ -85,8 +87,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
 	public void C04_Cliente_loguea_en_card_y_vuelve_a_home(){
-		imagen = "C04_Cliente_loguea_en_card_y_vuelve_a_home";
-		
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
 		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");		
@@ -95,7 +96,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
 	public void C05_Cliente_loguea_en_card_y_se_actualizan_precios(){
-		imagen = "C05_Cliente_loguea_en_card_y_se_actualizan_precios";
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
@@ -104,12 +105,11 @@ public class EComerce extends Metodos{
 	}	
 	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
-	public void C07_Clientes_logueado_ingresa_a_Interna_de_producto(){
-		imagen = "C07_Clientes_logueado_ingresa_a_Interna_de_producto";
-		
+	public void C07_Clientes_logueado_ingresa_a_Interna_de_producto() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-		loginEComerceWithBug("1164443656","1469");		
+		int linea=retornaLinea(nombreCaso,archivoLineas);
+		loginEComerceWithBug(String.valueOf(linea),"1469");		
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
 		
 		String precioCatalogo = driver.findElements(By.cssSelector(".product-list__price--leyend")).get(2).getText();
@@ -131,17 +131,17 @@ public class EComerce extends Metodos{
 	}	
 	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
-	public void C08_Cliente_se_loguea_en_la_tienda_en_el_TPInjector(){
-		imagen = "C08_Cliente_se_loguea_en_la_tienda_en_el_TPInjector";		
-
-		loginEComerceWithBug("1164443656","1469");				
+	public void C08_Cliente_se_loguea_en_la_tienda_en_el_TPInjector() throws IOException{
+        nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 		
+        int linea=retornaLinea(nombreCaso,archivoLineas);
+		loginEComerceWithBug(String.valueOf(linea),"1469");				
 		WaitForElement("id", "tpi-user");		
 		Assert.assertTrue(true);
 	}	
 	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
 	public void C28_Visualizacion_de_productos_en_cliente_No_logueado(){
-		imagen = "C28_Visualizacion_de_productos_en_cliente_No_logueado";
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		Boolean precio = false;
@@ -156,7 +156,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
 	public void C27_Visualizacion_de_catalogo_de_equipos_disponibles(){
-		imagen = "C27_Visualizacion_de_catalogo_de_equipos_disponibles";
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		Boolean precio = false;
@@ -174,7 +174,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
 	public void C31_Cliente_no_logueado_ingresa_a_Planes(){
-		imagen="C31_Cliente_no_logueado_ingresa_a_Planes";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item2"));
@@ -186,7 +186,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
 	public void C29_Cliente_no_logueado_ingresa_a_Autogestion(){
-		imagen="C29_Cliente_no_logueado_ingresa_a_Autogestion";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item3"));
@@ -198,7 +198,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
 	public void C33_Cliente_no_logueado_ingresa_a_Temas_de_Ayuda(){
-		imagen="C33_Cliente_no_logueado_ingresa_a_Temas_de_Ayuda";;
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		sleep(10000);
 		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item5"));
 		Actions action = new Actions(driver);
@@ -209,7 +209,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
 	public void C34_Cliente_logueado_realiza_cater_Precio_de_venta_con_Subsidio(){
-		imagen="C34_Cliente_logueado_realiza_cater_Precio_de_venta_con_Subsidio	";;
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
 		loginEComerceWithBug("1164443656","1469");				
@@ -221,7 +221,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
 	public void C32_Cliente_no_logueado_ingresa_a_Soporte_Tecnico(){
-		imagen="C32_Cliente_no_logueado_ingresa_a_Soporte_Tecnico";;
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		sleep(10000);
 		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item5"));
 		Actions action = new Actions(driver);
@@ -232,7 +232,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
 	public void C30_Cliente_no_logueado_ingresa_a_Ayuda_Lineas(){
-		imagen="C30_Cliente_no_logueado_ingresa_a_Ayuda_Lineas";;
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item5"));
@@ -244,7 +244,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
 	public void C02_Busqueda_de_resultados_relacionados(){
-		imagen="C02_Busqueda_de_resultados_relacionados";;
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		driver.findElement(By.cssSelector(".tpi-search")).click();
@@ -255,7 +255,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
 	public void C01_Busqueda_de_resultado(){
-		imagen="C01_Busqueda_de_resultado";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.cssSelector(".tpi-search")).click();
 		driver.findElement(By.id("searchable1")).sendKeys("cambio de equipo");
@@ -265,7 +265,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Home Tienda","Filtros"}) 
 	public void C09_Filtro_Marcas(){
-		imagen="C09_Filtro_Marcas";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.findElement(By.cssSelector(".filter__item--mark.filter__item--mark-Todas.las.marcas")).click();
 		driver.findElement(By.cssSelector(".filter__item.filter__item--mark.filter__item--mark-samsung")).click();
@@ -283,7 +283,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Home Tienda","Filtros"}) 
 	public void C11_Filtro_Tipo_de_Camara(){
-		imagen="C11_Filtro_Tipo_de_Camara";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","Tipos de camara");
@@ -313,7 +313,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Home Tienda","Filtros"}) 
 	public void C13_Filtro_Tipo_de_Pantalla(){
-		imagen="C13_Filtro_Tipo_de_Pantalla";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","Tama�o de pantalla");
@@ -328,7 +328,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Home Tienda","Filtros"}) 
 	public void C17_Limite_de_comparador_de_Equipos(){
-		imagen="C17_Limite_de_comparador_de_Equipos";;
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
 		List<WebElement> elementos = driver.findElements(By.cssSelector(".comparator__checkbox.icn.checkbox"));
@@ -350,7 +350,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Home Tienda","Filtros"}) 
 	public void C21_Ordenamiento_Destacado(){
-		imagen="C21_Ordenamiento_Destacado";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","destacados");
 		buscarYClick(driver.findElements(By.cssSelector(".filter__item")),"contains","destacados");
@@ -365,7 +365,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Interna Producto","Financiacion"}) 
 	public void C52_Cliente_no_logueado_elige_linea_Nueva(){
-		imagen="C52_Cliente_no_logueado_elige_linea_Nueva";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
@@ -401,7 +401,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Interna Producto","Entrega"}) 
 	public void C54_plazos_y_opciones_de_entrega(){
-		imagen="C54_plazos_y_opciones_de_entrega";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
@@ -421,7 +421,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Interna Producto","Financiacion"}) 
 	public void C55_opciones_de_financiacion(){
-		imagen="C55_opciones_de_financiacion";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
@@ -441,7 +441,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Interna Producto","Financiacion"}) 
 	public void C56_opciones_de_Cuotas(){
-		imagen="C56_opciones_de_Cuotas";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
@@ -460,7 +460,7 @@ public class EComerce extends Metodos{
 
 	@Test (groups ={"Home Tienda","Filtros"}) 
 	public void C23_Ordenamiento_Precio_Mayor(){
-		imagen="C23_Ordenamiento_Precio_Mayor";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","destacados");
 		buscarYClick(driver.findElements(By.cssSelector(".filter__item")),"contains","mayor precio");
@@ -495,7 +495,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Home Tienda","Filtros"}) 
 	public void C25_Ordenamiento_Precio_Menor(){
-		imagen="C25_Ordenamiento_Precio_Menor";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","destacados");
 		buscarYClick(driver.findElements(By.cssSelector(".filter__item")),"contains","menor precio");
@@ -530,7 +530,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Interna Producto","Financiacion"}) 
 	public void C68_Compra_equipo_linea_nueva_Mail_registrado(){
-		imagen="C68_Compra_equipo_linea_nueva_Mail_registrado";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
@@ -560,7 +560,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Interna Producto","Financiacion"}) 
 	public void C70_Compra_equipo_linea_nueva_Mail_no_registrado(){
-		imagen="C70_Compra_equipo_linea_nueva_Mail_no_registrado";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
@@ -581,7 +581,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Interna Accesorio","Financiacion"}) 
 	public void C57_Compra_Accesorio_Carro_de_compra(){
-		imagen="C57_Compra_Accesorio_Carro_de_compra";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
 		
 		driver.navigate().to("https://personaluat.vtexcommercestable.com.br/accesorios");
@@ -594,7 +594,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Interna Accesorio","Financiacion"}) 
 	public void C72_Compra_Accesorio_Mail_no_registrado(){
-		imagen="C72_Compra_Accesorio_Mail_no_registrado(TS052)";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
 		driver.navigate().to("https://personaluat.vtexcommercestable.com.br/accesorios");
@@ -614,7 +614,7 @@ public class EComerce extends Metodos{
 	
 	@Test (groups ={"Registracion de email","Linea nueva"}) 
 	public void C69_Cliente_no_logueado_compra_equipo_con_nueva_linea_e_ingresa_un_mail_registrado(){
-		imagen="C69_Cliente_no_logueado_compra_equipo_con_nueva_linea_e_ingresa_un_mail_registrado";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.findElements(By.cssSelector(".col-xs-5.col-sm-12")).get(2).click();
 		sleep(8000);
 		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary")),"equals","comprar");
@@ -636,7 +636,7 @@ public class EComerce extends Metodos{
 	
 	@Test(groups ={"Registracion de email","Venta Accesorio"}) 
 	public void C73_Cliente_no_logueado_compra_un_accesorio_e_ingresa_un_mail_no_registrado_y_debe_completar_todos_los_datos_en_checkout(){
-		imagen="C73_Cliente_no_logueado_compra_un_accesorio_e_ingresa_un_mail_no_registrado_y_debe_completar_todos_los_datos_en_checkout";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
@@ -656,7 +656,7 @@ public class EComerce extends Metodos{
 	
 	@Test(groups ={"Registracion de email","Venta Accesorio","cliente logueado"})  // El accesorio lo reconoce como un equipo y pregunta por la linea 
 	public void TS054_Cliente_logueado_compra_un_accesorio_e_ingresa_un_mail_cargado_en_Siebel(){
-		imagen="TS054_Cliente_logueado_compra_un_accesorio_e_ingresa_un_mail_cargado_en_Siebel";
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		loginEComerce("1151747938","1469");
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
 		sleep(7000);
