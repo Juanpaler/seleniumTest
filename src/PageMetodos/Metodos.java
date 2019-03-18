@@ -47,10 +47,25 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 
 import DataProvider.ExcelUtils;
-import junit.framework.Assert;
+
+import java.io.FileInputStream;
+
+import java.io.FileNotFoundException;
+
+import java.io.IOException;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 
 public class Metodos {
+	
+    private static XSSFSheet ExcelWSheet;
+    private static XSSFWorkbook ExcelWBook;
+    private static XSSFCell Cell;
 	
 	static WebDriver driver;
 	static WebDriver driverf;
@@ -546,6 +561,30 @@ public void logoutEcommerce(){
 		driver.findElement(By.id("login-btn")).click();
 		sleep(5000);
 	}
+	
+	public int retornaLinea(String caso,String filename ) throws IOException{			
+		String CellData = null;
+		int CellData2 = 0;
+
+		try (FileInputStream fis = new FileInputStream(filename)) {
+			ExcelWBook = new XSSFWorkbook(fis);
+			ExcelWSheet = ExcelWBook.getSheetAt(0);
+			int count = ExcelWSheet.getPhysicalNumberOfRows();
+			for (int i = 0; i < count; i++) {
+				Cell = ExcelWSheet.getRow(i).getCell(0);
+				CellData = Cell.getStringCellValue();
+				if (CellData.equals(caso)) {
+					Cell = ExcelWSheet.getRow(i).getCell(1);
+					CellData2 = (int) Cell.getNumericCellValue();
+					break;
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return CellData2;
+	}
+	
 	
 	@DataProvider
 	public Object[][] MIX() throws Exception {
