@@ -9,11 +9,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
@@ -58,6 +60,22 @@ public class Metodos {
 	public static String lineaPre = "1162745165";
 	public static String lineaPos = "1145642605";
 	
+	public Properties config = new Properties();
+    InputStream configInput = null;
+	
+
+    public void loadConfig(){
+        try{
+            configInput = new FileInputStream("appConfig.properties");
+            config.load(configInput);
+            //Las configuraciones se consumen as�:
+            //String excelLineasEcommerce = config.getProperty("ExcelLineasEcommerce");
+           
+        } catch(Exception e){
+        	System.out.println("Error cargando configuraci�n\n" + e.getMessage());
+        }
+    }
+    
 	public static WebDriver setup(){
 		System.setProperty("webdriver.chrome.driver", "Chromedriver.exe");
 		ChromeOptions Options = new ChromeOptions();
