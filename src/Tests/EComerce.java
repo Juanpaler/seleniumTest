@@ -108,8 +108,8 @@ public class EComerce extends Metodos{
 	public void C07_Clientes_logueado_ingresa_a_Interna_de_producto() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginEComerceWithBug(String.valueOf(linea),"1469");		
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginEComerceWithBug(linea,"1469");		 
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
 		
 		String precioCatalogo = driver.findElements(By.cssSelector(".product-list__price--leyend")).get(2).getText();
@@ -133,8 +133,8 @@ public class EComerce extends Metodos{
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
 	public void C08_Cliente_se_loguea_en_la_tienda_en_el_TPInjector() throws IOException{
         nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 		
-        int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginEComerceWithBug(String.valueOf(linea),"1469");				
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginEComerceWithBug(linea,"1469");				
 		WaitForElement("id", "tpi-user");		
 		Assert.assertTrue(true);
 	}	
