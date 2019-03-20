@@ -80,8 +80,8 @@ public class MiCuentaWeb extends Metodos{
 	public void Comprar_Packs_Compra_de_Packs_MIX() throws IOException{
 		
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));			
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);			
 		
 		irA("packs");
 		sleep(15000);
@@ -97,8 +97,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","packs"})
 	public void Comprar_Packs_Compra_de_Packs_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("ahorros");
 		sleep(15000);
@@ -116,8 +116,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","packs"})
 	public void Comprar_Packs_Consultar_Comprobantes_MIX()  throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("packs");
 		sleep(15000);
@@ -130,8 +130,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","packs"})
 	public void Comprar_Packs_Consultar_Comprobantes_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("ahorros");
 		driver.findElement(By.cssSelector(".card.card-lg.packs.ng-scope")).click();
@@ -146,8 +146,8 @@ public class MiCuentaWeb extends Metodos{
 	public void Consumos_Detalles_de_Consumos_MIX()  throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		boolean tabla = false, detalles = false;
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		driver.findElement(By.className("card-footer")).click();
@@ -165,8 +165,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Consumos_Packs_Activos_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		sleep(12000);
@@ -179,8 +179,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Consumos_Packs_Activos_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		sleep(12000);
@@ -193,8 +193,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Baja_de_Suscripciones_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -212,8 +212,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Baja_de_Suscripciones_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -231,8 +231,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Baja_de_Suscripciones_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -251,8 +251,8 @@ public class MiCuentaWeb extends Metodos{
 	public void Consumos_Detalles_de_Consumos_POS()  throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		boolean tabla = false;
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		driver.findElement(By.cssSelector(".card.card-xs.detalle-consumos.dashboard")).click();
@@ -273,8 +273,8 @@ public class MiCuentaWeb extends Metodos{
 	public void Consumos_Detalles_de_Consumos_PRE()  throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		boolean tabla = false, detalles = false;
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		driver.findElement(By.className("card-footer")).click();
@@ -292,8 +292,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","recargas"})
 	public void Recargas_Gestiones_y_Consultas_Recargar_Ahora_MIX()  throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("recargas");
 		sleep(10000);
@@ -324,8 +324,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","recargas"})
 	public void Recargas_Gestiones_y_Consultas_Recargar_Ahora_PRE()  throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("recargas");
 		sleep(10000);
@@ -356,8 +356,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","recargas"})
 	public void Recargas_Gestiones_y_Consultas_Ultimas_Recargas_MIX()  throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("recargas");
 		sleep(5000);
@@ -369,8 +369,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","recargas"})
 	public void Recargas_Gestiones_y_Consultas_Ultimas_Recargas_PRE()  throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("recargas");
 		sleep(5000);
@@ -382,8 +382,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mis datos"})
 	public void Mis_Datos_Mi_Perfil_Cambiar_Contrasenia_MIX()  throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		Assert.assertTrue(cambiarClave("1357"));
 	}
@@ -391,8 +391,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mis datos"})
 	public void Mis_Datos_Mi_Perfil_Cambiar_Contrasenia_PRE()  throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		Assert.assertTrue(cambiarClave("1357"));
 	}
@@ -400,8 +400,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mis datos"})
 	public void Mis_Datos_Mi_Perfil_Cambiar_Contrasenia_POS()  throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		Assert.assertTrue(cambiarClave("1357"));
 	}
@@ -409,8 +409,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"})
 	public void Facturacion_Gestiones_y_Consultas_Distribucion_de_Factura_MIX()  throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		try {
@@ -432,8 +432,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"})
 	public void Facturacion_Gestiones_y_Consultas_Distribucion_de_Factura_POS()  throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		try {
@@ -454,8 +454,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Claves_PIN_y_PUK_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -473,8 +473,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Claves_PIN_y_PUK_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -492,8 +492,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Claves_PIN_y_PUK_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -511,8 +511,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","recargas"})
 	public void Recargas_Recarga_SOS_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("recargas");
 		sleep(10000);
@@ -533,8 +533,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","recargas"})
 	public void Recargas_Recarga_SOS_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("recargas");
 		sleep(10000);
@@ -555,8 +555,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_MI_Plan_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(10000);
@@ -572,8 +572,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_MI_Plan_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(10000);
@@ -589,8 +589,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Reserva_De_Turno_Plan_Black() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(10000);
@@ -611,8 +611,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"})
 	public void Facturacion_Ver_Formas_de_Pago_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","formas y lugares de pago");
@@ -627,8 +627,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"})
 	public void Facturacion_Ver_Formas_de_Pago_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","formas y lugares de pago");
@@ -643,8 +643,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_Detalle_de_credito_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		boolean check = true;
@@ -661,8 +661,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_Detalle_de_credito_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		boolean check = true;
@@ -679,8 +679,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"}, dependsOnMethods="Recargas_Gestiones_y_Consultas_Ultimas_Recargas_MIX")
 	public void Mis_Consumos_Detalle_de_credito_Historial_de_recargas_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		Assert.assertTrue(true);
 		sleep(3000);
@@ -689,8 +689,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"}, dependsOnMethods="Recargas_Gestiones_y_Consultas_Ultimas_Recargas_PRE")
 	public void Mis_Consumos_Detalle_de_credito_Historial_de_recargas_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		Assert.assertTrue(true);
 		sleep(3000);
@@ -699,8 +699,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_Compra_Internet_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		boolean check = true;
@@ -717,8 +717,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_Compra_Internet_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		boolean check = true;
@@ -735,8 +735,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_Internet_de_mi_Plan_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		sleep(8000);
@@ -756,8 +756,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_Internet_Adicional_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		sleep(8000);
@@ -777,8 +777,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_Internet_Adicional_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		sleep(8000);
@@ -798,8 +798,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_SMS_Disponibles_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		sleep(8000);
@@ -817,8 +817,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mis datos"})
 	public void Mis_Datos_Mi_Perfil_Cambio_de_Mail()  throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		driver.findElement(By.id("tpi-user")).click();
 		sleep(3000);
@@ -839,8 +839,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"})
 	public void Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_MIX()  throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\\u00f3n");
 		driver.findElement(By.className("fo-text")).click();
@@ -854,8 +854,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"})
 	public void Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_POS()  throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\\u00f3n");
 		driver.findElement(By.className("fo-text")).click();
@@ -869,8 +869,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"}, dependsOnMethods="Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_MIX")
 	public void Facturacion_Facturacion_Digital_Desuscripcion_a_Factura_Online_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 	    //SIN TERMINAR - NO SE PUEDE COMPLETAR HASTA QUE FUNCIONE LA ADHESION
 	}
@@ -878,8 +878,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"}, dependsOnMethods="Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_POS")
 	public void Facturacion_Facturacion_Digital_Desuscripcion_a_Factura_Online_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 	    //SIN TERMINAR - NO SE PUEDE COMPLETAR HASTA QUE FUNCIONE LA ADHESION
 	}
@@ -888,8 +888,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_SMS_Disponibles_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		sleep(8000);
@@ -907,8 +907,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_Minutos_Disponibles_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		sleep(8000);
@@ -927,8 +927,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Mis_Consumos_Minutos_Disponibles_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		sleep(8000);
@@ -947,8 +947,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Carga_Formulario_Baja_Servicio() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(10000);
@@ -977,8 +977,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Carga_Formulario_Cambio_Titularidad() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(10000);
@@ -1030,8 +1030,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Carga_Formulario_Autorizado() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLineaF(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLineaF(linea);
 		
 		irA("mi l\u00ednea");
 		sleep(10000);
@@ -1045,8 +1045,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"})
 	public void Facturacion_Links() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		buscarYClick(driver.findElements(By.cssSelector(".col-sm-6.col-md-12.col-lg-6")),"equals","consultas generales de facturaci\u00f3n");
@@ -1085,8 +1085,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Usabilidad","navegacion"})
 	public void DIGITAL_WEB_CHR_IND_USABILIDAD_NAVEGACION_PRINCIPAL() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		Assert.assertTrue(driver.findElement(By.id("section-ui-view")).getText().toLowerCase().contains("cr\u00e9dito"));
@@ -1125,8 +1125,8 @@ public class MiCuentaWeb extends Metodos{
 		sleep(5000);
 		driveri = setup3();
 		
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLineaI(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLineaI(linea);
 
 		irA("consumos");
 		Assert.assertTrue(driver.findElement(By.id("section-ui-view")).getText().toLowerCase().contains("cr\u00e9dito"));
@@ -1187,8 +1187,8 @@ public class MiCuentaWeb extends Metodos{
 		sleep(5000);
 		driveri = setup3();
 		
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLineaI(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLineaI(linea);
 		
 		driver.findElement(By.id("tpi-logo")).click();
 		sleep(5000);
@@ -1201,8 +1201,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Usabilidad","navegacion"})
 	public void DIGITAL_WEB_IND_USABILIDAD_IDENTIDAD_LOGO() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		Assert.assertTrue(driver.findElement(By.id("tpi-logo")).isDisplayed());
 	}
@@ -1210,8 +1210,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs","Debito"})
 	public void DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_LETRA() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarCBU("asdfa");
@@ -1221,8 +1221,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs","Debito"})
 	public void DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_COMBIN() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarCBU("12&41%");
@@ -1235,8 +1235,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs","Debito"})
 	public void DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_NOESTAND() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarCBU("'&^*");
@@ -1246,8 +1246,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs","Debito"})
 	public void DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_ESTAND() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarCBU(".,.");
@@ -1257,8 +1257,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs","Debito"})
 	public void DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_OBLIGAT_OBLIGATORIO() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarCBU("");
@@ -1271,8 +1271,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_GENERAR_CUPON_PAGO_MIX_IMPORTE_INPUT_MONEDA_OBLIGAT_OBLIGATORIO() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarCuponPago(" ");
@@ -1282,8 +1282,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_GENERAR_CUPON_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_DECIMAL_Con_separador_coma() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarCuponPago("12,25");
@@ -1294,8 +1294,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_GENERAR_CUPON_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_DECIMAL_Con_separador_punto() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarCuponPago("12.25");
@@ -1306,8 +1306,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_GENERAR_CUPON_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_NEUTRO_Valor_Neutro_0() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarCuponPago("0");
@@ -1317,8 +1317,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_GENERAR_CUPON_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_NEGAT_Valores_Negativos() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarCuponPago("-2");
@@ -1329,8 +1329,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_GENERAR_CUPON_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_COMBIN() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarCuponPago("2A0.35");
@@ -1340,8 +1340,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_INFORMAR_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_COMBIN() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		InformarPago("20.%0");
@@ -1351,8 +1351,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_INFORMAR_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_NEGAT_Valores_Negarivos() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		InformarPago("-2");
@@ -1362,8 +1362,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_INFORMAR_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_NEUTRO_Valor_Neutro_cero() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		InformarPago("0");
@@ -1373,8 +1373,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_INFORMAR_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_DECIMAL_Con_separador_punto_Entero_Decimal() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		InformarPago("12.78");
@@ -1384,8 +1384,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_INFORMAR_PAGO_MIX_IMPORTE_INPUT_MONEDA_CARACT_DECIMAL_Con_separador_coma_Entero_Decimal() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		InformarPago("12,78");
@@ -1395,8 +1395,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_INFORMAR_PAGO_MIX_IMPORTE_INPUT_MONEDA_OBLIGAT_OBLIGATORIO() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		InformarPago("");
@@ -1408,8 +1408,8 @@ public class MiCuentaWeb extends Metodos{
 	public void DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_MAX_Mas_de_22_digitos() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String a = "12345678901234567890123"; 
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarCBU(a);
@@ -1421,8 +1421,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_ADHESION_DEBITO_DIRECTO_MIX_CBU_INPUT_NUM_CARACT_MAX_Menos_de_22_digitos() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarCBU("1234567890123456789");
@@ -1432,8 +1432,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void Mi_Linea_Transferencia_de_Llamadas_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 		
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -1454,8 +1454,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
 	public void Mi_Linea_Destransferencia_de_Llamadas_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -1473,8 +1473,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void MI_Linea_Roaming_y_LDI_habilitado_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -1491,8 +1491,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void MI_Linea_Roaming_y_LDI_habilitado_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -1509,8 +1509,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void MI_Linea_Roaming_y_LDI_habilitado_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -1529,8 +1529,8 @@ public class MiCuentaWeb extends Metodos{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String ln = "1162735148";
 		ln = ln.substring(ln.length()-8);
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -1556,8 +1556,8 @@ public class MiCuentaWeb extends Metodos{
 		String ln = "1162735148";
 		ln = ln.substring(ln.length()-8);
 		
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -1581,8 +1581,8 @@ public class MiCuentaWeb extends Metodos{
 	public void Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Eliminacion_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 				
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -1599,8 +1599,8 @@ public class MiCuentaWeb extends Metodos{
 	public void Mi_Linea_Numeros_Amigos_para_Hablar_SMS_Eliminacion_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -1616,8 +1616,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void Mi_Linea_Seguimineto_de_Gestiones_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -1632,8 +1632,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void Mi_Linea_Seguimineto_de_Gestiones_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -1648,8 +1648,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void Mi_Linea_Seguimineto_de_Gestiones_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(12000);
@@ -1665,8 +1665,8 @@ public class MiCuentaWeb extends Metodos{
 	public void Mis_Consumos_DataSharing_Alta_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String num = "64480754";
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		sleep(10000);
@@ -1691,8 +1691,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","consumos"}) 
 	public void Mis_Consumos_DataSharing_Modificacion_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		sleep(10000);
@@ -1716,8 +1716,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","consumos"}) 
 	public void Mis_Consumos_DataSharing_Baja_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("consumos");
 		sleep(10000);
@@ -1733,8 +1733,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Imprimir_cupon_de_pago_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		sleep(10000);
@@ -1751,8 +1751,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"})  
 	public void Facturacion_Imprimir_cupon_de_pago_POS() throws AWTException, IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		sleep(10000);
@@ -1769,8 +1769,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Ver_Facturas_MIX() throws AWTException, IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		sleep(10000);
@@ -1815,8 +1815,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Ver_Facturas_POS() throws AWTException, IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		sleep(10000);
@@ -1858,8 +1858,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Alarmas_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		sleep(10000);
@@ -1877,8 +1877,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Alarmas_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		sleep(10000);
@@ -1956,8 +1956,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Notas_de_Credito_y_Debito_MIX() throws AWTException, IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		sleep(12000);
@@ -2002,8 +2002,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Notas_de_Credito_y_Debito_POS() throws AWTException, IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		sleep(12000);
@@ -2047,8 +2047,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","packs"}) 
 	public void Comprar_Packs_Compra_de_Packs_con_puntos_Club_MIX () throws IOException {
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("packs");
 		sleep(15000);
@@ -2073,8 +2073,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","packs"}) 
 	public void Comprar_Packs_Compra_de_Packs_con_puntos_Club_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("ahorros");
 		sleep(15000);
@@ -2103,8 +2103,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Pagar_Factura_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		driver.findElement(By.id("btnPagarFactura")).click();
@@ -2147,8 +2147,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"})  
 	public void Facturacion_Pagar_Factura_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		driver.findElement(By.id("btnPagarFactura")).click();
@@ -2191,8 +2191,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","mis datos"}) 
 	public void Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		driver.findElement(By.id("tpi-user")).click();
 		sleep(3000);
@@ -2214,8 +2214,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","mis datos"}) 
 	public void Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		driver.findElement(By.id("tpi-user")).click();
 		sleep(3000);
@@ -2237,8 +2237,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","mis datos"}) 
 	public void Mis_Datos_Mi_Perfil_Cambio_de_Domicilio_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		driver.findElement(By.id("tpi-user")).click();
 		sleep(3000);
@@ -2260,8 +2260,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
 	public void Mi_Linea_Capro() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("mi l\u00ednea");
 		sleep(10000);
@@ -2279,7 +2279,7 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","consumos"}) 
 	public void Mis_Consumos_Modificar_Cuota_de_Datos() throws FileNotFoundException, UnsupportedEncodingException, JSchException, SftpException, IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
+		String linea=retornaLinea(nombreCaso,archivoLineas);
 		
 		//Genero el archivo para realizar el consumo de 1mb
 		String fecha = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
@@ -2289,7 +2289,7 @@ public class MiCuentaWeb extends Metodos{
 		int z = (int)(Math.random() * 999999999 + 100000000);
 		int y = (int)(Math.random() * 999999 + 100000);
 	
-		String echo="|||||0||3|1||||" + fecha + "105100|0|54" + String.valueOf(linea) + "|||||2000||||" + consumo + "|" + mitadconsumo + "|" + mitadconsumo + "||||||||||||||||||||||||||||||||||"
+		String echo="|||||0||3|1||||" + fecha + "105100|0|54" + linea + "|||||2000||||" + consumo + "|" + mitadconsumo + "|" + mitadconsumo + "||||||||||||||||||||||||||||||||||"
 				+ "3000|||||100.71.211.86||65.170.31.0|65.170.31.0|||||datos.personal.comID" + x + "|||0400|72234||||722-34-12345-41315||||||||||||||" + z + "|||" + consumo + "|"
 						+ "180|" + consumo + "|" + consumo + "|||||";
 		
@@ -2318,7 +2318,7 @@ public class MiCuentaWeb extends Metodos{
 		
 		//Loguin en la web
 		
-		LoginPorLineaVariable(String.valueOf(linea));
+		loginPorLinea(linea);
 
 		irA("consumos");
 		Assert.assertTrue(driver.findElement(By.cssSelector(".text-brand-cyanoscuro.ng-binding.ng-scope")).getText().equals("Internet X Dia"));
@@ -2351,8 +2351,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Compras_Realizadas_Descargar_Comprobante_MIX() throws IOException {
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		sleep(10000);
@@ -2365,8 +2365,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"})  
 	public void Facturacion_Compras_Realizadas_Descargar_Comprobante_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		sleep(10000);
@@ -2379,8 +2379,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Compras_Realizadas_Descargar_Comprobante_PRE() throws IOException {
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		sleep(10000);
@@ -2393,8 +2393,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
 	public void Facturacion_Informar_un_Pago_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		sleep(10000);
@@ -2408,8 +2408,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"})  
 	public void Facturacion_Informar_un_Pago_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		sleep(10000);
@@ -2423,8 +2423,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "AutogestionIndividuosWeb","recargas"}) 
 	public void Recargas_Recarga_con_puntos_Club_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("recargas");
 		sleep(15000);
@@ -2444,8 +2444,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","recargas"}) 
 	public void Recargas_Recarga_con_puntos_Club_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("recargas");
 		sleep(15000);
@@ -2463,8 +2463,8 @@ public class MiCuentaWeb extends Metodos{
 	public void Mis_Datos_Mi_Perfil_Ir_a_club_Personal() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		//Linea adherida a club
-		int linea = retornaLinea(nombreCaso,archivoLineas);
-		LoginPorLineaVariable(String.valueOf(linea));		
+		String linea = retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);		
 		
 		driver.findElement(By.id("tpi-user")).click();
 		sleep(3000);
@@ -2477,8 +2477,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_con_el_caracter_enie() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarFacturaOnline("\u00f1");
@@ -2488,8 +2488,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_caracteres_luego_del_arroba() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarFacturaOnline("asd@");
@@ -2499,8 +2499,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_caracteres_antes_del_arroba() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarFacturaOnline("@gmail");
@@ -2509,8 +2509,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_caracteres_luego_del_punto_posterior_al_arroba() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarFacturaOnline("asd@gmail.");
@@ -2520,8 +2520,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_arroba() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarFacturaOnline("asdgmail.com");
@@ -2531,8 +2531,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_punto() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarFacturaOnline("asdgmailcom");
@@ -2542,8 +2542,8 @@ public class MiCuentaWeb extends Metodos{
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_dato() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginPorLinea(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
 
 		irA("facturaci\u00f3n");
 		IngresarFacturaOnline("");
