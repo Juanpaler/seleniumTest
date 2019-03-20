@@ -562,9 +562,9 @@ public void logoutEcommerce(){
 		sleep(5000);
 	}
 	
-	public int retornaLinea(String caso,String filename ) throws IOException{			
+	public String retornaLinea(String caso,String filename ) throws IOException{			
 		String CellData = null;
-		int CellData2 = 0;
+		long CellData2 = 0;
 
 		try (FileInputStream fis = new FileInputStream(filename)) {
 			ExcelWBook = new XSSFWorkbook(fis);
@@ -575,14 +575,14 @@ public void logoutEcommerce(){
 				CellData = Cell.getStringCellValue();
 				if (CellData.equals(caso)) {
 					Cell = ExcelWSheet.getRow(i).getCell(1);
-					CellData2 = (int) Cell.getNumericCellValue();
+					CellData2 = (long) Cell.getNumericCellValue();
 					break;
 				}
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		return CellData2;
+		return String.valueOf(CellData2);
 	}
 	
 	
