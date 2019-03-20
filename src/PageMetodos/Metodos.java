@@ -385,7 +385,9 @@ public class Metodos {
 		driver.findElement(By.id("txtImporte")).clear();
 		driver.findElement(By.id("txtImporte")).sendKeys(pago);
 		sleep(2000);
-		obligarclick(driver.findElement(By.id("btnInformar")));
+		//obligarclick(driver.findElement(By.id("btnInformar")));
+		driver.findElement(By.id("btnInformar")).click();
+
 		sleep(7000);
 	}
 	public String GetStringDatePlusDay (int days){
