@@ -44,80 +44,80 @@ public class ClubPersonalFront extends Metodos{
 	@Test 
 	public void Adhesion_Titular_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginClubFront(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
         AdhesionTitularClub("testtest867@gmail.com");		
 	}
 	
 	@Test 
 	public void Adhesion_Titular_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginClubFront(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
         AdhesionTitularClub("testtest868@gmail.com");		
 	}
 	
 	@Test 
 	public void Adhesion_Titular_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginClubFront(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
         AdhesionTitularClub("testtest687@gmail.com");		
 	}
 	
 	@Test 
 	public void Canje_de_Premio_Diferido_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginClubFront(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
         canjePremio("Diferido");
 	}
 	
 	@Test 
 	public void Canje_de_Premio_Diferido_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginClubFront(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
         canjePremio("Diferido");
 	}
 	
 	@Test 
 	public void Canje_de_Premio_Diferido_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginClubFront(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
         canjePremio("Diferido");
 	}
 	
 	@Test 
 	public void Canje_de_Puntos_Canje_de_Voucher_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginClubFront(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
         canjePremio("Voucher");
 	}
 	
 	@Test 
 	public void Canje_de_Puntos_Canje_de_Voucher_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginClubFront(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
         canjePremio("Voucher");
 	}
 	
 	@Test 
 	public void Canje_de_Puntos_Canje_de_Voucher_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginClubFront(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
         canjePremio("Voucher");
 	}
 	
 	@Test 
 	public void Resumen_de_Puntos_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		int linea=retornaLinea(nombreCaso,archivoLineas);
-		loginClubFront(String.valueOf(linea));
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-default.pull-right.ng-scope")),"contains","Mi Club");
 		buscarYClick(driver.findElements(By.cssSelector(".ng-binding")),"contains","Resumen de Puntos");
