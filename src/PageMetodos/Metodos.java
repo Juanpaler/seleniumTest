@@ -11,6 +11,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Iterator;
@@ -583,6 +588,99 @@ public void logoutEcommerce(){
 			e.printStackTrace();
 		}
 		return CellData2;
+	}
+	
+	public void loginClubFront(String sLinea) {
+		driver.get("https://clubuat.personal.com.ar/fe/#/");
+		sleep(10000);
+		driver.findElement(By.id("tpi-login")).click();
+		sleep(10000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
+		driver.findElement(By.id("idToken1")).sendKeys(sLinea);
+		sleep(3000);
+		driver.findElement(By.id("idToken2")).clear();
+		driver.findElement(By.id("idToken2")).sendKeys("1469");
+		driver.findElement(By.id("loginButton_0")).click();
+		sleep(20000);
+		
+	}
+	
+	public void AdhesionTitularClub(String mail) {
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.padding-left-5.padding-right-5")),"contains","SI, SON MIS DATOS");
+		driver.findElement(By.id("titular")).sendKeys(mail);
+		new Select(driver.findElement(By.id("selectProvincia"))).selectByVisibleText("Capital Federal");
+		sleep(3000);
+		new Select(driver.findElement(By.name("localidad"))).selectByVisibleText("Capital Federal");
+		sleep(3000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","CONTINUAR");
+		sleep(10000);
+		Assert.assertTrue(driver.findElement(By.cssSelector(".hidden-xs")).isDisplayed());	
+		buscarYClick(driver.findElements(By.cssSelector(".text-primary.btn.btn-link.font-size-10")),"contains","IR A CLUB PERSONAL");
+		sleep(10000);
+		
+		Connection connection = null;
+		String IDTRACKINGMAIL = null;
+		try {
+			String driverName = "oracle.jdbc.driver.OracleDriver";
+			Class.forName(driverName);
+			String serverName = "10.75.253.90";
+			String serverPort = "1521";
+			String sid = "clubper";
+			String url = "jdbc:oracle:thin:@" + serverName + ":" + serverPort + ":" + sid;
+			String username = "CRM";
+			String password = "DSATs6A2d";
+			connection = DriverManager.getConnection(url, username, password);
+			System.out.println("Successfully Connected to the database!");
+			Statement s = connection.createStatement();
+			ResultSet rs = s.executeQuery("select HASHNUMBER from  cpmtrackingmail where TO_MAIL='"+mail+"'");
+			while (rs.next()) {
+				System.out.println(rs.getString(1));
+				IDTRACKINGMAIL=rs.getString(1);
+			}
+		} catch (ClassNotFoundException e) {
+			System.out.println("Could not find the database driver " + e.getMessage());
+		} catch (SQLException e) {
+			System.out.println("Could not connect to the database " + e.getMessage());
+		}
+		String url="https://clubuat.personal.com.ar/club/services/confiabilization/confirmMyEmail?feedback="+IDTRACKINGMAIL;
+		driver.navigate().to(url);
+		sleep(10000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-default.pull-right.ng-scope")),"contains","Mi Club");
+		String validation=driver.findElement(By.cssSelector(".margin-bottom-0.col-xs-3.col-lg-4.col-md-2.col-sm-4.alert.alert-success.alert-inline.text-static.ng-scope")).getText();
+		Assert.assertTrue(validation.equals("Confirmado"));
+	}
+	
+	public void canjePremio(String premio) {
+		String validacion;
+		switch (premio) {
+		case "Diferido":
+			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			buscarYClick(driver.findElements(By.cssSelector(".item-middle.text-gray-dark.ng-binding")), "contains",
+					"Bolso Love&Peace");
+			buscarYClick(driver.findElements(By.cssSelector(".btn.btn-danger.btn-lg")), "contains", "CANJEAR");
+			buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-md")), "contains", "ACEPTAR");
+			buscarYClick(driver.findElements(By.id("submit")), "contains", "CONFIRMAR CANJE");
+			validacion = driver
+					.findElement(By.cssSelector(".col-xs-12.text-center.text-destacado.text-destacado-xs.text-info"))
+					.getText();
+			Assert.assertTrue(validacion.contains("Felicitaciones"));
+			break;
+		case "Voucher":
+			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			buscarYClick(driver.findElements(By.cssSelector(".item-middle.text-gray-dark.ng-binding")), "contains",
+					"Voucher EL MUNDO DEL JUGUETE POR $500");
+			buscarYClick(driver.findElements(By.cssSelector(".btn.btn-danger.btn-lg")), "contains", "CANJEAR");
+			buscarYClick(driver.findElements(By.id("submit")), "contains", "Continuar");
+			buscarYClick(driver.findElements(By.id("submit")), "contains", "CONFIRMAR CANJE");
+			validacion = driver
+					.findElement(By.cssSelector(".col-xs-12.text-center.text-destacado.text-destacado-xs.text-info"))
+					.getText();
+			Assert.assertTrue(validacion.contains("Felicitaciones"));
+			break;
+		default:
+		}
+
 	}
 	
 	
