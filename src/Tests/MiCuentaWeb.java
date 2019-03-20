@@ -1378,7 +1378,8 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		InformarPago("12.78");
-		Assert.assertTrue(driver.findElement(By.id("divMuestraMsj")).isDisplayed());
+		Boolean existe = driver.findElements(By.cssSelector("control-label.dev-alert-danger")).size() >= 1;
+		Assert.assertFalse(existe);
 	}
 	
 	@Test (groups ={ "Robustez","Inputs"})
@@ -1926,7 +1927,7 @@ public class MiCuentaWeb extends Metodos{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".fa.alert-message-icon")).isDisplayed());
 	}
 	
-	@Test(groups ={ "AutogestionIndividuosWeb","login"}) //Agregar linea a excel y sacar código de login del caso
+	@Test(groups ={ "AutogestionIndividuosWeb","login"}) //Agregar linea a excel y sacar cï¿½digo de login del caso
 	public void Login_Iniciar_Sesion_con_Linea_PreActiva() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea= String.valueOf(retornaLinea(nombreCaso,archivoLineas));
