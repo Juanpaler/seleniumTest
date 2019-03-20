@@ -127,107 +127,46 @@ public class Metodos {
 	
 	public void loginPorLinea(String sLinea) {
 		driver.get("https://autogestionuat.personal.com.ar");
-		/*driver.findElement(By.id("modal-ingresar")).click();
-		sleep(4000);
-		String parentWindowHandler = driver.getWindowHandle();
-		String subWindowHandler = null;
-		Set<String> handles = driver.getWindowHandles();
-		Iterator<String> iterator = handles.iterator();
-		while (iterator.hasNext()) {
-			subWindowHandler = iterator.next();
-		}
-		driver.switchTo().window(subWindowHandler);*/
-		sleep(10000);
-		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
-		//driver.findElement(By.id("linea-numero")).clear();
-		//sleep(5000);
-		driver.findElement(By.id("idToken1")).sendKeys(sLinea);
 		
-		//driver.findElement(By.id("btn-login")).click();;
-		//sleep(25000);
+		sleep(10000);
+		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));		
+		driver.findElement(By.id("idToken1")).sendKeys(sLinea);		
 		driver.findElement(By.id("idToken2")).clear();
 		driver.findElement(By.id("idToken2")).sendKeys("1469");
 		driver.findElement(By.id("loginButton_0")).click();
-		//driver.switchTo().window(parentWindowHandler);
 		sleep(20000);
 	}
 	
 	public void loginPorLineaF(String sLinea) {
-		driverf.get("https://autogestionuat.personal.com.ar");
-		/*driver.findElement(By.id("modal-ingresar")).click();
-		sleep(4000);
-		String parentWindowHandler = driver.getWindowHandle();
-		String subWindowHandler = null;
-		Set<String> handles = driver.getWindowHandles();
-		Iterator<String> iterator = handles.iterator();
-		while (iterator.hasNext()) {
-			subWindowHandler = iterator.next();
-		}
-		driver.switchTo().window(subWindowHandler);*/
+		driverf.get("https://autogestionuat.personal.com.ar");		
 		sleep(10000);
-		driverf.switchTo().frame(cambioFrame(driverf, By.id("idToken1")));
-		//driver.findElement(By.id("linea-numero")).clear();
-		//sleep(5000);
-		driverf.findElement(By.id("idToken1")).sendKeys(sLinea);
-		
-		//driver.findElement(By.id("btn-login")).click();;
-		//sleep(25000);
+		driverf.switchTo().frame(cambioFrame(driverf, By.id("idToken1")));	
+		driverf.findElement(By.id("idToken1")).sendKeys(sLinea);		
 		driverf.findElement(By.id("idToken2")).clear();
 		driverf.findElement(By.id("idToken2")).sendKeys("1469");
 		driverf.findElement(By.id("loginButton_0")).click();
-		//driver.switchTo().window(parentWindowHandler);
 		sleep(20000);
 	}
 	
 	public void loginPorLineaI(String sLinea) {
-		driveri.get("https://autogestionuat.personal.com.ar");
-		/*driver.findElement(By.id("modal-ingresar")).click();
-		sleep(4000);
-		String parentWindowHandler = driver.getWindowHandle();
-		String subWindowHandler = null;
-		Set<String> handles = driver.getWindowHandles();
-		Iterator<String> iterator = handles.iterator();
-		while (iterator.hasNext()) {
-			subWindowHandler = iterator.next();
-		}
-		driver.switchTo().window(subWindowHandler);*/
+		driveri.get("https://autogestionuat.personal.com.ar");		
 		sleep(10000);
-		driveri.switchTo().frame(cambioFrame(driveri, By.id("idToken1")));
-		//driver.findElement(By.id("linea-numero")).clear();
-		//sleep(5000);
-		driveri.findElement(By.id("idToken1")).sendKeys(sLinea);
-		
-		//driver.findElement(By.id("btn-login")).click();;
-		//sleep(25000);
+		driveri.switchTo().frame(cambioFrame(driveri, By.id("idToken1")));		
+		driveri.findElement(By.id("idToken1")).sendKeys(sLinea);		
 		driveri.findElement(By.id("idToken2")).clear();
 		driveri.findElement(By.id("idToken2")).sendKeys("1469");
-		driveri.findElement(By.id("loginButton_0")).click();
-		//driver.switchTo().window(parentWindowHandler);
+		driveri.findElement(By.id("loginButton_0")).click();		
 		sleep(20000);
 	}
 	
 	public void LoginPorLineaVariable(String sLinea){
-		driver.get("https://autogestionuat.personal.com.ar");
-		/*driver.findElement(By.id("modal-ingresar")).click();
-		sleep(4000);
-		String parentWindowHandler = driver.getWindowHandle();
-		String subWindowHandler = null;
-		Set<String> handles = driver.getWindowHandles();
-		Iterator<String> iterator = handles.iterator();
-		while (iterator.hasNext()) {
-			subWindowHandler = iterator.next();
-		}*/
+		driver.get("https://autogestionuat.personal.com.ar");		
 		sleep(10000);
 		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));		
-		//driver.findElement(By.id("idToken1")).clear();
-		//sleep(5000);
-		driver.findElement(By.id("idToken1")).sendKeys(sLinea);
-		//driver.findElement(By.id("btn-login")).click();;
-		//sleep(25000);
+		driver.findElement(By.id("idToken1")).sendKeys(sLinea);		
 		driver.findElement(By.id("idToken2")).clear();
 		driver.findElement(By.id("idToken2")).sendKeys("1469");
 		driver.findElement(By.id("loginButton_0")).click();
-		//driver.switchTo().window(parentWindowHandler);
 		sleep(20000);
 	}
 	
@@ -567,9 +506,9 @@ public void logoutEcommerce(){
 		sleep(5000);
 	}
 	
-	public int retornaLinea(String caso,String filename ) throws IOException{			
+	public String retornaLinea(String caso,String filename ) throws IOException{			
 		String CellData = null;
-		int CellData2 = 0;
+		long CellData2 = 0;
 
 		try (FileInputStream fis = new FileInputStream(filename)) {
 			ExcelWBook = new XSSFWorkbook(fis);
@@ -580,14 +519,14 @@ public void logoutEcommerce(){
 				CellData = Cell.getStringCellValue();
 				if (CellData.equals(caso)) {
 					Cell = ExcelWSheet.getRow(i).getCell(1);
-					CellData2 = (int) Cell.getNumericCellValue();
+					CellData2 = (long) Cell.getNumericCellValue();
 					break;
 				}
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		return CellData2;
+		return String.valueOf(CellData2);
 	}
 	
 	public void loginClubFront(String sLinea) {
