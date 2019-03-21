@@ -1,6 +1,7 @@
 package Tests;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -122,7 +123,19 @@ public class ClubPersonalFront extends Metodos{
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-default.pull-right.ng-scope")),"contains","Mi Club");
 		buscarYClick(driver.findElements(By.cssSelector(".ng-binding")),"contains","Resumen de Puntos");
 		
-		//WebElement table = driver.findElement(By.tagName("table"));
+		int cantFilas = driver.findElements(By.xpath("//table/tbody")).size();
+		String totalPuntosString = driver.findElement(By.cssSelector(".text-brand-cyan.margin-top-0.text-right.ng-binding")).getText();
+		Double totalPuntos = Double.parseDouble(totalPuntosString);
+		Double sumaPuntos = 0.0;
+		
+		for(int i=1; i<= cantFilas; i++)
+		{
+			String puntos = driver.findElement(By.xpath("//table/tbody/tr["+i+"]/td[4]")).getText();
+			puntos = puntos.replace(" pts", "");
+			sumaPuntos = sumaPuntos + Double.parseDouble(puntos);
+		}
+		
+		Assert.assertTrue(totalPuntos.equals(sumaPuntos));
 	}
 	
 }
