@@ -670,20 +670,42 @@ public void logoutEcommerce(){
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-md.btn-primary")), "contains",
 				"CONTINUAR EN MI CLUB");
 	}
-	
+
 	public void canjesRealizados() {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-default.pull-right.ng-scope")), "contains",
 				"Mi Club");
-		buscarYClick(driver.findElements(By.cssSelector(".ng-binding")),"contains","Canjes Realizados");
+		buscarYClick(driver.findElements(By.cssSelector(".ng-binding")), "contains", "Canjes Realizados");
 		int cantFilas = driver.findElements(By.xpath("//table[@class='table table-condensed ng-scope ng-table']/tbody/tr")).size();
-		for(int i=1; i<= cantFilas; i++)
-		{
-			String premio = driver.findElement(By.xpath("//table[@class='table table-condensed ng-scope ng-table']/tbody/tr["+i+"]/td[2]")).getText();
+		for (int i = 1; i <= cantFilas; i++) {
+			String premio = driver.findElement(By.xpath("//table[@class='table table-condensed ng-scope ng-table']/tbody/tr[" + i + "]/td[2]")).getText();
 			System.out.println(premio);
 		}
+
 	}
-	
+
+	public void movimientosPuntos() {
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-default.pull-right.ng-scope")), "contains","Mi Club");
+		buscarYClick(driver.findElements(By.cssSelector(".ng-binding")), "contains", "Movimientos de Puntos");
+		String totalPuntosString = driver.findElement(By.cssSelector(".text-brand-cyan.margin-top-0.text-right.ng-binding")).getText();
+		Double totalPuntos = Double.parseDouble(totalPuntosString);
+		Double sumaPuntos = 0.0;
+		
+		int cantFilas = driver.findElements(By.xpath("//table[@class='table table-condensed ng-scope ng-table']/tbody/tr")).size();
+		for (int i = 1; i <= cantFilas; i++) {
+			String puntos = driver.findElement(By.xpath("//table[@class='table table-condensed ng-scope ng-table']/tbody/tr[" + i + "]/td[3]")).getText();
+              if (puntos.contains("(")) {
+            	  puntos = puntos.replace("(", "");
+            	  puntos = puntos.replace(")", "");
+            	  sumaPuntos = sumaPuntos - Double.parseDouble(puntos);
+              }else {
+            	  sumaPuntos = sumaPuntos + Double.parseDouble(puntos);
+              }
+		}
+		Assert.assertTrue(totalPuntos.equals(sumaPuntos));
+	}
+
 	@DataProvider
 	public Object[][] MIX() throws Exception {
 		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Mix");

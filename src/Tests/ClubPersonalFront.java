@@ -238,4 +238,28 @@ public class ClubPersonalFront extends Metodos{
 		loginClubFront(linea);
         canjesRealizados();
 	}
+	
+	@Test 
+	public void Movimientos_de_Puntos_MIX() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
+        movimientosPuntos();
+	}
+	
+	@Test 
+	public void Movimientos_de_Puntos_POS() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
+        movimientosPuntos();
+	}
+	
+	@Test 
+	public void Movimientos_de_Puntos_PRE() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
+        movimientosPuntos();
+	}
 }
