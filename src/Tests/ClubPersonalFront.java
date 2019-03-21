@@ -1,9 +1,11 @@
 package Tests;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -131,5 +133,29 @@ public class ClubPersonalFront extends Metodos{
 		String linea=retornaLinea(nombreCaso,archivoLineas);
 		loginClubFront(linea);
 		actualizarDatos();
+	}
+	
+	@Test 
+	public void Resumen_de_Puntos_MIX() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-default.pull-right.ng-scope")),"contains","Mi Club");
+		buscarYClick(driver.findElements(By.cssSelector(".ng-binding")),"contains","Resumen de Puntos");
+		
+		int cantFilas = driver.findElements(By.xpath("//table/tbody")).size();
+		String totalPuntosString = driver.findElement(By.cssSelector(".text-brand-cyan.margin-top-0.text-right.ng-binding")).getText();
+		Double totalPuntos = Double.parseDouble(totalPuntosString);
+		Double sumaPuntos = 0.0;
+		
+		for(int i=1; i<= cantFilas; i++)
+		{
+			String puntos = driver.findElement(By.xpath("//table/tbody/tr["+i+"]/td[4]")).getText();
+			puntos = puntos.replace(" pts", "");
+			sumaPuntos = sumaPuntos + Double.parseDouble(puntos);
+		}
+		
+		Assert.assertTrue(totalPuntos.equals(sumaPuntos));
 	}
 }
