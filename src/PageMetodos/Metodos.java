@@ -619,9 +619,24 @@ public void logoutEcommerce(){
 			break;
 		default:
 		}
-
 	}
 	
+	public void actualizarDatos() {
+		String validacion;
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-default.pull-right.ng-scope")), "contains",
+				"Mi Club");
+		new Select(driver.findElement(By.id("selectProvincia"))).selectByVisibleText("Mendoza");
+		sleep(3000);
+		new Select(driver.findElement(By.name("localidad"))).selectByVisibleText("Lujan De Cuyo");
+		sleep(3000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary")), "contains", "Guardar >");
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg")), "contains", "Guardar");
+		validacion = driver.findElement(By.xpath("/html/body/div[8]/div/div/div/div/div[1]/h2/small")).getText();
+		Assert.assertTrue(validacion.contains("¡Gracias por actualizar tus datos!"));
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-md.btn-primary")), "contains",
+				"CONTINUAR EN MI CLUB");
+	}
 	
 	@DataProvider
 	public Object[][] MIX() throws Exception {
