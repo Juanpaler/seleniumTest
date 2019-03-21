@@ -120,7 +120,7 @@ public class ClubPersonalFront extends Metodos{
 	}
 	
 	@Test 
-	public void Actualizaci�o_de_Datos_POS() throws IOException{
+	public void Actualizacion_de_Datos_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
 		loginClubFront(linea);
