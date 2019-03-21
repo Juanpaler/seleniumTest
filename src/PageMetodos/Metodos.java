@@ -619,6 +619,37 @@ public void logoutEcommerce(){
 					.getText();
 			Assert.assertTrue(validacion.contains("Felicitaciones"));
 			break;
+		case "Credito":
+			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			buscarYClick(driver.findElements(By.cssSelector(".col-xs-12.col-md-12.col-lg-12.collapse-grid")), "contains",
+					"RECARGAS");
+			buscarYClick(driver.findElements(By.cssSelector(".item-middle.text-gray-dark.ng-binding")), "contains",
+					"Cr\u00E9dito $10");
+			buscarYClick(driver.findElements(By.cssSelector(".btn.btn-danger.btn-lg")), "contains", "CANJEAR");
+			buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-md")), "contains", "ACEPTAR");
+			buscarYClick(driver.findElements(By.id("submit")), "contains", "CONFIRMAR CANJE");
+			validacion = driver
+					.findElement(By.cssSelector(".col-xs-12.text-center.text-destacado.text-destacado-xs.text-info"))
+					.getText();      
+			Assert.assertTrue(validacion.contains("Felicitaciones"));
+			break;
+		case "Pack":
+			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+			buscarYClick(driver.findElements(By.cssSelector(".col-xs-12.col-md-12.col-lg-12.collapse-grid")), "contains",
+					"Packs Abono Fijo y Tarjeta");
+			sleep(5000);
+			driver.findElement(By.linkText("2")).click();
+			sleep(5000);
+			buscarYClick(driver.findElements(By.cssSelector(".item-middle.text-gray-dark.ng-binding")), "contains",
+					"Pack SMS Roaming Lim\u00EDtrofes");
+			buscarYClick(driver.findElements(By.cssSelector(".btn.btn-danger.btn-lg")), "contains", "CANJEAR");
+			buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-md")), "contains", "ACEPTAR");
+			buscarYClick(driver.findElements(By.id("submit")), "contains", "CONFIRMAR CANJE");
+			validacion = driver
+					.findElement(By.cssSelector(".col-xs-12.text-center.text-destacado.text-destacado-xs.text-info"))
+					.getText();      
+			Assert.assertTrue(validacion.contains("Felicitaciones"));
+			break;
 		default:
 		}
 	}

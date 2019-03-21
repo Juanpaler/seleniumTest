@@ -158,4 +158,36 @@ public class ClubPersonalFront extends Metodos{
 		
 		Assert.assertTrue(totalPuntos.equals(sumaPuntos));
 	}
+	
+	@Test 
+	public void Canje_de_Puntos_Canje_de_Credito_MIX() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
+        canjePremio("Credito");
+	}
+	
+	@Test 
+	public void Canje_de_Puntos_Canje_de_Credito_PRE() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
+        canjePremio("Credito");
+	}
+	
+	@Test 
+	public void Canje_de_Puntos_Canje_de_Pack_MIX() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
+        canjePremio("Pack");
+	}
+	
+	@Test 
+	public void Canje_de_Puntos_Canje_de_Pack_PRE() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
+        canjePremio("Pack");
+	}
 }
