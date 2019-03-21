@@ -135,28 +135,52 @@ public class ClubPersonalFront extends Metodos{
 		actualizarDatos();
 	}
 	
-	@Test 
-	public void Resumen_de_Puntos_MIX() throws IOException{
-		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		String linea=retornaLinea(nombreCaso,archivoLineas);
-		loginClubFront(linea);
+	private Boolean Validar_Resumen_de_Puntos()
+	{
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-default.pull-right.ng-scope")),"contains","Mi Club");
-		buscarYClick(driver.findElements(By.cssSelector(".ng-binding")),"contains","Resumen de Puntos");
+		buscarYClick(driver.findElements(By.cssSelector(".ng-binding")),"contains","Resumen de Puntos");		
 		
-		int cantFilas = driver.findElements(By.xpath("//table/tbody")).size();
+		int cantFilas = driver.findElements(By.xpath("//table[@class='table table-condensed ng-scope']/tbody/tr")).size();
 		String totalPuntosString = driver.findElement(By.cssSelector(".text-brand-cyan.margin-top-0.text-right.ng-binding")).getText();
 		Double totalPuntos = Double.parseDouble(totalPuntosString);
 		Double sumaPuntos = 0.0;
 		
 		for(int i=1; i<= cantFilas; i++)
 		{
-			String puntos = driver.findElement(By.xpath("//table/tbody/tr["+i+"]/td[4]")).getText();
+			String puntos = driver.findElement(By.xpath("//table[@class='table table-condensed ng-scope']/tbody/tr["+i+"]/td[4]")).getText();
 			puntos = puntos.replace(" pts", "");
 			sumaPuntos = sumaPuntos + Double.parseDouble(puntos);
 		}
 		
-		Assert.assertTrue(totalPuntos.equals(sumaPuntos));
+		return (totalPuntos.equals(sumaPuntos));
+	}
+	
+	@Test 
+	public void Resumen_de_Puntos_MIX() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
+		
+		Assert.assertTrue(Validar_Resumen_de_Puntos());
+	}
+	
+	@Test 
+	public void Resumen_de_Puntos_POS() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
+		
+		Assert.assertTrue(Validar_Resumen_de_Puntos());
+	}
+	
+	@Test 
+	public void Resumen_de_Puntos_PRE() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
+		
+		Assert.assertTrue(Validar_Resumen_de_Puntos());
 	}
 	
 	@Test 
