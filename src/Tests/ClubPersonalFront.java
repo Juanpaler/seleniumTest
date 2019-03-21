@@ -214,4 +214,28 @@ public class ClubPersonalFront extends Metodos{
 		loginClubFront(linea);
         canjePremio("Pack");
 	}
+	
+	@Test 
+	public void Canjes_Realizados_MIX() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
+        canjesRealizados();
+	}
+	
+	@Test 
+	public void Canjes_Realizados_POS() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
+        canjesRealizados();
+	}
+	
+	@Test 
+	public void Canjes_Realizados_PRE() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
+        canjesRealizados();
+	}
 }

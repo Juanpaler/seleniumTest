@@ -671,6 +671,19 @@ public void logoutEcommerce(){
 				"CONTINUAR EN MI CLUB");
 	}
 	
+	public void canjesRealizados() {
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-default.pull-right.ng-scope")), "contains",
+				"Mi Club");
+		buscarYClick(driver.findElements(By.cssSelector(".ng-binding")),"contains","Canjes Realizados");
+		int cantFilas = driver.findElements(By.xpath("//table[@class='table table-condensed ng-scope ng-table']/tbody/tr")).size();
+		for(int i=1; i<= cantFilas; i++)
+		{
+			String premio = driver.findElement(By.xpath("//table[@class='table table-condensed ng-scope ng-table']/tbody/tr["+i+"]/td[2]")).getText();
+			System.out.println(premio);
+		}
+	}
+	
 	@DataProvider
 	public Object[][] MIX() throws Exception {
 		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Mix");
