@@ -135,11 +135,8 @@ public class ClubPersonalFront extends Metodos{
 		actualizarDatos();
 	}
 	
-	@Test 
-	public void Resumen_de_Puntos_MIX() throws IOException{
-		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		String linea=retornaLinea(nombreCaso,archivoLineas);
-		loginClubFront(linea);
+	private Boolean Resumen_de_Puntos()
+	{
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-default.pull-right.ng-scope")),"contains","Mi Club");
 		buscarYClick(driver.findElements(By.cssSelector(".ng-binding")),"contains","Resumen de Puntos");
@@ -156,6 +153,15 @@ public class ClubPersonalFront extends Metodos{
 			sumaPuntos = sumaPuntos + Double.parseDouble(puntos);
 		}
 		
-		Assert.assertTrue(totalPuntos.equals(sumaPuntos));
+		return (totalPuntos.equals(sumaPuntos));
+	}
+	
+	@Test 
+	public void Resumen_de_Puntos_MIX() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
+		
+		Assert.assertTrue(Resumen_de_Puntos());
 	}
 }
