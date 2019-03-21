@@ -164,4 +164,22 @@ public class ClubPersonalFront extends Metodos{
 		
 		Assert.assertTrue(Resumen_de_Puntos());
 	}
+	
+	@Test 
+	public void Resumen_de_Puntos_POS() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
+		
+		Assert.assertTrue(Resumen_de_Puntos());
+	}
+	
+	@Test 
+	public void Resumen_de_Puntos_PRE() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubFront(linea);
+		
+		Assert.assertTrue(Resumen_de_Puntos());
+	}
 }
