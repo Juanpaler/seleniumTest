@@ -135,7 +135,7 @@ public class ClubPersonalFront extends Metodos{
 		actualizarDatos();
 	}
 	
-	private Boolean Resumen_de_Puntos()
+	private Boolean Validar_Resumen_de_Puntos()
 	{
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-default.pull-right.ng-scope")),"contains","Mi Club");
@@ -162,7 +162,7 @@ public class ClubPersonalFront extends Metodos{
 		String linea=retornaLinea(nombreCaso,archivoLineas);
 		loginClubFront(linea);
 		
-		Assert.assertTrue(Resumen_de_Puntos());
+		Assert.assertTrue(Validar_Resumen_de_Puntos());
 	}
 	
 	@Test 
@@ -171,7 +171,7 @@ public class ClubPersonalFront extends Metodos{
 		String linea=retornaLinea(nombreCaso,archivoLineas);
 		loginClubFront(linea);
 		
-		Assert.assertTrue(Resumen_de_Puntos());
+		Assert.assertTrue(Validar_Resumen_de_Puntos());
 	}
 	
 	@Test 
@@ -180,6 +180,6 @@ public class ClubPersonalFront extends Metodos{
 		String linea=retornaLinea(nombreCaso,archivoLineas);
 		loginClubFront(linea);
 		
-		Assert.assertTrue(Resumen_de_Puntos());
+		Assert.assertTrue(Validar_Resumen_de_Puntos());
 	}
 }
