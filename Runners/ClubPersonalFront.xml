@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Autogestion APP Android" parallel="tests" thread-count="1">
+
+    <!-- **************************************************  CLUB PERSONAL FRONT WEB  ********************************************** -->
+
+	<test name="ClubPersonalFront Web">
+		<groups>
+			<run>
+				<include name="ClubPersonalFront" />
+			</run>
+		</groups>
+		<classes>
+			<class name="Tests.ClubPersonalFront" />
+		</classes>
+	</test>
+ </suite>
