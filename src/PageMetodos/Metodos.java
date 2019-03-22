@@ -543,6 +543,11 @@ public void logoutEcommerce(){
 		driver.findElement(By.id("idToken2")).sendKeys("1469");
 		driver.findElement(By.id("loginButton_0")).click();
 		sleep(20000);
+		WaitForElement("id", "tpi-user");
+		if (driver.findElements(By.xpath("//p/strong[@class='ng-binding']")).size() > 0)
+		{
+			buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary")),"contains","CONTINUAR");
+		}
 		
 	}
 	
