@@ -660,7 +660,6 @@ public void logoutEcommerce(){
 	}
 	
 	public void actualizarDatos() {
-		String validacion;
 		boolean  existe = false;
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-default.pull-right.ng-scope")), "contains",
