@@ -717,6 +717,17 @@ public void logoutEcommerce(){
 		}
 		Assert.assertTrue(totalPuntos.equals(sumaPuntos));
 	}
+	
+	public void loginClubBack() {
+		driver.get("https://10.75.247.45/backEnd/");
+		sleep(5000);
+		driver.findElement(By.id("userName")).sendKeys("CLU000248");
+		sleep(3000);
+		driver.findElement(By.id("password")).clear();
+		driver.findElement(By.id("password")).sendKeys("Telecom2016");
+		driver.findElement(By.id("btnIngresar")).click();
+		sleep(3000);
+	}
 
 	@DataProvider
 	public Object[][] MIX() throws Exception {
