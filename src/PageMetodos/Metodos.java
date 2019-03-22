@@ -656,6 +656,7 @@ public void logoutEcommerce(){
 	
 	public void actualizarDatos() {
 		String validacion;
+		boolean  existe = false;
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-default.pull-right.ng-scope")), "contains",
 				"Mi Club");
@@ -665,8 +666,15 @@ public void logoutEcommerce(){
 		sleep(3000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary")), "contains", "Guardar >");
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg")), "contains", "Guardar");
-		validacion = driver.findElement(By.xpath("/html/body/div[8]/div/div/div/div/div[1]/h2/small")).getText();
-		Assert.assertTrue(validacion.contains("¡Gracias por actualizar tus datos!"));
+		String texto = "Gracias por actualizar tus datos";
+		List<WebElement> elements = driver.findElements(By.cssSelector(".ng-binding"));
+		for (WebElement x : elements) {
+			if (x.getText().toLowerCase().contains(texto.toLowerCase())) {
+				existe = true;				
+				break;
+			}
+		}
+		Assert.assertTrue(existe);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-md.btn-primary")), "contains",
 				"CONTINUAR EN MI CLUB");
 	}
