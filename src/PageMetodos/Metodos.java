@@ -543,6 +543,11 @@ public void logoutEcommerce(){
 		driver.findElement(By.id("idToken2")).sendKeys("1469");
 		driver.findElement(By.id("loginButton_0")).click();
 		sleep(20000);
+		WaitForElement("id", "tpi-user");
+		if (driver.findElements(By.xpath("//p/strong[@class='ng-binding']")).size() > 0)
+		{
+			buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary")),"contains","CONTINUAR");
+		}
 		
 	}
 	
@@ -666,7 +671,7 @@ public void logoutEcommerce(){
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary")), "contains", "Guardar >");
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg")), "contains", "Guardar");
 		validacion = driver.findElement(By.xpath("/html/body/div[8]/div/div/div/div/div[1]/h2/small")).getText();
-		Assert.assertTrue(validacion.contains("¡Gracias por actualizar tus datos!"));
+		Assert.assertTrue(validacion.contains("ï¿½Gracias por actualizar tus datos!"));
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-md.btn-primary")), "contains",
 				"CONTINUAR EN MI CLUB");
 	}
