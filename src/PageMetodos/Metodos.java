@@ -552,6 +552,33 @@ public void logoutEcommerce(){
 		
 	}
 	
+	public void loginClubFrontSinSleep(String sLinea) {
+		driver.get("https://clubuat.personal.com.ar/fe/#/");
+		
+		WaitForElement("id", "tpi-login");
+		driver.findElement(By.id("tpi-login")).click();		
+		
+		WebElement frame = driver.findElement(By.id("loginIframe"));
+		driver.switchTo().frame(frame);				
+		
+		WaitForElement("id", "idToken1");
+		driver.findElement(By.id("idToken1")).sendKeys(sLinea);		
+		
+		WaitForElement("id", "idToken2");
+		driver.findElement(By.id("idToken2")).clear();
+		driver.findElement(By.id("idToken2")).sendKeys("1469");
+		
+		WaitForElement("id", "loginButton_0");
+		driver.findElement(By.id("loginButton_0")).click();
+		
+		WaitForElement("id", "tpi-user");
+		if (driver.findElements(By.xpath("//p/strong[@class='ng-binding']")).size() > 0)
+		{
+			buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary")),"contains","CONTINUAR");
+		}
+		
+	}
+	
 	public void AdhesionTitularClub(String mail) {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.padding-left-5.padding-right-5")),"contains","SI, SON MIS DATOS");
