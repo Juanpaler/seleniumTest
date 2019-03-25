@@ -84,4 +84,12 @@ public class ClubPersonalBack extends Metodos{
 		loginClubBack();	
         busquedaLinea(linea);
     }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Busqueda_por_Documento_MIX() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+        busquedaPorDni("38092272", linea);
+    }
 }
