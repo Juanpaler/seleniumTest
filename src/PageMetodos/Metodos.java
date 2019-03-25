@@ -882,7 +882,19 @@ public void logoutEcommerce(){
 			Assert.assertTrue(existe);
 			break;
 		case "Credito":
-			
+			buscarYClick(driver.findElements(By.cssSelector(".itemHolder")), "contains","RECARGAS");
+			buscarYClick(driver.findElements(By.cssSelector(".itemHolderPar")), "contains","Cr\u00E9dito $10");
+			driver.findElement(By.id("btnCanjear")).click();
+			driver.findElement(By.id("btnCanjear")).click();
+			texto = "El canje se ha realizado exitosamente";
+			elements = driver.findElements(By.cssSelector(".txtAzul"));
+			for (WebElement x : elements) {
+				if (x.getText().toLowerCase().contains(texto.toLowerCase())) {
+					existe = true;				
+					break;
+				}
+			}
+			Assert.assertTrue(existe);
 			break;
 		case "Pack":
 			
