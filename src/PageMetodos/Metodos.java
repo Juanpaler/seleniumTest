@@ -747,13 +747,13 @@ public void logoutEcommerce(){
 	
 	public void loginClubBack() {
 		driver.get("https://10.75.247.45/backEnd/");
-		sleep(5000);
+		WaitForElement("id", "userName");
 		driver.findElement(By.id("userName")).sendKeys("CLU000248");
-		sleep(3000);
+		WaitForElement("id", "password");
 		driver.findElement(By.id("password")).clear();
 		driver.findElement(By.id("password")).sendKeys("Telecom2016");
+		WaitForElement("id", "btnIngresar");
 		driver.findElement(By.id("btnIngresar")).click();
-		sleep(3000);
 	}
 	
 	public void AdhesionTitularClubBack(String linea, String mail) {
@@ -824,23 +824,26 @@ public void logoutEcommerce(){
 	driver.findElement(By.linkText("B\u00FAsqueda por DNI")).click();
 	driver.findElement(By.id("dniNumber")).sendKeys(nroDoc);
 	driver.findElement(By.id("btnBuscar")).click();		
-	int cantFilas = driver.findElements(By.xpath("//table[@class='table table-condensed ng-scope']/tbody/tr")).size();
-	
-	for (int i = 1; i>= cantFilas; i++)
+	int cantFilas = driver.findElements(By.xpath("//table[@class='tablaDatos']/tbody/tr")).size();
+	System.out.println(cantFilas);
+
+	for (int i = 1; i<= cantFilas; i++)
 	{
-		String titular = driver.findElement(By.xpath("//table[@class='table table-condensed ng-scope']/tbody/tr["+i+"]/td[6]")).getText();
+		String titular = driver.findElement(By.xpath("//table[@class='tablaDatos']/tbody/tr["+i+"]/td[12]")).getText();
 		System.out.println(titular);
 		if(titular.equals("Si"))
 		{
-			String lineaTitular =  driver.findElement(By.xpath("//table[@class='table table-condensed ng-scope']/tbody/tr["+i+"]/td[2]")).getText();
+			String lineaTitular =  driver.findElement(By.xpath("//table[@class='tablaDatos']/tbody/tr["+i+"]/td[4]")).getText();
 			System.out.println(lineaTitular);
+			Assert.assertTrue(linea.contentEquals(lineaTitular));
+			driver.findElement(By.xpath("//table[@class='tablaDatos']/tbody/tr["+i+"]/td[2]")).click();
+
+			String dniResultado =  driver.findElement(By.xpath("//table[@id='panelResumen']/tbody/tr[1]/td[5]")).getText();
+			dniResultado = dniResultado.replace("DNI ", "");
+			System.out.println(dniResultado);
+			Assert.assertTrue(dniResultado.equals(nroDoc));
 		}
 	}
-	
-	
-	
-	//String validacion=driver.findElement(By.xpath("//*[@class=\"tablaDatos\"]/tbody/tr[5]/td[2]/strong")).getText();
-	//Assert.assertTrue(validacion.equals(linea));
 }
 	
 	public void canjePremioBack(String linea,String premio) {
