@@ -172,4 +172,20 @@ public class ClubPersonalBack extends Metodos{
 		loginClubBack();	
 		canjePremioBack(linea,"Credito");   
     }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Canje_de_Puntos_Canje_de_Pack_MIX() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		canjePremioBack(linea,"Pack");   
+    }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Canje_de_Puntos_Canje_de_Pack_PRE() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		canjePremioBack(linea,"Pack");   
+    }
 }
