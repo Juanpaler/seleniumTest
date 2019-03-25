@@ -896,7 +896,20 @@ public void logoutEcommerce(){
 			Assert.assertTrue(existe);
 			break;
 		case "Pack":
-			
+			buscarYClick(driver.findElements(By.cssSelector(".itemHolderPar")), "contains","Packs Abono Fijo y Tarjeta");
+			sleep(10000);
+			buscarYClick(driver.findElements(By.cssSelector(".itemHolderPar")), "contains","Pack SMS Roaming Lim\u00EDtrofes");
+			driver.findElement(By.id("btnCanjear")).click();
+			driver.findElement(By.id("btnCanjear")).click();
+			texto = "El canje se ha realizado exitosamente";
+			elements = driver.findElements(By.cssSelector(".txtAzul"));
+			for (WebElement x : elements) {
+				if (x.getText().toLowerCase().contains(texto.toLowerCase())) {
+					existe = true;				
+					break;
+				}
+			}
+			Assert.assertTrue(existe);
 			break;
 		default:
 		}
