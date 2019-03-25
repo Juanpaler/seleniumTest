@@ -845,6 +845,54 @@ public void logoutEcommerce(){
 		}
 	}
 }
+	
+	public void canjePremioBack(String linea,String premio) {
+		String texto;
+		boolean  existe = false;
+		List<WebElement> elements= null ;
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.findElement(By.linkText("B\u00FAsqueda por L\u00EDnea")).click();
+		driver.findElement(By.id("lineNumber")).sendKeys(linea);
+		driver.findElement(By.id("btnBuscar")).click();
+		driver.findElement(By.linkText("Cat\u00E1logo de Premios")).click();
+		switch (premio) {
+		case "Diferido":
+			buscarYClick(driver.findElements(By.cssSelector(".itemHolderPar")), "contains","Bolso Love&Peace");
+			driver.findElement(By.id("btnCanjear")).click();
+			driver.findElement(By.id("btnCanjear")).click();
+			texto = "El canje se ha realizado exitosamente";
+			elements = driver.findElements(By.cssSelector(".txtAzul"));
+			for (WebElement x : elements) {
+				if (x.getText().toLowerCase().contains(texto.toLowerCase())) {
+					existe = true;				
+					break;
+				}
+			}
+			Assert.assertTrue(existe);
+			break;
+		case "Voucher":
+			buscarYClick(driver.findElements(By.cssSelector(".itemHolderPar")), "contains","Voucher EL MUNDO DEL JUGUETE POR $500");
+			driver.findElement(By.id("btnCanjear")).click();
+			driver.findElement(By.id("btnCanjear")).click();
+			texto = "El canje se ha realizado exitosamente";
+			elements = driver.findElements(By.cssSelector(".txtAzul"));
+			for (WebElement x : elements) {
+				if (x.getText().toLowerCase().contains(texto.toLowerCase())) {
+					existe = true;				
+					break;
+				}
+			}
+			Assert.assertTrue(existe);
+			break;
+		case "Credito":
+			
+			break;
+		case "Pack":
+			
+			break;
+		default:
+		}
+	}
 
 	@DataProvider
 	public Object[][] MIX() throws Exception {
