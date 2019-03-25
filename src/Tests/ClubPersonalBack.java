@@ -86,6 +86,30 @@ public class ClubPersonalBack extends Metodos{
     }
 	
 	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Canje_de_Premio_Diferido_MIX() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		canjePremioBack(linea,"Diferido");   
+    }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Canje_de_Premio_Diferido_POS() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		canjePremioBack(linea,"Diferido");
+    }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Canje_de_Premio_Diferido_PRE() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		canjePremioBack(linea,"Diferido");
+    }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
 	public void Busqueda_por_Documento_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);

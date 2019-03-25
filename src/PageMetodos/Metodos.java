@@ -837,9 +837,47 @@ public void logoutEcommerce(){
 		}
 	}
 	
+	
+	
 	//String validacion=driver.findElement(By.xpath("//*[@class=\"tablaDatos\"]/tbody/tr[5]/td[2]/strong")).getText();
 	//Assert.assertTrue(validacion.equals(linea));
 }
+	
+	public void canjePremioBack(String linea,String premio) {
+		String validacion;
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.findElement(By.linkText("B\u00FAsqueda por L\u00EDnea")).click();
+		driver.findElement(By.id("lineNumber")).sendKeys(linea);
+		driver.findElement(By.id("btnBuscar")).click();
+		driver.findElement(By.linkText("Cat\u00E1logo de Premios")).click();
+		switch (premio) {
+		case "Diferido":
+			boolean  existe = false;
+			buscarYClick(driver.findElements(By.cssSelector(".itemHolderPar")), "contains","Bolso Love&Peace");
+			driver.findElement(By.id("btnCanjear")).click();
+			driver.findElement(By.id("btnCanjear")).click();
+			String texto = "El canje se ha realizado exitosamente";
+			List<WebElement> elements = driver.findElements(By.cssSelector(".txtAzul"));
+			for (WebElement x : elements) {
+				if (x.getText().toLowerCase().contains(texto.toLowerCase())) {
+					existe = true;				
+					break;
+				}
+			}
+			Assert.assertTrue(existe);
+			break;
+		case "Voucher":
+			
+			break;
+		case "Credito":
+			
+			break;
+		case "Pack":
+			
+			break;
+		default:
+		}
+	}
 
 	@DataProvider
 	public Object[][] MIX() throws Exception {
