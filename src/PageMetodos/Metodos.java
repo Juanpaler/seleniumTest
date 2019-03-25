@@ -756,6 +756,69 @@ public void logoutEcommerce(){
 		driver.findElement(By.id("btnIngresar")).click();
 		sleep(3000);
 	}
+	
+	public void AdhesionTitularClubBack(String linea, String mail) {
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.findElement(By.linkText("B\u00FAsqueda por L\u00EDnea")).click();
+		driver.findElement(By.id("lineNumber")).sendKeys(linea);
+		driver.findElement(By.id("btnBuscar")).click();
+		driver.findElement(By.id("link")).click();
+		driver.findElement(By.linkText("S\u00ED")).click();
+		driver.findElement(By.id("email")).sendKeys(mail);
+		driver.findElement(By.id("emaildominio")).sendKeys("gmail.com");
+		new Select(driver.findElement(By.id("idProvince"))).selectByVisibleText("Capital Federal");
+		sleep(3000);
+		new Select(driver.findElement(By.id("idLocalidad"))).selectByVisibleText("Capital Federal");
+		driver.findElement(By.id("btnNo")).click();
+		Assert.assertTrue(driver.findElement(By.id("popup_fancy_alert")).isDisplayed());	
+		driver.findElement(By.linkText("Close")).click();
+		
+		Connection connection = null;
+		String IDTRACKINGMAIL = null;
+		try {
+			String driverName = "oracle.jdbc.driver.OracleDriver";
+			Class.forName(driverName);
+			String serverName = "10.75.253.90";
+			String serverPort = "1521";
+			String sid = "clubper";
+			String url = "jdbc:oracle:thin:@" + serverName + ":" + serverPort + ":" + sid;
+			String username = "CRM";
+			String password = "DSATs6A2d";
+			connection = DriverManager.getConnection(url, username, password);
+			System.out.println("Successfully Connected to the database!");
+			Statement s = connection.createStatement();
+			ResultSet rs = s.executeQuery("select HASHNUMBER from  cpmtrackingmail where TO_MAIL='"+mail+"@gmail.com"+"'");
+			while (rs.next()) {
+				System.out.println(rs.getString(1));
+				IDTRACKINGMAIL=rs.getString(1);
+			}
+		} catch (ClassNotFoundException e) {
+			System.out.println("Could not find the database driver " + e.getMessage());
+		} catch (SQLException e) {
+			System.out.println("Could not connect to the database " + e.getMessage());
+		}
+		String url="https://clubuat.personal.com.ar/club/services/confiabilization/confirmMyEmail?feedback="+IDTRACKINGMAIL;
+		driver.navigate().to(url);
+		sleep(5000);
+		driver.navigate().to("https://10.75.247.45/backEnd/home.do");
+		driver.findElement(By.linkText("B\u00FAsqueda por L\u00EDnea")).click();
+		driver.findElement(By.id("lineNumber")).sendKeys(linea);
+		driver.findElement(By.id("btnBuscar")).click();
+		String validacion=driver.findElement(By.xpath("//*[@id=\"panelResumen\"]/tbody/tr[7]/td[5]/strong")).getText();
+		Assert.assertTrue(validacion.equals("Confirmado"));	
+	
+	}
+	
+	public void busquedaLinea(String linea) {
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.findElement(By.linkText("B\u00FAsqueda por L\u00EDnea")).click();
+		driver.findElement(By.id("lineNumber")).sendKeys(linea);
+		driver.findElement(By.id("btnBuscar")).click();
+		Assert.assertTrue(driver.findElement(By.id("mensajeDest")).isDisplayed());	
+		Assert.assertTrue(driver.findElement(By.id("tablaDatos")).isDisplayed());	
+		String validacion=driver.findElement(By.xpath("//*[@id=\"panelResumen\"]/tbody/tr[5]/td[2]/strong")).getText();
+		Assert.assertTrue(validacion.equals(linea));
+	}
 
 	@DataProvider
 	public Object[][] MIX() throws Exception {
