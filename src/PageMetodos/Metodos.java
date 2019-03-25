@@ -575,8 +575,7 @@ public void logoutEcommerce(){
 		if (driver.findElements(By.xpath("//p/strong[@class='ng-binding']")).size() > 0)
 		{
 			buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary")),"contains","CONTINUAR");
-		}
-		
+		}		
 	}
 	
 	public void AdhesionTitularClub(String mail) {
@@ -819,6 +818,28 @@ public void logoutEcommerce(){
 		String validacion=driver.findElement(By.xpath("//*[@id=\"panelResumen\"]/tbody/tr[5]/td[2]/strong")).getText();
 		Assert.assertTrue(validacion.equals(linea));
 	}
+	
+	public void busquedaPorDni(String nroDoc, String linea) {
+	driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+	driver.findElement(By.linkText("B\u00FAsqueda por DNI")).click();
+	driver.findElement(By.id("dniNumber")).sendKeys(nroDoc);
+	driver.findElement(By.id("btnBuscar")).click();		
+	int cantFilas = driver.findElements(By.xpath("//table[@class='table table-condensed ng-scope']/tbody/tr")).size();
+	
+	for (int i = 1; i>= cantFilas; i++)
+	{
+		String titular = driver.findElement(By.xpath("//table[@class='table table-condensed ng-scope']/tbody/tr["+i+"]/td[6]")).getText();
+		System.out.println(titular);
+		if(titular.equals("Si"))
+		{
+			String lineaTitular =  driver.findElement(By.xpath("//table[@class='table table-condensed ng-scope']/tbody/tr["+i+"]/td[2]")).getText();
+			System.out.println(lineaTitular);
+		}
+	}
+	
+	//String validacion=driver.findElement(By.xpath("//*[@class=\"tablaDatos\"]/tbody/tr[5]/td[2]/strong")).getText();
+	//Assert.assertTrue(validacion.equals(linea));
+}
 
 	@DataProvider
 	public Object[][] MIX() throws Exception {
