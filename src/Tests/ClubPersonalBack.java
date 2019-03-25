@@ -157,6 +157,45 @@ public class ClubPersonalBack extends Metodos{
         busquedaPorDni("5235040", linea);
     }
 	
+	private void Busqueda_por_Linea(String linea)
+	{
+		WaitForElement("id", "submenu");
+		driver.findElement(By.linkText("B\u00FAsqueda por L\u00EDnea")).click();
+		WaitForElement("id", "lineNumber");
+		driver.findElement(By.id("lineNumber")).sendKeys(linea);
+		WaitForElement("id", "btnBuscar");
+		driver.findElement(By.id("btnBuscar")).click();		
+	}
+	
+	private Boolean Validar_Resumen_de_Puntos()
+	{
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		WaitForElement("id", "submenu");
+		driver.findElement(By.linkText("Resumen de Puntos")).click();	
+		
+		int cantFilas = driver.findElements(By.xpath("//table[@class='tablaDatos']/tbody/tr")).size();
+		String totalPuntosString = 	driver.findElement(By.xpath("//table[@class='table table-condensed ng-scope']/tbody/tr[3]/td[2]")).getText();
+		Double totalPuntos = Double.parseDouble(totalPuntosString);
+		Double sumaPuntos = 0.0;
+		
+		for(int i=1; i<= cantFilas; i++)
+		{
+			String puntos = driver.findElement(By.xpath("//table[@class='table table-condensed ng-scope']/tbody/tr["+i+"]/td[8]")).getText();			
+			sumaPuntos = sumaPuntos + Double.parseDouble(puntos);
+		}
+		
+		return (totalPuntos.equals(sumaPuntos));
+	}
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Resumen_de_Puntos_PRE() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		Busqueda_por_Linea(linea);
+        Assert.assertTrue(Validar_Resumen_de_Puntos());
+    }
+	
 	@Test (groups = "ClubPersonalBack", priority = 0)
 	public void Canje_de_Puntos_Canje_de_Credito_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
