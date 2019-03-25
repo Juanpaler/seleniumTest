@@ -825,22 +825,18 @@ public void logoutEcommerce(){
 	driver.findElement(By.id("dniNumber")).sendKeys(nroDoc);
 	driver.findElement(By.id("btnBuscar")).click();		
 	int cantFilas = driver.findElements(By.xpath("//table[@class='tablaDatos']/tbody/tr")).size();
-	System.out.println(cantFilas);
 
 	for (int i = 1; i<= cantFilas; i++)
 	{
 		String titular = driver.findElement(By.xpath("//table[@class='tablaDatos']/tbody/tr["+i+"]/td[12]")).getText();
-		System.out.println(titular);
 		if(titular.equals("Si"))
 		{
 			String lineaTitular =  driver.findElement(By.xpath("//table[@class='tablaDatos']/tbody/tr["+i+"]/td[4]")).getText();
-			System.out.println(lineaTitular);
 			Assert.assertTrue(linea.contentEquals(lineaTitular));
 			driver.findElement(By.xpath("//table[@class='tablaDatos']/tbody/tr["+i+"]/td[2]")).click();
 
 			String dniResultado =  driver.findElement(By.xpath("//table[@id='panelResumen']/tbody/tr[1]/td[5]")).getText();
 			dniResultado = dniResultado.replace("DNI ", "");
-			System.out.println(dniResultado);
 			Assert.assertTrue(dniResultado.equals(nroDoc));
 		}
 	}
