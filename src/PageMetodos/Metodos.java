@@ -747,13 +747,13 @@ public void logoutEcommerce(){
 	
 	public void loginClubBack() {
 		driver.get("https://10.75.247.45/backEnd/");
-		sleep(5000);
+		WaitForElement("id", "userName");
 		driver.findElement(By.id("userName")).sendKeys("CLU000248");
-		sleep(3000);
+		WaitForElement("id", "password");
 		driver.findElement(By.id("password")).clear();
 		driver.findElement(By.id("password")).sendKeys("Telecom2016");
+		WaitForElement("id", "btnIngresar");
 		driver.findElement(By.id("btnIngresar")).click();
-		sleep(3000);
 	}
 	
 	public void AdhesionTitularClubBack(String linea, String mail) {
