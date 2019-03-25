@@ -140,4 +140,20 @@ public class ClubPersonalBack extends Metodos{
 		loginClubBack();	
         busquedaPorDni("38092272", linea);
     }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Busqueda_por_Documento_POS() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+        busquedaPorDni("21976636", linea);
+    }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Busqueda_por_Documento_PRE() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+        busquedaPorDni("5235040", linea);
+    }
 }
