@@ -844,7 +844,9 @@ public void logoutEcommerce(){
 }
 	
 	public void canjePremioBack(String linea,String premio) {
-		String validacion;
+		String texto;
+		boolean  existe = false;
+		List<WebElement> elements= null ;
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.findElement(By.linkText("B\u00FAsqueda por L\u00EDnea")).click();
 		driver.findElement(By.id("lineNumber")).sendKeys(linea);
@@ -852,12 +854,11 @@ public void logoutEcommerce(){
 		driver.findElement(By.linkText("Cat\u00E1logo de Premios")).click();
 		switch (premio) {
 		case "Diferido":
-			boolean  existe = false;
 			buscarYClick(driver.findElements(By.cssSelector(".itemHolderPar")), "contains","Bolso Love&Peace");
 			driver.findElement(By.id("btnCanjear")).click();
 			driver.findElement(By.id("btnCanjear")).click();
-			String texto = "El canje se ha realizado exitosamente";
-			List<WebElement> elements = driver.findElements(By.cssSelector(".txtAzul"));
+			texto = "El canje se ha realizado exitosamente";
+			elements = driver.findElements(By.cssSelector(".txtAzul"));
 			for (WebElement x : elements) {
 				if (x.getText().toLowerCase().contains(texto.toLowerCase())) {
 					existe = true;				
@@ -867,7 +868,18 @@ public void logoutEcommerce(){
 			Assert.assertTrue(existe);
 			break;
 		case "Voucher":
-			
+			buscarYClick(driver.findElements(By.cssSelector(".itemHolderPar")), "contains","Voucher EL MUNDO DEL JUGUETE POR $500");
+			driver.findElement(By.id("btnCanjear")).click();
+			driver.findElement(By.id("btnCanjear")).click();
+			texto = "El canje se ha realizado exitosamente";
+			elements = driver.findElements(By.cssSelector(".txtAzul"));
+			for (WebElement x : elements) {
+				if (x.getText().toLowerCase().contains(texto.toLowerCase())) {
+					existe = true;				
+					break;
+				}
+			}
+			Assert.assertTrue(existe);
 			break;
 		case "Credito":
 			
