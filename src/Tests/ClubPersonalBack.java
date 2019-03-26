@@ -276,4 +276,29 @@ public class ClubPersonalBack extends Metodos{
 		loginClubBack();	
 		actualizarDatosBack(linea);
     }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void ABM_Usuarios_MIX() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		abmUsuarios(linea);
+    }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void ABM_Usuarios_POS() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		abmUsuarios(linea);
+    }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void ABM_Usuarios_PRE() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		abmUsuarios(linea);
+    }
+	
 }
