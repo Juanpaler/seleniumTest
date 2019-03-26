@@ -914,7 +914,24 @@ public void logoutEcommerce(){
 		default:
 		}
 	}
-
+	
+	public void actualizarDatosBack(String linea) {
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.findElement(By.linkText("B\u00FAsqueda por L\u00EDnea")).click();
+		driver.findElement(By.id("lineNumber")).sendKeys(linea);
+		driver.findElement(By.id("btnBuscar")).click();
+		driver.findElement(By.linkText("Actualizaci\u00f3n de Datos")).click();
+		new Select(driver.findElement(By.id("idProvince"))).selectByVisibleText("Mendoza");
+		sleep(3000);
+		new Select(driver.findElement(By.id("idLocalidad"))).selectByVisibleText("Lujan De Cuyo");
+		driver.findElement(By.id("btnNo")).click();
+		sleep(3000);
+		driver.findElement(By.linkText("Actualizaci\u00f3n de Datos")).click();
+		String provincia=new Select(driver.findElement(By.id("idProvince"))).getFirstSelectedOption().getText();
+		String localidad=new Select(driver.findElement(By.id("idLocalidad"))).getFirstSelectedOption().getText();
+		Assert.assertTrue(provincia.equals("Mendoza"));
+		Assert.assertTrue(localidad.equals("Lujan De Cuyo"));
+	}
 	@DataProvider
 	public Object[][] MIX() throws Exception {
 		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Mix");
