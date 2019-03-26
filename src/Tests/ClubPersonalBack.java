@@ -204,6 +204,24 @@ public class ClubPersonalBack extends Metodos{
     }
 	
 	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Resumen_de_Puntos_MIX() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		Busqueda_por_Linea(linea);
+        Assert.assertTrue(Validar_Resumen_de_Puntos());
+    }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Resumen_de_Puntos_POS() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		Busqueda_por_Linea(linea);
+        Assert.assertTrue(Validar_Resumen_de_Puntos());
+    }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
 	public void Canje_de_Puntos_Canje_de_Credito_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
