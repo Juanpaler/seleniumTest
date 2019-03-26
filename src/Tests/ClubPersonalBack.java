@@ -173,17 +173,24 @@ public class ClubPersonalBack extends Metodos{
 		WaitForElement("id", "submenu");
 		driver.findElement(By.linkText("Resumen de Puntos")).click();	
 		
-		int cantFilas = driver.findElements(By.xpath("//table[@class='tablaDatos']/tbody/tr")).size();
-		String totalPuntosString = 	driver.findElement(By.xpath("//table[@class='table table-condensed ng-scope']/tbody/tr[3]/td[2]")).getText();
+		int cantFilas = driver.findElements(By.xpath("//table[@class='tablaDatos'][@align='center']/tbody/tr")).size();
+		System.out.println(cantFilas);
+
+		String totalPuntosString = 	driver.findElement(By.xpath("//table[@id='panelResumen']/tbody/tr[3]/td[2]")).getText();
+		System.out.println(totalPuntosString);
+
 		Double totalPuntos = Double.parseDouble(totalPuntosString);
 		Double sumaPuntos = 0.0;
 		
 		for(int i=1; i<= cantFilas; i++)
 		{
-			String puntos = driver.findElement(By.xpath("//table[@class='table table-condensed ng-scope']/tbody/tr["+i+"]/td[8]")).getText();			
+			String puntos = driver.findElement(By.xpath("//table[@class='tablaDatos'][@align='center']/tbody["+i+"]/tr[1]/td[8]")).getText();
+			System.out.println(puntos);
+
 			sumaPuntos = sumaPuntos + Double.parseDouble(puntos);
 		}
-		
+		System.out.println(sumaPuntos);
+		System.out.println(totalPuntos);
 		return (totalPuntos.equals(sumaPuntos));
 	}
 	
