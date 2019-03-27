@@ -287,4 +287,53 @@ public class ClubPersonalBack extends Metodos{
 		loginClubBack();	
 		canjePremioBack(linea,"Pack");   
     }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Actualizacion_de_Datos_MIX() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		actualizarDatosBack(linea);
+    }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Actualizacion_de_Datos_POS() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		actualizarDatosBack(linea);
+    }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Actualizacion_de_Datos_PRE() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		actualizarDatosBack(linea);
+    }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void ABM_Usuarios_MIX() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		abmUsuarios(linea);
+    }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void ABM_Usuarios_POS() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		abmUsuarios(linea);
+    }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void ABM_Usuarios_PRE() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		abmUsuarios(linea);
+    }
+	
 }

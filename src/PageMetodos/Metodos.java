@@ -914,6 +914,57 @@ public void logoutEcommerce(){
 		default:
 		}
 	}
+	
+	public void actualizarDatosBack(String linea) {
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.findElement(By.linkText("B\u00FAsqueda por L\u00EDnea")).click();
+		driver.findElement(By.id("lineNumber")).sendKeys(linea);
+		driver.findElement(By.id("btnBuscar")).click();
+		driver.findElement(By.linkText("Actualizaci\u00f3n de Datos")).click();
+		new Select(driver.findElement(By.id("idProvince"))).selectByVisibleText("Mendoza");
+		sleep(3000);
+		new Select(driver.findElement(By.id("idLocalidad"))).selectByVisibleText("Lujan De Cuyo");
+		driver.findElement(By.id("btnNo")).click();
+		sleep(3000);
+		driver.findElement(By.linkText("Actualizaci\u00f3n de Datos")).click();
+		String provincia=new Select(driver.findElement(By.id("idProvince"))).getFirstSelectedOption().getText();
+		String localidad=new Select(driver.findElement(By.id("idLocalidad"))).getFirstSelectedOption().getText();
+		Assert.assertTrue(provincia.equals("Mendoza"));
+		Assert.assertTrue(localidad.equals("Lujan De Cuyo"));
+	}
+	
+	public void abmUsuarios(String linea) {
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.findElement(By.linkText("B\u00FAsqueda por L\u00EDnea")).click();
+		driver.findElement(By.id("lineNumber")).sendKeys(linea);
+		driver.findElement(By.id("btnBuscar")).click();
+		driver.findElement(By.linkText("ABM de Usuarios")).click();
+		driver.findElement(By.cssSelector(".botonCent155px")).click();
+		driver.findElement(By.name("member.name")).sendKeys("Juan");
+		driver.findElement(By.name("member.lastName")).sendKeys("Perez");
+		new Select(driver.findElement(By.id("idDocumentType"))).selectByVisibleText("DNI");
+		driver.findElement(By.name("member.documentNumber")).sendKeys("34278475");
+		WebElement yourButton = driver.findElement(By.name("birthDate"));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].removeAttribute('disabled','disabled')", yourButton);
+		driver.findElement(By.name("birthDate")).sendKeys("12/03/1988");
+		List<WebElement> oRadioButton = driver.findElements(By.id("sexo"));
+		oRadioButton.get(0).click();
+		driver.findElement(By.id("email")).sendKeys("testtest709");
+		driver.findElement(By.id("emaildominio")).sendKeys("gmail.com");
+		new Select(driver.findElement(By.id("idProvince"))).selectByVisibleText("Capital Federal");
+		sleep(3000);
+		new Select(driver.findElement(By.id("idLocalidad"))).selectByVisibleText("Capital Federal");
+		oRadioButton = driver.findElements(By.id("allCheckLineas"));
+		oRadioButton.get(0).click();
+		driver.findElement(By.id("btnNo")).click();
+		sleep(5000);
+		Assert.assertTrue(driver.findElement(By.id("pageToShow")).getText().contains("Perez, Juan - DNI: 34278475"));
+		sleep(5000);
+		driver.findElement(By.id("btnEliminar")).click();
+		driver.switchTo().alert().accept();
+		Assert.assertFalse(driver.findElement(By.id("pageToShow")).getText().contains("Perez, Juan - DNI: 34278475"));
+	}
 
 	@DataProvider
 	public Object[][] MIX() throws Exception {
