@@ -965,6 +965,34 @@ public void logoutEcommerce(){
 		driver.switchTo().alert().accept();
 		Assert.assertFalse(driver.findElement(By.id("pageToShow")).getText().contains("Perez, Juan - DNI: 34278475"));
 	}
+	
+	public void anulacionPremioDiferido(String linea) {
+		boolean  cancelado = false;
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.findElement(By.linkText("B\u00FAsqueda por L\u00EDnea")).click();
+		driver.findElement(By.id("lineNumber")).sendKeys(linea);
+		driver.findElement(By.id("btnBuscar")).click();
+		driver.findElement(By.linkText("Canjes Realizados")).click();
+		int cantFilas = driver.findElements(By.xpath("//table[@class='tablaDatos'][@align='left']/tbody/tr")).size();
+		System.out.println(cantFilas);
+		for (int i = 1; i <= cantFilas; i++) {
+			String estado = driver.findElement(By.xpath("//table[@class='tablaDatos'][@align='left']/tbody/tr[" + i + "]/td[14]")).getText();
+			System.out.println(estado);
+			if (estado.equals("Solicitada")) {
+				driver.findElement(By.xpath("//table[@class='tablaDatos'][@align='left']/tbody/tr[" + i + "]/td[16]/a/img")).click();
+				new Select(driver.findElement(By.id("idCancellationReason"))).selectByVisibleText("Cambio por otro Premio");
+				driver.findElement(By.id("btnAnular")).click();
+				sleep(3000);
+				driver.findElement(By.id("btnAgregar")).click();
+				estado = driver.findElement(By.xpath("//table[@class='tablaDatos'][@align='left']/tbody/tr[" + i + "]/td[14]")).getText();
+				if (estado.equals("Anulada")) {
+					cancelado=true;
+				}
+				break;
+			}
+		}
+		Assert.assertTrue(cancelado);
+	}
 
 	@DataProvider
 	public Object[][] MIX() throws Exception {

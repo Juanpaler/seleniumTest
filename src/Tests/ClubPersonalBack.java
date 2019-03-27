@@ -400,4 +400,28 @@ public class ClubPersonalBack extends Metodos{
 		abmUsuarios(linea);
     }
 	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Anulacion_Canje_de_premio_Diferido_MIX() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		anulacionPremioDiferido(linea);
+    }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Anulacion_Canje_de_premio_Diferido_POS() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		anulacionPremioDiferido(linea);
+    }
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Anulacion_Canje_de_premio_Diferido_PRE() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+		anulacionPremioDiferido(linea);
+    }
+	
 }
