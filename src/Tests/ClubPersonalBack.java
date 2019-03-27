@@ -299,6 +299,28 @@ public class ClubPersonalBack extends Metodos{
 	}
 	
 	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Canjes_Realizados_POS() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
+		loginClubBack();
+		Busqueda_por_Linea(linea);
+		canjesRealizadosBack();
+	}
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Canjes_Realizados_PRE() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
+		loginClubBack();
+		Busqueda_por_Linea(linea);
+		canjesRealizadosBack();
+	}
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
 	public void Canje_de_Puntos_Canje_de_Credito_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
