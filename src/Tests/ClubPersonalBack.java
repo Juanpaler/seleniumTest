@@ -276,6 +276,28 @@ public class ClubPersonalBack extends Metodos{
         Assert.assertTrue(Validar_Resumen_de_Puntos());
     }
 	
+	public void canjesRealizadosBack() {
+		
+		driver.findElement(By.linkText("Canjes Realizados")).click();				
+
+		int cantFilas = driver.findElements(By.xpath("//table[@class='tablaDatos'][@align='left']/tbody/tr")).size();
+		for (int i = 1; i <= cantFilas; i++) {
+			String premio = driver.findElement(By.xpath("//table[@class='tablaDatos'][@align='left']/tbody/tr[" + i + "]/td[10]")).getText();
+			System.out.println(premio);
+		}
+	}
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Canjes_Realizados_MIX() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
+		loginClubBack();
+		Busqueda_por_Linea(linea);
+		canjesRealizadosBack();
+	}
+	
 	@Test (groups = "ClubPersonalBack", priority = 0)
 	public void Canje_de_Puntos_Canje_de_Credito_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
