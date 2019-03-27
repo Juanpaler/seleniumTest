@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -156,6 +158,39 @@ public class ClubPersonalBack extends Metodos{
 		loginClubBack();	
         busquedaPorDni("5235040", linea);
     }
+	
+	public void movimientosPuntosBack() {
+		driver.findElement(By.linkText("Movimientos de Puntos")).click();				
+
+		String totalPuntosString = 	driver.findElement(By.xpath("//table[@id='panelResumen']/tbody/tr[3]/td[2]")).getText();
+		Double totalPuntos = Double.parseDouble(totalPuntosString);
+		Double sumaPuntos = 0.0;
+		
+		WebElement lineas = driver.findElement(By.name("idLine"));
+		lineas.click();
+		lineas.sendKeys("(Todas)");
+		lineas.sendKeys(Keys.ENTER);
+		driver.findElement(By.id("btnPointsMovements")).click();
+		
+		int cantFilas = driver.findElements(By.xpath("//table[@class='tablaDatos'][@align='left']/tbody/tr")).size();
+		
+		for (int i = 1; i <= cantFilas; i++) 
+		{
+			String puntos = driver.findElement(By.xpath("//table[@class='tablaDatos'][@align='left']/tbody/tr[" + i + "]/td[10]")).getText();             
+            sumaPuntos = sumaPuntos + Double.parseDouble(puntos);              
+		}
+		Assert.assertTrue(totalPuntos.equals(sumaPuntos));
+	}
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Movimientos_de_Puntos_MIX() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		loginClubBack();
+		Busqueda_por_Linea(linea);
+        movimientosPuntosBack();
+	}
 	
 	private void Busqueda_por_Linea(String linea)
 	{
