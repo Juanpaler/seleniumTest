@@ -192,6 +192,26 @@ public class ClubPersonalBack extends Metodos{
         movimientosPuntosBack();
 	}
 	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Movimientos_de_Puntos_POS() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		loginClubBack();
+		Busqueda_por_Linea(linea);
+        movimientosPuntosBack();
+	}
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Movimientos_de_Puntos_PRE() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		loginClubBack();
+		Busqueda_por_Linea(linea);
+        movimientosPuntosBack();
+	}
+	
 	private void Busqueda_por_Linea(String linea)
 	{
 		WaitForElement("id", "submenu");
