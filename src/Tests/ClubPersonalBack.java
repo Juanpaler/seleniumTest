@@ -1,12 +1,16 @@
 package Tests;
 
+
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -319,6 +323,115 @@ public class ClubPersonalBack extends Metodos{
 		Busqueda_por_Linea(linea);
 		canjesRealizadosBack();
 	}
+	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Creacion_de_producto_TP() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
+		loginClubBack();
+		nuevoProducto();
+		int nroIntentoCreacion = 0;
+		String fechaActual = GetStringDate();
+		String fechaActualSinBarras = fechaActual.replace("/", "");
+		String nombreProducto = "Credito 50 Prueba "+fechaActualSinBarras;
+		driver.findElement(By.id("productTypeId")).sendKeys("Producto TP");
+		driver.findElement(By.name("productCategory")).sendKeys("Cr");
+		cargarNombreProducto(nombreProducto);
+
+		String path = new File(".").getCanonicalPath();
+		driver.findElement(By.id("idFile")).sendKeys(path +"\\ClubPersonalxDefecto.jpeg");
+		
+		String fechaMasUnDia = GetStringDatePlusDay(1);
+		cargarFechaProducto(fechaActual, fechaMasUnDia);
+
+		driver.findElement(By.name("productProvider")).sendKeys("Albus");
+		driver.findElement(By.id("money")).sendKeys("50");
+		driver.findElement(By.name("productEfectivization")).sendKeys("Inmediata");
+		driver.findElement(By.name("origin")).sendKeys("Argentina");
+		driver.findElement(By.name("guarantee")).sendKeys("1 mes");
+		driver.findElement(By.id("productInfiniteStock")).click();
+		driver.findElement(By.name("productAvailableStock")).sendKeys("10");
+		driver.findElement(By.name("creditAmmount")).sendKeys("3");
+		
+		Boolean saved = grabarProducto();
+		
+		while (saved == false) {
+			nroIntentoCreacion = nroIntentoCreacion + 1;
+			driver.findElement(By.id("idFile")).sendKeys(path +"\\ClubPersonalxDefecto.jpeg");
+			cargarFechaProducto(fechaActual, fechaMasUnDia);
+			cargarNombreProducto(nombreProducto+"_" + nroIntentoCreacion);
+			saved = grabarProducto();
+		}
+
+		validarProductoCargado(nombreProducto, nroIntentoCreacion);
+	}
+	
+	public void validarProductoCargado(String nombreProducto, int nroIntentoCreacion) {	
+		if(nroIntentoCreacion > 0)
+		{
+			nombreProducto = nombreProducto +"_" + nroIntentoCreacion;
+		}
+		
+		driver.findElement(By.id("idCode")).sendKeys(nombreProducto);
+		driver.findElement(By.id("idCode")).sendKeys(Keys.ENTER);
+		driver.findElement(By.xpath("//table[@class='tablaDatos']/tbody/tr[2]/td[2]")).click();	
+		String proveedor =new Select(driver.findElement(By.name("productProvider"))).getFirstSelectedOption().getText();
+		String origen =new Select(driver.findElement(By.name("origin"))).getFirstSelectedOption().getText();
+		String efectivizacion=new Select(driver.findElement(By.name("productEfectivization"))).getFirstSelectedOption().getText();
+		String garantia=new Select(driver.findElement(By.name("guarantee"))).getFirstSelectedOption().getText();		
+		String categoria=new Select(driver.findElement(By.name("productCategory"))).getFirstSelectedOption().getText();		
+		String codigo=driver.findElement(By.id("productCodeId")).getAttribute("value");
+		String nombre=driver.findElement(By.name("productName")).getAttribute("value");
+		String descripcion=driver.findElement(By.name("productDescription")).getText();
+		String observaciones=driver.findElement(By.name("productObservations")).getText();
+		String valor=driver.findElement(By.id("money")).getAttribute("value");
+		String stockIlimitado=driver.findElement(By.id("productInfiniteStock")).getAttribute("value");
+		String stock=driver.findElement(By.name("productAvailableStock")).getAttribute("value");
+		String credito=driver.findElement(By.name("creditAmmount")).getAttribute("value");
+		
+		Assert.assertTrue(proveedor.equals("Albus"));
+		Assert.assertTrue(origen.equals("Argentina"));
+		Assert.assertTrue(efectivizacion.equals("Inmediata"));
+		Assert.assertTrue(garantia.equals("1 mes"));
+		Assert.assertTrue(categoria.equals("Cr�dito (Personal con Tarjeta / con Abono Fijo)"));
+		Assert.assertTrue(codigo.equals(nombreProducto));
+		Assert.assertTrue(nombre.equals(nombreProducto));
+		Assert.assertTrue(descripcion.equals(nombreProducto));
+		Assert.assertTrue(observaciones.equals(nombreProducto));
+		Assert.assertTrue(valor.equals("50,00"));
+		Assert.assertTrue(stockIlimitado.equals("1"));
+		Assert.assertTrue(stock.equals("10"));
+		Assert.assertTrue(credito.equals("3"));	
+		
+	}
+	public Boolean grabarProducto() {		
+		driver.findElement(By.id("btnGuardar")).click();		
+		Boolean saved = !ElementCreated("cssSelector",".error",5);
+		return saved;
+	}
+	public void cargarFechaProducto(String fechaActual, String fechaMasUnDia) {		
+		((JavascriptExecutor)driver).executeScript("document.getElementById('productDateFromText').value='"+fechaActual+"'");
+		((JavascriptExecutor)driver).executeScript("document.getElementById('productDateFrom').value='"+fechaActual+"'");		
+		((JavascriptExecutor)driver).executeScript("document.getElementById('productDateToText').value='"+fechaMasUnDia+"'");
+		((JavascriptExecutor)driver).executeScript("document.getElementById('productDateTo').value='"+fechaMasUnDia+"'");
+	}
+	public void cargarNombreProducto(String nombreProducto) {		
+		driver.findElement(By.id("productCodeId")).clear();;
+		driver.findElement(By.name("productName")).clear();
+		driver.findElement(By.name("productDescription")).clear();
+		driver.findElement(By.name("productObservations")).clear();
+		driver.findElement(By.id("productCodeId")).sendKeys(nombreProducto);
+		driver.findElement(By.name("productName")).sendKeys(nombreProducto);
+		driver.findElement(By.name("productDescription")).sendKeys(nombreProducto);
+		driver.findElement(By.name("productObservations")).sendKeys(nombreProducto);
+	}
+	public void nuevoProducto() {		
+		driver.findElement(By.linkText("Adm. de Premios")).click();
+		driver.findElement(By.linkText("Productos")).click();
+		driver.findElement(By.xpath("//input[@onclick='newProduct()'][@class='botonIzq']")).click();
+	}
+	
 	
 	@Test (groups = "ClubPersonalBack", priority = 0)
 	public void Canje_de_Puntos_Canje_de_Credito_MIX() throws IOException{
