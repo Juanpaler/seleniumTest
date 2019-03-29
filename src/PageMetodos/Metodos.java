@@ -480,7 +480,29 @@ public class Metodos {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);			
 	}
 	
-public void logoutEcommerce(){
+	public Boolean ElementCreated(String by, String text, int time) {
+			
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);		
+		
+		WebDriverWait wait = new WebDriverWait(driver, time);
+		try {
+			switch (by) {
+			case "id":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.id(text)));	
+				break;
+			case "cssSelector":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(text)));
+				break;
+			}
+		} catch (Exception e) {
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			return false;
+		}
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
+		return true;
+	}
+	
+	public void logoutEcommerce(){
 		
 		WaitForElement("id", "tpi-user");
 		driver.findElement(By.id("tpi-user")).click();		
