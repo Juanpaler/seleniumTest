@@ -53,7 +53,7 @@ public class ClubPersonalBack extends Metodos{
 		AdhesionTitularClubBack(linea,"testtest867");
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 1)
 	public void Adhesion_Usuario_Titular_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -61,7 +61,7 @@ public class ClubPersonalBack extends Metodos{
 		AdhesionTitularClubBack(linea,"testtest868");
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 2)
 	public void Adhesion_Usuario_Titular_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -69,7 +69,28 @@ public class ClubPersonalBack extends Metodos{
 		AdhesionTitularClubBack(linea,"testtest687");
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 6, enabled = false)
+	public void Adhesion_Linea_Usuario_MIX() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+    }
+	
+	@Test (groups = "ClubPersonalBack", priority = 7,enabled = false)
+	public void Adhesion_Linea_Usuario_POS() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+    }
+	
+	@Test (groups = "ClubPersonalBack", priority = 8,enabled = false)
+	public void Adhesion_Linea_Usuario_PRE() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginClubBack();	
+    }
+	
+	@Test (groups = "ClubPersonalBack", priority = 12)
 	public void Busqueda_por_Linea_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -77,7 +98,7 @@ public class ClubPersonalBack extends Metodos{
         busquedaLinea(linea);
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 13)
 	public void Busqueda_por_Linea_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -85,7 +106,7 @@ public class ClubPersonalBack extends Metodos{
         busquedaLinea(linea);
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 14)
 	public void Busqueda_por_Linea_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -93,7 +114,7 @@ public class ClubPersonalBack extends Metodos{
         busquedaLinea(linea);
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 18)
 	public void Canje_de_Premio_Diferido_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -101,7 +122,7 @@ public class ClubPersonalBack extends Metodos{
 		canjePremioBack(linea,"Diferido");   
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 19)
 	public void Canje_de_Premio_Diferido_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -109,7 +130,7 @@ public class ClubPersonalBack extends Metodos{
 		canjePremioBack(linea,"Diferido");
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 20)
 	public void Canje_de_Premio_Diferido_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -117,7 +138,7 @@ public class ClubPersonalBack extends Metodos{
 		canjePremioBack(linea,"Diferido");
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 25)
 	public void Canje_de_Puntos_Canje_de_Voucher_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -125,7 +146,7 @@ public class ClubPersonalBack extends Metodos{
 		canjePremioBack(linea,"Voucher");   
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 26)
 	public void Canje_de_Puntos_Canje_de_Voucher_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -133,7 +154,7 @@ public class ClubPersonalBack extends Metodos{
 		canjePremioBack(linea,"Voucher");   
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 27)
 	public void Canje_de_Puntos_Canje_de_Voucher_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -141,7 +162,7 @@ public class ClubPersonalBack extends Metodos{
 		canjePremioBack(linea,"Voucher");   
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 15)
 	public void Busqueda_por_Documento_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -149,7 +170,7 @@ public class ClubPersonalBack extends Metodos{
         busquedaPorDni("38092272", linea);
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 16)
 	public void Busqueda_por_Documento_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -157,7 +178,7 @@ public class ClubPersonalBack extends Metodos{
         busquedaPorDni("21976636", linea);
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 17)
 	public void Busqueda_por_Documento_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -188,7 +209,7 @@ public class ClubPersonalBack extends Metodos{
 		Assert.assertTrue(totalPuntos.equals(sumaPuntos));
 	}
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 28)
 	public void Movimientos_de_Puntos_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -198,7 +219,7 @@ public class ClubPersonalBack extends Metodos{
         movimientosPuntosBack();
 	}
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 29)
 	public void Movimientos_de_Puntos_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -208,7 +229,7 @@ public class ClubPersonalBack extends Metodos{
         movimientosPuntosBack();
 	}
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 30)
 	public void Movimientos_de_Puntos_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -248,7 +269,7 @@ public class ClubPersonalBack extends Metodos{
 		return (totalPuntos.equals(sumaPuntos));
 	}
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 33)
 	public void Resumen_de_Puntos_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -257,7 +278,7 @@ public class ClubPersonalBack extends Metodos{
         Assert.assertTrue(Validar_Resumen_de_Puntos());
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 31)
 	public void Resumen_de_Puntos_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -266,7 +287,7 @@ public class ClubPersonalBack extends Metodos{
         Assert.assertTrue(Validar_Resumen_de_Puntos());
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 32)
 	public void Resumen_de_Puntos_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -286,7 +307,7 @@ public class ClubPersonalBack extends Metodos{
 		}
 	}
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 34)
 	public void Canjes_Realizados_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -297,7 +318,7 @@ public class ClubPersonalBack extends Metodos{
 		canjesRealizadosBack();
 	}
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 35)
 	public void Canjes_Realizados_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -308,7 +329,7 @@ public class ClubPersonalBack extends Metodos{
 		canjesRealizadosBack();
 	}
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 36)
 	public void Canjes_Realizados_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -319,7 +340,7 @@ public class ClubPersonalBack extends Metodos{
 		canjesRealizadosBack();
 	}
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 40)
 	public void Creacion_de_producto_TP() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -427,7 +448,7 @@ public class ClubPersonalBack extends Metodos{
 		driver.findElement(By.xpath("//input[@onclick='newProduct()'][@class='botonIzq']")).click();
 	}
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 41)
 	public void Creacion_de_premio_TP() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -502,7 +523,7 @@ public class ClubPersonalBack extends Metodos{
 		driver.findElement(By.id("btnNuevo")).click();
 	}
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 21)
 	public void Canje_de_Puntos_Canje_de_Credito_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -510,7 +531,7 @@ public class ClubPersonalBack extends Metodos{
 		canjePremioBack(linea,"Credito");   
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 22)
 	public void Canje_de_Puntos_Canje_de_Credito_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -518,7 +539,7 @@ public class ClubPersonalBack extends Metodos{
 		canjePremioBack(linea,"Credito");   
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 23)
 	public void Canje_de_Puntos_Canje_de_Pack_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -526,7 +547,7 @@ public class ClubPersonalBack extends Metodos{
 		canjePremioBack(linea,"Pack");   
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 24)
 	public void Canje_de_Puntos_Canje_de_Pack_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -534,7 +555,7 @@ public class ClubPersonalBack extends Metodos{
 		canjePremioBack(linea,"Pack");   
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 9)
 	public void Actualizacion_de_Datos_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -542,7 +563,7 @@ public class ClubPersonalBack extends Metodos{
 		actualizarDatosBack(linea);
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 10)
 	public void Actualizacion_de_Datos_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -550,7 +571,7 @@ public class ClubPersonalBack extends Metodos{
 		actualizarDatosBack(linea);
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 11)
 	public void Actualizacion_de_Datos_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -558,7 +579,7 @@ public class ClubPersonalBack extends Metodos{
 		actualizarDatosBack(linea);
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 3)
 	public void ABM_Usuarios_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -566,7 +587,7 @@ public class ClubPersonalBack extends Metodos{
 		abmUsuarios(linea);
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 4)
 	public void ABM_Usuarios_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -574,7 +595,7 @@ public class ClubPersonalBack extends Metodos{
 		abmUsuarios(linea);
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 5)
 	public void ABM_Usuarios_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -582,7 +603,7 @@ public class ClubPersonalBack extends Metodos{
 		abmUsuarios(linea);
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 37)
 	public void Anulacion_Canje_de_premio_Diferido_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -590,7 +611,7 @@ public class ClubPersonalBack extends Metodos{
 		anulacionPremioDiferido(linea);
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 38)
 	public void Anulacion_Canje_de_premio_Diferido_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -598,7 +619,7 @@ public class ClubPersonalBack extends Metodos{
 		anulacionPremioDiferido(linea);
     }
 	
-	@Test (groups = "ClubPersonalBack", priority = 0)
+	@Test (groups = "ClubPersonalBack", priority = 39)
 	public void Anulacion_Canje_de_premio_Diferido_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);

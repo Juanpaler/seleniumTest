@@ -63,7 +63,7 @@ public class ClubPersonalFront extends Metodos{
         AdhesionTitularClub("testtest687@gmail.com");		
 	}
 	
-	@Test (groups = "ClubPersonalFront", priority = 3)
+	@Test (groups = "ClubPersonalFront", priority = 3, enabled = false)
 	public void Adhesion_Ususario_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -71,7 +71,7 @@ public class ClubPersonalFront extends Metodos{
         //AdhesionTitularClub("testtest687@gmail.com");		
 	}
 	
-	@Test (groups = "ClubPersonalFront", priority = 4)
+	@Test (groups = "ClubPersonalFront", priority = 4, enabled = false)
 	public void Adhesion_Ususario_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -79,7 +79,7 @@ public class ClubPersonalFront extends Metodos{
         //AdhesionTitularClub("testtest687@gmail.com");		
 	}
 	
-	@Test (groups = "ClubPersonalFront", priority = 5)
+	@Test (groups = "ClubPersonalFront", priority = 5 ,enabled = false)
 	public void Adhesion_Ususario_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
