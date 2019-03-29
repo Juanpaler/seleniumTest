@@ -10,7 +10,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -425,6 +427,80 @@ public class ClubPersonalBack extends Metodos{
 		driver.findElement(By.xpath("//input[@onclick='newProduct()'][@class='botonIzq']")).click();
 	}
 	
+	@Test (groups = "ClubPersonalBack", priority = 0)
+	public void Creacion_de_premio_TP() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
+		loginClubBack();
+		nuevoPremio();
+		String fechaActual = GetStringDate();
+		String fechaActualSinBarras = fechaActual.replace("/", "");
+		String nombrePremio = "Credito 50 Prueba "+fechaActualSinBarras;
+		
+		driver.findElement(By.id("description")).sendKeys(nombrePremio);
+		driver.findElement(By.name("factura")).click();
+		driver.findElement(By.name("tarjeta")).click();
+		driver.findElement(By.name("abonoFijo")).click();		
+		driver.findElement(By.id("checkbox0")).click();		
+		driver.findElement(By.id("idProductCategory")).sendKeys("Cr");
+		driver.findElement(By.id("producto")).sendKeys(nombrePremio);		
+		driver.findElement(By.id("pointsValue")).sendKeys("50");
+		driver.findElement(By.id("bonus")).sendKeys("30");		
+		driver.findElement(By.name("published")).click();
+		driver.findElement(By.name("webVisible")).click();
+		driver.findElement(By.name("canjeWeb")).click();		
+		driver.findElement(By.id("legales")).sendKeys("Legales");
+		
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);	
+		WebDriverWait wait = new WebDriverWait(driver, 15);
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("btnGuardar")));	
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);		
+
+		driver.findElement(By.id("btnGuardar")).click();	
+		validarPremioCargado(nombrePremio);
+	}
+	
+	public void validarPremioCargado(String nombrePremio) {		
+		
+		driver.findElement(By.name("description")).sendKeys(nombrePremio);
+		driver.findElement(By.name("description")).sendKeys(Keys.ENTER);
+		driver.findElement(By.xpath("//table[@class='tablaDatos1']/tbody/tr[2]/td[2]/a[2]")).click();	
+		
+		String descripcion=driver.findElement(By.id("description")).getAttribute("value");
+		String factura=driver.findElement(By.name("factura")).getAttribute("value");
+		String tarjeta=driver.findElement(By.name("tarjeta")).getAttribute("value");
+		String abonoFijo=driver.findElement(By.name("abonoFijo")).getAttribute("value");
+		String categoria =new Select(driver.findElement(By.id("idProductCategory"))).getFirstSelectedOption().getText();
+		String producto =new Select(driver.findElement(By.id("producto"))).getFirstSelectedOption().getText();
+		String categoriaBlack=driver.findElement(By.id("checkbox0")).getAttribute("value");
+		String valorPuntos=driver.findElement(By.id("pointsValue")).getAttribute("value");
+		String bonificacion=driver.findElement(By.id("bonus")).getAttribute("value");
+		String publicado=driver.findElement(By.name("published")).getAttribute("value");
+		String visibleWeb=driver.findElement(By.name("webVisible")).getAttribute("value");
+		String canjeWeb=driver.findElement(By.name("canjeWeb")).getAttribute("value");
+		String legales=driver.findElement(By.id("legales")).getText();
+		
+		Assert.assertTrue(descripcion.equals("Credito 50 Prueba 29032019"));
+		Assert.assertTrue(factura.equals("on"));
+		Assert.assertTrue(tarjeta.equals("on"));
+		Assert.assertTrue(abonoFijo.equals("on"));
+		Assert.assertTrue(categoria.equals("Cr\u00E9dito (Personal con Tarjeta / con Abono Fijo)"));
+		Assert.assertTrue(producto.equals("Credito 50 Prueba 29032019"));
+		Assert.assertTrue(categoriaBlack.equals("on"));
+		Assert.assertTrue(valorPuntos.equals("50"));
+		Assert.assertTrue(bonificacion.equals("30"));
+		Assert.assertTrue(publicado.equals("on"));
+		Assert.assertTrue(visibleWeb.equals("on"));
+		Assert.assertTrue(canjeWeb.equals("on"));
+		Assert.assertTrue(legales.equals("Legales"));		
+	}
+	
+	public void nuevoPremio() {		
+		driver.findElement(By.linkText("Adm. de Premios")).click();
+		driver.findElement(By.linkText("Premios")).click();
+		driver.findElement(By.id("btnNuevo")).click();
+	}
 	
 	@Test (groups = "ClubPersonalBack", priority = 0)
 	public void Canje_de_Puntos_Canje_de_Credito_MIX() throws IOException{
