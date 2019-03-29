@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
@@ -392,12 +393,18 @@ public class Metodos {
 		sleep(7000);
 	}
 	public String GetStringDatePlusDay (int days){
-		SimpleDateFormat sdf = new SimpleDateFormat ("-dd/MM/yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat ("dd/MM/yyyy");
 		Calendar cal = Calendar.getInstance();
 		System.out.println("Current Date" +sdf.format(cal.getTime()));
 		cal.add(Calendar.DAY_OF_MONTH, days);
 		String newDate = sdf.format(cal.getTime());
 		return newDate;		
+	}
+	
+	public String GetStringDate(){
+		String pattern = "dd/MM/yyyy";
+		String dateInString =new SimpleDateFormat(pattern).format(new Date());
+		return dateInString;		
 	}
 	
 	public String GetUserDownloadPath (){
