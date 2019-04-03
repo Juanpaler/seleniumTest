@@ -7,6 +7,8 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
@@ -52,6 +54,15 @@ public class MetodosAndroid {
         element.click();
         sleep(7000);
     }
+	
+	 public static void verticalScroll(AndroidDriver<AndroidElement> driver) {
+		 Dimension size = driver.manage().window().getSize();
+	     int y_start=(int)(size.height*0.60);
+	     int y_end=(int)(size.height*0.30);
+	     int x=size.width/2;
+	     driver.swipe(x,y_start,x,y_end,4000);
+		
+	}
 	
 	public boolean verificarCompraDePacks(AndroidDriver<AndroidElement> driver) {
 		boolean msj = false;
@@ -148,19 +159,20 @@ public class MetodosAndroid {
 	}
 	
 	public boolean descargaComprobanteDeCompra(AndroidDriver<AndroidElement> driver, String tipoDeLinea) {
-		boolean descarga = false;
-		scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='INICIO']");
-		switch(tipoDeLinea) {
-		case "MIX":
-			driver.swipe(237, 854, 251, 231, 672);
-	        driver.findElement(By.xpath("//*[@id='button_component_layout' and ./*[@text='Mis facturas']]")).click();
-	        sleep(5000);
-	        driver.findElement(By.xpath("//*[@class='android.widget.LinearLayout' and ./*[@text='Facturas de compra']]")).click();
-	        break;
-		case "Pos":
-			scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='Mis facturas']");
-	    	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='Facturas de compra']");
-		}
+		boolean descarga = false;		
+		  //Bajo
+		new WebDriverWait(driver, 60).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@text='Mis disponibles']")));
+		  for(int i=0;i<5;i++)
+	      {          
+	    	  if(driver.findElements(By.xpath("//*[@text='Mis facturas']")).size()>0){    	
+	    		  //Si esta visible hago click
+	              driver.findElement(By.xpath("//*[@text='Mis facturas']")).click();
+	              break;          
+	          }else{        
+		          verticalScroll(driver);		      
+	          }      
+	      }
+	    scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='Facturas de compra']");
 		sleep(10000);
         scrollAndClick(driver, "xpath", "//android.view.View[@text='Descargar']");
         driver.swipe(159, 28, 145, 498, 289);
