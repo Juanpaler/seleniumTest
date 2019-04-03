@@ -177,6 +177,25 @@ public class MiCuentaWeb extends Metodos{
 		Assert.assertTrue(tabla.isDisplayed());
 	}
 	
+	@Test (groups ={ "AutogestionIndividuosWeb","Headers"})
+	public void Headers_Validar_links() throws IOException{
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginPorLinea(linea);
+		buscarYClick(driver.findElements(By.cssSelector(".tpi-navbar-item-link")),"equals","Planes");		
+		Assert.assertTrue(driver.getCurrentUrl().equals("https://uat.personal.com.ar/tienda/planes/")); 
+		driver.navigate().back();
+
+		buscarYClick(driver.findElements(By.cssSelector(".tpi-navbar-item-link")),"equals","Club Personal");
+		Assert.assertTrue(driver.getCurrentUrl().equals("https://uat.personal.com.ar/clubpersonal/")); 
+		driver.navigate().back();
+
+		buscarYClick(driver.findElements(By.cssSelector(".tpi-navbar-item-link")),"equals","Ayuda");		
+		Assert.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/")); 
+		driver.navigate().back();
+
+	}
+	
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
 	public void Consumos_Packs_Activos_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
