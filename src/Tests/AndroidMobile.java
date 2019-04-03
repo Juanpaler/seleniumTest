@@ -41,6 +41,7 @@ public class AndroidMobile extends MetodosAndroid {
         driver.setLogLevel(Level.INFO);
     }
     
+    @AfterMethod (alwaysRun = true)
     public void after() {
     	sleep(5000);
     	int menu = 0;
