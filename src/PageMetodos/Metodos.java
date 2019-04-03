@@ -246,7 +246,7 @@ public class Metodos {
 		boolean cambioDeClave = false;
 		driver.findElement(By.id("tpi-user")).click();
 		sleep(3000);
-		driver.findElement(By.cssSelector(".tpi-user-link.tpi-fix-micuenta")).click();
+		driver.findElement(By.cssSelector(".tpi-user-link")).click();
 		sleep(15000);
 		driver.findElement(By.id("lnkCambioClave")).click();
 		sleep(15000);
@@ -259,7 +259,7 @@ public class Metodos {
 			cambioDeClave = true;
 		driver.findElement(By.id("tpi-user")).click();
 		sleep(3000);
-		driver.findElement(By.cssSelector(".tpi-user-link.tpi-fix-micuenta")).click();
+		driver.findElement(By.cssSelector(".tpi-user-link")).click();
 		sleep(10000);
 		driver.findElement(By.id("lnkCambioClave")).click();
 		sleep(10000);
