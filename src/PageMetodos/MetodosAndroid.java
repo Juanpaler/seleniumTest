@@ -73,7 +73,12 @@ public class MetodosAndroid {
 		}
     	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='Con Cr\u00e9dito']");
     	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='ROAMING']");
-    	scrollAndClick(driver, "xpath", "//android.widget.TextView[contains(text(),'Pack Roaming 40 SMS Limitrofes')]");
+		if (driver.findElements(By.xpath("//android.widget.TextView[contains(text(),'Pack Roaming 40 SMS Limitrofes')]")).size() > 0) {
+			driver.findElement(By.xpath("//android.widget.TextView[contains(text(),'Pack Roaming 40 SMS Limitrofes')]")).click();
+		} else {
+			driver.findElement(By.xpath("//*[@text='Ver m\u00E1s']")).click();
+			driver.findElement(By.xpath("//android.widget.TextView[contains(text(),'Pack Roaming 40 SMS Limitrofes')]")).click();
+		}
     	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='COMPRAR']");
     	scrollAndClick(driver, "xpath", "//android.widget.Button[@text='ACEPTAR']");
     	sleep(5000);
