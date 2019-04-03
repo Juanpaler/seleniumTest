@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -1665,6 +1666,7 @@ public class MiCuentaWeb extends Metodos{
 	@Test(groups ={ "AutogestionIndividuosWeb","consumos"}) 
 	public void Mis_Consumos_DataSharing_Alta_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);	
 		String num = "64480754";
 		String linea=retornaLinea(nombreCaso,archivoLineas);
 		loginPorLinea(linea);
@@ -1675,8 +1677,8 @@ public class MiCuentaWeb extends Metodos{
 			driver.findElement(By.className("acess-ds")).click();
 			sleep(5000);
 			driver.findElement(By.className("agregar")).click();;
-		} catch (Exception e) {}
-			buscarYClick(driver.findElements(By.cssSelector(".card.card-xs.data-sharing.ng-scope")),"contains","gigas compartidos");
+		} catch (Exception e) {}			
+			buscarYClick(driver.findElements(By.cssSelector(".ds-tittle.text-destacado.text-destacado-xs")),"contains","gigas compartidos");
 			sleep(5000);
 			buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"equals","comenzar");
 			sleep(8000);
