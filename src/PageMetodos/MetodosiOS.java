@@ -71,6 +71,13 @@ public class MetodosiOS {
     	}
     	scrollAndClick(driver, "id", "Con Cr\u00e9dito");
     	scrollAndClick(driver, "id", "ROAMING");
+    	Boolean opcionExiste = ElementCreated(driver, "xpath", "//*[@class='UIAStaticText'][contains(text(),'Pack Roaming 40 SMS Limitrofes')]", 5);
+    	while(!opcionExiste)
+    	{
+    		WaitForElement(driver, "xpath", "//*[@id='Ver m�s']");
+			driver.findElement("xpath", "//*[@id='Ver m�s']").click();
+	    	opcionExiste = ElementCreated(driver, "xpath", "//*[@class='UIAStaticText'][contains(text(),'Pack Roaming 40 SMS Limitrofes')]", 5);
+    	}
     	scrollAndClick(driver, "xpath", "//*[@class='UIAStaticText'][contains(text(),'Pack Roaming 40 SMS Limitrofes')]");
     	scrollAndClick(driver, "id", "COMPRAR");
     	scrollAndClick(driver, "id", "ACEPTAR");
