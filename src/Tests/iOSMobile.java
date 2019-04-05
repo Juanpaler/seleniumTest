@@ -40,7 +40,7 @@ public class iOSMobile extends MetodosiOS {
         } catch(Exception e) {}
     }
     
-    //@AfterMethod (alwaysRun = true)
+    @AfterMethod (alwaysRun = true)
     public void after() {
     	sleep(5000);
     	int menu = 0;
