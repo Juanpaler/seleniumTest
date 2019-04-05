@@ -1,11 +1,15 @@
 package PageMetodos;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
@@ -27,7 +31,7 @@ public class MetodosiOS {
 		driver.findElement(By.className("UIATextField")).sendKeys(linea);
         driver.findElement(By.id("INGRESAR CON CLAVE PERSONAL")).click();
         sleep(2000);
-        driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave numérica'] and ./parent::*[@class='UIAView']]")).sendKeys("1469");
+        driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave numï¿½rica'] and ./parent::*[@class='UIAView']]")).sendKeys("1469");
         driver.findElement(By.id("INGRESAR A MI PERSONAL UAT")).click();
         sleep(10000);
         try {
@@ -349,7 +353,7 @@ public class MetodosiOS {
     	sleep(5000);
     	driver.findElement(By.className("UIATextField")).sendKeys(linea);
         driver.findElement(By.id("INGRESAR CON CLAVE PERSONAL")).click();
-        driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave numérica'] and ./parent::*[@class='UIAView']]")).sendKeys(clave);
+        driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave numï¿½rica'] and ./parent::*[@class='UIAView']]")).sendKeys(clave);
         driver.findElement(By.id("INGRESAR A MI PERSONAL UAT")).click();
         sleep(10000);
         switch(tipoDeLogin) {
@@ -528,7 +532,7 @@ public class MetodosiOS {
     	switch(tipoDeLinea) {
     	case "MIX":
     		for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
-    			if (x.getText().contains("La Cuota Internet por Dia Limitrofe  fue activada con éxito"))
+    			if (x.getText().contains("La Cuota Internet por Dia Limitrofe  fue activada con ï¿½xito"))
             		desact = true;
     		}
     		break;
@@ -541,5 +545,53 @@ public class MetodosiOS {
     	}
     	scrollAndClick(driver, "id", "ACEPTAR");
     	return activ && desact;
+	}
+    
+	public void WaitForElement(IOSDriver<IOSElement> driver,String by, String text) {
+		
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);		
+		
+		WebDriverWait wait = new WebDriverWait(driver, 15);
+		try {
+			switch (by) {
+			case "id":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.id(text)));	
+				break;
+			case "cssSelector":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(text)));
+				break;
+			case "xpath":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(text)));
+				break;	
+			}
+		} catch (Exception e) {
+			Assert.assertTrue(false);
+		}
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);			
+	}
+	
+    public Boolean ElementCreated(IOSDriver<IOSElement> driver,String by, String text, int time) {
+		
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);		
+		
+		WebDriverWait wait = new WebDriverWait(driver, time);
+		try {
+			switch (by) {
+			case "id":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.id(text)));	
+				break;
+			case "cssSelector":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(text)));
+				break;
+			case "xpath":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(text)));
+				break;	
+			}
+		} catch (Exception e) {
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			return false;
+		}
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
+		return true;
 	}
 }
