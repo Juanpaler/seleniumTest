@@ -280,28 +280,28 @@ public class MetodosiOS {
     }
     
     public boolean verificarMetodosDeRecarga(IOSDriver<IOSElement> driver) {
-    	boolean sos = false, puntosClub = false, tdc = false;
+    	boolean otrasFormas = false, tarjetaCredito = false, tarjetaPrepaga = true;
     	try {
     		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
     	} catch(Exception e) {
     		scrollAndClick(driver, "id", "Recargas y Packs");
     	}
-    	scrollAndClick(driver, "id", "S.O.S.");
-    	if (driver.findElement(By.id("RECARG\u00c1 AHORA")).isEnabled())
-    		sos = true;
-    	driver.findElement(By.id("Atr\u00e1s")).click();
-    	sleep(3000);
-    	scrollAndClick(driver, "id", "Puntos Club");
-    	sleep(10000);
-    	if (driver.findElement(By.id("Recarga con Puntos Club")).isEnabled())
-    		puntosClub = true;
-    	driver.findElement(By.id("Atr\u00e1s")).click();
-    	sleep(3000);
     	scrollAndClick(driver, "id", "Tarjeta de Cr\u00e9dito");
-    	sleep(10000);
-    	if (driver.findElement(By.id("Recarga con Tarjeta de Cr\u00e9dito")).isEnabled())
-    		tdc = true;
-    	return sos && puntosClub && tdc;
+    	WaitForElement(driver, "id", "Recarga con Tarjeta de Cr\u00e9dito");    	
+    	tarjetaCredito = ElementCreated(driver, "id", "Recarga con Tarjeta de Cr\u00E9dito", 7);
+    	driver.findElement(By.id("Atr\u00e1s")).click();
+    	
+    	WaitForElement(driver, "id", "Recarga online con Tarjeta Personal");
+    	scrollAndClick(driver, "id", "Recarga online con Tarjeta Personal");    	
+    	tarjetaPrepaga = ElementCreated(driver, "id", "Recarga con Tarjeta Prepaga", 7);
+    	driver.findElement(By.id("Atr\u00e1s")).click();
+    	
+    	WaitForElement(driver, "id", "Recarga online - otras formas de pago");
+    	scrollAndClick(driver, "id", "Recarga online - otras formas de pago");    	
+    	otrasFormas = ElementCreated(driver, "id", "Medios de recarga online", 7);
+    	driver.findElement(By.id("Atr\u00e1s")).click();    	
+    	
+    	return tarjetaPrepaga && otrasFormas && tarjetaCredito;
     }
     
     public boolean verificarRecargaSOS(IOSDriver<IOSElement> driver) {
