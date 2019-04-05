@@ -103,13 +103,13 @@ public class AndroidMobile extends MetodosAndroid {
     @Test (groups = "AutogestionIndividuosAPP", priority = 7)
     public void Recargas_Gestiones_y_Consultas_Recargar_Ahora_PRE() {
     	loginPorLineaMobile(driver, lineaPre);
-    	Assert.assertTrue(verificarMetodosDeRecarga(driver, "Pre"));
+    	Assert.assertTrue(verificarMetodosDeRecarga(driver));
     }
     
-    @Test (groups = "AutogestionIndividuosAPP", priority = 8)
+   @Test (groups = "AutogestionIndividuosAPP", priority = 8)
     public void Recargas_Gestiones_y_Consultas_Recargar_Ahora_MIX() {
     	loginPorLineaMobile(driver, lineaMIX);
-    	Assert.assertTrue(verificarMetodosDeRecarga(driver, "MIX"));
+    	Assert.assertTrue(verificarMetodosDeRecarga(driver));
     }
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 9)

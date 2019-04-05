@@ -129,38 +129,31 @@ public class MetodosAndroid {
     	return detalle;
 	}
 	
-	public boolean verificarMetodosDeRecarga(AndroidDriver<AndroidElement> driver, String tipoDeLinea) {
-		boolean SOS = false, tarjeta = false, puntosClub = true;
-		switch(tipoDeLinea) {
-		case "Pre":
-			scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='RECARGAS Y PACKS']");
-	    	scrollAndClick(driver, "id", "button1");
-	    	if (driver.findElement(By.id("button_component_text")).getText().contains("RECARG\u00c1 AHORA"))
-	    		SOS = true;
-	    	driver.navigate().back();
-	    	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='RECARGAS Y PACKS']");
-	    	scrollAndClick(driver, "id", "button3");
-	    	sleep(10000);
-	    	if (driver.findElement(By.id("divRecargaTarjeta")).isEnabled())
-	    		tarjeta = true;
-		case "MIX":
-			scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='PAGOS, RECARGAS Y PACKS']");
-	    	driver.findElement(By.xpath("//*[@bounds='[21,606][179,771]']")).click();
-	    	sleep(5000);
-	    	if (driver.findElement(By.id("button_component_text")).getText().contains("RECARG\u00c1 AHORA"))
-	    		SOS = true;
-	    	driver.navigate().back();
-	    	driver.findElement(By.xpath("//*[@bounds='[191,606][349,771]']")).click();
-	    	sleep(25000);
-	    	if (!(driver.findElement(By.id("divRecargaPuntosClub")).isEnabled()))
-	    		puntosClub = false;
-	    	driver.navigate().back();
-	    	driver.findElement(By.xpath("//*[@bounds='[361,606][519,771]']")).click();
-	    	sleep(25000);
-	    	if (driver.findElement(By.id("divRecargaTarjeta")).isEnabled())
-	    		tarjeta = true;
+	public boolean verificarMetodosDeRecarga(AndroidDriver<AndroidElement> driver) {
+		boolean otrasFormas = false, tarjetaCredito = false, tarjetaPrepaga = true;
+		try {
+			driver.findElement(By.xpath("//android.widget.TextView[@text='PAGOS, RECARGAS Y PACKS']")).click();
+		} catch(Exception e) {
+			driver.findElement(By.xpath("//android.widget.TextView[@text='RECARGAS Y PACKS']")).click();
 		}
-		return SOS && tarjeta && puntosClub;
+		new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.id("button3")));
+		    driver.findElement(By.id("button3")).click();
+		    //scrollAndClick(driver, "xpath", "//*[@id='button3']");
+	    	sleep(15000);
+	    	if (driver.findElement(By.id("divRecargasTarjetas")).isEnabled())
+	    		tarjetaCredito = true;
+	    	driver.navigate().back();
+	    	scrollAndClick(driver, "xpath", "//*[@text='Recarga online con Tarjeta Personal']");
+	    	sleep(15000);
+	    	if (driver.findElement(By.id("divRecargasPin")).isEnabled())
+	    		tarjetaPrepaga = true;
+	    	driver.navigate().back();
+	    	scrollAndClick(driver, "xpath", "//*[@text='Recarga online - otras formas de pago']");
+	    	sleep(15000);
+	    	if (driver.findElement(By.xpath("//*[@text='Medios de recarga online']")).isEnabled())
+	    		otrasFormas = true;
+	    	driver.navigate().back();
+		return tarjetaCredito && tarjetaPrepaga && otrasFormas;
 	}
 	
 	public boolean descargaComprobanteDeCompra(AndroidDriver<AndroidElement> driver, String tipoDeLinea) {
