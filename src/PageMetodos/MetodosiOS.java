@@ -576,13 +576,13 @@ public class MetodosiOS {
 		try {
 			switch (by) {
 			case "id":
-				wait.until(ExpectedConditions.presenceOfElementLocated(By.id(text)));	
+				wait.until(ExpectedConditions.elementToBeClickable(By.id(text)));	
 				break;
 			case "cssSelector":
-				wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(text)));
+				wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(text)));
 				break;
 			case "xpath":
-				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(text)));
+				wait.until(ExpectedConditions.elementToBeClickable(By.xpath(text)));
 				break;	
 			}
 		} catch (Exception e) {
@@ -599,13 +599,13 @@ public class MetodosiOS {
 		try {
 			switch (by) {
 			case "id":
-				wait.until(ExpectedConditions.presenceOfElementLocated(By.id(text)));	
+				wait.until(ExpectedConditions.elementToBeClickable(By.id(text)));	
 				break;
 			case "cssSelector":
-				wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(text)));
+				wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(text)));
 				break;
 			case "xpath":
-				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(text)));
+				wait.until(ExpectedConditions.elementToBeClickable(By.xpath(text)));
 				break;	
 			}
 		} catch (Exception e) {
