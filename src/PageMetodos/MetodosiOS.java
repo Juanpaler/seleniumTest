@@ -453,20 +453,14 @@ public class MetodosiOS {
         return factura;
 	}
     
-    public boolean verificarPagoConTarjetaDeCredito(IOSDriver<IOSElement> driver) {
-		boolean factura = false;
+    public boolean verificarPagoConTarjetaDeCredito(IOSDriver<IOSElement> driver) {		
 		try {
-    		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
+			scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
     	} catch(Exception e) {
     		scrollAndClick(driver, "id", "Pagos y Packs");
     	}
-		driver.findElement(By.xpath("((//*[@class='UIATable' and ./parent::*[./parent::*[@class='UIATable'] and (./preceding-sibling::* | ./following-sibling::*)[./*[@class='UIAButton']]]]/*[@class='UIAView'])[2]/*[@class='UIAButton'])[2]")).click();
-		sleep(7000);
-    	for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
-    		if (x.getText().contains("Complet\u00e1 el siguiente formulario para finalizar el pago"))
-    			factura = true;
-    	}
-    	return factura;
+		scrollAndClickV2(driver,"xpath","//*[@text='Tarjeta de Cr\u00E9dito' and (./preceding-sibling::* | ./following-sibling::*)[@text='Pag\u00E1 con']]");
+		return ElementCreated(driver, "xpath", "//*[@id='Complet\u00e1 el siguiente formulario para finalizar el pago']",15);    	
 	}
     
     public boolean verificarPagoConPagoMisCuentas(IOSDriver<IOSElement> driver) {
