@@ -283,7 +283,7 @@ public class iOSMobile extends MetodosiOS {
     	Assert.assertTrue(ayuda);
     }
     
-    @Test (groups = "SinAfterMethod", priority = 36)
+    @Test (groups = "AutogestionIndividuosAPP", priority = 36)
     public void Login_Iniciar_Sesion_con_clave_Incorrecta() {
     	driver.findElement(By.className("UIATextField")).sendKeys(lineaMIX);
         driver.findElement(By.id("INGRESAR CON CLAVE PERSONAL")).click();
@@ -294,7 +294,7 @@ public class iOSMobile extends MetodosiOS {
     	Assert.assertTrue(mensajeIncorrecto);
     }
     
-    @Test (groups = "SinAfterMethod", priority = 37)
+    @Test (groups = "AutogestionIndividuosAPP", priority = 37)
     public void Login_Iniciar_Sesion_sin_clave() {
     	driver.findElement(By.className("UIATextField")).sendKeys(lineaMIX);
         driver.findElement(By.id("INGRESAR CON CLAVE PERSONAL")).click();
@@ -305,7 +305,7 @@ public class iOSMobile extends MetodosiOS {
     	Assert.assertTrue(mensajeIncorrecto);
     }
     
-    @Test (groups = "SinAfterMethod", priority = 38)
+    @Test (groups = "AutogestionIndividuosAPP", priority = 38)
     public void Login_Iniciar_Sesion_con_Linea_Inexistente() {
     	driver.findElement(By.className("UIATextField")).sendKeys("1111111111");
         driver.findElement(By.id("INGRESAR CON CLAVE PERSONAL")).click();

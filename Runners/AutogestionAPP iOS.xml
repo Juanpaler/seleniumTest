@@ -14,18 +14,5 @@
 			<class name="Tests.iOSMobile" />
 		</classes>
 	</test>
-	
-	<!-- *********************************************  AUTOGESTION INDIVIDUOS APP IOS SIN AFTERMETHOD  *************************************** -->
-
-	<test name="Autogestion Individuos APP iOS Sin AfterMethod">
-		<groups>
-			<run>
-				<include name="SinAfterMethod" />
-			</run>
-		</groups>
-		<classes>
-			<class name="Tests.iOSMobile" />
-		</classes>
-	</test>
-	
+		
  </suite>
