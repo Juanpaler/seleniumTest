@@ -31,7 +31,7 @@ public class MetodosiOS {
 		driver.findElement(By.className("UIATextField")).sendKeys(linea);
         driver.findElement(By.id("INGRESAR CON CLAVE PERSONAL")).click();
         sleep(2000);
-        driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave num�rica'] and ./parent::*[@class='UIAView']]")).sendKeys("1469");
+        driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave num\u00E9rica'] and ./parent::*[@class='UIAView']]")).sendKeys("1469");
         driver.findElement(By.id("INGRESAR A MI PERSONAL UAT")).click();
         sleep(10000);
         try {
@@ -94,8 +94,8 @@ public class MetodosiOS {
     	Boolean opcionExiste = ElementCreated(driver, "xpath", "//*[@class='UIAStaticText'][contains(text(),'Pack Roaming 40 SMS Limitrofes')]", 5);
     	while(!opcionExiste)
     	{
-    		WaitForElement(driver, "xpath", "//*[@id='Ver m�s']");
-			driver.findElement("xpath", "//*[@id='Ver m�s']").click();
+    		WaitForElement(driver, "xpath", "//*[@id='Ver m\u00E1s']");
+			driver.findElement("xpath", "//*[@id='Ver m\u00E1s']").click();
 	    	opcionExiste = ElementCreated(driver, "xpath", "//*[@class='UIAStaticText'][contains(text(),'Pack Roaming 40 SMS Limitrofes')]", 5);
     	}
     	scrollAndClick(driver, "xpath", "//*[@class='UIAStaticText'][contains(text(),'Pack Roaming 40 SMS Limitrofes')]");
@@ -380,7 +380,7 @@ public class MetodosiOS {
     	sleep(5000);
     	driver.findElement(By.className("UIATextField")).sendKeys(linea);
         driver.findElement(By.id("INGRESAR CON CLAVE PERSONAL")).click();
-        driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave num�rica'] and ./parent::*[@class='UIAView']]")).sendKeys(clave);
+        driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave num\u00E9rica'] and ./parent::*[@class='UIAView']]")).sendKeys(clave);
         driver.findElement(By.id("INGRESAR A MI PERSONAL UAT")).click();
         sleep(10000);
         switch(tipoDeLogin) {
@@ -553,7 +553,7 @@ public class MetodosiOS {
     	switch(tipoDeLinea) {
     	case "MIX":
     		for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
-    			if (x.getText().contains("La Cuota Internet por Dia Limitrofe  fue activada con �xito"))
+    			if (x.getText().contains("La Cuota Internet por Dia Limitrofe  fue activada con \u00E9xito"))
             		desact = true;
     		}
     		break;
