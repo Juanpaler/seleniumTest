@@ -371,32 +371,6 @@ public class MetodosiOS {
 		return recargas >= 1;
 	}
     
-    public boolean verificarLogin(IOSDriver<IOSElement> driver, String tipoDeLogin, String linea, String clave) {
-    	boolean password = false;
-    	sleep(5000);
-    	driver.findElement(By.id("SideMenu")).click();
-    	sleep(5000);
-    	driver.findElement(By.xpath("//*[@text='Cerrar Sesi\u00f3n']")).click();
-    	sleep(5000);
-    	driver.findElement(By.className("UIATextField")).sendKeys(linea);
-        driver.findElement(By.id("INGRESAR CON CLAVE PERSONAL")).click();
-        driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave num\u00E9rica'] and ./parent::*[@class='UIAView']]")).sendKeys(clave);
-        driver.findElement(By.id("INGRESAR A MI PERSONAL UAT")).click();
-        sleep(10000);
-        switch(tipoDeLogin) {
-        case "Password invalido y linea inexistente":
-        	if (driver.findElement(By.id("Los datos ingresados son incorrectos")).getText().contains("Los datos ingresados son incorrectos"))
-            	password = true;
-        	break;
-        case "Sin password":
-        	if (driver.findElement(By.id("Debes completar los campos!")).getText().contains("Debes completar los campos!"))
-        		password = true;
-        }
-        scrollAndClick(driver, "id", "Aceptar");
-        driver.quit();
-        return password;
-    }
-    
     public boolean verificarDetalleDeCredito(IOSDriver<IOSElement> driver) {
 		boolean credito = false;
 		scrollAndClick(driver, "id", "Inicio");
