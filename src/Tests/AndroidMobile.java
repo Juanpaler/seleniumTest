@@ -45,6 +45,7 @@ public class AndroidMobile extends MetodosAndroid {
     public void after() {
     	sleep(5000);
     	int menu = 0;
+    	try {
     	while(!driver.findElement(By.id("custom_ab_title")).getText().contains("Mi Personal") && menu < 3) {
         	driver.navigate().back();
         	menu++;
@@ -55,6 +56,9 @@ public class AndroidMobile extends MetodosAndroid {
     	driver.findElement(By.xpath("//*[@text='Cerrar Sesi\u00f3n']")).click();
     	sleep(5000);
     	driver.quit();
+		} catch (Exception e) {
+	    	driver.quit();
+		}
     }
     
     
@@ -207,20 +211,35 @@ public class AndroidMobile extends MetodosAndroid {
     
     @Test (groups = "SinAfterMethod", priority = 23)
     public void Login_Iniciar_Sesion_con_clave_Incorrecta() {
-    	loginPorLineaMobile(driver, lineaMIX);
-    	Assert.assertTrue(verificarLogin(driver, lineaMIX, "1470"));
+    	driver.findElement(By.id("editTextLinea")).sendKeys(lineaMIX);
+        driver.findElement(By.id("btn_log_in")).click();
+        driver.findElement(By.id("editTextPin")).sendKeys("1111");
+        driver.findElement(By.id("btn_log_in")).click();
+    	Boolean mensajeIncorrecto = (driver.findElement(By.id("message")).getText().contains("Los datos ingresados son incorrectos"));
+        scrollAndClick(driver, "id", "button3");
+    	Assert.assertTrue(mensajeIncorrecto);
     }
     
     @Test (groups = "SinAfterMethod", priority = 24)
     public void Login_Iniciar_Sesion_sin_clave() {
-    	loginPorLineaMobile(driver, lineaMIX);
-    	Assert.assertTrue(verificarLogin(driver, lineaMIX, ""));
+    	driver.findElement(By.id("editTextLinea")).sendKeys(lineaMIX);
+        driver.findElement(By.id("btn_log_in")).click();
+        driver.findElement(By.id("editTextPin")).sendKeys("");
+        driver.findElement(By.id("btn_log_in")).click();
+    	Boolean mensajeIncorrecto = (driver.findElement(By.id("message")).getText().contains("Los datos ingresados son incorrectos"));
+        scrollAndClick(driver, "id", "button3");
+    	Assert.assertTrue(mensajeIncorrecto);
     }
     
     @Test (groups = "SinAfterMethod", priority = 25)
     public void Login_Iniciar_Sesion_con_Linea_Inexistente() {
-    	loginPorLineaMobile(driver, lineaMIX);
-    	Assert.assertTrue(verificarLogin(driver, "1192735149", "1469"));
+    	driver.findElement(By.id("editTextLinea")).sendKeys("1132465000");
+        driver.findElement(By.id("btn_log_in")).click();
+        driver.findElement(By.id("editTextPin")).sendKeys("1469");
+        driver.findElement(By.id("btn_log_in")).click();
+    	Boolean mensajeIncorrecto = (driver.findElement(By.id("message")).getText().contains("Los datos ingresados son incorrectos"));
+        scrollAndClick(driver, "id", "button3");
+    	Assert.assertTrue(mensajeIncorrecto);
     }
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 26)
@@ -377,7 +396,7 @@ public class AndroidMobile extends MetodosAndroid {
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 50)
     public void Inicio_Mis_disponibles_Mis_Facturas_POS() {
-    	loginPorLineaMobile(driver, "1164599450");
+    	loginPorLineaMobile(driver, lineaPos);
     	Assert.assertTrue(verificarFactura(driver));
     }
     
