@@ -279,7 +279,6 @@ public class Metodos {
 		// Directorio donde quedaran las imagenes guardadas
 		File directory;
 		directory = new File("IMG");
-		directory.mkdirs();
 		try {
 			if (directory.isDirectory()) {
 				// Toma la captura de imagen

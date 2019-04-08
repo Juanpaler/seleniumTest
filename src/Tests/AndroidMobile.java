@@ -45,7 +45,7 @@ public class AndroidMobile extends MetodosAndroid {
     public void after() {
     	sleep(5000);
     	int menu = 0;
-    	while(((!driver.findElement(By.id("custom_ab_title")).getText().contains("Mi Personal"))) && menu < 3) {
+    	while(!driver.findElement(By.id("custom_ab_title")).getText().contains("Mi Personal") && menu < 3) {
         	driver.navigate().back();
         	menu++;
         }	
@@ -120,7 +120,7 @@ public class AndroidMobile extends MetodosAndroid {
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 10)
     public void Facturacion_Compras_Realizadas_Descargar_Comprobante_POS() {
-    	loginPorLineaMobile(driver, "1164599450");
+    	loginPorLineaMobile(driver, "1164590129");
     	Assert.assertTrue(descargaComprobanteDeCompra(driver, "Pos"));
     }
     
@@ -168,7 +168,7 @@ public class AndroidMobile extends MetodosAndroid {
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 18)
     public void Recargas_Recarga_con_puntos_Club_MIX() {
-    	loginPorLineaMobile(driver, "1168829219");
+    	loginPorLineaMobile(driver, "3854041917");
     	Assert.assertTrue(verificarRecargaPuntosClub(driver));  //Mensaje de error al hacer click en canjear
     }
     
