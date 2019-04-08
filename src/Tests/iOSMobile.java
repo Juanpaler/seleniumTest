@@ -44,16 +44,20 @@ public class iOSMobile extends MetodosiOS {
     public void after() {
     	sleep(5000);
     	int menu = 0;
-    	while(((!driver.findElement(By.className("UIANavigationBar")).getText().contains("Mi Personal"))) && menu < 5) {
-        	driver.findElement(By.id("Atr\u00e1s")).click();
-        	menu++;
-        }	
-    	sleep(3000);
-    	driver.findElement(By.id("SideMenu")).click();
-    	sleep(5000);
-    	driver.findElement(By.xpath("//*[@text='Cerrar Sesi\u00f3n']")).click();
-    	sleep(5000);
-    	driver.quit();
+    	try {
+			while(((!driver.findElement(By.className("UIANavigationBar")).getText().contains("Mi Personal"))) && menu < 5) {
+				driver.findElement(By.id("Atr\u00e1s")).click();
+				menu++;
+			}	
+			sleep(3000);
+			driver.findElement(By.id("SideMenu")).click();
+			sleep(5000);
+			driver.findElement(By.xpath("//*[@text='Cerrar Sesi\u00f3n']")).click();
+			sleep(5000);
+	    	driver.quit();
+		} catch (Exception e) {
+	    	driver.quit();
+		}
     }
     
     
