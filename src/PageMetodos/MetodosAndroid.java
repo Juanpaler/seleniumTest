@@ -328,6 +328,7 @@ public class MetodosAndroid {
     	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='Mis Facturas']");
     	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='Pagar']");
     	sleep(5000);
+    	driver.findElement(By.xpath("//*[@id='lnkPagoTC']")).click();
     	for (WebElement x : driver.findElements(By.className("android.view.View"))) {
     		if (x.getText().contains("Detalles del pago"))
     			factura = true;
