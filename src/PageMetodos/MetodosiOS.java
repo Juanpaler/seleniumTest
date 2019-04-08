@@ -62,6 +62,26 @@ public class MetodosiOS {
 		}
 	}
 	
+	public void scrollAndClickV2(IOSDriver<IOSElement> driver, String by, String using) {
+		if (ElementCreated(driver, by, using, 5)) {
+			driver.findElement(by, using).click();
+		} else {
+			int numberOfTimes = 10;
+			//Mejorar la cantidad de iteraciones teniendo en cuenta el largo de la ventana dividido la resolucion de la pantalla 
+			for (int i=0; i<numberOfTimes; i++) {
+				try {					
+			    	driver.swipe(10, 480, 20, 70, 400);
+					if (ElementCreated(driver, by, using, 2)) {
+						driver.findElement(by, using).click();
+						i= numberOfTimes;
+					}
+				} catch(NoSuchElementException e) {
+					System.out.println(e.getMessage());
+				}
+			}			
+		}
+	}
+	
     public boolean verificarCompraDePacks(IOSDriver<IOSElement> driver) {
     	boolean msj = false;
     	try {
