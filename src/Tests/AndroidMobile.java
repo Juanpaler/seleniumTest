@@ -45,7 +45,7 @@ public class AndroidMobile extends MetodosAndroid {
     public void after() {
     	sleep(5000);
     	int menu = 0;
-    	while(((!driver.findElement(By.id("custom_ab_title")).getText().contains("Mi Personal"))) && menu < 3) {
+    	while(!driver.findElement(By.id("custom_ab_title")).getText().contains("Mi Personal") && menu < 3) {
         	driver.navigate().back();
         	menu++;
         }	
