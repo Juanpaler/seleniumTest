@@ -40,20 +40,24 @@ public class iOSMobile extends MetodosiOS {
         } catch(Exception e) {}
     }
     
-    //@AfterMethod (alwaysRun = true)
+    @AfterMethod (alwaysRun = true)
     public void after() {
     	sleep(5000);
     	int menu = 0;
-    	while(((!driver.findElement(By.className("UIANavigationBar")).getText().contains("Mi Personal"))) && menu < 5) {
-        	driver.findElement(By.id("Atr\u00e1s")).click();
-        	menu++;
-        }	
-    	sleep(3000);
-    	driver.findElement(By.id("SideMenu")).click();
-    	sleep(5000);
-    	driver.findElement(By.xpath("//*[@text='Cerrar Sesi\u00f3n']")).click();
-    	sleep(5000);
-    	driver.quit();
+    	try {
+			while(((!driver.findElement(By.className("UIANavigationBar")).getText().contains("Mi Personal"))) && menu < 5) {
+				driver.findElement(By.id("Atr\u00e1s")).click();
+				menu++;
+			}	
+			sleep(3000);
+			driver.findElement(By.id("SideMenu")).click();
+			sleep(5000);
+			driver.findElement(By.xpath("//*[@text='Cerrar Sesi\u00f3n']")).click();
+			sleep(5000);
+	    	driver.quit();
+		} catch (Exception e) {
+	    	driver.quit();
+		}
     }
     
     
@@ -281,20 +285,35 @@ public class iOSMobile extends MetodosiOS {
     
     @Test (groups = "SinAfterMethod", priority = 36)
     public void Login_Iniciar_Sesion_con_clave_Incorrecta() {
-    	loginPorLineaMobile(driver, lineaMIX);
-    	Assert.assertTrue(verificarLogin(driver, "Password invalido y linea inexistente", lineaMIX, "1470"));
+    	driver.findElement(By.className("UIATextField")).sendKeys(lineaMIX);
+        driver.findElement(By.id("INGRESAR CON CLAVE PERSONAL")).click();
+        driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave num�rica'] and ./parent::*[@class='UIAView']]")).sendKeys("1470");
+        driver.findElement(By.id("INGRESAR A MI PERSONAL UAT")).click();
+    	Boolean mensajeIncorrecto = (driver.findElement(By.id("Los datos ingresados son incorrectos")).getText().contains("Los datos ingresados son incorrectos"));
+        scrollAndClick(driver, "id", "Aceptar");
+    	Assert.assertTrue(mensajeIncorrecto);
     }
     
     @Test (groups = "SinAfterMethod", priority = 37)
     public void Login_Iniciar_Sesion_sin_clave() {
-    	loginPorLineaMobile(driver, lineaMIX);
-    	Assert.assertTrue(verificarLogin(driver, "Sin password", lineaMIX, ""));
+    	driver.findElement(By.className("UIATextField")).sendKeys(lineaMIX);
+        driver.findElement(By.id("INGRESAR CON CLAVE PERSONAL")).click();
+        //driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave num�rica'] and ./parent::*[@class='UIAView']]")).sendKeys("");
+        driver.findElement(By.id("INGRESAR A MI PERSONAL UAT")).click();
+    	Boolean mensajeIncorrecto = (driver.findElement(By.id("Debes completar los campos!")).getText().contains("Debes completar los campos!"));
+        scrollAndClick(driver, "id", "Aceptar");
+    	Assert.assertTrue(mensajeIncorrecto);
     }
     
     @Test (groups = "SinAfterMethod", priority = 38)
     public void Login_Iniciar_Sesion_con_Linea_Inexistente() {
-    	loginPorLineaMobile(driver, lineaMIX);
-    	Assert.assertTrue(verificarLogin(driver, "Password invalido y linea inexistente", "1192735149", "1469"));
+    	driver.findElement(By.className("UIATextField")).sendKeys("1111111111");
+        driver.findElement(By.id("INGRESAR CON CLAVE PERSONAL")).click();
+        driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave num�rica'] and ./parent::*[@class='UIAView']]")).sendKeys("4356");
+        driver.findElement(By.id("INGRESAR A MI PERSONAL UAT")).click();
+    	Boolean mensajeIncorrecto = (driver.findElement(By.id("Los datos ingresados son incorrectos")).getText().contains("Los datos ingresados son incorrectos"));
+        scrollAndClick(driver, "id", "Aceptar");
+    	Assert.assertTrue(mensajeIncorrecto);
     }
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 39)

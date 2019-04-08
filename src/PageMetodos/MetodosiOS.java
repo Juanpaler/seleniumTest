@@ -31,7 +31,7 @@ public class MetodosiOS {
 		driver.findElement(By.className("UIATextField")).sendKeys(linea);
         driver.findElement(By.id("INGRESAR CON CLAVE PERSONAL")).click();
         sleep(2000);
-        driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave num�rica'] and ./parent::*[@class='UIAView']]")).sendKeys("1469");
+        driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave num\u00E9rica'] and ./parent::*[@class='UIAView']]")).sendKeys("1469");
         driver.findElement(By.id("INGRESAR A MI PERSONAL UAT")).click();
         sleep(10000);
         try {
@@ -62,6 +62,26 @@ public class MetodosiOS {
 		}
 	}
 	
+	public void scrollAndClickV2(IOSDriver<IOSElement> driver, String by, String using) {
+		if (ElementCreated(driver, by, using, 5)) {
+			driver.findElement(by, using).click();
+		} else {
+			int numberOfTimes = 10;
+			//Mejorar la cantidad de iteraciones teniendo en cuenta el largo de la ventana dividido la resolucion de la pantalla 
+			for (int i=0; i<numberOfTimes; i++) {
+				try {					
+			    	driver.swipe(10, 480, 20, 70, 400);
+					if (ElementCreated(driver, by, using, 2)) {
+						driver.findElement(by, using).click();
+						i= numberOfTimes;
+					}
+				} catch(NoSuchElementException e) {
+					System.out.println(e.getMessage());
+				}
+			}			
+		}
+	}
+	
     public boolean verificarCompraDePacks(IOSDriver<IOSElement> driver) {
     	boolean msj = false;
     	try {
@@ -74,8 +94,8 @@ public class MetodosiOS {
     	Boolean opcionExiste = ElementCreated(driver, "xpath", "//*[@class='UIAStaticText'][contains(text(),'Pack Roaming 40 SMS Limitrofes')]", 5);
     	while(!opcionExiste)
     	{
-    		WaitForElement(driver, "xpath", "//*[@id='Ver m�s']");
-			driver.findElement("xpath", "//*[@id='Ver m�s']").click();
+    		WaitForElement(driver, "xpath", "//*[@id='Ver m\u00E1s']");
+			driver.findElement("xpath", "//*[@id='Ver m\u00E1s']").click();
 	    	opcionExiste = ElementCreated(driver, "xpath", "//*[@class='UIAStaticText'][contains(text(),'Pack Roaming 40 SMS Limitrofes')]", 5);
     	}
     	scrollAndClick(driver, "xpath", "//*[@class='UIAStaticText'][contains(text(),'Pack Roaming 40 SMS Limitrofes')]");
@@ -280,28 +300,28 @@ public class MetodosiOS {
     }
     
     public boolean verificarMetodosDeRecarga(IOSDriver<IOSElement> driver) {
-    	boolean sos = false, puntosClub = false, tdc = false;
+    	boolean otrasFormas = false, tarjetaCredito = false, tarjetaPrepaga = true;
     	try {
     		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
     	} catch(Exception e) {
     		scrollAndClick(driver, "id", "Recargas y Packs");
     	}
-    	scrollAndClick(driver, "id", "S.O.S.");
-    	if (driver.findElement(By.id("RECARG\u00c1 AHORA")).isEnabled())
-    		sos = true;
-    	driver.findElement(By.id("Atr\u00e1s")).click();
-    	sleep(3000);
-    	scrollAndClick(driver, "id", "Puntos Club");
-    	sleep(10000);
-    	if (driver.findElement(By.id("Recarga con Puntos Club")).isEnabled())
-    		puntosClub = true;
-    	driver.findElement(By.id("Atr\u00e1s")).click();
-    	sleep(3000);
     	scrollAndClick(driver, "id", "Tarjeta de Cr\u00e9dito");
-    	sleep(10000);
-    	if (driver.findElement(By.id("Recarga con Tarjeta de Cr\u00e9dito")).isEnabled())
-    		tdc = true;
-    	return sos && puntosClub && tdc;
+    	WaitForElement(driver, "id", "Recarga con Tarjeta de Cr\u00e9dito");    	
+    	tarjetaCredito = ElementCreated(driver, "id", "Recarga con Tarjeta de Cr\u00E9dito", 7);
+    	driver.findElement(By.id("Atr\u00e1s")).click();
+    	
+    	WaitForElement(driver, "id", "Recarga online con Tarjeta Personal");
+    	scrollAndClick(driver, "id", "Recarga online con Tarjeta Personal");    	
+    	tarjetaPrepaga = ElementCreated(driver, "id", "Recarga con Tarjeta Prepaga", 7);
+    	driver.findElement(By.id("Atr\u00e1s")).click();
+    	
+    	WaitForElement(driver, "id", "Recarga online - otras formas de pago");
+    	scrollAndClick(driver, "id", "Recarga online - otras formas de pago");    	
+    	otrasFormas = ElementCreated(driver, "id", "Medios de recarga online", 7);
+    	driver.findElement(By.id("Atr\u00e1s")).click();    	
+    	
+    	return tarjetaPrepaga && otrasFormas && tarjetaCredito;
     }
     
     public boolean verificarRecargaSOS(IOSDriver<IOSElement> driver) {
@@ -360,7 +380,7 @@ public class MetodosiOS {
     	sleep(5000);
     	driver.findElement(By.className("UIATextField")).sendKeys(linea);
         driver.findElement(By.id("INGRESAR CON CLAVE PERSONAL")).click();
-        driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave num�rica'] and ./parent::*[@class='UIAView']]")).sendKeys(clave);
+        driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave num\u00E9rica'] and ./parent::*[@class='UIAView']]")).sendKeys(clave);
         driver.findElement(By.id("INGRESAR A MI PERSONAL UAT")).click();
         sleep(10000);
         switch(tipoDeLogin) {
@@ -433,20 +453,14 @@ public class MetodosiOS {
         return factura;
 	}
     
-    public boolean verificarPagoConTarjetaDeCredito(IOSDriver<IOSElement> driver) {
-		boolean factura = false;
+    public boolean verificarPagoConTarjetaDeCredito(IOSDriver<IOSElement> driver) {		
 		try {
-    		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
+			scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
     	} catch(Exception e) {
     		scrollAndClick(driver, "id", "Pagos y Packs");
     	}
-		driver.findElement(By.xpath("((//*[@class='UIATable' and ./parent::*[./parent::*[@class='UIATable'] and (./preceding-sibling::* | ./following-sibling::*)[./*[@class='UIAButton']]]]/*[@class='UIAView'])[2]/*[@class='UIAButton'])[2]")).click();
-		sleep(7000);
-    	for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
-    		if (x.getText().contains("Complet\u00e1 el siguiente formulario para finalizar el pago"))
-    			factura = true;
-    	}
-    	return factura;
+		scrollAndClickV2(driver,"xpath","//*[@text='Tarjeta de Cr\u00E9dito' and (./preceding-sibling::* | ./following-sibling::*)[@text='Pag\u00E1 con']]");
+		return ElementCreated(driver, "xpath", "//*[@id='Complet\u00e1 el siguiente formulario para finalizar el pago']",15);    	
 	}
     
     public boolean verificarPagoConPagoMisCuentas(IOSDriver<IOSElement> driver) {
@@ -539,7 +553,7 @@ public class MetodosiOS {
     	switch(tipoDeLinea) {
     	case "MIX":
     		for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
-    			if (x.getText().contains("La Cuota Internet por Dia Limitrofe  fue activada con �xito"))
+    			if (x.getText().contains("La Cuota Internet por Dia Limitrofe  fue activada con \u00E9xito"))
             		desact = true;
     		}
     		break;
@@ -562,13 +576,13 @@ public class MetodosiOS {
 		try {
 			switch (by) {
 			case "id":
-				wait.until(ExpectedConditions.presenceOfElementLocated(By.id(text)));	
+				wait.until(ExpectedConditions.elementToBeClickable(By.id(text)));	
 				break;
 			case "cssSelector":
-				wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(text)));
+				wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(text)));
 				break;
 			case "xpath":
-				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(text)));
+				wait.until(ExpectedConditions.elementToBeClickable(By.xpath(text)));
 				break;	
 			}
 		} catch (Exception e) {
@@ -585,13 +599,13 @@ public class MetodosiOS {
 		try {
 			switch (by) {
 			case "id":
-				wait.until(ExpectedConditions.presenceOfElementLocated(By.id(text)));	
+				wait.until(ExpectedConditions.elementToBeClickable(By.id(text)));	
 				break;
 			case "cssSelector":
-				wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(text)));
+				wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(text)));
 				break;
 			case "xpath":
-				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(text)));
+				wait.until(ExpectedConditions.elementToBeClickable(By.xpath(text)));
 				break;	
 			}
 		} catch (Exception e) {
