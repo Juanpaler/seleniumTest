@@ -123,7 +123,7 @@ public class iOSMobile extends MetodosiOS {
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 10)
     public void Facturacion_Compras_Realizadas_Descargar_Comprobante_POS() {
-    	loginPorLineaMobile(driver, "1164599450");
+    	loginPorLineaMobile(driver, "1145642605");
     	Assert.assertTrue(descargaComprobanteDeCompra(driver, "Pos"));
     }
     
@@ -195,7 +195,7 @@ public class iOSMobile extends MetodosiOS {
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 22)
     public void Mi_Linea_Baja_de_Suscripciones_POS() {
-    	loginPorLineaMobile(driver, "1164599450");
+    	loginPorLineaMobile(driver, "1145642605");
     	Assert.assertTrue(bajaDeSuscripcion(driver));
     }
     
@@ -355,7 +355,7 @@ public class iOSMobile extends MetodosiOS {
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 45)
     public void Inicio_Mis_disponibles_Mis_Facturas_POS() {
-    	loginPorLineaMobile(driver, "1164599450");
+    	loginPorLineaMobile(driver, "1145642605");
     	Assert.assertTrue(verificarFactura(driver));
     }
     
@@ -367,7 +367,7 @@ public class iOSMobile extends MetodosiOS {
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 47)
     public void Pagos_Paga_con_Tarjeta_de_Credito_POS() {
-    	loginPorLineaMobile(driver, "1164599450");
+    	loginPorLineaMobile(driver, "1145642605");
     	Assert.assertTrue(verificarPagoConTarjetaDeCredito(driver));
     }
     
@@ -379,7 +379,7 @@ public class iOSMobile extends MetodosiOS {
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 49)
     public void Pagos_Paga_con_Pago_Mis_Cuentas_POS() {
-    	loginPorLineaMobile(driver, "1164599450");
+    	loginPorLineaMobile(driver, "1145642605");
     	Assert.assertTrue(verificarPagoConPagoMisCuentas(driver));
     }
     
@@ -391,7 +391,7 @@ public class iOSMobile extends MetodosiOS {
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 51)
     public void Pagos_Pago_online_POS() {
-    	loginPorLineaMobile(driver, "1164599450");
+    	loginPorLineaMobile(driver, "1145642605");
     	Assert.assertTrue(verificarPagoOnline(driver));
     }
     
@@ -403,7 +403,7 @@ public class iOSMobile extends MetodosiOS {
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 53)
     public void Pagos_Pago_Presencial_POS() {
-    	loginPorLineaMobile(driver, "1164599450");
+    	loginPorLineaMobile(driver, "1145642605");
     	Assert.assertTrue(verificarPagoPresencial(driver));
     }
     
