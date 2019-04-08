@@ -438,21 +438,15 @@ public class MetodosiOS {
 	}
     
     public boolean verificarPagoConPagoMisCuentas(IOSDriver<IOSElement> driver) {
-		boolean pmc = false;
 		try {
     		scrollAndClick(driver, "id", "Pagos, Recargas y Packs");
     	} catch(Exception e) {
     		scrollAndClick(driver, "id", "Pagos y Packs");
     	}
-		driver.swipe(242, 200, 249, 431, 1697);
-		sleep(5000);
-		driver.findElement(By.xpath("((//*[@class='UIATable' and ./parent::*[./parent::*[@class='UIATable'] and (./preceding-sibling::* | ./following-sibling::*)[./*[@class='UIAButton']]]]/*[@class='UIAView'])[2]/*[@class='UIAButton'])[1]")).click();
-		sleep(5000);
-    	for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
-    		if (x.getText().contains("Pago con Pago Mis Cuentas: Paso a paso"))
-    			pmc = true;
-    	}
-    	return pmc;
+		scrollAndClickV2(driver, "id", "Pago online");
+		scrollAndClickV2(driver, "id", "Pago Mis Cuentas");
+		
+		return ElementCreated(driver, "id", "Pago con Pago Mis Cuentas: Paso a paso", 10);
 	}
     
     public boolean verificarPagoOnline(IOSDriver<IOSElement> driver) {
