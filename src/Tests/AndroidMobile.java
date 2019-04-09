@@ -420,7 +420,7 @@ public class AndroidMobile extends MetodosAndroid {
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 54)
     public void Pagos_Paga_con_Tarjeta_de_Credito_POS() {
-    	loginPorLineaMobile(driver, "1164599450");
+    	loginPorLineaMobile(driver, "1145642605");
     	Assert.assertTrue(verificarPagoConTarjetaDeCredito(driver));
     }
     
@@ -432,7 +432,7 @@ public class AndroidMobile extends MetodosAndroid {
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 56)
     public void Pagos_Paga_con_Pago_Mis_Cuentas_POS() {
-    	loginPorLineaMobile(driver, "1164599450");
+    	loginPorLineaMobile(driver, "1145642605");
     	Assert.assertTrue(verificarPagoConPagoMisCuentas(driver));
     }
     
@@ -444,7 +444,7 @@ public class AndroidMobile extends MetodosAndroid {
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 58)
     public void Pagos_Pago_online_POS() {
-    	loginPorLineaMobile(driver, "1164599450");
+    	loginPorLineaMobile(driver, "1145642605");
     	Assert.assertTrue(verificarPagoOnline(driver));
     }
     
@@ -456,7 +456,7 @@ public class AndroidMobile extends MetodosAndroid {
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 60)
     public void Pagos_Pago_Presencial_POS() {
-    	loginPorLineaMobile(driver, "1164599450");
+    	loginPorLineaMobile(driver, "1145642605");
     	Assert.assertTrue(verificarPagoPresencial(driver));
     }
     

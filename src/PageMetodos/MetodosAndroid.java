@@ -543,6 +543,7 @@ public class MetodosAndroid {
 			scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='PAGOS Y PACKS']");
 		}
 		scrollAndClick(driver, "xpath", "//*[@id='button1' and ./*[@text='Pag\u00e1 con']]");
+		sleep(5000);
     	for (WebElement x : driver.findElements(By.className("android.view.View"))) {
     		if (x.getText().contains("Complet\u00e1 el siguiente formulario para finalizar el pago"))
     			factura = true;
@@ -558,6 +559,7 @@ public class MetodosAndroid {
 			scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='PAGOS Y PACKS']");
 		}
 		scrollAndClick(driver, "xpath", "//*[@id='button2' and ./*[@text='Pag\u00e1 con']]");
+		sleep(5000);
     	for (WebElement x : driver.findElements(By.className("android.widget.TextView"))) {
     		if (x.getText().contains("Pago con Pago Mis Cuentas: Paso a paso"))
     			pmc = true;
