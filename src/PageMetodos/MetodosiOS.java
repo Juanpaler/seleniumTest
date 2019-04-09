@@ -276,11 +276,9 @@ public class MetodosiOS {
     	scrollAndClick(driver, "id", "Mis Servicios");
     	scrollAndClick(driver, "id", "Mis suscripciones a servicios");
     	driver.findElement(By.xpath("//*[@class='UIAStaticText'][contains(text(),'Precio no disponible')]")).click();
-    	for (WebElement x : driver.findElements(By.className("UIAStaticText"))) {
-    		if (x.getText().contains("La suscripci\u00f3n se di\u00f3 de baja con \u00e9xito"))
-    			bajaSus = true;
-    	}
-    	scrollAndClick(driver, "id", "ACEPTAR");
+    	scrollAndClickV2(driver, "xpath", "//*[@text='ACEPTAR']");
+    	bajaSus = ElementCreated(driver, "xpath", "//*[@text='La suscripci�n se di� de baja con �xito']",15);
+    	scrollAndClickV2(driver, "id", "Aceptar");
     	return bajaSus;
     }
     
