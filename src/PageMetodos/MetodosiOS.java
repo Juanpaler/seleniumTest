@@ -27,15 +27,21 @@ public class MetodosiOS {
 	}
 	
 	public void loginPorLineaMobile(IOSDriver<IOSElement> driver, String linea) {
-		sleep(7000);
+		if(ElementCreated(driver, "xpath", "//*[@text='\u00A1Ups! en este momento Mi Personal UAT no est\u00E1 disponible.']", 5)) {
+        	scrollAndClickV2(driver, "xpath", "//*[@text='Aceptar']");
+		}
+		WaitForElement(driver, "cssSelector", ".UIATextField");
 		driver.findElement(By.className("UIATextField")).sendKeys(linea);
         driver.findElement(By.id("INGRESAR CON CLAVE PERSONAL")).click();
-        sleep(2000);
+		WaitForElement(driver, "xpath", "//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave num\u00E9rica'] and ./parent::*[@class='UIAView']]");
+
         driver.findElement(By.xpath("//*[@class='UIAView' and (./preceding-sibling::* | ./following-sibling::*)[@text='Clave num\u00E9rica'] and ./parent::*[@class='UIAView']]")).sendKeys("1469");
         driver.findElement(By.id("INGRESAR A MI PERSONAL UAT")).click();
-        sleep(10000);
         try {
-        	scrollAndClick(driver, "id", "En otro momento");
+        	if(ElementCreated(driver, "id", "En otro momento", 10))
+        	{
+            	scrollAndClickV2(driver, "id", "En otro momento");
+        	}
         } catch(Exception e) {}
 	}
 
@@ -277,7 +283,7 @@ public class MetodosiOS {
     	scrollAndClick(driver, "id", "Mis suscripciones a servicios");
     	driver.findElement(By.xpath("//*[@class='UIAStaticText'][contains(text(),'Precio no disponible')]")).click();
     	scrollAndClickV2(driver, "xpath", "//*[@text='ACEPTAR']");
-    	bajaSus = ElementCreated(driver, "xpath", "//*[@text='La suscripci�n se di� de baja con �xito']",15);
+    	bajaSus = ElementCreated(driver, "xpath", "//*[@text='La suscripci\u00F3n se di\u00F3 de baja con \u00E9xito']",15);
     	scrollAndClickV2(driver, "id", "Aceptar");
     	return bajaSus;
     }
