@@ -72,7 +72,7 @@ public class EComerce extends Metodos{
 			driver.quit();
 		}
 	}
-	
+	//Alg�n d�a, volveremos a ec
 	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
 	public void C03_Cliente_hace_logout_despues_de_login(){
