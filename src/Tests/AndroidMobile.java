@@ -61,7 +61,6 @@ public class AndroidMobile extends MetodosAndroid {
 		}
     }
     
-    //comentario de prueba
     
     @Test (groups = "AutogestionIndividuosAPP", priority = 0)
     public void Comprar_Packs_Compra_de_Packs_MIX() {
