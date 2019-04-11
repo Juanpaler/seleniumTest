@@ -209,7 +209,7 @@ public class AndroidMobile extends MetodosAndroid {
     	Assert.assertTrue(ayuda);
     }
     
-    @Test (groups = "SinAfterMethod", priority = 23)
+    @Test (groups = "AutogestionIndividuosAPP", priority = 23)
     public void Login_Iniciar_Sesion_con_clave_Incorrecta() {
     	driver.findElement(By.id("editTextLinea")).sendKeys(lineaMIX);
         driver.findElement(By.id("btn_log_in")).click();
@@ -220,7 +220,7 @@ public class AndroidMobile extends MetodosAndroid {
     	Assert.assertTrue(mensajeIncorrecto);
     }
     
-    @Test (groups = "SinAfterMethod", priority = 24)
+    @Test (groups = "AutogestionIndividuosAPP", priority = 24)
     public void Login_Iniciar_Sesion_sin_clave() {
     	driver.findElement(By.id("editTextLinea")).sendKeys(lineaMIX);
         driver.findElement(By.id("btn_log_in")).click();
@@ -231,7 +231,7 @@ public class AndroidMobile extends MetodosAndroid {
     	Assert.assertTrue(mensajeIncorrecto);
     }
     
-    @Test (groups = "SinAfterMethod", priority = 25)
+    @Test (groups = "AutogestionIndividuosAPP", priority = 25)
     public void Login_Iniciar_Sesion_con_Linea_Inexistente() {
     	driver.findElement(By.id("editTextLinea")).sendKeys("1132465000");
         driver.findElement(By.id("btn_log_in")).click();

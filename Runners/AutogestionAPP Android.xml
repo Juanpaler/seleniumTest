@@ -14,18 +14,5 @@
 			<class name="Tests.AndroidMobile" />
 		</classes>
 	</test>
-	
-	<!-- ******************************************  AUTOGESTION INDIVIDUOS APP ANDROID SIN AFTERMETHOD  ************************************** -->
-	
-	<test name="Autogestion Individuos APP Android Sin AfterMethod">
-		<groups>
-			<run>
-				<include name="SinAfterMethod" />
-			</run>
-		</groups>
-		<classes>
-			<class name="Tests.AndroidMobile" />
-		</classes>
-	</test>
 
  </suite>
