@@ -1,6 +1,7 @@
 package PageMetodos;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -14,6 +15,8 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
 
 public class MetodosAndroid {
 	
@@ -35,25 +38,63 @@ public class MetodosAndroid {
         sleep(20000);
 	}
 
+	/*
+	 * public void scrollAndClick(AndroidDriver<AndroidElement> driver, String by,
+	 * String using) { AndroidElement element = null; int numberOfTimes = 10;
+	 * Dimension size = driver.manage().window().getSize(); int anchor = (int)
+	 * (size.width / 2); int startPoint = (int) (size.height - 10); int endPoint =
+	 * 10; for (int i=0; i<numberOfTimes; i++) { try { new
+	 * TouchAction(driver).longPress(anchor, startPoint).moveTo(anchor,
+	 * endPoint).release().perform(); element = (AndroidElement)
+	 * driver.findElement(by, using); i = numberOfTimes; }
+	 * catch(NoSuchElementException e) { System.out.println(String.
+	 * format("Element not available. Scrolling (%s) times...", i + 1)); } }
+	 * element.click(); sleep(7000); }
+	 */
 	public void scrollAndClick(AndroidDriver<AndroidElement> driver, String by, String using) {
-        AndroidElement element = null;
-        int numberOfTimes = 10;
-        Dimension size = driver.manage().window().getSize();
-        int anchor = (int) (size.width / 2);
-        int startPoint = (int) (size.height - 10);
-        int endPoint = 10;
-        for (int i=0; i<numberOfTimes; i++) {
-            try {
-                new TouchAction(driver).longPress(anchor, startPoint).moveTo(anchor, endPoint).release().perform();
-                element = (AndroidElement) driver.findElement(by, using);
-                i = numberOfTimes;
-            } catch(NoSuchElementException e) {
-                System.out.println(String.format("Element not available. Scrolling (%s) times...", i + 1));
-            }
-        }
-        element.click();
-        sleep(7000);
-    }
+		if (ElementCreated(driver, by, using, 5)) {
+			driver.findElement(by, using).click();
+		} else {
+			int numberOfTimes = 10;
+			//Mejorar la cantidad de iteraciones teniendo en cuenta el largo de la ventana dividido la resolucion de la pantalla 
+			for (int i=0; i<numberOfTimes; i++) {
+				try {					
+			    	driver.swipe(10, 480, 20, 70, 400);
+					if (ElementCreated(driver, by, using, 2)) {
+						driver.findElement(by, using).click();
+						i= numberOfTimes;
+					}
+				} catch(NoSuchElementException e) {
+					System.out.println(e.getMessage());
+				}
+			}			
+		}
+	}
+	
+    public Boolean ElementCreated(AndroidDriver<AndroidElement> driver,String by, String text, int time) {
+		
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);		
+		
+		WebDriverWait wait = new WebDriverWait(driver, time);
+		try {
+			switch (by) {
+			case "id":
+				wait.until(ExpectedConditions.elementToBeClickable(By.id(text)));	
+				break;
+			case "cssSelector":
+				wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(text)));
+				break;
+			case "xpath":
+				wait.until(ExpectedConditions.elementToBeClickable(By.xpath(text)));
+				break;	
+			}
+		} catch (Exception e) {
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			return false;
+		}
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
+		return true;
+	}
 	
 	 public static void verticalScroll(AndroidDriver<AndroidElement> driver) {
 		 Dimension size = driver.manage().window().getSize();
