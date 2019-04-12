@@ -1,8 +1,14 @@
 package PageMetodos;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
@@ -21,6 +27,32 @@ public class MetodosiOS {
 	public static String lineaPre = "1162745165";
 	public static String lineaPos = "1145642605";
 	
+    private static XSSFSheet ExcelWSheet;
+    private static XSSFWorkbook ExcelWBook;
+    private static XSSFCell Cell;
+	
+	public String retornaLinea(String caso,String filename ) throws IOException{			
+		String CellData = null;
+		long CellData2 = 0;
+
+		try (FileInputStream fis = new FileInputStream(filename)) {
+			ExcelWBook = new XSSFWorkbook(fis);
+			ExcelWSheet = ExcelWBook.getSheetAt(0);
+			int count = ExcelWSheet.getPhysicalNumberOfRows();
+			for (int i = 0; i < count; i++) {
+				Cell = ExcelWSheet.getRow(i).getCell(0);
+				CellData = Cell.getStringCellValue();
+				if (CellData.equals(caso)) {
+					Cell = ExcelWSheet.getRow(i).getCell(1);
+					CellData2 = (long) Cell.getNumericCellValue();
+					break;
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return String.valueOf(CellData2);
+	}
 	
 	public void sleep(int miliseconds) {
 		try {Thread.sleep(miliseconds);} catch (InterruptedException ex) {Thread.currentThread().interrupt();}
@@ -28,7 +60,7 @@ public class MetodosiOS {
 	
 	public void loginPorLineaMobile(IOSDriver<IOSElement> driver, String linea) {
 		if(ElementCreated(driver, "xpath", "//*[@text='\u00A1Ups! en este momento Mi Personal UAT no est\u00E1 disponible.']", 5)) {
-        	scrollAndClickV2(driver, "xpath", "//*[@text='Aceptar']");
+        	scrollAndClick(driver, "xpath", "//*[@text='Aceptar']");
 		}
 		WaitForElement(driver, "cssSelector", ".UIATextField");
 		driver.findElement(By.className("UIATextField")).sendKeys(linea);
@@ -40,11 +72,11 @@ public class MetodosiOS {
         try {
         	if(ElementCreated(driver, "id", "En otro momento", 10))
         	{
-            	scrollAndClickV2(driver, "id", "En otro momento");
+            	scrollAndClick(driver, "id", "En otro momento");
         	}
         } catch(Exception e) {}
 	}
-
+/*
 	public void scrollAndClick(IOSDriver<IOSElement> driver, String by, String using) {
 		if (driver.findElement(by, using).isDisplayed()) {
 			driver.findElement(by, using).click();
@@ -67,8 +99,8 @@ public class MetodosiOS {
 			sleep(7000);
 		}
 	}
-	
-	public void scrollAndClickV2(IOSDriver<IOSElement> driver, String by, String using) {
+	*/
+	public void scrollAndClick(IOSDriver<IOSElement> driver, String by, String using) {
 		if (ElementCreated(driver, by, using, 5)) {
 			driver.findElement(by, using).click();
 		} else {
@@ -282,9 +314,9 @@ public class MetodosiOS {
     	scrollAndClick(driver, "id", "Mis Servicios");
     	scrollAndClick(driver, "id", "Mis suscripciones a servicios");
     	driver.findElement(By.xpath("//*[@class='UIAStaticText'][contains(text(),'Precio no disponible')]")).click();
-    	scrollAndClickV2(driver, "xpath", "//*[@text='ACEPTAR']");
+    	scrollAndClick(driver, "xpath", "//*[@text='ACEPTAR']");
     	bajaSus = ElementCreated(driver, "xpath", "//*[@text='La suscripci\u00F3n se di\u00F3 de baja con \u00E9xito']",15);
-    	scrollAndClickV2(driver, "id", "Aceptar");
+    	scrollAndClick(driver, "id", "Aceptar");
     	return bajaSus;
     }
     
@@ -437,7 +469,7 @@ public class MetodosiOS {
     	} catch(Exception e) {
     		scrollAndClick(driver, "id", "Pagos y Packs");
     	}
-		scrollAndClickV2(driver,"xpath","//*[@text='Tarjeta de Cr\u00E9dito' and (./preceding-sibling::* | ./following-sibling::*)[@text='Pag\u00E1 con']]");
+		scrollAndClick(driver,"xpath","//*[@text='Tarjeta de Cr\u00E9dito' and (./preceding-sibling::* | ./following-sibling::*)[@text='Pag\u00E1 con']]");
 		return ElementCreated(driver, "xpath", "//*[@id='Complet\u00e1 el siguiente formulario para finalizar el pago']",15);    	
 	}
     
@@ -447,8 +479,8 @@ public class MetodosiOS {
     	} catch(Exception e) {
     		scrollAndClick(driver, "id", "Pagos y Packs");
     	}
-		scrollAndClickV2(driver, "id", "Pago online");
-		scrollAndClickV2(driver, "id", "Pago Mis Cuentas");
+		scrollAndClick(driver, "id", "Pago online");
+		scrollAndClick(driver, "id", "Pago Mis Cuentas");
 		
 		return ElementCreated(driver, "id", "Pago con Pago Mis Cuentas: Paso a paso", 10);
 	}
