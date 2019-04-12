@@ -1,8 +1,14 @@
 package PageMetodos;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
@@ -17,10 +23,9 @@ import io.appium.java_client.android.AndroidElement;
 
 public class MetodosAndroid {
 	
-	public static String lineaMIX = "1162735148";
-	public static String lineaPre = "1162745165";
-	public static String lineaPos = "1145642605";
-	
+    private static XSSFSheet ExcelWSheet;
+    private static XSSFWorkbook ExcelWBook;
+    private static XSSFCell Cell;
 	
 	public void sleep(int miliseconds) {
 		try {Thread.sleep(miliseconds);} catch (InterruptedException ex) {Thread.currentThread().interrupt();}
@@ -33,6 +38,30 @@ public class MetodosAndroid {
         driver.findElement(By.id("editTextPin")).sendKeys("1469");
         driver.findElement(By.id("btn_log_in")).click();
         sleep(20000);
+	}
+	
+	
+	public String retornaLinea(String caso,String filename ) throws IOException{			
+		String CellData = null;
+		long CellData2 = 0;
+
+		try (FileInputStream fis = new FileInputStream(filename)) {
+			ExcelWBook = new XSSFWorkbook(fis);
+			ExcelWSheet = ExcelWBook.getSheetAt(0);
+			int count = ExcelWSheet.getPhysicalNumberOfRows();
+			for (int i = 0; i < count; i++) {
+				Cell = ExcelWSheet.getRow(i).getCell(0);
+				CellData = Cell.getStringCellValue();
+				if (CellData.equals(caso)) {
+					Cell = ExcelWSheet.getRow(i).getCell(1);
+					CellData2 = (long) Cell.getNumericCellValue();
+					break;
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return String.valueOf(CellData2);
 	}
 
 	/*
@@ -634,6 +663,7 @@ public class MetodosAndroid {
 			scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='PAGOS Y PACKS']");
 		}
 		scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='Pago Presencial']");
+		sleep(5000);
     	for (WebElement x : driver.findElements(By.className("android.widget.TextView"))) {
     		if (x.getText().contains("Pagos en efectivo"))
     			pee = true;
