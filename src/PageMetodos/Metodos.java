@@ -1,6 +1,5 @@
 package PageMetodos;
 
-import static org.testng.Assert.assertTrue;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -29,11 +28,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -44,28 +40,13 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
-
-import DataProvider.ExcelUtils;
-
-import java.io.FileInputStream;
-
 import java.io.FileNotFoundException;
-
-import java.io.IOException;
-
 import org.apache.poi.xssf.usermodel.XSSFCell;
-
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 
 public class Metodos {
 	
@@ -76,10 +57,6 @@ public class Metodos {
 	static WebDriver driver;
 	static WebDriver driverf;
 	static WebDriver driveri;
-	
-	public static String lineaMIX = "1162735148";
-	public static String lineaPre = "1162745165";
-	public static String lineaPos = "1145642605";
 	
 	public Properties config = new Properties();
     InputStream configInput = null;
@@ -1022,168 +999,5 @@ public class Metodos {
 		Assert.assertTrue(cancelado);
 	}
 
-	@DataProvider
-	public Object[][] MIX() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Mix");
-		return (testObjArray);
-
-	}
-
-	@DataProvider
-	public Object[][] PRE() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Pre");
-		return (testObjArray);
-
-	}
-
-	@DataProvider
-	public Object[][] POS() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Pos");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Nota_de_Credito_MIX() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Nota de Credito MIX");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Numeros_Amigos_Sms_Activar_MIX() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Numeros Amigos Sms Activar MIX");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Seguimiento_de_Gestion_MIX() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Seguimiento de Gestion MIX");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Roaming_LDI_Habilitado_MIX() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Roaming LDI Habilitado MIX");
-
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Imprimir_cupon_de_pago_MIX() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Imprimir cupon de pago MIX");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] DataSharing_Alta_MIX() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "DataSharing Alta MIX");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Recargas_puntos_club_MIX() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Recargas puntos club MIX");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Cambio_de_domicilio_MIX() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Cambio de domicilio MIX");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Compras_descargar_comprobante_MIX() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Compras descargar comprobante MIX");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Roaming_LDI_Habilitado_PRE() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Roaming LDI Habilitado PRE");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Numeros_Amigos_Sms_Activar_PRE() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Numeros Amigos Sms Activar PRE");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Seguimiento_de_Gestion_PRE() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Seguimiento de Gestion PRE");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Recargas_puntos_club_PRE() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Recargas puntos club PRE");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Cambio_de_domicilio_PRE() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Cambio de domicilio PRE");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Nota_de_Credito_POS() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Nota de Credito POS");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Roaming_LDI_Habilitado_POS() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Roaming LDI Habilitado POS");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Imprimir_cupon_de_pago_POS() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Imprimir cupon de pago POS");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] pagar_factura_POS() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "pagar factura POS");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] transferencia_de_llamada_POS() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "transferencia de llamada POS");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Compras_descargar_comprobante_POS() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Compras descargar comprobante POS");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Cambio_de_domicilio_POS() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Cambio de domicilio POS");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Linea_Capro() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Mi linea capro");
-		return (testObjArray);
-	}
-
-	@DataProvider
-	public Object[][] Modificar_cuota_de_datos() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Modificar Cuota de Datos");
-		return (testObjArray);
-	}
 	
-	@DataProvider
-	public Object[][] Input_mail() throws Exception {
-		Object[][] testObjArray = ExcelUtils.getTableArray("Lineas.xlsx", "TodasLasLineas", 1, 1, 1, "Input Mail");
-		return (testObjArray);
-	}
 }

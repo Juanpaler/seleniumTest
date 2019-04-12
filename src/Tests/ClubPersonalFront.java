@@ -25,7 +25,7 @@ public class ClubPersonalFront extends Metodos{
 		driver = setup();	
 	}
 	
-	//@AfterMethod (alwaysRun = true)
+	@AfterMethod (alwaysRun = true)
 	public void after(){
 		tomarCaptura(driver,nombreCaso);
 		try {

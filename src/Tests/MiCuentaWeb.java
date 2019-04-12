@@ -2007,8 +2007,6 @@ public class MiCuentaWeb extends Metodos{
 			String DownloadPath = GetUserDownloadPath();
 			driver.get("file:///"+ DownloadPath + NumFact+"_"+Fecha2+".pdf");
 			exito = true;
-			PDF pdf =  new PDF();
-			//Assert.assertTrue(pdf.ContenidoPDF("C:\\Users\\Sofia Chardin\\Downloads\\"+NumFact+"_"+Fecha2+".pdf").contains(NumFact));
 			sleep(12000);
 			driver.close();
 			driver.switchTo().window(tabs2.get(0));

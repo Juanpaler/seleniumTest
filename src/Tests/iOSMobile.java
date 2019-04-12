@@ -23,7 +23,7 @@ public class iOSMobile extends MetodosiOS {
     private DesiredCapabilities dc = new DesiredCapabilities();
     
 	private String nombreCaso;
-	private String archivoLineas="LineasIOSMiCuenta.xlsx";
+	private String archivoLineas="dataInput/LineasIOSMiCuenta.xlsx";
     
 	@BeforeClass (groups = "AutogestionIndividuosAPP")
 	public void init() {
@@ -84,7 +84,7 @@ public class iOSMobile extends MetodosiOS {
     public void Comprar_Packs_Compra_de_Packs_con_puntos_Club_MIX() throws IOException  {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "3854041917");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verificarCompraPacksPuntosClub(driver));  //Mensaje de error al intentar canjear
     }
     
@@ -92,7 +92,7 @@ public class iOSMobile extends MetodosiOS {
     public void Comprar_Packs_Compra_de_Packs_con_puntos_Club_PRE() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1164473518");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verificarCompraPacksPuntosClub(driver));  //Mensaje de error al intentar canjear
     }
     
@@ -140,7 +140,7 @@ public class iOSMobile extends MetodosiOS {
     public void Facturacion_Compras_Realizadas_Descargar_Comprobante_MIX() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1164599468");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(descargaComprobanteDeCompra(driver, "MIX"));
     }
     
@@ -148,7 +148,7 @@ public class iOSMobile extends MetodosiOS {
     public void Facturacion_Compras_Realizadas_Descargar_Comprobante_POS() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1145642605");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(descargaComprobanteDeCompra(driver, "Pos"));
     }
     
@@ -156,7 +156,7 @@ public class iOSMobile extends MetodosiOS {
     public void Facturacion_Imprimir_cupon_de_pago_MIX() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1162733281");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(imprimirCuponDePago(driver));  //Mensaje de error al intentar descargar el cupon
     }
     
@@ -164,7 +164,7 @@ public class iOSMobile extends MetodosiOS {
     public void Facturacion_Imprimir_cupon_de_pago_POS() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "3413130145");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(imprimirCuponDePago(driver));  //Mensaje de error al intentar descargar el cupon
     }
     
@@ -172,7 +172,7 @@ public class iOSMobile extends MetodosiOS {
     public void Facturacion_Informar_un_Pago_MIX() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1162733281");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(informarUnPago(driver));  //No deja ingresar el importe
     }
     
@@ -180,7 +180,7 @@ public class iOSMobile extends MetodosiOS {
     public void Facturacion_Informar_un_Pago_POS() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "3413130145");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(informarUnPago(driver));  //No deja ingresar el importe
     }
     
@@ -188,7 +188,7 @@ public class iOSMobile extends MetodosiOS {
     public void Facturacion_Notas_de_Credito_y_Debito_MIX() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1161120234");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(descargaNotaDeCreditoYDebito(driver));
     }
     
@@ -196,7 +196,7 @@ public class iOSMobile extends MetodosiOS {
     public void Facturacion_Notas_de_Credito_y_Debito_POS() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "3758649203");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(descargaNotaDeCreditoYDebito(driver));
     }
     
@@ -204,7 +204,7 @@ public class iOSMobile extends MetodosiOS {
     public void Facturacion_Pagar_Factura_MIX() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1162733281");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verificarDetalleDePagoConTarjeta(driver));
     }
     
@@ -212,7 +212,7 @@ public class iOSMobile extends MetodosiOS {
     public void Facturacion_Pagar_Factura_POS() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1165990597");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verificarDetalleDePagoConTarjeta(driver));
     }
     
@@ -220,7 +220,7 @@ public class iOSMobile extends MetodosiOS {
     public void Facturacion_Ver_Facturas_MIX() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1162733281");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verFacturas(driver));
     }
     
@@ -228,7 +228,7 @@ public class iOSMobile extends MetodosiOS {
     public void Facturacion_Ver_Facturas_POS() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1165990597");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verFacturas(driver));
     }
     
@@ -244,7 +244,7 @@ public class iOSMobile extends MetodosiOS {
     public void Mi_Linea_Baja_de_Suscripciones_POS() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1145642605");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(bajaDeSuscripcion(driver));
     }
     
@@ -260,7 +260,7 @@ public class iOSMobile extends MetodosiOS {
     public void MI_Linea_Roaming_y_LDI_habilitado_MIX() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "3496652414");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verificarRoamingYLDIActivos(driver));
     }
     
@@ -268,7 +268,7 @@ public class iOSMobile extends MetodosiOS {
     public void MI_Linea_Roaming_y_LDI_habilitado_POS() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "3794601129");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verificarRoamingYLDIActivos(driver));
     }
     
@@ -276,7 +276,7 @@ public class iOSMobile extends MetodosiOS {
     public void MI_Linea_Roaming_y_LDI_habilitado_PRE() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1164520012");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verificarRoamingYLDIActivos(driver));
     }
     
@@ -316,7 +316,7 @@ public class iOSMobile extends MetodosiOS {
     public void Recargas_Recarga_con_puntos_Club_MIX() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "3854041917");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verificarRecargaPuntosClub(driver));  //Mensaje de error al hacer click en canjear
     }
     
@@ -324,7 +324,7 @@ public class iOSMobile extends MetodosiOS {
     public void Recargas_Recarga_con_puntos_Club_PRE() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1164473518");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verificarRecargaPuntosClub(driver));  //Mensaje de error al hacer click en canjear
     }
     
@@ -399,7 +399,7 @@ public class iOSMobile extends MetodosiOS {
     public void Login_Iniciar_Sesion_con_Linea_PreActiva() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1162645152");
+    	loginPorLineaMobile(driver, linea);
     	scrollAndClick(driver, "id", "Mis Servicios");
     	Assert.fail();  //No se visualiza el mensaje de linea pre desactivada
     }
@@ -448,7 +448,7 @@ public class iOSMobile extends MetodosiOS {
     public void Inicio_Mis_disponibles_Mis_Facturas_POS() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1145642605");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verificarFactura(driver));
     }
     
@@ -464,7 +464,7 @@ public class iOSMobile extends MetodosiOS {
     public void Pagos_Paga_con_Tarjeta_de_Credito_POS() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1145642605");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verificarPagoConTarjetaDeCredito(driver));
     }
     
@@ -480,7 +480,7 @@ public class iOSMobile extends MetodosiOS {
     public void Pagos_Paga_con_Pago_Mis_Cuentas_POS() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1145642605");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verificarPagoConPagoMisCuentas(driver));
     }
     
@@ -496,7 +496,7 @@ public class iOSMobile extends MetodosiOS {
     public void Pagos_Pago_online_POS() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1145642605");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verificarPagoOnline(driver));
     }
     
@@ -512,7 +512,7 @@ public class iOSMobile extends MetodosiOS {
     public void Pagos_Pago_Presencial_POS() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1145642605");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verificarPagoPresencial(driver));
     }
     
@@ -520,7 +520,7 @@ public class iOSMobile extends MetodosiOS {
     public void Mis_Consumos_Doble_Blue_Activar_PRE() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1164484643");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verificarActivYDesactDobleBlue(driver, "Pre"));
     }
     
@@ -528,7 +528,7 @@ public class iOSMobile extends MetodosiOS {
     public void Mis_Consumos_Doble_Blue_Activar_MIX() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "1164483808");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verificarActivYDesactDobleBlue(driver, "MIX"));
     }
 }
