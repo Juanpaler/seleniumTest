@@ -23,7 +23,7 @@ public class iOSMobile extends MetodosiOS {
     private DesiredCapabilities dc = new DesiredCapabilities();
     
 	private String nombreCaso;
-	private String archivoLineas="LineasIOSMiCuenta.xlsx";
+	private String archivoLineas="dataInput/LineasIOSMiCuenta.xlsx";
     
 	@BeforeClass (groups = "AutogestionIndividuosAPP")
 	public void init() {
