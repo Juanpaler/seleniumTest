@@ -24,7 +24,7 @@ public class EComerce extends Metodos{
 	private WebDriver driver;
 	
 	String nombreCaso;
-	String archivoLineas="LineasEcommerce.xlsx";
+	String archivoLineas="dataInput/LineasEcommerce.xlsx";
 	
 	@BeforeMethod (alwaysRun = true)
 		public void before(){

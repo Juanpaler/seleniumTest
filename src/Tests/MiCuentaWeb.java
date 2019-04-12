@@ -39,7 +39,7 @@ public class MiCuentaWeb extends Metodos{
 	private WebDriver driveri;
 	
 	String nombreCaso;
-	String archivoLineas="LineasMiCuentaWeb.xlsx";
+	String archivoLineas="dataInput/LineasMiCuentaWeb.xlsx";
 
 	//@BeforeClass (alwaysRun = true)
 	public void apis(){
