@@ -356,7 +356,7 @@ public class ClubPersonalBack extends Metodos{
 		cargarNombreProducto(nombreProducto);
 
 		String path = new File(".").getCanonicalPath();
-		driver.findElement(By.id("idFile")).sendKeys(path +"\\ClubPersonalxDefecto.jpeg");
+		driver.findElement(By.id("idFile")).sendKeys(path +"/dataInput/ClubPersonalxDefecto.jpeg");
 		
 		String fechaMasUnDia = GetStringDatePlusDay(1);
 		cargarFechaProducto(fechaActual, fechaMasUnDia);
