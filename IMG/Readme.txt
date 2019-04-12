@@ -1,0 +1,1 @@
+Carpeta donde se almacenas las imagenes de las ejecucions de casos web(Club,Mi cuenta,Ecommerce)
