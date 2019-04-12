@@ -51,9 +51,9 @@ public class AndroidMobile extends MetodosAndroid {
         	menu++;
         }	
     	sleep(3000);
-    	driver.findElement(By.id("custom_ab_drawer")).click();
+    	scrollAndClick(driver, "id", "custom_ab_drawer");
     	sleep(5000);
-    	driver.findElement(By.xpath("//*[@text='Cerrar Sesi\u00f3n']")).click();
+    	scrollAndClick(driver, "xpath", "(//*[@id='table_container_menu']/*/*[@id='text_component_title_custom'])[2]");
     	sleep(5000);
     	driver.quit();
 		} catch (Exception e) {
