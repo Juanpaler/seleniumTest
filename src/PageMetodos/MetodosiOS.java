@@ -1,16 +1,20 @@
 package PageMetodos;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -614,4 +618,12 @@ public class MetodosiOS {
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
 		return true;
 	}
+    
+	public static void getScreenshot(IOSDriver<IOSElement> driver, String imageName ) throws IOException {
+		File directory;
+		directory = new File("IMG/MiCuentaAppIOS");
+		System.out.println("Capturing the snapshot of the page ");
+		File srcFiler=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(srcFiler, new File(directory.getAbsolutePath() + "\\" + imageName + ".png"));
+	}	
 }

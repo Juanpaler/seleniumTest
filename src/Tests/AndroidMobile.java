@@ -46,8 +46,9 @@ public class AndroidMobile extends MetodosAndroid {
     }
     
     @AfterMethod (alwaysRun = true)
-    public void after() {
+    public void after() throws IOException {
     	sleep(5000);
+    	getScreenshot(driver,nombreCaso);
     	int menu = 0;
     	try {
     	while(!driver.findElement(By.id("custom_ab_title")).getText().contains("Mi Personal") && menu < 3) {

@@ -19,6 +19,7 @@ public class ClubPersonalFront extends Metodos{
 	
 	String nombreCaso;
 	String archivoLineas="dataInput/LineasClubPersonalFront.xlsx";
+	String rutaCaptura="IMG/ClubPersonalFrontWeb";
 	
 	@BeforeMethod (alwaysRun = true)
 		public void before(){
@@ -27,7 +28,7 @@ public class ClubPersonalFront extends Metodos{
 	
 	@AfterMethod (alwaysRun = true)
 	public void after(){
-		tomarCaptura(driver,nombreCaso);
+		tomarCaptura(driver,nombreCaso,rutaCaptura);
 		try {
 			driver.findElement(By.id("tpi-user")).click();
 			sleep(7000);

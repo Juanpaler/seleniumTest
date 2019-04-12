@@ -25,6 +25,7 @@ public class EComerce extends Metodos{
 	
 	String nombreCaso;
 	String archivoLineas="dataInput/LineasEcommerce.xlsx";
+	String rutaCaptura="IMG/EcommerceWeb";
 	
 	@BeforeMethod (alwaysRun = true)
 		public void before(){
@@ -50,7 +51,7 @@ public class EComerce extends Metodos{
 	
 	@AfterMethod (alwaysRun = true)
 	public void after(){
-		tomarCaptura(driver,nombreCaso);
+		tomarCaptura(driver,nombreCaso,rutaCaptura);
 		try{
 			driver.findElement(By.id("vtex-callcenter__user-logout")).click();
 			sleep(5000);

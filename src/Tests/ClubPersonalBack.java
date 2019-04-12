@@ -27,6 +27,7 @@ public class ClubPersonalBack extends Metodos{
 	
 	String nombreCaso;
 	String archivoLineas="dataInput/LineasClubPersonalBack.xlsx";
+	String rutaCaptura="IMG/ClubPersonalBackWeb";
 	
 	@BeforeMethod (alwaysRun = true)
 		public void before(){
@@ -35,7 +36,7 @@ public class ClubPersonalBack extends Metodos{
 	
 	@AfterMethod (alwaysRun = true)
 	public void after(){
-		tomarCaptura(driver,nombreCaso);
+		tomarCaptura(driver,nombreCaso,rutaCaptura);
 		try {
 			driver.findElement(By.linkText("Salir")).click();
 			sleep(3000);

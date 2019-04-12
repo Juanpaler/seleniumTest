@@ -252,10 +252,10 @@ public class Metodos {
 	    element.click();
 	}
 	
-	public void tomarCaptura(WebDriver driver, String imageName) {
+	public void tomarCaptura(WebDriver driver, String imageName , String rutaCaptura) {
 		// Directorio donde quedaran las imagenes guardadas
 		File directory;
-		directory = new File("IMG");
+		directory = new File(rutaCaptura);
 		try {
 			if (directory.isDirectory()) {
 				// Toma la captura de imagen

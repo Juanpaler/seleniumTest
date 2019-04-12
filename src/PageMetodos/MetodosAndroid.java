@@ -1,5 +1,6 @@
 package PageMetodos;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,10 +13,15 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import org.apache.commons.io.FileUtils;
+
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -674,4 +680,14 @@ public class MetodosAndroid {
     	}
     	return pee && ca && pcc;
 	}
+	
+	public static void getScreenshot(AndroidDriver<AndroidElement> driver, String imageName ) throws IOException {
+		File directory;
+		directory = new File("IMG/MiCuentaAppAndroid");
+		System.out.println("Capturing the snapshot of the page ");
+		File srcFiler=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(srcFiler, new File(directory.getAbsolutePath() + "\\" + imageName + ".png"));
+	}	
+	
+	
 }
