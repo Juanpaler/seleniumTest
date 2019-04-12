@@ -33,7 +33,7 @@ public class ClubPersonalBack extends Metodos{
 		driver = setup();	
 	}
 	
-	//@AfterMethod (alwaysRun = true)
+	@AfterMethod (alwaysRun = true)
 	public void after(){
 		tomarCaptura(driver,nombreCaso);
 		try {
@@ -72,21 +72,18 @@ public class ClubPersonalBack extends Metodos{
 	@Test (groups = "ClubPersonalBack", priority = 6, enabled = false)
 	public void Adhesion_Linea_Usuario_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		String linea=retornaLinea(nombreCaso,archivoLineas);
 		loginClubBack();	
     }
 	
 	@Test (groups = "ClubPersonalBack", priority = 7,enabled = false)
 	public void Adhesion_Linea_Usuario_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		String linea=retornaLinea(nombreCaso,archivoLineas);
 		loginClubBack();	
     }
 	
 	@Test (groups = "ClubPersonalBack", priority = 8,enabled = false)
 	public void Adhesion_Linea_Usuario_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		String linea=retornaLinea(nombreCaso,archivoLineas);
 		loginClubBack();	
     }
 	

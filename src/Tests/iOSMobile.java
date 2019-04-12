@@ -84,7 +84,7 @@ public class iOSMobile extends MetodosiOS {
     public void Comprar_Packs_Compra_de_Packs_con_puntos_Club_MIX() throws IOException  {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "linea");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verificarCompraPacksPuntosClub(driver));  //Mensaje de error al intentar canjear
     }
     
@@ -92,7 +92,7 @@ public class iOSMobile extends MetodosiOS {
     public void Comprar_Packs_Compra_de_Packs_con_puntos_Club_PRE() throws IOException {
     	nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
     	String linea=retornaLinea(nombreCaso,archivoLineas);
-    	loginPorLineaMobile(driver, "linea");
+    	loginPorLineaMobile(driver, linea);
     	Assert.assertTrue(verificarCompraPacksPuntosClub(driver));  //Mensaje de error al intentar canjear
     }
     
