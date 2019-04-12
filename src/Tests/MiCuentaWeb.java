@@ -40,6 +40,7 @@ public class MiCuentaWeb extends Metodos{
 	
 	String nombreCaso;
 	String archivoLineas="dataInput/LineasMiCuentaWeb.xlsx";
+	String rutaCaptura="IMG/MiCuentaWeb";
 
 	//@BeforeClass (alwaysRun = true)
 	public void apis(){
@@ -66,7 +67,7 @@ public class MiCuentaWeb extends Metodos{
 	
 	@AfterMethod (alwaysRun = true)	
 	public void after(){
-		tomarCaptura(driver,nombreCaso);
+		tomarCaptura(driver,nombreCaso,rutaCaptura);
 		try {
 			driver.findElement(By.id("tpi-user")).click();
 			sleep(7000);
