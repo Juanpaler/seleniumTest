@@ -18,7 +18,7 @@ public class ClubPersonalFront extends Metodos{
 	private WebDriver driver;
 	
 	String nombreCaso;
-	String archivoLineas="LineasClubPersonalFront.xlsx";
+	String archivoLineas="dataInput/LineasClubPersonalFront.xlsx";
 	
 	@BeforeMethod (alwaysRun = true)
 		public void before(){
