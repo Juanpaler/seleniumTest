@@ -21,12 +21,8 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 
-public class MetodosiOS {
-	
-	public static String lineaMIX = "1162735148";
-	public static String lineaPre = "1162745165";
-	public static String lineaPos = "1145642605";
-	
+public class MetodosiOS {	
+
     private static XSSFSheet ExcelWSheet;
     private static XSSFWorkbook ExcelWBook;
     private static XSSFCell Cell;
