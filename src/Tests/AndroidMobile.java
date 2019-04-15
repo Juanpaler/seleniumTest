@@ -25,10 +25,10 @@ public class AndroidMobile extends MetodosAndroid {
     
 	private String nombreCaso;
 	private String archivoLineas="dataInput/LineasAndroidMiCuenta.xlsx";
-    
+	private String modulo="MiCuentaAppAndroid";
     
     @BeforeClass (alwaysRun = true)
-    public void init() {
+    public void init() throws IOException {
     	dc.setCapability("reportDirectory", "reports");
         dc.setCapability("reportFormat", "xml");
         dc.setCapability("testName", "Untitled");
@@ -37,6 +37,7 @@ public class AndroidMobile extends MetodosAndroid {
         dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "ar.com.personal.bandaruattp");
         dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "ar.com.personal.app.activities.bandar.SplashActivity");
         dc.setCapability(MobileCapabilityType.NO_RESET, true);
+        reportDirectory(modulo);
     }
     
     @BeforeMethod (alwaysRun = true)

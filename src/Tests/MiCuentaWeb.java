@@ -1,5 +1,7 @@
 package Tests;
 
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import java.awt.AWTException;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,9 +13,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -21,8 +21,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
@@ -41,28 +39,29 @@ public class MiCuentaWeb extends Metodos{
 	String nombreCaso;
 	String archivoLineas="dataInput/LineasMiCuentaWeb.xlsx";
 	String rutaCaptura="IMG/MiCuentaWeb";
+	String modulo="MiCuentaWeb";
 
-	//@BeforeClass (alwaysRun = true)
-	public void apis(){
-		driver = setup();
-		driver.get("https://resourcesuat.telecom.com.ar/styles/v1/css/tpstyle.css");
-		sleep(5000);
-		((JavascriptExecutor) driver).executeScript("window.open('https://loginuat.telecom.com.ar/v1/sdk.js');");
-		sleep(5000);
-		driverf.quit();
+	@BeforeClass (alwaysRun = true)
+	public void beforeClass() throws IOException {
+		//Carga de apis de login no utilizadas actualmente
+		//driver = setup();
+		//driver.get("https://resourcesuat.telecom.com.ar/styles/v1/css/tpstyle.css");
+		//sleep(5000);
+		//((JavascriptExecutor) driver).executeScript("window.open('https://loginuat.telecom.com.ar/v1/sdk.js');");
+		//sleep(5000);
+		//driverf.quit();
+		//Directorio para guardar la ejecucion
+        reportDirectory(modulo);
 	}
 	
 	@BeforeMethod (alwaysRun = true)
 	public void before(){
 		//Chrome
 		driver = setup();
-		
 		//Firefox
 		//driverf = setup2();
-		
 		//InternetExplorer
 		//driveri = setup3();
-		
 	}
 	
 	@AfterMethod (alwaysRun = true)	
@@ -93,7 +92,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(15000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-responsive.btn-primary")),"equals","confirmar compra");
 		sleep(15000);
-		Assert.assertTrue(driver.findElement(By.id("principalExito")).isDisplayed());			
+		AssertJUnit.assertTrue(driver.findElement(By.id("principalExito")).isDisplayed());			
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","packs"})
@@ -112,7 +111,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(15000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-responsive.btn-primary")),"equals","confirmar compra");
 		sleep(15000);
-		Assert.assertTrue(driver.findElement(By.id("principalExito")).isDisplayed());			
+		AssertJUnit.assertTrue(driver.findElement(By.id("principalExito")).isDisplayed());			
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","packs"})
@@ -126,7 +125,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("btnConsultarDesk")).click();
 		sleep(7000);
 		driver.findElement(By.cssSelector(".item-cell-body.text-center")).findElement(By.cssSelector(".tpicon.font-30.tpicon-descargar")).click();;
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","packs"})
@@ -141,7 +140,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("btnConsultarDesk")).click();
 		sleep(7000);
 		driver.findElement(By.cssSelector(".item-cell-body.text-center")).findElement(By.cssSelector(".tpicon.font-30.tpicon-descargar"));
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
@@ -161,7 +160,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(3000);
 		if (driver.findElement(By.cssSelector(".card.col-sm-7.col-sm-offset-3.col-lg-offset-3")).isDisplayed())
 			detalles = true;
-		Assert.assertTrue(tabla && detalles);
+		AssertJUnit.assertTrue(tabla && detalles);
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
@@ -175,7 +174,7 @@ public class MiCuentaWeb extends Metodos{
 		buscarYClick(driver.findElements(By.cssSelector(".padding-right-pack.ng-scope")),"equals","packs activos");
 		sleep(15000);
 		WebElement tabla = driver.findElement(By.cssSelector(".list-store.margin-bottom-50"));
-		Assert.assertTrue(tabla.isDisplayed());
+		AssertJUnit.assertTrue(tabla.isDisplayed());
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","Headers"})
@@ -184,15 +183,15 @@ public class MiCuentaWeb extends Metodos{
 		String linea=retornaLinea(nombreCaso,archivoLineas);
 		loginPorLinea(linea);
 		buscarYClick(driver.findElements(By.cssSelector(".tpi-navbar-item-link")),"equals","Planes");		
-		Assert.assertTrue(driver.getCurrentUrl().equals("https://uat.personal.com.ar/tienda/planes/")); 
+		AssertJUnit.assertTrue(driver.getCurrentUrl().equals("https://uat.personal.com.ar/tienda/planes/")); 
 		driver.navigate().back();
 
 		buscarYClick(driver.findElements(By.cssSelector(".tpi-navbar-item-link")),"equals","Club Personal");
-		Assert.assertTrue(driver.getCurrentUrl().equals("https://uat.personal.com.ar/clubpersonal/")); 
+		AssertJUnit.assertTrue(driver.getCurrentUrl().equals("https://uat.personal.com.ar/clubpersonal/")); 
 		driver.navigate().back();
 
 		buscarYClick(driver.findElements(By.cssSelector(".tpi-navbar-item-link")),"equals","Ayuda");		
-		Assert.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/")); 
+		AssertJUnit.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/")); 
 		driver.navigate().back();
 
 	}
@@ -208,7 +207,7 @@ public class MiCuentaWeb extends Metodos{
 		buscarYClick(driver.findElements(By.cssSelector(".padding-right-pack.ng-scope")),"equals","packs activos");
 		sleep(15000);
 		WebElement tabla = driver.findElement(By.cssSelector(".list-store.margin-bottom-50"));
-		Assert.assertTrue(tabla.isDisplayed());
+		AssertJUnit.assertTrue(tabla.isDisplayed());
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
@@ -227,7 +226,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(12000);
 		WebElement alert = driver.findElement(By.id("divSinSuscripciones"));
 		System.out.println(alert.getText());
-		Assert.assertTrue(alert.isDisplayed());
+		AssertJUnit.assertTrue(alert.isDisplayed());
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
@@ -246,7 +245,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(12000);
 		WebElement alert = driver.findElement(By.id("divSinSuscripciones"));
 		System.out.println(alert.getText());
-		Assert.assertTrue(alert.isDisplayed());
+		AssertJUnit.assertTrue(alert.isDisplayed());
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
@@ -265,7 +264,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(12000);
 		WebElement alert = driver.findElement(By.id("divSinSuscripciones"));
 		System.out.println(alert.getText());
-		Assert.assertTrue(alert.isDisplayed());
+		AssertJUnit.assertTrue(alert.isDisplayed());
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
@@ -287,7 +286,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(5000);
 		if (driver.findElement(By.cssSelector(".list-store.detalle-consumo")).isDisplayed())
 			tabla = true;
-		Assert.assertTrue(tabla);
+		AssertJUnit.assertTrue(tabla);
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
@@ -307,7 +306,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(3000);
 		if (driver.findElement(By.cssSelector(".card.col-sm-7.col-sm-offset-3.col-lg-offset-3")).isDisplayed())
 			detalles = true;
-		Assert.assertTrue(tabla && detalles);
+		AssertJUnit.assertTrue(tabla && detalles);
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","recargas"})
@@ -320,24 +319,24 @@ public class MiCuentaWeb extends Metodos{
 		sleep(10000);
 		driver.findElement(By.id("btnRecargaTarjeta")).click();
 		sleep(10000);
-		Assert.assertTrue(driver.findElement(By.id("divPin")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.id("divCaptcha")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.id("btnRecargaQuemaPin")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("divPin")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("divCaptcha")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("btnRecargaQuemaPin")).isDisplayed());
 		//obligarclick(driver.findElement(By.id("lnkFlechaIzqQP")));
 		driver.findElement(By.id("lnkFlechaIzqQP")).click();			
 		sleep(6000);
 		driver.findElement(By.id("btRecargas20")).click();
 		sleep(10000);
 		//Assert.assertTrue(driver.findElement(By.id("divNuevaTC")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.id("divIngresoVto")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.id("divIngresoCodSeguridad")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("divCaptcha")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("btnContinuarTC")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("divIngresoVto")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("divIngresoCodSeguridad")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("divCaptcha")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("btnContinuarTC")).isDisplayed());
 		driver.findElement(By.id("lnkFlechaIzqTC")).click();
 		sleep(6000);
 		driver.findElement(By.id("btnRecargaOtrosMedios")).click();
 		sleep(7000);
-		Assert.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/tag/f-recargas-y-packs/17495")); 
+		AssertJUnit.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/tag/f-recargas-y-packs/17495")); 
 		driver.navigate().back();
 		sleep(5000);
 	}
@@ -352,24 +351,24 @@ public class MiCuentaWeb extends Metodos{
 		sleep(10000);
 		driver.findElement(By.id("btnRecargaTarjeta")).click();
 		sleep(10000);
-		Assert.assertTrue(driver.findElement(By.id("divPin")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.id("divCaptcha")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.id("btnRecargaQuemaPin")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("divPin")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("divCaptcha")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("btnRecargaQuemaPin")).isDisplayed());
 		//obligarclick(driver.findElement(By.id("lnkFlechaIzqQP")));
 		driver.findElement(By.id("lnkFlechaIzqQP")).click();			
 		sleep(6000);
 		driver.findElement(By.id("btRecargas20")).click();
 		sleep(10000);
 		//Assert.assertTrue(driver.findElement(By.id("divNuevaTC")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.id("divIngresoVto")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.id("divIngresoCodSeguridad")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("divCaptcha")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("btnContinuarTC")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("divIngresoVto")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("divIngresoCodSeguridad")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("divCaptcha")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.recarga-tarjcred")).findElement(By.id("btnContinuarTC")).isDisplayed());
 		driver.findElement(By.id("lnkFlechaIzqTC")).click();
 		sleep(6000);
 		driver.findElement(By.id("btnRecargaOtrosMedios")).click();
 		sleep(7000);
-		Assert.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/tag/f-recargas-y-packs/17495")); 
+		AssertJUnit.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/tag/f-recargas-y-packs/17495")); 
 		driver.navigate().back();
 		sleep(5000);
 	}
@@ -384,7 +383,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(5000);
 		driver.findElement(By.cssSelector(".card.card-lg.padding-bottom-0")).click();
 		sleep(5000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".list-store.detalle-consumo")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".list-store.detalle-consumo")).isDisplayed());
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","recargas"})
@@ -397,7 +396,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(5000);
 		driver.findElement(By.cssSelector(".card.card-lg.padding-bottom-0")).click();
 		sleep(5000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".list-store.detalle-consumo")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".list-store.detalle-consumo")).isDisplayed());
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","mis datos"})
@@ -406,7 +405,7 @@ public class MiCuentaWeb extends Metodos{
 		String linea=retornaLinea(nombreCaso,archivoLineas);
 		loginPorLinea(linea);
 
-		Assert.assertTrue(cambiarClave("1357"));
+		AssertJUnit.assertTrue(cambiarClave("1357"));
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","mis datos"})
@@ -415,7 +414,7 @@ public class MiCuentaWeb extends Metodos{
 		String linea=retornaLinea(nombreCaso,archivoLineas);
 		loginPorLinea(linea);
 
-		Assert.assertTrue(cambiarClave("1357"));
+		AssertJUnit.assertTrue(cambiarClave("1357"));
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","mis datos"})
@@ -424,7 +423,7 @@ public class MiCuentaWeb extends Metodos{
 		String linea=retornaLinea(nombreCaso,archivoLineas);
 		loginPorLinea(linea);
 
-		Assert.assertTrue(cambiarClave("1357"));
+		AssertJUnit.assertTrue(cambiarClave("1357"));
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"})
@@ -444,9 +443,9 @@ public class MiCuentaWeb extends Metodos{
 		WebElement ciclo = driver.findElement(By.className("cuando-llega-tu-factura")).findElement(By.className("row")).findElements(By.tagName("div")).get(1).findElements(By.tagName("div")).get(1).findElement(By.tagName("b"));
 		WebElement dist = driver.findElement(By.className("cuando-llega-tu-factura")).findElements(By.className("row")).get(1).findElements(By.tagName("div")).get(1).findElements(By.tagName("div")).get(1).findElement(By.tagName("b"));
 		WebElement venc = driver.findElement(By.className("cuando-llega-tu-factura")).findElements(By.className("row")).get(2).findElements(By.tagName("div")).get(1).findElements(By.tagName("div")).get(1).findElement(By.tagName("b"));
-		Assert.assertTrue(ciclo.getText().matches("^\\d{2}$"));
-		Assert.assertTrue(dist.getText().matches("^\\d{2}/\\d{2}/\\d{4}$"));
-		Assert.assertTrue(venc.getText().matches("^\\d{2}/\\d{2}/\\d{4}$"));
+		AssertJUnit.assertTrue(ciclo.getText().matches("^\\d{2}$"));
+		AssertJUnit.assertTrue(dist.getText().matches("^\\d{2}/\\d{2}/\\d{4}$"));
+		AssertJUnit.assertTrue(venc.getText().matches("^\\d{2}/\\d{2}/\\d{4}$"));
 		
 	}
 	
@@ -467,9 +466,9 @@ public class MiCuentaWeb extends Metodos{
 		WebElement ciclo = driver.findElement(By.className("cuando-llega-tu-factura")).findElement(By.className("row")).findElements(By.tagName("div")).get(1).findElements(By.tagName("div")).get(1).findElement(By.tagName("b"));
 		WebElement dist = driver.findElement(By.className("cuando-llega-tu-factura")).findElements(By.className("row")).get(1).findElements(By.tagName("div")).get(1).findElements(By.tagName("div")).get(1).findElement(By.tagName("b"));
 		WebElement venc = driver.findElement(By.className("cuando-llega-tu-factura")).findElements(By.className("row")).get(2).findElements(By.tagName("div")).get(1).findElements(By.tagName("div")).get(1).findElement(By.tagName("b"));
-		Assert.assertTrue(ciclo.getText().matches("^\\d{2}$"));
-		Assert.assertTrue(dist.getText().matches("^\\d{2}/\\d{2}/\\d{4}$"));
-		Assert.assertTrue(venc.getText().matches("^\\d{2}/\\d{2}/\\d{4}$"));
+		AssertJUnit.assertTrue(ciclo.getText().matches("^\\d{2}$"));
+		AssertJUnit.assertTrue(dist.getText().matches("^\\d{2}/\\d{2}/\\d{4}$"));
+		AssertJUnit.assertTrue(venc.getText().matches("^\\d{2}/\\d{2}/\\d{4}$"));
 		
 	}
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
@@ -486,9 +485,9 @@ public class MiCuentaWeb extends Metodos{
 		WebElement puk = driver.findElements(By.cssSelector(".well.text-center")).get(1);
 		System.out.println(pin.findElement(By.tagName("h1")).getText());
 		System.out.println(puk.findElement(By.tagName("h1")).getText());
-		Assert.assertTrue(pin.getText().toLowerCase().contains("tu pin es:") && puk.getText().toLowerCase().contains("tu puk es:"));
-		Assert.assertTrue(pin.isDisplayed());
-		Assert.assertTrue(puk.isDisplayed());
+		AssertJUnit.assertTrue(pin.getText().toLowerCase().contains("tu pin es:") && puk.getText().toLowerCase().contains("tu puk es:"));
+		AssertJUnit.assertTrue(pin.isDisplayed());
+		AssertJUnit.assertTrue(puk.isDisplayed());
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
@@ -505,9 +504,9 @@ public class MiCuentaWeb extends Metodos{
 		WebElement puk = driver.findElements(By.cssSelector(".well.text-center")).get(1);
 		System.out.println(pin.findElement(By.tagName("h1")).getText());
 		System.out.println(puk.findElement(By.tagName("h1")).getText());
-		Assert.assertTrue(pin.getText().toLowerCase().contains("tu pin es:") && puk.getText().toLowerCase().contains("tu puk es:"));
-		Assert.assertTrue(pin.isDisplayed());
-		Assert.assertTrue(puk.isDisplayed());
+		AssertJUnit.assertTrue(pin.getText().toLowerCase().contains("tu pin es:") && puk.getText().toLowerCase().contains("tu puk es:"));
+		AssertJUnit.assertTrue(pin.isDisplayed());
+		AssertJUnit.assertTrue(puk.isDisplayed());
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
@@ -524,9 +523,9 @@ public class MiCuentaWeb extends Metodos{
 		WebElement puk = driver.findElements(By.cssSelector(".well.text-center")).get(1);
 		System.out.println(pin.findElement(By.tagName("h1")).getText());
 		System.out.println(puk.findElement(By.tagName("h1")).getText());
-		Assert.assertTrue(pin.getText().toLowerCase().contains("tu pin es:") && puk.getText().toLowerCase().contains("tu puk es:"));
-		Assert.assertTrue(pin.isDisplayed());
-		Assert.assertTrue(puk.isDisplayed());
+		AssertJUnit.assertTrue(pin.getText().toLowerCase().contains("tu pin es:") && puk.getText().toLowerCase().contains("tu puk es:"));
+		AssertJUnit.assertTrue(pin.isDisplayed());
+		AssertJUnit.assertTrue(puk.isDisplayed());
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","recargas"})
@@ -548,7 +547,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(5000);
 		buscarYClick(driver.findElements(By.cssSelector(".pull-right.btn.btn-lg.btn-responsive.btn-primary")),"contains","recarg\u00e1 ahora");
 		sleep(8000);
-		Assert.assertTrue(driver.findElement(By.id("lblErrorGlobal")).getText().toLowerCase().equals("la recarga s.o.s no pudo completarse porque ten\u00e9s pendiente el pago de la anterior."));
+		AssertJUnit.assertTrue(driver.findElement(By.id("lblErrorGlobal")).getText().toLowerCase().equals("la recarga s.o.s no pudo completarse porque ten\u00e9s pendiente el pago de la anterior."));
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","recargas"})
@@ -570,7 +569,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(5000);
 		buscarYClick(driver.findElements(By.cssSelector(".pull-right.btn.btn-lg.btn-responsive.btn-primary")),"contains","recarg\u00e1 ahora");
 		sleep(8000);
-		Assert.assertTrue(driver.findElement(By.id("lblErrorGlobal")).getText().toLowerCase().equals("la recarga s.o.s no pudo completarse porque ten\u00e9s pendiente el pago de la anterior."));
+		AssertJUnit.assertTrue(driver.findElement(By.id("lblErrorGlobal")).getText().toLowerCase().equals("la recarga s.o.s no pudo completarse porque ten\u00e9s pendiente el pago de la anterior."));
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
@@ -584,10 +583,10 @@ public class MiCuentaWeb extends Metodos{
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","mi plan");
 		sleep(8000);
 		buscarYClick(driver.findElements(By.cssSelector(".col-xs-12.col-sm-12.col-md-1.item-cell.item-cell-last")),"contains","ver detalle");
-		Assert.assertTrue(driver.findElement(By.id("section-ui-view")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("section-ui-view")).isDisplayed());
 		driver.findElements(By.cssSelector(".glyphicon.glyphicon-chevron-down")).get(6).click();
 		sleep(3000);
-		Assert.assertTrue(driver.findElement(By.id("legalDP")).findElement(By.tagName("div")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("legalDP")).findElement(By.tagName("div")).isDisplayed());
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
@@ -601,10 +600,10 @@ public class MiCuentaWeb extends Metodos{
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","mi plan");
 		sleep(8000);
 		buscarYClick(driver.findElements(By.cssSelector(".col-xs-12.col-sm-12.col-md-1.item-cell.item-cell-last")),"contains","ver detalle");
-		Assert.assertTrue(driver.findElement(By.id("section-ui-view")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("section-ui-view")).isDisplayed());
 		driver.findElements(By.cssSelector(".glyphicon.glyphicon-chevron-down")).get(6).click();
 		sleep(3000);
-		Assert.assertTrue(driver.findElement(By.id("legalDP")).findElement(By.tagName("div")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("legalDP")).findElement(By.tagName("div")).isDisplayed());
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
@@ -619,14 +618,14 @@ public class MiCuentaWeb extends Metodos{
 		sleep(8000);
 		String FechaFutura = GetStringDatePlusDay(5);
 		completarDatos("Compra de Equipo/L\u00ednea","Buenos Aires","San Justo","Dr. Ignacio Arieta 3169","111111111","a@a.com",FechaFutura);
-		Assert.assertTrue(driver.findElement(By.id("lblMensajeExito")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.id("lblMensajeExito")).getText().contains("Reservaste con \u00e9xito el turno para asistir a una oficina comercial"));
+		AssertJUnit.assertTrue(driver.findElement(By.id("lblMensajeExito")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("lblMensajeExito")).getText().contains("Reservaste con \u00e9xito el turno para asistir a una oficina comercial"));
 		sleep(3000);
 		driver.findElement(By.id("btnCancelar")).click();
 		sleep(2500);
 		driver.findElement(By.id("btnSi")).click();
 		sleep(5000);
-		Assert.assertTrue(driver.findElement(By.id("btnPedirOtroTurno")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("btnPedirOtroTurno")).isDisplayed());
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"})
@@ -640,7 +639,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(15000);
 	    ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
 	    driver.switchTo().window(tabs2.get(1));
-	    Assert.assertTrue(driver.findElement(By.id("mat-input-0")).isDisplayed());
+	    AssertJUnit.assertTrue(driver.findElement(By.id("mat-input-0")).isDisplayed());
 	    driver.close();
 	    driver.switchTo().window(tabs2.get(0));
 	}
@@ -656,7 +655,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(15000);
 	    ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
 	    driver.switchTo().window(tabs2.get(1));
-	    Assert.assertTrue(driver.findElement(By.id("mat-input-0")).isDisplayed());
+	    AssertJUnit.assertTrue(driver.findElement(By.id("mat-input-0")).isDisplayed());
 	    driver.close();
 	    driver.switchTo().window(tabs2.get(0));
 	}
@@ -676,7 +675,7 @@ public class MiCuentaWeb extends Metodos{
 					check = false;
 				}
 			}
-		Assert.assertTrue(check);
+		AssertJUnit.assertTrue(check);
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
@@ -694,7 +693,7 @@ public class MiCuentaWeb extends Metodos{
 					check = false;
 				}
 			}
-		Assert.assertTrue(check);
+		AssertJUnit.assertTrue(check);
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"}, dependsOnMethods="Recargas_Gestiones_y_Consultas_Ultimas_Recargas_MIX")
@@ -703,7 +702,7 @@ public class MiCuentaWeb extends Metodos{
 		String linea=retornaLinea(nombreCaso,archivoLineas);
 		loginPorLinea(linea);
 
-		Assert.assertTrue(true);
+		AssertJUnit.assertTrue(true);
 		sleep(3000);
 	}
 	
@@ -713,7 +712,7 @@ public class MiCuentaWeb extends Metodos{
 		String linea=retornaLinea(nombreCaso,archivoLineas);
 		loginPorLinea(linea);
 
-		Assert.assertTrue(true);
+		AssertJUnit.assertTrue(true);
 		sleep(3000);
 	}
 	
@@ -732,7 +731,7 @@ public class MiCuentaWeb extends Metodos{
 					check = false;
 				}
 			}
-		Assert.assertTrue(check);
+		AssertJUnit.assertTrue(check);
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
@@ -750,7 +749,7 @@ public class MiCuentaWeb extends Metodos{
 					check = false;
 				}
 			}
-		Assert.assertTrue(check);
+		AssertJUnit.assertTrue(check);
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
@@ -771,7 +770,7 @@ public class MiCuentaWeb extends Metodos{
 					a = true;
 				}
 			}
-		Assert.assertTrue(a);	
+		AssertJUnit.assertTrue(a);	
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
@@ -792,7 +791,7 @@ public class MiCuentaWeb extends Metodos{
 					a = true;
 				}
 			}
-		Assert.assertTrue(a);	
+		AssertJUnit.assertTrue(a);	
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
@@ -813,7 +812,7 @@ public class MiCuentaWeb extends Metodos{
 					a = true;
 				}
 			}
-		Assert.assertTrue(a);	
+		AssertJUnit.assertTrue(a);	
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
@@ -832,7 +831,7 @@ public class MiCuentaWeb extends Metodos{
 					rompe = false;
 				}
 			}
-		Assert.assertTrue(rompe);
+		AssertJUnit.assertTrue(rompe);
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","mis datos"})
@@ -853,7 +852,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("btnGuardarMail")).click();
 		sleep(15000);
 		//Se necesita el acceso a la base para obtener el id de confirmacion 
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 		
 	}
 	
@@ -869,7 +868,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("inputEmail")).sendKeys("alejandromza@gmail.com");
 		//driver.findElement(By.id("btn_Adherirme")).click();
 		//Se necesita el acceso a la base para obtener el id de confirmacion del mail 
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"})
@@ -884,7 +883,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("inputEmail")).sendKeys("alejandromza@gmail.com");
 		//driver.findElement(By.id("btn_Adherirme")).click();
 		//Se necesita el acceso a la base para obtener el id de confirmacion del mail 
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"}, dependsOnMethods="Facturacion_Facturacion_Digital_Suscripcion_a_Factura_Online_MIX")
@@ -922,7 +921,7 @@ public class MiCuentaWeb extends Metodos{
 					rompe = false;
 				}
 			}
-		Assert.assertTrue(rompe);
+		AssertJUnit.assertTrue(rompe);
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
@@ -942,7 +941,7 @@ public class MiCuentaWeb extends Metodos{
 					rompe = false;
 				}
 			}
-		Assert.assertTrue(rompe);
+		AssertJUnit.assertTrue(rompe);
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","consumos"})
@@ -962,7 +961,7 @@ public class MiCuentaWeb extends Metodos{
 					rompe = false;
 				}
 			}
-		Assert.assertTrue(rompe);
+		AssertJUnit.assertTrue(rompe);
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
@@ -991,7 +990,7 @@ public class MiCuentaWeb extends Metodos{
 		baja.selectByIndex(1);
 		driver.findElement(By.id("submit_fef510d6-2fbe-4f16-ac62-d4fc398de2c3")).click();
 		sleep(39000);
-		Assert.assertTrue(driver.findElement(By.id("tformtagBajaLinea")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("tformtagBajaLinea")).isDisplayed());
 		
 	}
 	
@@ -1043,7 +1042,7 @@ public class MiCuentaWeb extends Metodos{
 					textoencontrado = true;
 				}
 			}
-		Assert.assertTrue(textoencontrado);
+		AssertJUnit.assertTrue(textoencontrado);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary")),"contains","finalizar");
 		
 	}
@@ -1060,7 +1059,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(10000);
 		buscarYClick(driverf.findElements(By.cssSelector(".btn.btn-lg.btn-primary.btnMedia")),"equals","agregar autorizado");
 		sleep(8000);
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","facturacion"})
@@ -1074,7 +1073,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(10000);
 	    ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
 	    driver.switchTo().window(tabs.get(1));
-	    Assert.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/tag/c-facturacion-y-pagos/17487"));
+	    AssertJUnit.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/tag/c-facturacion-y-pagos/17487"));
 		driver.close();
 		driver.switchTo().window(tabs.get(0));
 		sleep(5000);
@@ -1082,7 +1081,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(10000);
 	    tabs = new ArrayList<String> (driver.getWindowHandles());
 	    driver.switchTo().window(tabs.get(1));
-	    Assert.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/tag/c-facturacion-y-pagos/17487"));
+	    AssertJUnit.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/tag/c-facturacion-y-pagos/17487"));
 		driver.close();
 		driver.switchTo().window(tabs.get(0));
 		sleep(5000);
@@ -1090,7 +1089,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(10000);
 	    tabs = new ArrayList<String> (driver.getWindowHandles());
 	    driver.switchTo().window(tabs.get(1));
-	    Assert.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/tag/c-facturacion-y-pagos/17487"));
+	    AssertJUnit.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/tag/c-facturacion-y-pagos/17487"));
 		driver.close();
 		driver.switchTo().window(tabs.get(0));
 		sleep(5000);
@@ -1098,7 +1097,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(10000);
 	    tabs = new ArrayList<String> (driver.getWindowHandles());
 	    driver.switchTo().window(tabs.get(1));
-	    Assert.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/article/que-es-el-limite-de-consumo-asignado/208372"));
+	    AssertJUnit.assertTrue(driver.getCurrentUrl().equals("https://personal.aivohelp.com/article/que-es-el-limite-de-consumo-asignado/208372"));
 		driver.close();
 		driver.switchTo().window(tabs.get(0));
 		sleep(5000);
@@ -1110,9 +1109,9 @@ public class MiCuentaWeb extends Metodos{
 		loginPorLinea(linea);
 
 		irA("consumos");
-		Assert.assertTrue(driver.findElement(By.id("section-ui-view")).getText().toLowerCase().contains("cr\u00e9dito"));
+		AssertJUnit.assertTrue(driver.findElement(By.id("section-ui-view")).getText().toLowerCase().contains("cr\u00e9dito"));
 		irA("recargas");
-		Assert.assertTrue(driver.findElement(By.id("divDashboard")).getText().toLowerCase().contains("recarg\u00e1 ahora"));
+		AssertJUnit.assertTrue(driver.findElement(By.id("divDashboard")).getText().toLowerCase().contains("recarg\u00e1 ahora"));
 		irA("packs");
 		sleep(3000);
 		boolean a = false;
@@ -1125,7 +1124,7 @@ public class MiCuentaWeb extends Metodos{
 			}
 		irA("facturaci\u00f3n");
 		sleep(3000);
-		Assert.assertTrue(driver.findElement(By.id("adhesionfol")).getText().toLowerCase().contains("adherite a factura online"));
+		AssertJUnit.assertTrue(driver.findElement(By.id("adhesionfol")).getText().toLowerCase().contains("adherite a factura online"));
 		boolean b = false;
 		irA("mi l\u00ednea");
 		List<WebElement> lineas = driver.findElements(By.className("card-title"));
@@ -1135,8 +1134,8 @@ public class MiCuentaWeb extends Metodos{
 				b=true;	
 				}
 			}
-		Assert.assertTrue(a);
-		Assert.assertTrue(b);
+		AssertJUnit.assertTrue(a);
+		AssertJUnit.assertTrue(b);
 	}
 
 	@Test (groups ={ "Usabilidad","navegacion","Iexplorer"})
@@ -1150,9 +1149,9 @@ public class MiCuentaWeb extends Metodos{
 		loginPorLineaI(linea);
 
 		irA("consumos");
-		Assert.assertTrue(driver.findElement(By.id("section-ui-view")).getText().toLowerCase().contains("cr\u00e9dito"));
+		AssertJUnit.assertTrue(driver.findElement(By.id("section-ui-view")).getText().toLowerCase().contains("cr\u00e9dito"));
 		irA("recargas");
-		Assert.assertTrue(driver.findElement(By.id("divDashboard")).getText().toLowerCase().contains("recarg\u00e1 ahora"));
+		AssertJUnit.assertTrue(driver.findElement(By.id("divDashboard")).getText().toLowerCase().contains("recarg\u00e1 ahora"));
 		irA("packs");
 		sleep(3000);
 		boolean a = false;
@@ -1165,7 +1164,7 @@ public class MiCuentaWeb extends Metodos{
 			}
 		irA("facturaci\u00f3n");
 		sleep(3000);
-		Assert.assertTrue(driver.findElement(By.id("adhesionfol")).getText().toLowerCase().contains("adherite a factura online"));
+		AssertJUnit.assertTrue(driver.findElement(By.id("adhesionfol")).getText().toLowerCase().contains("adherite a factura online"));
 		boolean b = false;
 		irA("mi l\u00ednea");
 		List<WebElement> lineas = driver.findElements(By.className("card-title"));
@@ -1175,8 +1174,8 @@ public class MiCuentaWeb extends Metodos{
 				b=true;	
 				}
 			}
-		Assert.assertTrue(a);
-		Assert.assertTrue(b);
+		AssertJUnit.assertTrue(a);
+		AssertJUnit.assertTrue(b);
 	}
 	
 
@@ -1191,13 +1190,13 @@ public class MiCuentaWeb extends Metodos{
 		sleep(5000);
 		driver.findElement(By.id("tpi-user")).click();
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.id("tpi-user-info")).getText().contains(linea));
+		AssertJUnit.assertTrue(driver.findElement(By.id("tpi-user-info")).getText().contains(linea));
 		buscarYClick(driver.findElements(By.cssSelector(".tpi-navbar-item-link")),"equals","club personal");
 		sleep(5000);
 		System.out.println(driver.findElement(By.id("tpi-user-info")).getText());
 		driver.findElement(By.id("tpi-user")).click();
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.id("tpi-user-info")).getText().contains(linea));
+		AssertJUnit.assertTrue(driver.findElement(By.id("tpi-user-info")).getText().contains(linea));
 		
 	}
 	
@@ -1213,10 +1212,10 @@ public class MiCuentaWeb extends Metodos{
 		
 		driver.findElement(By.id("tpi-logo")).click();
 		sleep(5000);
-		Assert.assertTrue(driver.findElement(By.className("contacto-telefono-numero")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.className("contacto-telefono-numero")).isDisplayed());
 		buscarYClick(driver.findElements(By.cssSelector(".tpi-navbar-item-link")),"equals","club personal");
 		sleep(3000);
-		Assert.assertTrue(driver.findElement(By.className("about")).getText().toLowerCase().contains("club personal"));
+		AssertJUnit.assertTrue(driver.findElement(By.className("about")).getText().toLowerCase().contains("club personal"));
 	}
 	
 	@Test (groups ={ "Usabilidad","navegacion"})
@@ -1225,7 +1224,7 @@ public class MiCuentaWeb extends Metodos{
 		String linea=retornaLinea(nombreCaso,archivoLineas);
 		loginPorLinea(linea);
 
-		Assert.assertTrue(driver.findElement(By.id("tpi-logo")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("tpi-logo")).isDisplayed());
 	}
 			
 	@Test (groups ={ "Robustez","Inputs","Debito"})
@@ -1236,7 +1235,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		IngresarCBU("asdfa");
-		Assert.assertTrue(driver.findElement(By.id("inputCBU")).getAttribute("value").isEmpty());
+		AssertJUnit.assertTrue(driver.findElement(By.id("inputCBU")).getAttribute("value").isEmpty());
 	}
 	
 	@Test (groups ={ "Robustez","Inputs","Debito"})
@@ -1248,8 +1247,8 @@ public class MiCuentaWeb extends Metodos{
 		irA("facturaci\u00f3n");
 		IngresarCBU("12&41%");
 		System.out.println(driver.findElement(By.id("inputCBU")).getAttribute("value"));
-		Assert.assertTrue(driver.findElement(By.id("inputCBU")).getAttribute("value").equals("1241"));
-		Assert.assertTrue(driver.findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("el cbu debe tener 22 d\u00edgitos y ser num\u00e9rico."));
+		AssertJUnit.assertTrue(driver.findElement(By.id("inputCBU")).getAttribute("value").equals("1241"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("el cbu debe tener 22 d\u00edgitos y ser num\u00e9rico."));
 		
 	}
 	
@@ -1261,7 +1260,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		IngresarCBU("'&^*");
-		Assert.assertTrue(driver.findElement(By.id("inputCBU")).getAttribute("value").isEmpty());
+		AssertJUnit.assertTrue(driver.findElement(By.id("inputCBU")).getAttribute("value").isEmpty());
 	}
 	
 	@Test (groups ={ "Robustez","Inputs","Debito"})
@@ -1272,7 +1271,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		IngresarCBU(".,.");
-		Assert.assertTrue(driver.findElement(By.id("inputCBU")).getAttribute("value").isEmpty());
+		AssertJUnit.assertTrue(driver.findElement(By.id("inputCBU")).getAttribute("value").isEmpty());
 	}
 	
 	@Test (groups ={ "Robustez","Inputs","Debito"})
@@ -1286,7 +1285,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("btnAdherir")).click();
 		sleep(3000);
 		System.out.println(driver.findElement(By.cssSelector(".control-label.dev-alert-danger")).getText());
-		Assert.assertTrue(driver.findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("ingres\u00e1 el n\u00famero de cbu."));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("ingres\u00e1 el n\u00famero de cbu."));
 	}
 	
 	@Test (groups ={ "Robustez","Inputs"})
@@ -1297,7 +1296,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		IngresarCuponPago(" ");
-		Assert.assertTrue(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("ingrese un importe"));
+		AssertJUnit.assertTrue(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("ingrese un importe"));
 	}
 	
 	@Test (groups ={ "Robustez","Inputs"})
@@ -1309,7 +1308,7 @@ public class MiCuentaWeb extends Metodos{
 		irA("facturaci\u00f3n");
 		IngresarCuponPago("12,25");
 		System.out.println(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText());
-		Assert.assertFalse(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("ingrese un importe v\u00e1lido."));
+		AssertJUnit.assertFalse(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("ingrese un importe v\u00e1lido."));
 	}
 	
 	@Test (groups ={ "Robustez","Inputs"})
@@ -1320,7 +1319,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		IngresarCuponPago("12.25");
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 		// =================== Falta validar cuando funcione la pagina siguiente de generar el cupon de pago ================= 
 	}
 	
@@ -1332,7 +1331,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		IngresarCuponPago("0");
-		Assert.assertTrue(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).isDisplayed());
 	}
 	
 	@Test (groups ={ "Robustez","Inputs"})
@@ -1343,7 +1342,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		IngresarCuponPago("-2");
-		Assert.assertTrue(driver.findElement(By.id("divMuestraMsj")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("divMuestraMsj")).isDisplayed());
 		// en el resultado esperado dice que acepta valores negativos.
 	}
 	
@@ -1355,7 +1354,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		IngresarCuponPago("2A0.35");
-		Assert.assertTrue(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("ingrese un importe v\u00e1lido."));
+		AssertJUnit.assertTrue(driver.findElement(By.id("divImporte")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("ingrese un importe v\u00e1lido."));
 	}
 	
 	@Test (groups ={ "Robustez","Inputs"})
@@ -1366,7 +1365,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		InformarPago("20.%0");
-		Assert.assertTrue(driver.findElement(By.id("inputError")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("el formato es incorrecto. debe ser xx,xx"));
+		AssertJUnit.assertTrue(driver.findElement(By.id("inputError")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("el formato es incorrecto. debe ser xx,xx"));
 	}
 	
 	@Test (groups ={ "Robustez","Inputs"})
@@ -1377,7 +1376,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		InformarPago("-2");
-		Assert.assertTrue(driver.findElement(By.id("divMuestraMsj")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("divMuestraMsj")).isDisplayed());
 	}
 	
 	@Test (groups ={ "Robustez","Inputs"})
@@ -1388,7 +1387,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		InformarPago("0");
-		Assert.assertTrue(driver.findElement(By.id("divMuestraMsj")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("divMuestraMsj")).isDisplayed());
 	}
 	
 	@Test (groups ={ "Robustez","Inputs"})
@@ -1411,7 +1410,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		InformarPago("12,78");
-		Assert.assertTrue(driver.findElement(By.id("divMuestraMsj")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("divMuestraMsj")).isDisplayed());
 	}
 	
 	@Test (groups ={ "Robustez","Inputs"})
@@ -1422,8 +1421,8 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		InformarPago("");
-		Assert.assertTrue(driver.findElement(By.id("inputError")).findElement(By.cssSelector(".control-label.dev-alert-danger")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.id("inputError")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("ingrese un importe"));
+		AssertJUnit.assertTrue(driver.findElement(By.id("inputError")).findElement(By.cssSelector(".control-label.dev-alert-danger")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("inputError")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("ingrese un importe"));
 	}
 	
 	@Test (groups ={ "Robustez","Inputs"})
@@ -1436,7 +1435,7 @@ public class MiCuentaWeb extends Metodos{
 		irA("facturaci\u00f3n");
 		IngresarCBU(a);
 		System.out.println(driver.findElement(By.id("inputCBU")).getAttribute("value"));
-		Assert.assertFalse(driver.findElement(By.id("inputCBU")).getAttribute("value").equals(a));
+		AssertJUnit.assertFalse(driver.findElement(By.id("inputCBU")).getAttribute("value").equals(a));
 		
 	}
 	
@@ -1448,7 +1447,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		IngresarCBU("1234567890123456789");
-		Assert.assertTrue(driver.findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("el cbu debe tener 22 d\u00edgitos y ser num\u00e9rico."));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().equals("el cbu debe tener 22 d\u00edgitos y ser num\u00e9rico."));
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"}) 
@@ -1469,8 +1468,8 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("btnTransferir")).click();
 		sleep(6000);
 		WebElement msj = driver.findElement(By.id("pMensaje"));
-		Assert.assertTrue(msj.getText().toLowerCase().equals("la transferencia se realizo existosamente. muchas gracias."));
-		Assert.assertTrue(msj.isDisplayed());
+		AssertJUnit.assertTrue(msj.getText().toLowerCase().equals("la transferencia se realizo existosamente. muchas gracias."));
+		AssertJUnit.assertTrue(msj.isDisplayed());
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
@@ -1488,8 +1487,8 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("btnDestranferir")).click();
 		sleep(6000);
 		WebElement msj = driver.findElement(By.id("pMensaje"));
-		Assert.assertTrue(msj.getText().toLowerCase().equals("la destransferencia se realizo existosamente. muchas gracias."));
-		Assert.assertTrue(msj.isDisplayed());
+		AssertJUnit.assertTrue(msj.getText().toLowerCase().equals("la destransferencia se realizo existosamente. muchas gracias."));
+		AssertJUnit.assertTrue(msj.isDisplayed());
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"}) 
@@ -1506,8 +1505,8 @@ public class MiCuentaWeb extends Metodos{
 		WebElement lid  = driver.findElements(By.className("card-flip-container")).get(1);
 		System.out.println("este es uno" + roam.getText());
 		System.out.println("Este es el otro " + lid.getText());
-		Assert.assertTrue(roam.getText().toLowerCase().contains("habilitado"));
-		Assert.assertTrue(lid.getText().toLowerCase().contains("habilitado"));
+		AssertJUnit.assertTrue(roam.getText().toLowerCase().contains("habilitado"));
+		AssertJUnit.assertTrue(lid.getText().toLowerCase().contains("habilitado"));
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
@@ -1524,8 +1523,8 @@ public class MiCuentaWeb extends Metodos{
 		WebElement lid  = driver.findElements(By.className("card-flip-container")).get(1);
 		System.out.println("este es uno" + roam.getText());
 		System.out.println("Este es el otro " + lid.getText());
-		Assert.assertTrue(roam.getText().toLowerCase().contains("habilitado"));
-		Assert.assertTrue(lid.getText().toLowerCase().contains("habilitado"));
+		AssertJUnit.assertTrue(roam.getText().toLowerCase().contains("habilitado"));
+		AssertJUnit.assertTrue(lid.getText().toLowerCase().contains("habilitado"));
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
@@ -1542,8 +1541,8 @@ public class MiCuentaWeb extends Metodos{
 		WebElement lid  = driver.findElements(By.className("card-flip-container")).get(1);
 		System.out.println("este es uno" + roam.getText());
 		System.out.println("Este es el otro " + lid.getText());
-		Assert.assertTrue(roam.getText().toLowerCase().contains("habilitado"));
-		Assert.assertTrue(lid.getText().toLowerCase().contains("habilitado"));
+		AssertJUnit.assertTrue(roam.getText().toLowerCase().contains("habilitado"));
+		AssertJUnit.assertTrue(lid.getText().toLowerCase().contains("habilitado"));
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
@@ -1569,7 +1568,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("editSms")).findElement(By.id("inputNumb")).sendKeys(ln);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary")),"equals","guardar");
 		sleep(8000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".alert.alert-dismissable.alert-success.ng-binding")).getText().toLowerCase().contains(" registraste el n\u00famero gratis con \u00e9xito"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".alert.alert-dismissable.alert-success.ng-binding")).getText().toLowerCase().contains(" registraste el n\u00famero gratis con \u00e9xito"));
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
@@ -1596,7 +1595,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("editSms")).findElement(By.id("inputNumb")).sendKeys(ln);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary")),"equals","guardar");
 		sleep(8000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".alert.alert-dismissable.alert-success.ng-binding")).getText().toLowerCase().contains(" registraste el n\u00famero gratis con \u00e9xito"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".alert.alert-dismissable.alert-success.ng-binding")).getText().toLowerCase().contains(" registraste el n\u00famero gratis con \u00e9xito"));
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
@@ -1614,7 +1613,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(5000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary")),"equals","confirmar");
 		sleep(8000);
-		Assert.assertTrue(driver.findElement(By.id("divListNroSMS")).findElement(By.className("text-muted")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("divListNroSMS")).findElement(By.className("text-muted")).isDisplayed());
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
@@ -1632,7 +1631,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(5000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary")),"equals","confirmar");
 		sleep(8000);
-		Assert.assertTrue(driver.findElement(By.id("divListNroSMS")).findElement(By.className("text-muted")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("divListNroSMS")).findElement(By.className("text-muted")).isDisplayed());
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
@@ -1645,10 +1644,10 @@ public class MiCuentaWeb extends Metodos{
 		sleep(12000);
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","seguimiento de gestiones");
 		sleep(8000);
-		Assert.assertTrue(driver.findElement(By.id("itemContainer")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("itemContainer")).isDisplayed());
 		driver.findElement(By.id("imgVerDetalle")).click();
 		sleep(5000);
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
@@ -1661,10 +1660,10 @@ public class MiCuentaWeb extends Metodos{
 		sleep(12000);
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","seguimiento de gestiones");
 		sleep(8000);
-		Assert.assertTrue(driver.findElement(By.id("itemContainer")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("itemContainer")).isDisplayed());
 		driver.findElement(By.id("imgVerDetalle")).click();
 		sleep(5000);
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
@@ -1677,10 +1676,10 @@ public class MiCuentaWeb extends Metodos{
 		sleep(12000);
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item-full")),"equals","seguimiento de gestiones");
 		sleep(10000);
-		Assert.assertTrue(driver.findElement(By.id("itemContainer")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("itemContainer")).isDisplayed());
 		driver.findElement(By.id("imgVerDetalle")).click();
 		sleep(5000);
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","consumos"}) 
@@ -1707,7 +1706,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.name("inp_Limite")).sendKeys("1");
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.ng-binding")),"equals","agregar");
 		sleep(8000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.adm-i-compartido")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".card.card-lg.adm-i-compartido")).isDisplayed());
 		
 	}
 	
@@ -1733,7 +1732,7 @@ public class MiCuentaWeb extends Metodos{
 		}
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.ng-binding")),"equals","guardar");
 		sleep(15000);
-		Assert.assertTrue(driver.findElements(By.id("divExito")).get(1).getText().toLowerCase().contains("el l\u00edmite se modific\u00f3 con \u00e9xito"));
+		AssertJUnit.assertTrue(driver.findElements(By.id("divExito")).get(1).getText().toLowerCase().contains("el l\u00edmite se modific\u00f3 con \u00e9xito"));
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","consumos"}) 
@@ -1750,7 +1749,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(5000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.ng-binding")),"equals","eliminar");
 		sleep(15000);
-		Assert.assertTrue(driver.findElements(By.id("divExito")).get(1).getText().toLowerCase().contains("el n\u00famero se elimin\u00f3 con \u00e9xito"));
+		AssertJUnit.assertTrue(driver.findElements(By.id("divExito")).get(1).getText().toLowerCase().contains("el n\u00famero se elimin\u00f3 con \u00e9xito"));
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
@@ -1767,7 +1766,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(2000);
 		driver.findElement(By.id("btnDescargar")).click();
 		// ===========  FALTA TERMINAR  ===============
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 	
 	}
 	
@@ -1786,7 +1785,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("btnDescargar")).click();
 		
 		// ===========  FALTA TERMINAR  ===============
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
@@ -1820,16 +1819,16 @@ public class MiCuentaWeb extends Metodos{
 			driver.get("file:///"+pathDownloads+NumFact+"-"+Fecha2+".pdf");
 			exito = true;
 			PDF pdf =  new PDF();
-			Assert.assertTrue(pdf.ContenidoPDF(pathDownloads+NumFact+"-"+Fecha2+".pdf").contains(NumFact));
+			AssertJUnit.assertTrue(pdf.ContenidoPDF(pathDownloads+NumFact+"-"+Fecha2+".pdf").contains(NumFact));
 			sleep(12000);
 			driver.close();
 			driver.switchTo().window(tabs2.get(0));
-			Assert.assertTrue(exito);
+			AssertJUnit.assertTrue(exito);
 		}catch(Exception ex1) {
 			System.out.println("Fallo la descarga de la factura");
 			driver.close();
 			driver.switchTo().window(tabs2.get(0));
-			Assert.assertTrue(false);
+			AssertJUnit.assertTrue(false);
 			
 		}
 		
@@ -1865,16 +1864,16 @@ public class MiCuentaWeb extends Metodos{
 			driver.get("file:///"+pathDownloads+NumFact+"-"+Fecha2+".pdf");
 			exito = true;
 			PDF pdf =  new PDF();
-			Assert.assertTrue(pdf.ContenidoPDF(pathDownloads+NumFact+"-"+Fecha2+".pdf").contains(NumFact));
+			AssertJUnit.assertTrue(pdf.ContenidoPDF(pathDownloads+NumFact+"-"+Fecha2+".pdf").contains(NumFact));
 			sleep(12000);
 			driver.close();
 			driver.switchTo().window(tabs2.get(0));
-			Assert.assertTrue(exito);
+			AssertJUnit.assertTrue(exito);
 		}catch(Exception ex1) {
 			System.out.println("Fallo la descarga de la factura");
 			driver.close();
 			driver.switchTo().window(tabs2.get(0));
-			Assert.assertTrue(false);
+			AssertJUnit.assertTrue(false);
 		}
 	}
 	
@@ -1894,7 +1893,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(1000);
 		driver.findElement(By.id("btnGuardar")).click();
 		sleep(5000);
-		Assert.assertTrue(driver.findElement(By.id("lblMensajeExito")).getText().contains("Modificaste tus alarmas con \u00e9xito"));
+		AssertJUnit.assertTrue(driver.findElement(By.id("lblMensajeExito")).getText().contains("Modificaste tus alarmas con \u00e9xito"));
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
@@ -1913,7 +1912,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(1000);
 		driver.findElement(By.id("btnGuardar")).click();
 		sleep(5000);
-		Assert.assertTrue(driver.findElement(By.id("lblMensajeExito")).getText().contains("Modificaste tus alarmas con \u00e9xito"));
+		AssertJUnit.assertTrue(driver.findElement(By.id("lblMensajeExito")).getText().contains("Modificaste tus alarmas con \u00e9xito"));
 	}
 		
 	@Test(groups ={ "AutogestionIndividuosWeb","login"}) 
@@ -1928,8 +1927,8 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("loginButton_0")).click();
 		sleep(2000);
 		System.out.println(driver.findElement(By.className("message")).getText());
-		Assert.assertTrue(driver.findElement(By.className("message")).getText().contains("Los datos ingresados son incorrectos"));
-		Assert.assertTrue(driver.findElement(By.cssSelector(".fa.alert-message-icon")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.className("message")).getText().contains("Los datos ingresados son incorrectos"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".fa.alert-message-icon")).isDisplayed());
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","login"})  
@@ -1945,8 +1944,8 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("loginButton_0")).click();
 		sleep(2000);
 		System.out.println(driver.findElement(By.className("message")).getText());
-		Assert.assertTrue(driver.findElement(By.className("message")).getText().contains("Los datos ingresados son incorrectos"));
-		Assert.assertTrue(driver.findElement(By.cssSelector(".fa.alert-message-icon")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.className("message")).getText().contains("Los datos ingresados son incorrectos"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".fa.alert-message-icon")).isDisplayed());
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","login"}) //Agregar linea a excel y sacar c�digo de login del caso
@@ -1973,7 +1972,7 @@ public class MiCuentaWeb extends Metodos{
 			}
 		}
 		
-		Assert.assertTrue(asd);
+		AssertJUnit.assertTrue(asd);
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
@@ -2011,12 +2010,12 @@ public class MiCuentaWeb extends Metodos{
 			sleep(12000);
 			driver.close();
 			driver.switchTo().window(tabs2.get(0));
-			Assert.assertTrue(exito);
+			AssertJUnit.assertTrue(exito);
 		}catch(Exception ex1) {
 			System.out.println("Fallo la descarga de la factura");
 			driver.close();
 			driver.switchTo().window(tabs2.get(0));
-			Assert.assertTrue(false);
+			AssertJUnit.assertTrue(false);
 		}
 	}
 	
@@ -2056,12 +2055,12 @@ public class MiCuentaWeb extends Metodos{
 			sleep(12000);
 			driver.close();
 			driver.switchTo().window(tabs2.get(0));
-			Assert.assertTrue(exito);
+			AssertJUnit.assertTrue(exito);
 		}catch(Exception ex1) {
 			System.out.println("Fallo la descarga de la factura");
 			driver.close();
 			driver.switchTo().window(tabs2.get(0));
-			Assert.assertTrue(false);
+			AssertJUnit.assertTrue(false);
 		}
 	}
 	
@@ -2087,8 +2086,8 @@ public class MiCuentaWeb extends Metodos{
 		sleep(8000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.pull-right")),"equals","canjear");
 		sleep(120000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".card-body.recarga-exito")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.cssSelector(".card-body.recarga-exito")).getText().toLowerCase().contains("canjeaste tus puntos con \u00e9xito"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".card-body.recarga-exito")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".card-body.recarga-exito")).getText().toLowerCase().contains("canjeaste tus puntos con \u00e9xito"));
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","packs"}) 
@@ -2117,8 +2116,8 @@ public class MiCuentaWeb extends Metodos{
 		sleep(12000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.pull-right")),"equals","canjear");
 		sleep(120000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".card-body.recarga-exito")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.cssSelector(".card-body.recarga-exito")).getText().toLowerCase().contains("canjeaste tus puntos con \u00e9xito"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".card-body.recarga-exito")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".card-body.recarga-exito")).getText().toLowerCase().contains("canjeaste tus puntos con \u00e9xito"));
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
@@ -2130,21 +2129,21 @@ public class MiCuentaWeb extends Metodos{
 		irA("facturaci\u00f3n");
 		driver.findElement(By.id("btnPagarFactura")).click();
 		sleep(5000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".section-title")).getText().equals("Medios de pago disponibles"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".section-title")).getText().equals("Medios de pago disponibles"));
 		driver.findElement(By.id("lnkPagoTC")).click();
 		sleep(5000);
-		Assert.assertTrue(driver.findElement(By.id("nroTarjeta")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.id("txtVto")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.id("txtCodSeguridad")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.id("txtCaptcha")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.id("btnContinuar")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("nroTarjeta")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("txtVto")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("txtCodSeguridad")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("txtCaptcha")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("btnContinuar")).isDisplayed());
 		driver.findElement(By.cssSelector(".tpicon.tpicon-flechaizquierda.lnkVolverAindexPagar")).click();
 		sleep(5000);
 		driver.findElement(By.id("lnkPMCuentas")).click();
 		ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
 		driver.switchTo().window(tabs.get(1));
 		sleep(5000);
-		Assert.assertTrue(driver.getCurrentUrl().equals("https://pagomiscuentas.com/"));
+		AssertJUnit.assertTrue(driver.getCurrentUrl().equals("https://pagomiscuentas.com/"));
 		driver.close();
 		driver.switchTo().window(tabs.get(0));
 		sleep(5000);
@@ -2152,7 +2151,7 @@ public class MiCuentaWeb extends Metodos{
 		tabs=new ArrayList<String> (driver.getWindowHandles());
 		driver.switchTo().window(tabs.get(1));
 		sleep(5000);
-		Assert.assertTrue(driver.getCurrentUrl().equals("https://www.redlink.com.ar/link_pagos_y_cobranzas.html"));
+		AssertJUnit.assertTrue(driver.getCurrentUrl().equals("https://www.redlink.com.ar/link_pagos_y_cobranzas.html"));
 		driver.close();
 		driver.switchTo().window(tabs.get(0));
 		sleep(5000);
@@ -2160,7 +2159,7 @@ public class MiCuentaWeb extends Metodos{
 		tabs=new ArrayList<String> (driver.getWindowHandles());
 		driver.switchTo().window(tabs.get(1));
 		sleep(5000);
-		Assert.assertTrue(driver.getCurrentUrl().equals("https://www.todopago.com.ar/"));
+		AssertJUnit.assertTrue(driver.getCurrentUrl().equals("https://www.todopago.com.ar/"));
 		driver.close();
 		driver.switchTo().window(tabs.get(0));
 	}
@@ -2174,21 +2173,21 @@ public class MiCuentaWeb extends Metodos{
 		irA("facturaci\u00f3n");
 		driver.findElement(By.id("btnPagarFactura")).click();
 		sleep(5000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".section-title")).getText().equals("Medios de pago disponibles"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".section-title")).getText().equals("Medios de pago disponibles"));
 		driver.findElement(By.id("lnkPagoTC")).click();
 		sleep(5000);
-		Assert.assertTrue(driver.findElement(By.id("nroTarjeta")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.id("txtVto")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.id("txtCodSeguridad")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.id("txtCaptcha")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.id("btnContinuar")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("nroTarjeta")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("txtVto")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("txtCodSeguridad")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("txtCaptcha")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.id("btnContinuar")).isDisplayed());
 		driver.findElement(By.cssSelector(".tpicon.tpicon-flechaizquierda.lnkVolverAindexPagar")).click();
 		sleep(5000);
 		driver.findElement(By.id("lnkPMCuentas")).click();
 		ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
 		driver.switchTo().window(tabs.get(1));
 		sleep(5000);
-		Assert.assertTrue(driver.getCurrentUrl().equals("https://pagomiscuentas.com/"));
+		AssertJUnit.assertTrue(driver.getCurrentUrl().equals("https://pagomiscuentas.com/"));
 		driver.close();
 		driver.switchTo().window(tabs.get(0));
 		sleep(5000);
@@ -2196,7 +2195,7 @@ public class MiCuentaWeb extends Metodos{
 		tabs=new ArrayList<String> (driver.getWindowHandles());
 		driver.switchTo().window(tabs.get(1));
 		sleep(5000);
-		Assert.assertTrue(driver.getCurrentUrl().equals("https://www.redlink.com.ar/link_pagos_y_cobranzas.html"));
+		AssertJUnit.assertTrue(driver.getCurrentUrl().equals("https://www.redlink.com.ar/link_pagos_y_cobranzas.html"));
 		driver.close();
 		driver.switchTo().window(tabs.get(0));
 		sleep(5000);
@@ -2204,7 +2203,7 @@ public class MiCuentaWeb extends Metodos{
 		tabs=new ArrayList<String> (driver.getWindowHandles());
 		driver.switchTo().window(tabs.get(1));
 		sleep(5000);
-		Assert.assertTrue(driver.getCurrentUrl().equals("https://www.todopago.com.ar/"));
+		AssertJUnit.assertTrue(driver.getCurrentUrl().equals("https://www.todopago.com.ar/"));
 		driver.close();
 		driver.switchTo().window(tabs.get(0));
 	}
@@ -2229,7 +2228,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("inputNumeroCalle")).clear();
 		driver.findElement(By.id("inputNumeroCalle")).sendKeys("4682");
 		driver.findElement(By.id("btnAction")).click();
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","mis datos"}) 
@@ -2252,7 +2251,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("inputNumeroCalle")).clear();
 		driver.findElement(By.id("inputNumeroCalle")).sendKeys("4682");
 		driver.findElement(By.id("btnAction")).click();
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","mis datos"}) 
@@ -2275,7 +2274,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("inputNumeroCalle")).clear();
 		driver.findElement(By.id("inputNumeroCalle")).sendKeys("4682");
 		driver.findElement(By.id("btnAction")).click();
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","mi linea"}) 
@@ -2294,7 +2293,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("llamame-core-number1")).sendKeys("32465432");
 		driver.findElement(By.id("llamame-core-submit")).click();
 		sleep(5000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".llamame-br-label1")).getText().equals("Te estamos llamando"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".llamame-br-label1")).getText().equals("Te estamos llamando"));
 	}
 
 	@Test(groups ={ "AutogestionIndividuosWeb","consumos"}) 
@@ -2342,31 +2341,31 @@ public class MiCuentaWeb extends Metodos{
 		loginPorLinea(linea);
 
 		irA("consumos");
-		Assert.assertTrue(driver.findElement(By.cssSelector(".text-brand-cyanoscuro.ng-binding.ng-scope")).getText().equals("Internet X Dia"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".text-brand-cyanoscuro.ng-binding.ng-scope")).getText().equals("Internet X Dia"));
 		buscarYClick(driver.findElements(By.cssSelector(".ng-scope")),"equals","modificar la cuota diaria");
 		sleep(10000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.pull-right")),"equals","seleccionar");
 		sleep(10000);
 		String cuota = driver.findElement(By.cssSelector(".col-xs-12.col-lg-offset-1.col-lg-10.col-lg-offset-1")).findElements(By.cssSelector(".col-xs-12.col-lg-5.text-center.margin-top-20")).get(1).findElement(By.cssSelector(".text-destacado.text-destacado-xs.text-primary")).getText();
-		Assert.assertTrue(cuota.equals("Internet 200MB por Dia"));
+		AssertJUnit.assertTrue(cuota.equals("Internet 200MB por Dia"));
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.corregirBtn")),"equals","confirmar");
 		sleep(10000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".text-primary.ng-scope")).getText().equals("�Felicitaciones!"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".text-primary.ng-scope")).getText().equals("�Felicitaciones!"));
 		driver.findElement(By.cssSelector(".tpicon.tpicon-flechaizquierda")).click();
 		sleep(10000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".text-brand-cyanoscuro.ng-binding.ng-scope")).getText().equals("Internet 200MB por Dia"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".text-brand-cyanoscuro.ng-binding.ng-scope")).getText().equals("Internet 200MB por Dia"));
 		buscarYClick(driver.findElements(By.cssSelector(".ng-scope")),"equals","modificar la cuota diaria");
 		sleep(10000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.pull-right")),"equals","seleccionar");
 		sleep(10000);
 		cuota = driver.findElement(By.cssSelector(".col-xs-12.col-lg-offset-1.col-lg-10.col-lg-offset-1")).findElements(By.cssSelector(".col-xs-12.col-lg-5.text-center.margin-top-20")).get(1).findElement(By.cssSelector(".text-destacado.text-destacado-xs.text-primary")).getText();
-		Assert.assertTrue(cuota.equals("Internet X Dia"));
+		AssertJUnit.assertTrue(cuota.equals("Internet X Dia"));
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.corregirBtn")),"equals","confirmar");
 		sleep(10000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".ng-binding")).getText().equals("La cuota Internet X Dia fue activada con \u00e9xito"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".ng-binding")).getText().equals("La cuota Internet X Dia fue activada con \u00e9xito"));
 		driver.findElement(By.cssSelector(".tpicon.tpicon-flechaizquierda")).click();
 		sleep(10000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".text-brand-cyanoscuro.ng-binding.ng-scope")).getText().equals("Internet X Dia"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".text-brand-cyanoscuro.ng-binding.ng-scope")).getText().equals("Internet X Dia"));
 		}
 
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
@@ -2380,7 +2379,7 @@ public class MiCuentaWeb extends Metodos{
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","compras realizadas");
 		sleep(7000);
 		driver.findElement(By.cssSelector(".tpicon.tpicon-descargar")).click();
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"})  
@@ -2394,7 +2393,7 @@ public class MiCuentaWeb extends Metodos{
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","compras realizadas");
 		sleep(7000);
 		driver.findElement(By.cssSelector(".tpicon.tpicon-descargar")).click();
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
@@ -2408,7 +2407,7 @@ public class MiCuentaWeb extends Metodos{
 		buscarYClick(driver.findElements(By.cssSelector(".dev-item-menu.list-group-item")),"equals","compras realizadas");
 		sleep(7000);
 		driver.findElement(By.cssSelector(".tpicon.tpicon-descargar")).click();
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"}) 
@@ -2423,7 +2422,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(10000);
 		driver.findElement(By.id("btnInformar")).click();
 		sleep(10000);
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 	}
 
 	@Test(groups ={ "AutogestionIndividuosWeb","facturacion"})  
@@ -2438,7 +2437,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(10000);
 		driver.findElement(By.id("btnInformar")).click();
 		sleep(10000);
-		Assert.assertTrue(false);
+		AssertJUnit.assertTrue(false);
 	}
 	
 	@Test (groups ={ "AutogestionIndividuosWeb","recargas"}) 
@@ -2456,8 +2455,8 @@ public class MiCuentaWeb extends Metodos{
 		sleep(10000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.pull-right")),"equals","canjear");
 		sleep(15000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".col-xs-12.col-sm-6.col-md-6.col-lg-6.text-center-xs")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.cssSelector(".col-xs-12.col-sm-6.col-md-6.col-lg-6.text-center-xs")).getText().toLowerCase().contains("canjeaste tus puntos con \u00e9xito"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".col-xs-12.col-sm-6.col-md-6.col-lg-6.text-center-xs")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".col-xs-12.col-sm-6.col-md-6.col-lg-6.text-center-xs")).getText().toLowerCase().contains("canjeaste tus puntos con \u00e9xito"));
 		
 		
 	}
@@ -2476,8 +2475,8 @@ public class MiCuentaWeb extends Metodos{
 		buscarYClick(driver.findElements(By.cssSelector(".ng-binding")),"equals","cr\u00e9dito $10");
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary.pull-right")),"equals","canjear");
 		sleep(15000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".col-xs-12.col-sm-6.col-md-6.col-lg-6.text-center-xs")).isDisplayed());
-		Assert.assertTrue(driver.findElement(By.cssSelector(".col-xs-12.col-sm-6.col-md-6.col-lg-6.text-center-xs")).getText().toLowerCase().contains("canjeaste tus puntos con \u00e9xito"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".col-xs-12.col-sm-6.col-md-6.col-lg-6.text-center-xs")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".col-xs-12.col-sm-6.col-md-6.col-lg-6.text-center-xs")).getText().toLowerCase().contains("canjeaste tus puntos con \u00e9xito"));
 	}
 	
 	@Test(groups ={ "AutogestionIndividuosWeb","mis datos"}) 
@@ -2491,7 +2490,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(3000);
 		buscarYClick(driver.findElements(By.cssSelector(".tpi-user-link")),"equals","canjear puntos");
 		sleep(15000);
-		Assert.assertTrue(driver.getCurrentUrl().equals("http://clubuat.personal.com.ar:8090/fe/#/filtros/a-mi-alcance/"));
+		AssertJUnit.assertTrue(driver.getCurrentUrl().equals("http://clubuat.personal.com.ar:8090/fe/#/filtros/a-mi-alcance/"));
 	}
 	
 
@@ -2503,7 +2502,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		IngresarFacturaOnline("\u00f1");
-		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
+		AssertJUnit.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
 	
 	@Test (groups ={ "Robustez","Inputs"})
@@ -2514,7 +2513,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		IngresarFacturaOnline("asd@");
-		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
+		AssertJUnit.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
 	
 	@Test (groups ={ "Robustez","Inputs"})
@@ -2525,7 +2524,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		IngresarFacturaOnline("@gmail");
-		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
+		AssertJUnit.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
 	@Test (groups ={ "Robustez","Inputs"})
 	public void DIGITAL_WEB_IND_FACTURACION_FACTURA_ONLINE_MIX_EMAIL_FORMATO_INVALIDO_sin_caracteres_luego_del_punto_posterior_al_arroba() throws IOException{
@@ -2535,7 +2534,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		IngresarFacturaOnline("asd@gmail.");
-		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
+		AssertJUnit.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
 	
 	@Test (groups ={ "Robustez","Inputs"})
@@ -2546,7 +2545,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		IngresarFacturaOnline("asdgmail.com");
-		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
+		AssertJUnit.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
 	
 	@Test (groups ={ "Robustez","Inputs"})
@@ -2557,7 +2556,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		IngresarFacturaOnline("asdgmailcom");
-		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
+		AssertJUnit.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
 	
 	@Test (groups ={ "Robustez","Inputs"})
@@ -2568,7 +2567,7 @@ public class MiCuentaWeb extends Metodos{
 
 		irA("facturaci\u00f3n");
 		IngresarFacturaOnline("");
-		Assert.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
+		AssertJUnit.assertTrue(driver.findElement(By.id("lblErrorEmail")).findElement(By.cssSelector(".control-label.dev-alert-danger")).getText().toLowerCase().contains("el formato de email no es correcto"));
 	}
 	
 	
@@ -2580,7 +2579,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
 		driver.findElement(By.id("idToken1")).sendKeys("a");
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 s\u00f3lo n\u00fameros"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 s\u00f3lo n\u00fameros"));
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"})
@@ -2591,7 +2590,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
 		driver.findElement(By.id("idToken1")).sendKeys("1134A");
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("Debes ingresar una l\u00ednea de Personal"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("Debes ingresar una l\u00ednea de Personal"));
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"})
@@ -2602,13 +2601,13 @@ public class MiCuentaWeb extends Metodos{
 		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
 		driver.findElement(By.id("idToken1")).sendKeys("*");
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).isDisplayed());
 		driver.findElement(By.id("idToken1")).sendKeys("+");
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).isDisplayed());
 		driver.findElement(By.id("idToken1")).sendKeys("'");
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).isDisplayed());
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"})
@@ -2619,10 +2618,10 @@ public class MiCuentaWeb extends Metodos{
 		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
 		driver.findElement(By.id("idToken1")).sendKeys(".");
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).isDisplayed());
 		driver.findElement(By.id("idToken1")).sendKeys(",");
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).isDisplayed());
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"})
@@ -2633,7 +2632,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
 		driver.findElement(By.id("idToken1")).sendKeys("11627451655");
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("L\u00ednea incorrecta. Verific\u00e1 los datos ingresados"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("L\u00ednea incorrecta. Verific\u00e1 los datos ingresados"));
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"})
@@ -2644,7 +2643,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
 		driver.findElement(By.id("idToken1")).sendKeys("11627451");
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("Tu n\u00famero de l\u00ednea debe tener al menos 10 d\u00edgitos"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("Tu n\u00famero de l\u00ednea debe tener al menos 10 d\u00edgitos"));
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"})
@@ -2655,8 +2654,8 @@ public class MiCuentaWeb extends Metodos{
 		driver.switchTo().frame(cambioFrame(driver, By.id("idToken2")));
 		driver.findElement(By.id("idToken2")).sendKeys("1234");
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("Debes ingresar una l\u00ednea de Personal"));
-		Assert.assertFalse(driver.findElement(By.id("loginButton_0")).isEnabled());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".help-block.line.form-text.text-muted.tp-login-error")).getText().equals("Debes ingresar una l\u00ednea de Personal"));
+		AssertJUnit.assertFalse(driver.findElement(By.id("loginButton_0")).isEnabled());
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"}) 
@@ -2669,7 +2668,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(2000);
 		driver.findElement(By.id("idToken2")).sendKeys("a");
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 s\u00f3lo n\u00fameros"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 s\u00f3lo n\u00fameros"));
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"})
@@ -2682,7 +2681,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(2000);
 		driver.findElement(By.id("idToken2")).sendKeys("12a");
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 s\u00f3lo n\u00fameros"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 s\u00f3lo n\u00fameros"));
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"})
@@ -2695,13 +2694,13 @@ public class MiCuentaWeb extends Metodos{
 		sleep(2000);
 		driver.findElement(By.id("idToken2")).sendKeys("*");
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).isDisplayed());
 		driver.findElement(By.id("idToken2")).sendKeys("+");
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).isDisplayed());
 		driver.findElement(By.id("idToken2")).sendKeys("'");
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).isDisplayed());
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"})
@@ -2714,10 +2713,10 @@ public class MiCuentaWeb extends Metodos{
 		sleep(2000);
 		driver.findElement(By.id("idToken2")).sendKeys(".");
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).isDisplayed());
 		driver.findElement(By.id("idToken2")).sendKeys(",");
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).isDisplayed());
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"})
@@ -2731,7 +2730,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("idToken2")).sendKeys("012345678913452");
 		sleep(2000);
 		String number=driver.findElement(By.id("idToken2")).getAttribute("value");
-		Assert.assertEquals(number.length(), 10);
+		AssertJUnit.assertEquals(number.length(), 10);
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"})
@@ -2744,7 +2743,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(2000);
 		driver.findElement(By.id("idToken2")).sendKeys("123");
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 al menos 4 n\u00fameros"));
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".help-block.pin.form-text.text-muted.tp-login-error")).getText().equals("Ingres\u00e1 al menos 4 n\u00fameros"));
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"}) 
@@ -2755,7 +2754,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.switchTo().frame(cambioFrame(driver, By.id("idToken1")));
 		driver.findElement(By.id("idToken1")).sendKeys("1162735148");
 		sleep(2000);
-		Assert.assertFalse(driver.findElement(By.id("loginButton_0")).isEnabled());
+		AssertJUnit.assertFalse(driver.findElement(By.id("loginButton_0")).isEnabled());
 		
 	}
 	
@@ -2775,7 +2774,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(2000);
 		driver.findElement(By.id("btnCambiarPin")).click();
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"}) 
@@ -2794,7 +2793,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(2000);
 		driver.findElement(By.id("btnCambiarPin")).click();
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"}) 
@@ -2813,7 +2812,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(2000);
 		driver.findElement(By.id("btnCambiarPin")).click();
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"}) 
@@ -2832,7 +2831,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(2000);
 		driver.findElement(By.id("btnCambiarPin")).click();
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"}) 
@@ -2850,7 +2849,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("txtPin")).sendKeys("012345678913452");
 		sleep(2000); 
 		String number=driver.findElement(By.id("txtPin")).getAttribute("value");
-		Assert.assertEquals(number.length(), 10); 
+		AssertJUnit.assertEquals(number.length(), 10); 
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"}) 
@@ -2868,7 +2867,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("txtPin")).sendKeys("letras");
 		sleep(2000); 
 		String number=driver.findElement(By.id("txtPin")).getAttribute("value");
-		Assert.assertEquals(number.length(), 0); 
+		AssertJUnit.assertEquals(number.length(), 0); 
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"}) 
@@ -2886,7 +2885,7 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("txtPin")).sendKeys("14ab");
 		sleep(2000); 
 		String number=driver.findElement(By.id("txtPin")).getAttribute("value");
-		Assert.assertEquals(number.length(), 2); 
+		AssertJUnit.assertEquals(number.length(), 2); 
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"}) 
@@ -2904,11 +2903,11 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("txtPin")).sendKeys("'");
 		sleep(2000); 
 		String number=driver.findElement(By.id("txtPin")).getAttribute("value");
-		Assert.assertEquals(number.length(), 0);
+		AssertJUnit.assertEquals(number.length(), 0);
 		driver.findElement(By.id("txtPin")).sendKeys("*");
 		sleep(2000); 
 		number=driver.findElement(By.id("txtPin")).getAttribute("value");
-		Assert.assertEquals(number.length(), 0); 	
+		AssertJUnit.assertEquals(number.length(), 0); 	
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"}) 
@@ -2926,11 +2925,11 @@ public class MiCuentaWeb extends Metodos{
 		driver.findElement(By.id("txtPin")).sendKeys(",");
 		sleep(2000); 
 		String number=driver.findElement(By.id("txtPin")).getAttribute("value");
-		Assert.assertEquals(number.length(), 0);
+		AssertJUnit.assertEquals(number.length(), 0);
 		driver.findElement(By.id("txtPin")).sendKeys(".");
 		sleep(2000); 
 		number=driver.findElement(By.id("txtPin")).getAttribute("value");
-		Assert.assertEquals(number.length(), 0); 	
+		AssertJUnit.assertEquals(number.length(), 0); 	
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"}) 
@@ -2947,7 +2946,7 @@ public class MiCuentaWeb extends Metodos{
 		sleep(2000);
 		driver.findElement(By.id("btnCambiarPin")).click();
 		sleep(2000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".form-group.has-error")).isDisplayed());
 	}
 	
 	@Test(groups ={ "Robustez","Inputs"}) 
@@ -2966,6 +2965,6 @@ public class MiCuentaWeb extends Metodos{
 		sleep(2000);
 		driver.findElement(By.id("btnCambiarPin")).click();
 		sleep(5000);
-		Assert.assertTrue(driver.findElement(By.cssSelector(".alert-text")).isDisplayed());
+		AssertJUnit.assertTrue(driver.findElement(By.cssSelector(".alert-text")).isDisplayed());
 	}
 }

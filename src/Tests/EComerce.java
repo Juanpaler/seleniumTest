@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -26,6 +27,13 @@ public class EComerce extends Metodos{
 	String nombreCaso;
 	String archivoLineas="dataInput/LineasEcommerce.xlsx";
 	String rutaCaptura="IMG/EcommerceWeb";
+	String modulo="EcommerceWeb";
+
+	@BeforeClass (alwaysRun = true)
+	public void beforeClass() throws IOException {
+        reportDirectory(modulo);
+	}
+	
 	
 	@BeforeMethod (alwaysRun = true)
 		public void before(){

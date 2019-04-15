@@ -10,11 +10,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -45,6 +49,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.TestNG;
+
 import java.io.FileNotFoundException;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 
@@ -999,5 +1005,32 @@ public class Metodos {
 		Assert.assertTrue(cancelado);
 	}
 
-	
+	public void reportDirectory(String modulo) throws IOException {
+		//Se crea nuevo directorio para guardar el reporte de ejecuciones
+        String fileName = "Reportes";
+        Path path = Paths.get(fileName);
+        if (!Files.exists(path)) {
+            Files.createDirectory(path);
+            System.out.println("Directorio de evidencias creado");
+        } else {
+            
+            System.out.println("Directorio de evidencias ya existe");
+        }
+        
+		//Se crea nuevo directorio para guardar el reporte del Modulo
+        path = Paths.get(fileName+"/"+modulo);
+        if (!Files.exists(path)) {
+            Files.createDirectory(path);
+            System.out.println("Directorio de evidencias Mi Cuenta Web creado");
+        } else {
+            
+            System.out.println("Directorio de evidencias Mi Cuenta web ya existe");
+        }
+        
+    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+    	Date date = new Date();
+    	String fecha=dateFormat.format(date);
+    	System.out.println("Se crea directorio de ejecucion");
+        TestNG.getDefault().setOutputDirectory(fileName+"/"+modulo+"/"+fecha);	
+	}
 }

@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -20,6 +21,12 @@ public class ClubPersonalFront extends Metodos{
 	String nombreCaso;
 	String archivoLineas="dataInput/LineasClubPersonalFront.xlsx";
 	String rutaCaptura="IMG/ClubPersonalFrontWeb";
+	String modulo="ClubPersonalFrontWeb";
+
+	@BeforeClass (alwaysRun = true)
+	public void beforeClass() throws IOException {
+        reportDirectory(modulo);
+	}
 	
 	@BeforeMethod (alwaysRun = true)
 		public void before(){
