@@ -320,6 +320,7 @@ public class Metodos extends Utils {
 				break;
 			}
 		}
+		workbook.close();
 		return (Campo);
 	}		
 	

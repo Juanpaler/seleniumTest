@@ -1,21 +1,9 @@
 package PageMetodos;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
@@ -25,7 +13,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.TestNG;
 import org.apache.commons.io.FileUtils;
 
 
@@ -33,12 +20,8 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 
-public class MetodosAndroid {
-	
-    private static XSSFSheet ExcelWSheet;
-    private static XSSFWorkbook ExcelWBook;
-    private static XSSFCell Cell;
-	
+public class MetodosAndroid extends Utils {	
+ 
 	public void sleep(int miliseconds) {
 		try {Thread.sleep(miliseconds);} catch (InterruptedException ex) {Thread.currentThread().interrupt();}
 	}
@@ -52,43 +35,7 @@ public class MetodosAndroid {
         sleep(20000);
 	}
 	
-	
-	public String retornaLinea(String caso,String filename ) throws IOException{			
-		String CellData = null;
-		long CellData2 = 0;
 
-		try (FileInputStream fis = new FileInputStream(filename)) {
-			ExcelWBook = new XSSFWorkbook(fis);
-			ExcelWSheet = ExcelWBook.getSheetAt(0);
-			int count = ExcelWSheet.getPhysicalNumberOfRows();
-			for (int i = 0; i < count; i++) {
-				Cell = ExcelWSheet.getRow(i).getCell(0);
-				CellData = Cell.getStringCellValue();
-				if (CellData.equals(caso)) {
-					Cell = ExcelWSheet.getRow(i).getCell(1);
-					CellData2 = (long) Cell.getNumericCellValue();
-					break;
-				}
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		return String.valueOf(CellData2);
-	}
-
-	/*
-	 * public void scrollAndClick(AndroidDriver<AndroidElement> driver, String by,
-	 * String using) { AndroidElement element = null; int numberOfTimes = 10;
-	 * Dimension size = driver.manage().window().getSize(); int anchor = (int)
-	 * (size.width / 2); int startPoint = (int) (size.height - 10); int endPoint =
-	 * 10; for (int i=0; i<numberOfTimes; i++) { try { new
-	 * TouchAction(driver).longPress(anchor, startPoint).moveTo(anchor,
-	 * endPoint).release().perform(); element = (AndroidElement)
-	 * driver.findElement(by, using); i = numberOfTimes; }
-	 * catch(NoSuchElementException e) { System.out.println(String.
-	 * format("Element not available. Scrolling (%s) times...", i + 1)); } }
-	 * element.click(); sleep(7000); }
-	 */
 	public void scrollAndClick(AndroidDriver<AndroidElement> driver, String by, String using) {
 		if (ElementCreated(driver, by, using, 5)) {
 			driver.findElement(by, using).click();
@@ -693,58 +640,6 @@ public class MetodosAndroid {
 		System.out.println("Capturing the snapshot of the page ");
 		File srcFiler=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(srcFiler, new File(directory.getAbsolutePath() + "\\" + imageName + ".png"));
-	}
-	
-	public String reportDirectory(String modulo) throws IOException {
-		//Se crea nuevo directorio para guardar el reporte de ejecuciones
-        String fileName = "Ejecuciones";
-        Path path = Paths.get(fileName);
-        if (!Files.exists(path)) {
-            Files.createDirectory(path);
-            System.out.println("Directorio de evidencias creado");
-        } else {
-            
-            System.out.println("Directorio de evidencias ya existe");
-        }
-        
-		//Se crea nuevo directorio para guardar el reporte del Modulo
-        path = Paths.get(fileName+"/"+modulo);
-        if (!Files.exists(path)) {
-            Files.createDirectory(path);
-            System.out.println("Directorio de evidencias " + modulo + " creado");
-        } else {
-            
-            System.out.println("Directorio de evidencias " + modulo + " ya existe");
-        }
-        
-    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
-    	Date date = new Date();
-    	String fecha=dateFormat.format(date);
-        TestNG.getDefault().setOutputDirectory(fileName+"/"+modulo+"/"+fecha);
- 
-        //Creo el directorio para guardar la ejecucion
-        String directorio=fileName+"/"+modulo+"/"+fecha;
-        path = Paths.get(directorio);
-        if (!Files.exists(path)) {
-            Files.createDirectory(path);
-            System.out.println("Se crea directorio de ejecucion");
-        } else {
-            
-            System.out.println("Directorio de ejecucion ya existe");
-        }
-        
-        //Creo el directorio para guardar las capturas
-       
-        path = Paths.get(directorio+"/Evidencias");
-        if (!Files.exists(path)) {
-            Files.createDirectory(path);
-            System.out.println("Directorio de imagenes creado");
-        } else {
-            
-            System.out.println("Directorio de imagenes ya existe");
-        }
-         
-        return directorio+"/Evidencias";
 	}
 	
 }

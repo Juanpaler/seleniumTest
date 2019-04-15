@@ -1,22 +1,10 @@
 package PageMetodos;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.commons.io.FileUtils;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
@@ -25,40 +13,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.TestNG;
-
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 
-public class MetodosiOS {	
-
-    private static XSSFSheet ExcelWSheet;
-    private static XSSFWorkbook ExcelWBook;
-    private static XSSFCell Cell;
-	
-	public String retornaLinea(String caso,String filename ) throws IOException{			
-		String CellData = null;
-		long CellData2 = 0;
-
-		try (FileInputStream fis = new FileInputStream(filename)) {
-			ExcelWBook = new XSSFWorkbook(fis);
-			ExcelWSheet = ExcelWBook.getSheetAt(0);
-			int count = ExcelWSheet.getPhysicalNumberOfRows();
-			for (int i = 0; i < count; i++) {
-				Cell = ExcelWSheet.getRow(i).getCell(0);
-				CellData = Cell.getStringCellValue();
-				if (CellData.equals(caso)) {
-					Cell = ExcelWSheet.getRow(i).getCell(1);
-					CellData2 = (long) Cell.getNumericCellValue();
-					break;
-				}
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		return String.valueOf(CellData2);
-	}
+public class MetodosiOS extends Utils{	
 	
 	public void sleep(int miliseconds) {
 		try {Thread.sleep(miliseconds);} catch (InterruptedException ex) {Thread.currentThread().interrupt();}
@@ -632,57 +591,5 @@ public class MetodosiOS {
 		System.out.println("Capturing the snapshot of the page ");
 		File srcFiler=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(srcFiler, new File(directory.getAbsolutePath() + "\\" + imageName + ".png"));
-	}
-	
-	public String reportDirectory(String modulo) throws IOException {
-		//Se crea nuevo directorio para guardar el reporte de ejecuciones
-        String fileName = "Ejecuciones";
-        Path path = Paths.get(fileName);
-        if (!Files.exists(path)) {
-            Files.createDirectory(path);
-            System.out.println("Directorio de evidencias creado");
-        } else {
-            
-            System.out.println("Directorio de evidencias ya existe");
-        }
-        
-		//Se crea nuevo directorio para guardar el reporte del Modulo
-        path = Paths.get(fileName+"/"+modulo);
-        if (!Files.exists(path)) {
-            Files.createDirectory(path);
-            System.out.println("Directorio de evidencias " + modulo + " creado");
-        } else {
-            
-            System.out.println("Directorio de evidencias " + modulo + " ya existe");
-        }
-        
-    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
-    	Date date = new Date();
-    	String fecha=dateFormat.format(date);
-        TestNG.getDefault().setOutputDirectory(fileName+"/"+modulo+"/"+fecha);
- 
-        //Creo el directorio para guardar la ejecucion
-        String directorio=fileName+"/"+modulo+"/"+fecha;
-        path = Paths.get(directorio);
-        if (!Files.exists(path)) {
-            Files.createDirectory(path);
-            System.out.println("Se crea directorio de ejecucion");
-        } else {
-            
-            System.out.println("Directorio de ejecucion ya existe");
-        }
-        
-        //Creo el directorio para guardar las capturas
-       
-        path = Paths.get(directorio+"/Evidencias");
-        if (!Files.exists(path)) {
-            Files.createDirectory(path);
-            System.out.println("Directorio de imagenes creado");
-        } else {
-            
-            System.out.println("Directorio de imagenes ya existe");
-        }
-         
-        return directorio+"/Evidencias";
-	}
+	}	
 }
