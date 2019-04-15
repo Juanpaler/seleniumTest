@@ -196,7 +196,7 @@ public class MetodosAndroid {
         		detalle = true;
         	break;
     	case "Pos":
-    		driver.findElement(By.xpath("//*[text() = '  Todos']")).click();
+    		driver.findElement(By.xpath("//*[text() = 'ï¿½ï¿½Todos']")).click();
         	driver.findElement(By.className("android.widget.EditText")).clear();
         	driver.findElement(By.className("android.widget.EditText")).sendKeys("22/12/2018");
         	scrollAndClick(driver, "xpath", "//android.widget.TextView[@text='CONSULTAR']");
@@ -687,17 +687,17 @@ public class MetodosAndroid {
     	return pee && ca && pcc;
 	}
 	
-	public static void getScreenshot(AndroidDriver<AndroidElement> driver, String imageName ) throws IOException {
+	public static void getScreenshot(AndroidDriver<AndroidElement> driver, String imageName, String rutaCaptura ) throws IOException {
 		File directory;
-		directory = new File("IMG/MiCuentaAppAndroid");
+		directory = new File(rutaCaptura);
 		System.out.println("Capturing the snapshot of the page ");
 		File srcFiler=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(srcFiler, new File(directory.getAbsolutePath() + "\\" + imageName + ".png"));
 	}
 	
-	public void reportDirectory(String modulo) throws IOException {
+	public String reportDirectory(String modulo) throws IOException {
 		//Se crea nuevo directorio para guardar el reporte de ejecuciones
-        String fileName = "Reportes";
+        String fileName = "Ejecuciones";
         Path path = Paths.get(fileName);
         if (!Files.exists(path)) {
             Files.createDirectory(path);
@@ -720,8 +720,31 @@ public class MetodosAndroid {
     	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
     	Date date = new Date();
     	String fecha=dateFormat.format(date);
-    	System.out.println("Se crea directorio de ejecucion");
-        TestNG.getDefault().setOutputDirectory(fileName+"/"+modulo+"/"+fecha);	
+        TestNG.getDefault().setOutputDirectory(fileName+"/"+modulo+"/"+fecha);
+ 
+        //Creo el directorio para guardar la ejecucion
+        String directorio=fileName+"/"+modulo+"/"+fecha;
+        path = Paths.get(directorio);
+        if (!Files.exists(path)) {
+            Files.createDirectory(path);
+            System.out.println("Se crea directorio de ejecucion");
+        } else {
+            
+            System.out.println("Directorio de ejecucion ya existe");
+        }
+        
+        //Creo el directorio para guardar las capturas
+       
+        path = Paths.get(directorio+"/Evidencias");
+        if (!Files.exists(path)) {
+            Files.createDirectory(path);
+            System.out.println("Directorio de imagenes creado");
+        } else {
+            
+            System.out.println("Directorio de imagenes ya existe");
+        }
+         
+        return directorio+"/Evidencias";
 	}
 	
 }

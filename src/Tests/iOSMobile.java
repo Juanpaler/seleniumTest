@@ -24,6 +24,7 @@ public class iOSMobile extends MetodosiOS {
     
 	private String nombreCaso;
 	private String archivoLineas="dataInput/LineasIOSMiCuenta.xlsx";
+	private String rutaCaptura;
 	private String modulo="MiCuentaAppIOS";
     
 	@BeforeClass (groups = "AutogestionIndividuosAPP")
@@ -33,7 +34,7 @@ public class iOSMobile extends MetodosiOS {
 		dc.setCapability("testName", "Untitled");
 		dc.setCapability(MobileCapabilityType.UDID, "c2ced461f2d136211a630c1f06668a1771abd2b2");
 		dc.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.personal.misconsumos.uat");
-		reportDirectory(modulo);
+		rutaCaptura=reportDirectory(modulo);
 	}
     
     @BeforeMethod (alwaysRun = true)
@@ -48,7 +49,7 @@ public class iOSMobile extends MetodosiOS {
     @AfterMethod (alwaysRun = true)
     public void after() throws IOException {
     	sleep(5000);
-    	getScreenshot(driver,nombreCaso);
+    	getScreenshot(driver,nombreCaso,rutaCaptura);
     	int menu = 0;
     	try {
 			while(((!driver.findElement(By.className("UIANavigationBar")).getText().contains("Mi Personal"))) && menu < 5) {

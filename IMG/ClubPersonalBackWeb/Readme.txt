@@ -1,1 +1,0 @@
-Carpeta donde se almacenas las imagenes de las ejecucions de casos ClubPersonalBackWeb

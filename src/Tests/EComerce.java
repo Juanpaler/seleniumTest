@@ -26,12 +26,12 @@ public class EComerce extends Metodos{
 	
 	String nombreCaso;
 	String archivoLineas="dataInput/LineasEcommerce.xlsx";
-	String rutaCaptura="IMG/EcommerceWeb";
+	String rutaCaptura;
 	String modulo="EcommerceWeb";
 
 	@BeforeClass (alwaysRun = true)
 	public void beforeClass() throws IOException {
-        reportDirectory(modulo);
+		rutaCaptura=reportDirectory(modulo);
 	}
 	
 	

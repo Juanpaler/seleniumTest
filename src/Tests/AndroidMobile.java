@@ -25,6 +25,7 @@ public class AndroidMobile extends MetodosAndroid {
     
 	private String nombreCaso;
 	private String archivoLineas="dataInput/LineasAndroidMiCuenta.xlsx";
+	private String rutaCaptura;
 	private String modulo="MiCuentaAppAndroid";
     
     @BeforeClass (alwaysRun = true)
@@ -37,7 +38,7 @@ public class AndroidMobile extends MetodosAndroid {
         dc.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, "ar.com.personal.bandaruattp");
         dc.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, "ar.com.personal.app.activities.bandar.SplashActivity");
         dc.setCapability(MobileCapabilityType.NO_RESET, true);
-        reportDirectory(modulo);
+        rutaCaptura=reportDirectory(modulo);
     }
     
     @BeforeMethod (alwaysRun = true)
@@ -49,7 +50,7 @@ public class AndroidMobile extends MetodosAndroid {
     @AfterMethod (alwaysRun = true)
     public void after() throws IOException {
     	sleep(5000);
-    	getScreenshot(driver,nombreCaso);
+    	getScreenshot(driver,nombreCaso,rutaCaptura);
     	int menu = 0;
     	try {
     	while(!driver.findElement(By.id("custom_ab_title")).getText().contains("Mi Personal") && menu < 3) {
