@@ -140,6 +140,14 @@ public class Metodos extends Utils {
 		sleep(20000);
 	}
 	
+	public WebElement HighLightElement(WebElement elemento, WebDriver driver){
+		
+		if (driver instanceof JavascriptExecutor) {
+	        ((JavascriptExecutor)driver).executeScript("arguments[0].style.border='1px solid red'", elemento);
+	    }
+		return elemento;
+	}
+	
 	public void buscarYClick(List<WebElement> elements, String match, String texto) {
 		sleep(2000);
 		switch (match) {

@@ -22,6 +22,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.TestNG;
 
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.IOSElement;
+
 public class Utils {
 	
     private static XSSFSheet ExcelWSheet;
@@ -109,6 +112,13 @@ public class Utils {
 	}
 	
 	public WebElement HighLightElement(WebElement elemento, WebDriver driver){
+		
+		if (driver instanceof JavascriptExecutor) {
+	        ((JavascriptExecutor)driver).executeScript("arguments[0].style.border='1px solid red'", elemento);
+	    }
+		return elemento;
+	}
+	public WebElement HighLightElement(IOSElement elemento, IOSDriver<WebElement> driver){
 		
 		if (driver instanceof JavascriptExecutor) {
 	        ((JavascriptExecutor)driver).executeScript("arguments[0].style.border='1px solid red'", elemento);
