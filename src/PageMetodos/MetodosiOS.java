@@ -4,6 +4,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -19,6 +25,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.TestNG;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
@@ -625,5 +632,34 @@ public class MetodosiOS {
 		System.out.println("Capturing the snapshot of the page ");
 		File srcFiler=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(srcFiler, new File(directory.getAbsolutePath() + "\\" + imageName + ".png"));
-	}	
+	}
+	
+	public void reportDirectory(String modulo) throws IOException {
+		//Se crea nuevo directorio para guardar el reporte de ejecuciones
+        String fileName = "Reportes";
+        Path path = Paths.get(fileName);
+        if (!Files.exists(path)) {
+            Files.createDirectory(path);
+            System.out.println("Directorio de evidencias creado");
+        } else {
+            
+            System.out.println("Directorio de evidencias ya existe");
+        }
+        
+		//Se crea nuevo directorio para guardar el reporte del Modulo
+        path = Paths.get(fileName+"/"+modulo);
+        if (!Files.exists(path)) {
+            Files.createDirectory(path);
+            System.out.println("Directorio de evidencias Mi Cuenta Web creado");
+        } else {
+            
+            System.out.println("Directorio de evidencias Mi Cuenta web ya existe");
+        }
+        
+    	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+    	Date date = new Date();
+    	String fecha=dateFormat.format(date);
+    	System.out.println("Se crea directorio de ejecucion");
+        TestNG.getDefault().setOutputDirectory(fileName+"/"+modulo+"/"+fecha);	
+	}
 }

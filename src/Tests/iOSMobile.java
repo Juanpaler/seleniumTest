@@ -24,14 +24,16 @@ public class iOSMobile extends MetodosiOS {
     
 	private String nombreCaso;
 	private String archivoLineas="dataInput/LineasIOSMiCuenta.xlsx";
+	private String modulo="MiCuentaAppIOS";
     
 	@BeforeClass (groups = "AutogestionIndividuosAPP")
-	public void init() {
+	public void init() throws IOException {
 		dc.setCapability("reportDirectory", "reports");
 		dc.setCapability("reportFormat", "xml");
 		dc.setCapability("testName", "Untitled");
 		dc.setCapability(MobileCapabilityType.UDID, "c2ced461f2d136211a630c1f06668a1771abd2b2");
 		dc.setCapability(IOSMobileCapabilityType.BUNDLE_ID, "com.personal.misconsumos.uat");
+		reportDirectory(modulo);
 	}
     
     @BeforeMethod (alwaysRun = true)
