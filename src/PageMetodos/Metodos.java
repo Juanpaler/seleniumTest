@@ -1021,10 +1021,10 @@ public class Metodos {
         path = Paths.get(fileName+"/"+modulo);
         if (!Files.exists(path)) {
             Files.createDirectory(path);
-            System.out.println("Directorio de evidencias Mi Cuenta Web creado");
+            System.out.println("Directorio de evidencias " + modulo + " creado");
         } else {
             
-            System.out.println("Directorio de evidencias Mi Cuenta web ya existe");
+            System.out.println("Directorio de evidencias " + modulo + " ya existe");
         }
         
     	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
