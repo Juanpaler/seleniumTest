@@ -38,7 +38,7 @@ public class MiCuentaWeb extends Metodos{
 	
 	String nombreCaso;
 	String archivoLineas="dataInput/LineasMiCuentaWeb.xlsx";
-	String rutaCaptura="IMG/MiCuentaWeb";
+	String rutaCaptura;
 	String modulo="MiCuentaWeb";
 
 	@BeforeClass (alwaysRun = true)
@@ -51,7 +51,7 @@ public class MiCuentaWeb extends Metodos{
 		//sleep(5000);
 		//driverf.quit();
 		//Directorio para guardar la ejecucion
-        reportDirectory(modulo);
+        rutaCaptura=reportDirectory(modulo);
 	}
 	
 	@BeforeMethod (alwaysRun = true)

@@ -1005,9 +1005,9 @@ public class Metodos {
 		Assert.assertTrue(cancelado);
 	}
 
-	public void reportDirectory(String modulo) throws IOException {
+	public String reportDirectory(String modulo) throws IOException {
 		//Se crea nuevo directorio para guardar el reporte de ejecuciones
-        String fileName = "Reportes";
+        String fileName = "Ejecuciones";
         Path path = Paths.get(fileName);
         if (!Files.exists(path)) {
             Files.createDirectory(path);
@@ -1030,7 +1030,30 @@ public class Metodos {
     	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
     	Date date = new Date();
     	String fecha=dateFormat.format(date);
-    	System.out.println("Se crea directorio de ejecucion");
-        TestNG.getDefault().setOutputDirectory(fileName+"/"+modulo+"/"+fecha);	
+        TestNG.getDefault().setOutputDirectory(fileName+"/"+modulo+"/"+fecha);
+ 
+        //Creo el directorio para guardar la ejecucion
+        String directorio=fileName+"/"+modulo+"/"+fecha;
+        path = Paths.get(directorio);
+        if (!Files.exists(path)) {
+            Files.createDirectory(path);
+            System.out.println("Se crea directorio de ejecucion");
+        } else {
+            
+            System.out.println("Directorio de ejecucion ya existe");
+        }
+        
+        //Creo el directorio para guardar las capturas
+       
+        path = Paths.get(directorio+"/Evidencias");
+        if (!Files.exists(path)) {
+            Files.createDirectory(path);
+            System.out.println("Directorio de imagenes creado");
+        } else {
+            
+            System.out.println("Directorio de imagenes ya existe");
+        }
+         
+        return directorio+"/Evidencias";
 	}
 }

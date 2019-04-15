@@ -20,12 +20,12 @@ public class ClubPersonalFront extends Metodos{
 	
 	String nombreCaso;
 	String archivoLineas="dataInput/LineasClubPersonalFront.xlsx";
-	String rutaCaptura="IMG/ClubPersonalFrontWeb";
+	String rutaCaptura;
 	String modulo="ClubPersonalFrontWeb";
 
 	@BeforeClass (alwaysRun = true)
 	public void beforeClass() throws IOException {
-        reportDirectory(modulo);
+		rutaCaptura=reportDirectory(modulo);
 	}
 	
 	@BeforeMethod (alwaysRun = true)
