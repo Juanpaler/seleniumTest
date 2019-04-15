@@ -240,7 +240,7 @@ public class ClubPersonalBack extends Metodos{
 	private void Busqueda_por_Linea(String linea)
 	{
 		WaitForElement("id", "submenu");
-		driver.findElement(By.linkText("B\u00FAsqueda por L\u00EDnea")).click();
+		driver.findElement(By.linkText("Búsqueda por Línea")).click();
 		WaitForElement("id", "lineNumber");
 		driver.findElement(By.id("lineNumber")).sendKeys(linea);
 		WaitForElement("id", "btnBuscar");
