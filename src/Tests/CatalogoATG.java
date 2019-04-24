@@ -38,10 +38,9 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	@AfterMethod (alwaysRun = true)
 	public void after(){
 		tomarCaptura(driver,nombreCaso,rutaCaptura);
-		logoutCatalogoATG();
-		driver.close();
 		try {
-
+			logoutCatalogoATG();
+			driver.close();
 		}catch(Exception ex1){	driver.close();
 		}
 	}
@@ -49,14 +48,53 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	
 	@Test (groups = "CatalogoATG", priority = 0)
 	public void EntidadesMaestrasProductosValidarPagina (){
-		
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
 		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
 		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();
-		WaitForElement(driver, "cssSelector", ".gridContainer.tabla-article");
-		Assert.assertTrue(driver.findElement(By.cssSelector(".gridContainer.tabla-article")).isDisplayed());
+		WaitForElement(driver, "id", "panel_table_productos");
+		Assert.assertTrue(driver.findElement(By.id("panel_table_productos")).isDisplayed());
 	}
 	
-
+	@Test (groups = "CatalogoATG", priority = 0)
+	public void EntidadesMaestrasPromocionesValidarPagina (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		driver.findElement(By.xpath("//a[contains(text(),'Promociones')]")).click();
+		WaitForElement(driver, "id", "panel_table_promo");
+		Assert.assertTrue(driver.findElement(By.id("panel_table_promo")).isDisplayed());
+	}
+	
+	@Test (groups = "CatalogoATG", priority = 0)
+	public void EntidadesMaestrasZonaGeograficaValidarPagina (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		driver.findElement(By.xpath("//a[contains(text(),'Zona Geográfica')]")).click();
+		WaitForElement(driver, "id", "panel_zona_geografica");
+		Assert.assertTrue(driver.findElement(By.id("panel_zona_geografica")).isDisplayed());
+	}
+	
+	@Test (groups = "CatalogoATG", priority = 0)
+	public void PoliticaComercialOfertaDePeciosValidarPagina (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Política comercial");
+		driver.findElement(By.xpath("//a[contains(text(),'Oferta de Precios')]")).click();
+		WaitForElement(driver, "id", "panel_table_ofprecio");
+		Assert.assertTrue(driver.findElement(By.id("panel_table_ofprecio")).isDisplayed());
+	}
+	
+	@Test (groups = "CatalogoATG", priority = 0)
+	public void PoliticaComercialOfertaDePromocionesValidarPagina (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Política comercial");
+		driver.findElement(By.xpath("//a[contains(text(),'Oferta de Promociones')]")).click();
+		WaitForElement(driver, "id", "panel_table_ofpromo");
+		Assert.assertTrue(driver.findElement(By.id("panel_table_ofpromo")).isDisplayed());
+	}
+	
+	
 }
