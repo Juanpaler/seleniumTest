@@ -13,13 +13,18 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.TestNG;
 
 import io.appium.java_client.ios.IOSDriver;
@@ -31,6 +36,49 @@ public class Utils {
     private static XSSFWorkbook ExcelWBook;
     private static XSSFCell Cell;
 
+    
+	public void WaitForElement(WebDriver driver, String by, String text) {		
+		
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);		
+		
+		WebDriverWait wait = new WebDriverWait(driver, 15);
+		try {
+			switch (by) {
+			case "id":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.id(text)));	
+				break;
+			case "cssSelector":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(text)));
+				break;
+			}
+		} catch (Exception e) {
+			Assert.assertTrue(false);
+		}
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);			
+	}
+	
+	public Boolean ElementCreatedUni(WebDriver driver, String by, String text, int time) {
+			
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);		
+		
+		WebDriverWait wait = new WebDriverWait(driver, time);
+		try {
+			switch (by) {
+			case "id":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.id(text)));	
+				break;
+			case "cssSelector":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(text)));
+				break;
+			}
+		} catch (Exception e) {
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+			return false;
+		}
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
+		return true;
+	}
+	
 	public String retornaLinea(String caso,String filename ) throws IOException{			
 		String CellData = null;
 		long CellData2 = 0;
