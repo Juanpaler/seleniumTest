@@ -50,22 +50,7 @@ public class Metodos extends Utils {
 	static WebDriver driverf;
 	static WebDriver driveri;
 	
-	public Properties config = new Properties();
-    InputStream configInput = null;
-	
-
-    public void loadConfig(){
-        try{
-            configInput = new FileInputStream("appConfig.properties");
-            config.load(configInput);
-            //Las configuraciones se consumen as�:
-            //String excelLineasEcommerce = config.getProperty("ExcelLineasEcommerce");
-           
-        } catch(Exception e){
-        	System.out.println("Error cargando configuraci�n\n" + e.getMessage());
-        }
-    }
-    
+   
 	public static WebDriver setup(){
 		System.setProperty("webdriver.chrome.driver", "Chromedriver.exe");
 		ChromeOptions Options = new ChromeOptions();
