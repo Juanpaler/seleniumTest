@@ -3,6 +3,7 @@ package PageMetodos;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -10,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -58,8 +60,24 @@ public class MetodosCatalogoATG extends Utils {
 		driver.findElement(By.id("username_tmp")).sendKeys(userTp);
 		WaitForElement(driver, "id", "password");
 		driver.findElement(By.id("password")).sendKeys(passTp);		
-		driver.findElement(By.id("ingresar-button")).click();		
+		driver.findElement(By.id("ingresar-button")).click();				
 	}
 		
-
-}
+	public void logoutCatalogoATG() {		
+		
+		WaitForElement(driver, "cssSelector", ".logout");
+		driver.findElement(By.cssSelector(".logout")).click();
+		WaitForElement(driver, "xpath", "//button[ng-click='global.aceptar()']");
+		List<WebElement> botones =  driver.findElements(By.xpath("//button[@ng-click='global.aceptar()']"));		
+		
+		for(int i=0; i< botones.size();i++)
+		{
+			System.out.println(botones.get(i).getLocation().x +" - "+ botones.get(i).getLocation().y);
+			if(botones.get(i).getLocation().x>0 || botones.get(i).getLocation().y>0) 
+			{
+				botones.get(i).click();
+			}
+		}
+	}
+		
+} 
