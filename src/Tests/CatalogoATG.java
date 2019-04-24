@@ -114,7 +114,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(driver.findElement(By.id("panel_opciones_factibilidad")).isDisplayed());
 	}
 	
-	
+	@Test (groups = "CatalogoATG", priority = 0)
 	public void EntidadesMaestrasProductosAlta (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 
