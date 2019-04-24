@@ -35,7 +35,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver = setup();	
 	}
 	
-	//@AfterMethod (alwaysRun = true)
+	@AfterMethod (alwaysRun = true)
 	public void after(){
 		tomarCaptura(driver,nombreCaso,rutaCaptura);
 		logoutCatalogoATG();
