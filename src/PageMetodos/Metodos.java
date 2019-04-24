@@ -90,10 +90,6 @@ public class Metodos extends Utils {
 		return driveri;
 		
 	}
-		
-	public static void sleep(int miliseconds) {
-		try {Thread.sleep(miliseconds);} catch (InterruptedException ex) {Thread.currentThread().interrupt();}
-	}
 	
 	public void loginPorLinea(String sLinea) {
 		driver.get("https://autogestionuat.personal.com.ar");
@@ -146,29 +142,6 @@ public class Metodos extends Utils {
 	        ((JavascriptExecutor)driver).executeScript("arguments[0].style.border='1px solid red'", elemento);
 	    }
 		return elemento;
-	}
-	
-	public void buscarYClick(List<WebElement> elements, String match, String texto) {
-		sleep(2000);
-		switch (match) {
-		case "contains":
-			for (WebElement x : elements) {
-				if (x.getText().toLowerCase().contains(texto.toLowerCase())) {
-					x.click();
-					break;
-				}
-			}
-			break;
-		case "equals":
-			for (WebElement x : elements) {
-				if (x.getText().toLowerCase().equals(texto.toLowerCase())) {
-					x.click();
-					break;
-				}
-			}
-			break;
-		}
-		sleep(5000);
 	}
 	
 	public void selectByText(WebElement element, String data){

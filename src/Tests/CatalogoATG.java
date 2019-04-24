@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.AssertJUnit;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -48,6 +49,9 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	@Test (groups = "CatalogoATG", priority = 0)
 	public void Test (){
 		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".fa.fa-puzzle-piece")),"contains","Entidades Maestras");
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-menu.dropdown-catalogo")),"contains","Productos");
+		Assert.assertTrue(driver.findElement(By.cssSelector(".gridContainer.tabla-article")).isDisplayed());
 	}
 	
 

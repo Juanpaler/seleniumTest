@@ -20,9 +20,6 @@ import io.appium.java_client.ios.IOSElement;
 
 public class MetodosiOS extends Utils{	
 	
-	public void sleep(int miliseconds) {
-		try {Thread.sleep(miliseconds);} catch (InterruptedException ex) {Thread.currentThread().interrupt();}
-	}
 	
 	public void loginPorLineaMobile(IOSDriver<IOSElement> driver, String linea) {
 		if(ElementCreated(driver, "xpath", "//*[@text='\u00A1Ups! en este momento Mi Personal UAT no est\u00E1 disponible.']", 5)) {

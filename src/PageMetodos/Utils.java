@@ -13,6 +13,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -224,6 +225,33 @@ public class Utils {
         }
          
         return directorio+"/Evidencias";
+	}
+	
+	public static void sleep(int miliseconds) {
+		try {Thread.sleep(miliseconds);} catch (InterruptedException ex) {Thread.currentThread().interrupt();}
+	}
+	
+	public void buscarYClick(List<WebElement> elements, String match, String texto) {
+		sleep(2000);
+		switch (match) {
+		case "contains":
+			for (WebElement x : elements) {
+				if (x.getText().toLowerCase().contains(texto.toLowerCase())) {
+					x.click();
+					break;
+				}
+			}
+			break;
+		case "equals":
+			for (WebElement x : elements) {
+				if (x.getText().toLowerCase().equals(texto.toLowerCase())) {
+					x.click();
+					break;
+				}
+			}
+			break;
+		}
+		sleep(5000);
 	}
   
 }
