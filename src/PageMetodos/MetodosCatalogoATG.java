@@ -1,8 +1,11 @@
 package PageMetodos;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Properties;
 
@@ -19,6 +22,29 @@ public class MetodosCatalogoATG extends Utils {
   	
 	static WebDriver driver;
 
+	public Properties testConfig = new Properties();
+    InputStream testConfigInput = null;
+    public static OutputStream configOutput = null;
+    
+    public void loadTestConfig(){
+        try{
+        	testConfigInput = new FileInputStream("TestsConfig/configATG.properties");
+            testConfig.load(testConfigInput);          
+        } catch(Exception e){
+        	System.out.println("Error cargando configuración\n" + e.getMessage());
+        }
+    }
+    
+    public void saveTestConfig(String key, String value){
+        try{
+            configOutput = new FileOutputStream("TestsConfig/configATG.properties");
+            testConfig.setProperty(key, value);                
+            testConfig.store(configOutput, null);
+        } catch(Exception e){
+        	System.out.println("Error guardando configuración\n" + e.getMessage());
+        }
+    }
+	
 	public static WebDriver setup(){
 		System.setProperty("webdriver.chrome.driver", "Chromedriver.exe");
 		ChromeOptions Options = new ChromeOptions();
