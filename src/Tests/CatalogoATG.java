@@ -35,7 +35,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver = setup();	
 	}
 	
-	@AfterMethod (alwaysRun = true)
+	//@AfterMethod (alwaysRun = true)
 	public void after(){
 		tomarCaptura(driver,nombreCaso,rutaCaptura);
 		try {
@@ -96,17 +96,48 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(driver.findElement(By.id("panel_table_ofpromo")).isDisplayed());
 	}
 	
-	
+	@Test (groups = "CatalogoATG", priority = 0)
 	public void EntidadesMaestrasProductosAlta (){
 		
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+
+		loadTestConfig();
+		String nroProductoSecuencial = testConfig.getProperty("nroProductoSecuencial");
+		String sprint = testConfig.getProperty("sprint");		
+		int nroSeq = Integer.parseInt(nroProductoSecuencial);
+		nroSeq = nroSeq + 1;
+		nroProductoSecuencial = Integer.toString(nroSeq);				
+		
 		loginCatalogoATG();
 		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
 		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();
 		WaitForElement(driver, "cssSelector", ".gridContainer.tabla-article");
 		driver.findElement(By.xpath("//*[@id=\"panel_table_productos\"]/article[2]/div/div[2]/button[1]")).click();
 
+		WaitForElement(driver, "name", "canal");
 		
+		driver.findElement(By.name("canal")).sendKeys("WEB ARNET");
+		driver.findElement(By.name("tipo_familia")).sendKeys("INTERNET CABLEMODEM");
+		driver.findElement(By.name("subtipo")).sendKeys("Adicional");
+		driver.findElement(By.name("nombre")).sendKeys("AU_TEST_SP"+sprint+"_ATG_NM");
+		driver.findElement(By.name("nombre_base_instalada")).sendKeys("AU_TEST_SP"+sprint+"_ATG_NBI");
+		driver.findElement(By.name("nombre_corto")).sendKeys("AU_TEST_SP"+sprint+"_ATG_NC");
+		driver.findElement(By.name("nombre_largo")).sendKeys("AU_TEST_SP"+sprint+"_ATG_NL");
+		driver.findElement(By.name("nombre_crm")).sendKeys("AU_TEST_SP"+sprint+"_ATG_NCRM");
+		driver.findElement(By.name("id_open")).sendKeys(nroProductoSecuencial);
+		driver.findElement(By.name("sku")).sendKeys("AU_TEST_SP"+sprint+"_ATG_SKU");
+		driver.findElement(By.name("id_categoria")).sendKeys("cat90026");
+		driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).sendKeys("AU_TEST_SP"+sprint+"_ATG_LEG");		
+		WaitForElement(driver, "xpath", "//*[@id=\"collapseNuevoProducto\"]/div/div[3]/div/fieldset/div/button[2]");
+		driver.findElement(By.xpath("//*[@id=\"collapseNuevoProducto\"]/div/div[3]/div/fieldset/div/button[2]")).click();
+		WaitForElement(driver, "xpath", "//*[@id=\"warning\"]/div/div/div[3]/button[2]");
+		driver.findElement(By.xpath("//*[@id=\"warning\"]/div/div/div[3]/button[2]")).click();		
+		
+		Assert.assertTrue(ElementCreatedUni(driver, "xpath", "//*[@id='success']/div/div/div[3]/button[3]",5));
+		
+		saveTestConfig("nroProductoSecuencial", nroProductoSecuencial);
+
+		driver.findElement(By.xpath("//*[@id='success']/div/div/div[3]/button[3]")).click();
 	}
 	
 
