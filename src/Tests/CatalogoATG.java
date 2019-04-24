@@ -1,12 +1,10 @@
 package Tests;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.AssertJUnit;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -118,16 +116,12 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	
 	
 	public void EntidadesMaestrasProductosAlta (){
-		
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
 		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
 		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();
 		WaitForElement(driver, "cssSelector", ".gridContainer.tabla-article");
-		driver.findElement(By.xpath("//*[@id=\"panel_table_productos\"]/article[2]/div/div[2]/button[1]")).click();
-
-		
+		driver.findElement(By.xpath("//*[@id=\"panel_table_productos\"]/article[2]/div/div[2]/button[1]")).click();		
 	}
 	
-
 }
