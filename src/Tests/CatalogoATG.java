@@ -58,5 +58,18 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(driver.findElement(By.cssSelector(".gridContainer.tabla-article")).isDisplayed());
 	}
 	
+	@Test (groups = "CatalogoATG", priority = 0)
+	public void EntidadesMaestrasProductosAlta (){
+		
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();
+		WaitForElement(driver, "cssSelector", ".gridContainer.tabla-article");
+		driver.findElement(By.xpath("//*[@id=\"panel_table_productos\"]/article[2]/div/div[2]/button[1]")).click();
+
+		
+	}
+	
 
 }
