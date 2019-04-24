@@ -1,12 +1,10 @@
 package Tests;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.AssertJUnit;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -35,7 +33,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver = setup();	
 	}
 	
-	//@AfterMethod (alwaysRun = true)
+	@AfterMethod (alwaysRun = true)
 	public void after(){
 		tomarCaptura(driver,nombreCaso,rutaCaptura);
 		try {
@@ -77,6 +75,16 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	}
 	
 	@Test (groups = "CatalogoATG", priority = 0)
+	public void EntidadesMaestrasLegalesValidarPagina (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		driver.findElement(By.xpath("//a[contains(text(),'Legales')]")).click();
+		WaitForElement(driver, "id", "panel_table_legales");
+		Assert.assertTrue(driver.findElement(By.id("panel_table_legales")).isDisplayed());
+	}
+	
+	@Test (groups = "CatalogoATG", priority = 0)
 	public void PoliticaComercialOfertaDePeciosValidarPagina (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
@@ -97,8 +105,17 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	}
 	
 	@Test (groups = "CatalogoATG", priority = 0)
+	public void FactibilidadComercialValidarPagina (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Factibilidad");
+		driver.findElement(By.xpath("//a[contains(text(),'Factibilidad Comercial')]")).click();
+		WaitForElement(driver, "id", "panel_opciones_factibilidad");
+		Assert.assertTrue(driver.findElement(By.id("panel_opciones_factibilidad")).isDisplayed());
+	}
+	
+	
 	public void EntidadesMaestrasProductosAlta (){
-		
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 
 		loadTestConfig();
@@ -140,5 +157,4 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver.findElement(By.xpath("//*[@id='success']/div/div/div[3]/button[3]")).click();
 	}
 	
-
 }
