@@ -48,10 +48,11 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	
 	
 	@Test (groups = "CatalogoATG", priority = 0)
-	public void Test (){
+	public void EntidadesMaestrasProductosValidarPagina (){
 		loginCatalogoATG();
-		buscarYClick(driver.findElements(By.cssSelector(".fa.fa-puzzle-piece")),"contains","Entidades Maestras");
-		buscarYClick(driver.findElements(By.cssSelector(".dropdown-menu.dropdown-catalogo")),"contains","Productos");
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();
+		sleep(5000);
 		Assert.assertTrue(driver.findElement(By.cssSelector(".gridContainer.tabla-article")).isDisplayed());
 	}
 	
