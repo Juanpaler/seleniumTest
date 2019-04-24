@@ -22,9 +22,6 @@ import io.appium.java_client.android.AndroidElement;
 
 public class MetodosAndroid extends Utils {	
  
-	public void sleep(int miliseconds) {
-		try {Thread.sleep(miliseconds);} catch (InterruptedException ex) {Thread.currentThread().interrupt();}
-	}
 	
 	public void loginPorLineaMobile(WebDriver driver, String linea) {
 		sleep(7000);
