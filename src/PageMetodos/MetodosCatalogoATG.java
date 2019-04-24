@@ -16,11 +16,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class MetodosCatalogoATG extends Utils {	
   	
 	static WebDriver driver;
-	
-	public Properties config = new Properties();
-    InputStream configInput = null;
-	
-    
+
 	public static WebDriver setup(){
 		System.setProperty("webdriver.chrome.driver", "Chromedriver.exe");
 		ChromeOptions Options = new ChromeOptions();
@@ -51,7 +47,18 @@ public class MetodosCatalogoATG extends Utils {
 	}
 	
 	public void loginCatalogoATG() {
-		driver.get("http://sr-docker-xt01.corp.cablevision.com.ar:8887/catalogo/#!/ ");
+		
+		loadConfig();
+		String userTp = config.getProperty("usertp");
+		String passTp = config.getProperty("passtp");
+
+		driver.get("http://sr-docker-xt01.corp.cablevision.com.ar:8887/catalogo/#!/ ");		
+		
+		WaitForElement(driver, "id", "username_tmp");
+		driver.findElement(By.id("username_tmp")).sendKeys(userTp);
+		WaitForElement(driver, "id", "password");
+		driver.findElement(By.id("password")).sendKeys(passTp);		
+		driver.findElement(By.id("ingresar-button")).click();		
 	}
 		
 
