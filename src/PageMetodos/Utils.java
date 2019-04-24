@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -36,6 +37,22 @@ public class Utils {
     private static XSSFWorkbook ExcelWBook;
     private static XSSFCell Cell;
 
+    
+	public Properties config = new Properties();
+    InputStream configInput = null;
+	
+
+    public void loadConfig(){
+        try{
+            configInput = new FileInputStream("appConfig.properties");
+            config.load(configInput);
+            //Las configuraciones se consumen as�:
+            //String excelLineasEcommerce = config.getProperty("ExcelLineasEcommerce");
+           
+        } catch(Exception e){
+        	System.out.println("Error cargando configuración\n" + e.getMessage());
+        }
+    }
     
 	public void WaitForElement(WebDriver driver, String by, String text) {		
 		
