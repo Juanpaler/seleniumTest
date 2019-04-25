@@ -88,6 +88,24 @@ public class MetodosCatalogoATG extends Utils {
 		driver.findElement(By.id("password")).sendKeys(passTp);		
 		driver.findElement(By.id("ingresar-button")).click();				
 	}
+	
+	
+	public void buscarProductoPorId(String id) {
+		
+		WaitForElement(driver, "xpath", "//*[@id='panel_table_productos']/article[1]/table/thead/tr/th[8]/div/button");
+		sleep(1000);
+		driver.findElement(By.xpath("//*[@id='panel_table_productos']/article[1]/table/thead/tr/th[8]/div/button")).click();		
+		WaitForElement(driver, "xpath", "//*[@id='panel_table_productos']/article[1]/table/thead/tr/th[8]/div/ul/div[7]/div/input");
+		sleep(1000);
+		driver.findElement(By.xpath("//*[@id='panel_table_productos']/article[1]/table/thead/tr/th[8]/div/ul/div[7]/div/input")).sendKeys(id);	
+		WaitForElement(driver, "xpath", "//*[@id='panel_table_productos']/article[1]/table/tbody/tr/td[1]/div/label");
+		sleep(1000);
+		driver.findElement(By.xpath("//*[@id='panel_table_productos']/article[1]/table/tbody/tr/td[1]/div/label")).click();
+		WaitForElement(driver, "xpath", "//*[@id='panel_table_productos']/article[2]/div/div[2]/button[2]");
+		sleep(1000);
+		driver.findElement(By.xpath("//*[@id='panel_table_productos']/article[2]/div/div[2]/button[2]")).click();			
+	}
+
 		
 	public void logoutCatalogoATG() {		
 		
