@@ -6,7 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -47,10 +49,17 @@ public class MetodosCatalogoATG extends Utils {
 	
 	public static WebDriver setup(){
 		System.setProperty("webdriver.chrome.driver", "Chromedriver.exe");
-		ChromeOptions Options = new ChromeOptions();
-		Options.addArguments("start-maximized");
-		Options.addArguments("disable-infobars");
-		driver = new ChromeDriver(Options);
+		String fileDownloadPath =  System.getProperty("user.home") +"\\Downloads\\";
+		Map<String, Object> prefsMap = new HashMap<String, Object>();
+		prefsMap.put("profile.default_content_settings.popups", 0);
+		prefsMap.put("download.default_directory", fileDownloadPath);   
+		ChromeOptions option = new ChromeOptions();
+		option.setExperimentalOption("prefs", prefsMap);
+		option.addArguments("--test-type");
+		option.addArguments("--disable-extensions");
+		option.addArguments("start-maximized");
+		option.addArguments("disable-infobars");
+		driver = new ChromeDriver(option);
 		return driver;
 	}
 	
@@ -116,7 +125,7 @@ public class MetodosCatalogoATG extends Utils {
 		
 		for(int i=0; i< botones.size();i++)
 		{
-			System.out.println(botones.get(i).getLocation().x +" - "+ botones.get(i).getLocation().y);
+			//System.out.println(botones.get(i).getLocation().x +" - "+ botones.get(i).getLocation().y);
 			if(botones.get(i).getLocation().x>0 || botones.get(i).getLocation().y>0) 
 			{
 				botones.get(i).click();

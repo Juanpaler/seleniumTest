@@ -1,9 +1,12 @@
 package Tests;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -218,4 +221,50 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver.findElement(By.xpath("//*[@id='success']/div/div/div[3]/button[3]")).click();
 	}
 	
+	@Test (groups = "CatalogoATG", priority = 0)
+	public void FuncionExportar(){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		boolean  existe;
+		File f = new File(System.getProperty("user.home") +"\\Downloads\\Productos.csv");
+		if(f.exists() && !f.isDirectory()) {
+			f.delete();
+		}
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();
+		WaitForElement(driver, "id", "panel_table_productos");
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Exportar");
+		buscarYClick(driver.findElements(By.cssSelector(".btn-dropdown-item.btn-export")),"equals","Exportar Todos");
+		sleep(5000);
+		if(f.exists() && !f.isDirectory()) { 
+			existe=true;
+		}else {
+			existe=false;
+		}
+		Assert.assertTrue(existe);
+	}
+	
+	@Test (groups = "CatalogoATG", priority = 0)
+	public void FactibilidadComercialAltaGrupo (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Factibilidad");
+		driver.findElement(By.xpath("//a[contains(text(),'Factibilidad Comercial')]")).click();
+		WaitForElement(driver, "id", "panel_opciones_factibilidad");
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Nuevo");
+		driver.findElement(By.xpath("//*[@id=\"collapseNuevaFactibilidad\"]/div/div/form/div[1]/div/div[1]/div[1]/div/input")).sendKeys("AutoGroup");
+		driver.findElement(By.xpath("//*[@id=\"collapseNuevaFactibilidad\"]/div/div/form/div[1]/div/div[1]/div[2]/div/input")).sendKeys("Autoname");
+		List<WebElement> botones =  driver.findElements(By.cssSelector(".btn-Cata-base.btn-masProducto"));	
+		botones.get(1).click();
+		//buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-masProducto")),"equals",". . .");
+		sleep(3000);
+		driver.findElement(By.xpath("//*[@id=\"modal-large\"]/div/div/div[2]/div/div/div/div[2]/div/div[1]/table/tbody/tr[1]")).click();
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","ACEPTAR");
+		botones.get(2).click();
+		sleep(5000);
+		driver.findElement(By.xpath("//*[@id=\"modal-large\"]/div/div/div[2]/div/div/div/div[2]/article/table/tbody/tr[2]")).click();
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","ACEPTAR");
+		driver.findElement(By.id("guardar")).click();
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
+	}
 }
