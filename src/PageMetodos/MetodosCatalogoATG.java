@@ -89,7 +89,7 @@ public class MetodosCatalogoATG extends Utils {
 		String userTp = config.getProperty("usertp");
 		String passTp = config.getProperty("passtp");
 
-		driver.get("http://sr-docker-xt01.corp.cablevision.com.ar:8887/catalogo/#!/ ");		
+		driver.get("http://sr-docker-xt01.corp.cablevision.com.ar:8888/catalogo/#!/ ");		
 		
 		WaitForElement(driver, "id", "username_tmp");
 		driver.findElement(By.id("username_tmp")).sendKeys(userTp);
