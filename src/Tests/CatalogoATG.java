@@ -133,28 +133,58 @@ public class CatalogoATG extends MetodosCatalogoATG{
 
 		WaitForElement(driver, "name", "canal");
 		
-		driver.findElement(By.name("canal")).sendKeys("WEB ARNET");
-		driver.findElement(By.name("tipo_familia")).sendKeys("INTERNET CABLEMODEM");
-		driver.findElement(By.name("subtipo")).sendKeys("Adicional");
-		driver.findElement(By.name("nombre")).sendKeys("AU_TEST_SP"+sprint+"_ATG_NM");
-		driver.findElement(By.name("nombre_base_instalada")).sendKeys("AU_TEST_SP"+sprint+"_ATG_NBI");
-		driver.findElement(By.name("nombre_corto")).sendKeys("AU_TEST_SP"+sprint+"_ATG_NC");
-		driver.findElement(By.name("nombre_largo")).sendKeys("AU_TEST_SP"+sprint+"_ATG_NL");
-		driver.findElement(By.name("nombre_crm")).sendKeys("AU_TEST_SP"+sprint+"_ATG_NCRM");
-		driver.findElement(By.name("id_open")).sendKeys(nroProductoSecuencial);
-		driver.findElement(By.name("sku")).sendKeys("AU_TEST_SP"+sprint+"_ATG_SKU");
-		driver.findElement(By.name("id_categoria")).sendKeys("cat90026");
-		driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).sendKeys("AU_TEST_SP"+sprint+"_ATG_LEG");		
+		String canal = "WEB ARNET";
+		String tipo_familia="INTERNET CABLEMODEM";
+		String subtipo="Adicional";
+		String nombre="AU_TEST_SP"+sprint+"_ATG_NM";
+		String nombre_base_instalada="AU_TEST_SP"+sprint+"_ATG_NBI";
+		String nombre_corto="AU_TEST_SP"+sprint+"_AT";
+		String nombre_largo="AU_TEST_SP"+sprint+"_ATG_NL";
+		String nombre_crm="AU_TEST_SP"+sprint+"_ATG_NCRM";
+		String id_open=nroProductoSecuencial;
+		String sku="AU_TEST_SP"+sprint+"_ATG_SKU";
+		String id_categoria="cat90026";
+		String legales="AU_TEST_SP"+sprint+"_ATG_LEG";
+		
+		driver.findElement(By.name("canal")).sendKeys(canal);
+		driver.findElement(By.name("tipo_familia")).sendKeys(tipo_familia);
+		driver.findElement(By.name("subtipo")).sendKeys(subtipo);
+		driver.findElement(By.name("nombre")).sendKeys(nombre);
+		driver.findElement(By.name("nombre_base_instalada")).sendKeys(nombre_base_instalada);
+		driver.findElement(By.name("nombre_corto")).sendKeys(nombre_corto);
+		driver.findElement(By.name("nombre_largo")).sendKeys(nombre_largo);
+		driver.findElement(By.name("nombre_crm")).sendKeys(nombre_crm);
+		driver.findElement(By.name("id_open")).sendKeys(id_open);
+		driver.findElement(By.name("sku")).sendKeys(sku);
+		driver.findElement(By.name("id_categoria")).sendKeys(id_categoria);
+		driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).sendKeys(legales);	
+		
 		WaitForElement(driver, "xpath", "//*[@id=\"collapseNuevoProducto\"]/div/div[3]/div/fieldset/div/button[2]");
 		driver.findElement(By.xpath("//*[@id=\"collapseNuevoProducto\"]/div/div[3]/div/fieldset/div/button[2]")).click();
 		WaitForElement(driver, "xpath", "//*[@id=\"warning\"]/div/div/div[3]/button[2]");
 		driver.findElement(By.xpath("//*[@id=\"warning\"]/div/div/div[3]/button[2]")).click();		
 		
-		Assert.assertTrue(ElementCreatedUni(driver, "xpath", "//*[@id='success']/div/div/div[3]/button[3]",5));
+		Assert.assertTrue(ElementCreatedUni(driver, "xpath", "//*[@id='success']/div/div/div[3]/button[3]",5));		
 		
 		saveTestConfig("nroProductoSecuencial", nroProductoSecuencial);
 
 		driver.findElement(By.xpath("//*[@id='success']/div/div/div[3]/button[3]")).click();
+		
+		buscarProductoPorId(nroProductoSecuencial);
+		Boolean valoresValidos = true;
+		
+		
+		valoresValidos = (valoresValidos == nombre.equals(driver.findElement(By.name("nombre")).getAttribute("value")));
+		valoresValidos = (valoresValidos == nombre_corto.equals(driver.findElement(By.name("nombre_corto")).getAttribute("value")));
+		valoresValidos = (valoresValidos == nombre_base_instalada.equals(driver.findElement(By.name("nombre_base_instalada")).getAttribute("value")));
+		valoresValidos = (valoresValidos == nombre_largo.equals(driver.findElement(By.name("nombre_largo")).getAttribute("value")));
+		valoresValidos = (valoresValidos == nombre_crm.equals(driver.findElement(By.name("nombre_crm")).getAttribute("value")));
+		valoresValidos = (valoresValidos == id_open.equals(driver.findElement(By.name("id_open")).getAttribute("value")));
+		valoresValidos = (valoresValidos == sku.equals(driver.findElement(By.name("sku")).getAttribute("value")));
+		valoresValidos = (valoresValidos == id_categoria.equals(driver.findElement(By.name("id_categoria")).getAttribute("value")));
+		valoresValidos = (valoresValidos == legales.equals(driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).getAttribute("value")));
+
+		Assert.assertTrue(valoresValidos);
 	}
 	
 	@Test (groups = "CatalogoATG", priority = 0)
@@ -166,36 +196,25 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		
 		loginCatalogoATG();
 		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
-		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();
-		WaitForElement(driver, "cssSelector", ".gridContainer.tabla-article");
-		
-		
-		//driver.findElement(By.xpath("//*[@id=\"panel_table_productos\"]/article[2]/div/div[2]/button[1]")).click();
+		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();		
 
-		WaitForElement(driver, "xpath", "//*[@id=\'panel_table_productos\']/article[1]/table/thead/tr/th[8]/div/button");
-		driver.findElement(By.xpath("//*[@id=\'panel_table_productos\']/article[1]/table/thead/tr/th[8]/div/button")).click();
-
-		driver.findElement(By.name("canal")).sendKeys("WEB ARNET");
-		driver.findElement(By.name("tipo_familia")).sendKeys("INTERNET CABLEMODEM");
-		driver.findElement(By.name("subtipo")).sendKeys("Adicional");
-		driver.findElement(By.name("nombre")).sendKeys("");
-		driver.findElement(By.name("nombre_base_instalada")).sendKeys("");
-		driver.findElement(By.name("nombre_corto")).sendKeys("");
-		driver.findElement(By.name("nombre_largo")).sendKeys("");
-		driver.findElement(By.name("nombre_crm")).sendKeys("");
-		driver.findElement(By.name("id_open")).sendKeys(nroProductoSecuencial);
-		driver.findElement(By.name("sku")).sendKeys("");
-		driver.findElement(By.name("id_categoria")).sendKeys("cat90026");
-		driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).sendKeys("");		
+		buscarProductoPorId(nroProductoSecuencial);
+	
+		driver.findElement(By.name("nombre")).sendKeys("_MOD");
+		driver.findElement(By.name("nombre_base_instalada")).sendKeys("_MOD");
+		driver.findElement(By.name("nombre_corto")).sendKeys("_MOD");
+		driver.findElement(By.name("nombre_largo")).sendKeys("_MOD");
+		driver.findElement(By.name("nombre_crm")).sendKeys("_MOD");
+		driver.findElement(By.name("sku")).sendKeys("_MOD");
+		driver.findElement(By.name("id_categoria")).sendKeys("_MOD");
+		driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).sendKeys("_MOD");		
 		WaitForElement(driver, "xpath", "//*[@id=\"collapseNuevoProducto\"]/div/div[3]/div/fieldset/div/button[2]");
 		driver.findElement(By.xpath("//*[@id=\"collapseNuevoProducto\"]/div/div[3]/div/fieldset/div/button[2]")).click();
 		WaitForElement(driver, "xpath", "//*[@id=\"warning\"]/div/div/div[3]/button[2]");
 		driver.findElement(By.xpath("//*[@id=\"warning\"]/div/div/div[3]/button[2]")).click();		
 		
-		Assert.assertTrue(ElementCreatedUni(driver, "xpath", "//*[@id='success']/div/div/div[3]/button[3]",5));
+		Assert.assertTrue(ElementCreatedUni(driver, "xpath", "//*[@id='success']/div/div/div[3]/button[3]",5));		
 		
-		saveTestConfig("nroProductoSecuencial", nroProductoSecuencial);
-
 		driver.findElement(By.xpath("//*[@id='success']/div/div/div[3]/button[3]")).click();
 	}
 	
