@@ -1,5 +1,6 @@
 package Tests;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.openqa.selenium.By;
@@ -157,4 +158,26 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver.findElement(By.xpath("//*[@id='success']/div/div/div[3]/button[3]")).click();
 	}
 	
+	@Test (groups = "CatalogoATG", priority = 0)
+	public void FuncionExportar(){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		boolean  existe;
+		File f = new File(System.getProperty("user.home") +"\\Downloads\\Productos.csv");
+		if(f.exists() && !f.isDirectory()) {
+			f.delete();
+		}
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();
+		WaitForElement(driver, "id", "panel_table_productos");
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Exportar");
+		buscarYClick(driver.findElements(By.cssSelector(".btn-dropdown-item.btn-export")),"equals","Exportar Todos");
+		sleep(5000);
+		if(f.exists() && !f.isDirectory()) { 
+			existe=true;
+		}else {
+			existe=false;
+		}
+		Assert.assertTrue(existe);
+	}
 }
