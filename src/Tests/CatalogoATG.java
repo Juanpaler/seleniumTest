@@ -267,4 +267,14 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver.findElement(By.id("guardar")).click();
 		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
 	}
+	
+	@Test (groups = "CatalogoATG", priority = 0)
+	public void FactibilidadComercialModificacionGrupo (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Factibilidad");
+		driver.findElement(By.xpath("//a[contains(text(),'Factibilidad Comercial')]")).click();
+		WaitForElement(driver, "id", "panel_opciones_factibilidad");
+	
+	}
 }
