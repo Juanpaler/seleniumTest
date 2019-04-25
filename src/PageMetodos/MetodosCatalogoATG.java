@@ -107,7 +107,7 @@ public class MetodosCatalogoATG extends Utils {
 		
 		for(int i=0; i< botones.size();i++)
 		{
-			System.out.println(botones.get(i).getLocation().x +" - "+ botones.get(i).getLocation().y);
+			//System.out.println(botones.get(i).getLocation().x +" - "+ botones.get(i).getLocation().y);
 			if(botones.get(i).getLocation().x>0 || botones.get(i).getLocation().y>0) 
 			{
 				botones.get(i).click();
