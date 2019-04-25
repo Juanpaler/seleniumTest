@@ -34,7 +34,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver = setup();	
 	}
 	
-	@AfterMethod (alwaysRun = true)
+	//@AfterMethod (alwaysRun = true)
 	public void after(){
 		tomarCaptura(driver,nombreCaso,rutaCaptura);
 		try {
@@ -159,6 +159,47 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	}
 	
 	@Test (groups = "CatalogoATG", priority = 0)
+	public void EntidadesMaestrasProductosModificacion (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+
+		loadTestConfig();
+		String nroProductoSecuencial = testConfig.getProperty("nroProductoSecuencial");
+		
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();
+		WaitForElement(driver, "cssSelector", ".gridContainer.tabla-article");
+		
+		
+		//driver.findElement(By.xpath("//*[@id=\"panel_table_productos\"]/article[2]/div/div[2]/button[1]")).click();
+
+		WaitForElement(driver, "xpath", "//*[@id=\'panel_table_productos\']/article[1]/table/thead/tr/th[8]/div/button");
+		driver.findElement(By.xpath("//*[@id=\'panel_table_productos\']/article[1]/table/thead/tr/th[8]/div/button")).click();
+
+		driver.findElement(By.name("canal")).sendKeys("WEB ARNET");
+		driver.findElement(By.name("tipo_familia")).sendKeys("INTERNET CABLEMODEM");
+		driver.findElement(By.name("subtipo")).sendKeys("Adicional");
+		driver.findElement(By.name("nombre")).sendKeys("");
+		driver.findElement(By.name("nombre_base_instalada")).sendKeys("");
+		driver.findElement(By.name("nombre_corto")).sendKeys("");
+		driver.findElement(By.name("nombre_largo")).sendKeys("");
+		driver.findElement(By.name("nombre_crm")).sendKeys("");
+		driver.findElement(By.name("id_open")).sendKeys(nroProductoSecuencial);
+		driver.findElement(By.name("sku")).sendKeys("");
+		driver.findElement(By.name("id_categoria")).sendKeys("cat90026");
+		driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).sendKeys("");		
+		WaitForElement(driver, "xpath", "//*[@id=\"collapseNuevoProducto\"]/div/div[3]/div/fieldset/div/button[2]");
+		driver.findElement(By.xpath("//*[@id=\"collapseNuevoProducto\"]/div/div[3]/div/fieldset/div/button[2]")).click();
+		WaitForElement(driver, "xpath", "//*[@id=\"warning\"]/div/div/div[3]/button[2]");
+		driver.findElement(By.xpath("//*[@id=\"warning\"]/div/div/div[3]/button[2]")).click();		
+		
+		Assert.assertTrue(ElementCreatedUni(driver, "xpath", "//*[@id='success']/div/div/div[3]/button[3]",5));
+		
+		saveTestConfig("nroProductoSecuencial", nroProductoSecuencial);
+
+		driver.findElement(By.xpath("//*[@id='success']/div/div/div[3]/button[3]")).click();
+	}
+	
 	public void FuncionExportar(){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		boolean  existe;
