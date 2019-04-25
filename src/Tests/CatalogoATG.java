@@ -200,6 +200,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver.findElement(By.xpath("//*[@id='success']/div/div/div[3]/button[3]")).click();
 	}
 	
+	@Test (groups = "CatalogoATG", priority = 0)
 	public void FuncionExportar(){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		boolean  existe;
