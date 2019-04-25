@@ -346,7 +346,10 @@ public class Metodos extends Utils {
 			case "cssSelector":
 				wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(text)));
 				break;
-			}
+			case "xpath":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(text)));
+				break;
+			}		
 		} catch (Exception e) {
 			Assert.assertTrue(false);
 		}
@@ -366,6 +369,9 @@ public class Metodos extends Utils {
 				break;
 			case "cssSelector":
 				wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(text)));
+				break;
+			case "xpath":
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(text)));
 				break;
 			}
 		} catch (Exception e) {
