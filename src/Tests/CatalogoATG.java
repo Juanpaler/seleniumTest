@@ -247,6 +247,22 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	}
 	
 	@Test (groups = "CatalogoATG", priority = 0)
+	public void EntidadesMaestrasProductosEnviar (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+
+		loadTestConfig();
+		String nroProductoSecuencial = testConfig.getProperty("nroProductoSecuencial");
+		
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();		
+
+		buscarProductoPorId(nroProductoSecuencial);
+	
+		
+	}
+	
+	@Test (groups = "CatalogoATG", priority = 0)
 	public void FuncionExportar(){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		boolean  existe;
