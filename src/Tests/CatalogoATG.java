@@ -259,7 +259,17 @@ public class CatalogoATG extends MetodosCatalogoATG{
 
 		buscarProductoPorId(nroProductoSecuencial, false);
 	
+		driver.findElement(By.xpath("//*[@id='panel_table_productos']/article[2]/div/div[3]/button")).click();		
+
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
+		List<WebElement> botonesAceptar =  driver.findElements(By.xpath("//button[@ng-click='global.aceptar()']"));
+		WebElement boton = GetElementoVisible(botonesAceptar);
+		boton.click();
+		buscarProductoPorId(nroProductoSecuencial, false);
+		String enviado = driver.findElement(By.xpath("//*[@id='panel_table_productos']/article[1]/table/tbody/tr/td[15]/div")).getText();		
 		
+		Assert.assertTrue(enviado.equals("Enviado"));
+
 	}
 	
 	@Test (groups = "CatalogoATG", priority = 0)
