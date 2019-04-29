@@ -121,16 +121,9 @@ public class MetodosCatalogoATG extends Utils {
 		WaitForElement(driver, "cssSelector", ".logout");
 		driver.findElement(By.cssSelector(".logout")).click();
 		WaitForElement(driver, "xpath", "//button[ng-click='global.aceptar()']");
-		List<WebElement> botones =  driver.findElements(By.xpath("//button[@ng-click='global.aceptar()']"));		
-		
-		for(int i=0; i< botones.size();i++)
-		{
-			//System.out.println(botones.get(i).getLocation().x +" - "+ botones.get(i).getLocation().y);
-			if(botones.get(i).getLocation().x>0 || botones.get(i).getLocation().y>0) 
-			{
-				botones.get(i).click();
-			}
-		}
+		List<WebElement> botones =  driver.findElements(By.xpath("//button[@ng-click='global.aceptar()']"));
+		WebElement boton = GetElementoVisible(botones);
+		boton.click();
 	}
 	
 	public WebElement GetElementoVisible(List<WebElement> elementos) {		
@@ -138,7 +131,6 @@ public class MetodosCatalogoATG extends Utils {
 		int indiceElemento = 0;
 		for(int i=0; i< elementos.size();i++)
 		{
-			//System.out.println(botones.get(i).getLocation().x +" - "+ botones.get(i).getLocation().y);
 			if(elementos.get(i).getLocation().x > 0 && elementos.get(i).getLocation().y > 0) 
 			{
 				indiceElemento = i;
