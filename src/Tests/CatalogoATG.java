@@ -446,25 +446,39 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		boton = GetElementoVisible(botonesAceptar);
 		boton.click();
 		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","Aceptar");
-		driver.findElement(By.xpath("//*[@id=\"collapseNuevaOfPromocion\"]/div/form/div/div[1]/div[1]/div/div[3]/div[1]/button[1]")).click();
+		driver.findElement(By.xpath("//*[@id=\"collapseNuevaOfPromocion\"]/div/form/div/div[1]/div[1]/div/div[3]/div[1]/button[1]")).click(); 
+		sleep(2000); 
+		botonesAceptar = driver.findElements(By.xpath("//*[@id=\"panel_table_provincias\"]/article/table/tbody/tr[2]/td[1]/div/label")); 
+		boton = GetElementoVisible(botonesAceptar); 
+		boton.click();
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","Aceptar"); 
+        driver.findElement(By.xpath("//*[@id=\"collapseNuevaOfPromocion\"]/div/form/div/div[1]/div[1]/div/div[4]/div[1]/button")).click(); 
+        sleep(2000); buscarYClick(driver.findElements(By.cssSelector(".btn.btn-default.btn-filter.dropdown-toggle.ng-binding")),"equals","PARTIDO"); 
+        botonesAceptar = driver.findElements(By.xpath("//*[@id=\"modal-large\"]/div/div/div[2]/div/div/div/div[2]/article/table/thead/tr/th[2]/div/ul/li[5]/div[4]/div/input")); 
+        boton = GetElementoVisible(botonesAceptar); boton.sendKeys("ROQUE PEREZ");
 		sleep(2000);
-		botonesAceptar =  driver.findElements(By.xpath("//*[@id=\"panel_table_provincias\"]/article/table/tbody/tr[1]/td[1]/div/label"));
+		buscarYClick(driver.findElements(By.cssSelector(".ng-binding.ng-scope")),"equals","ROQUE PEREZ"); 
+		botonesAceptar = driver.findElements(By.xpath("//*[@id=\"modal-large\"]/div/div/div[2]/div/div/div/div[2]/article/table/tbody/tr[1]/td[1]/div/label")); 
+		boton = GetElementoVisible(botonesAceptar); 
+		boton.click();
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","Aceptar"); 
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","GUARDAR");
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
+		botonesAceptar =  driver.findElements(By.xpath("//button[@ng-click='global.aceptar()']"));
 		boton = GetElementoVisible(botonesAceptar);
 		boton.click();
-		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","Aceptar");
-		driver.findElement(By.xpath("//*[@id=\"collapseNuevaOfPromocion\"]/div/form/div/div[1]/div[1]/div/div[4]/div[1]/button")).click();
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-default.btn-filter.dropdown-toggle.ng-binding")),"equals","PROMOCION");
 		sleep(2000);
-		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-default.btn-filter.dropdown-toggle.ng-binding")),"equals","PARTIDO");
-		botonesAceptar =  driver.findElements(By.xpath("//*[@id=\"modal-large\"]/div/div/div[2]/div/div/div/div[2]/article/table/thead/tr/th[2]/div/ul/li[5]/div[4]/div/input"));
-		boton = GetElementoVisible(botonesAceptar);
-		boton.sendKeys("LOBOS");
-		sleep(2000);
-		buscarYClick(driver.findElements(By.cssSelector(".ng-binding.ng-scope")),"equals","LOBOS");
-		botonesAceptar =  driver.findElements(By.xpath("//*[@id=\"modal-large\"]/div/div/div[2]/div/div/div/div[2]/article/table/tbody/tr[1]/td[1]/div/label"));
-		boton = GetElementoVisible(botonesAceptar);
-		boton.click();
-		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","Aceptar");
-		
+		driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/thead/tr/th[3]/div/ul/li[5]/div[2]/div/input")).sendKeys("CV HD");
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-default.btn-filter.dropdown-toggle.ng-binding")),"equals","PROMOCION");
+		String promo=driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[3]/div")).getText();
+		Assert.assertTrue(promo.equals("CV HD + 25MB WIFI 12Mx70%"));
+		String pais=driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[4]/div")).getText();
+		Assert.assertTrue(pais.equals("ARGENTINA"));
+		String provincia=driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[5]/div")).getText();
+		Assert.assertTrue(provincia.equals("BUENOS AIRES"));
+		String localidad=driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[6]/div")).getText();
+		Assert.assertTrue(localidad.equals("ROQUE PEREZ"));
 	}
 	
 }
