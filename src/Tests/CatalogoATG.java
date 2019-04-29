@@ -141,7 +141,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		String subtipo="Adicional";
 		String nombre="AU_TEST_SP"+sprint+"_ATG_NM";
 		String nombre_base_instalada="AU_TEST_SP"+sprint+"_ATG_NBI";
-		String nombre_corto="AU_TEST_SP"+sprint+"_AT";
+		String nombre_corto="AU_T_"+sprint+"_";
 		String nombre_largo="AU_TEST_SP"+sprint+"_ATG_NL";
 		String nombre_crm="AU_TEST_SP"+sprint+"_ATG_NCRM";
 		String id_open=nroProductoSecuencial;
@@ -210,16 +210,40 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver.findElement(By.name("nombre_crm")).sendKeys("_MOD");
 		driver.findElement(By.name("sku")).sendKeys("_MOD");
 		driver.findElement(By.name("id_categoria")).sendKeys("_MOD");
-		driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).sendKeys("_MOD");		
+		driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).sendKeys("_MOD");			
+		
+		String nombre = driver.findElement(By.name("nombre")).getAttribute("value"); 
+		String nombre_base_instalada = driver.findElement(By.name("nombre_corto")).getAttribute("value");
+		String nombre_corto = driver.findElement(By.name("nombre_base_instalada")).getAttribute("value");
+		String nombre_largo = driver.findElement(By.name("nombre_largo")).getAttribute("value");
+		String nombre_crm = driver.findElement(By.name("nombre_crm")).getAttribute("value");
+		String id_open = driver.findElement(By.name("id_open")).getAttribute("value");
+		String sku = driver.findElement(By.name("sku")).getAttribute("value");
+		String id_categoria = driver.findElement(By.name("id_categoria")).getAttribute("value");
+		String legales = driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).getAttribute("value");		
+		
 		WaitForElement(driver, "xpath", "//*[@id=\"collapseNuevoProducto\"]/div/div[3]/div/fieldset/div/button[2]");
 		driver.findElement(By.xpath("//*[@id=\"collapseNuevoProducto\"]/div/div[3]/div/fieldset/div/button[2]")).click();
 		WaitForElement(driver, "xpath", "//*[@id=\"warning\"]/div/div/div[3]/button[2]");
-		driver.findElement(By.xpath("//*[@id=\"warning\"]/div/div/div[3]/button[2]")).click();		
-		
-		Assert.assertTrue(ElementCreatedUni(driver, "xpath", "//*[@id='success']/div/div/div[3]/button[3]",5));		
-		
+		driver.findElement(By.xpath("//*[@id=\"warning\"]/div/div/div[3]/button[2]")).click();
+		Assert.assertTrue(ElementCreatedUni(driver, "xpath", "//*[@id='success']/div/div/div[3]/button[3]",5));				
 		driver.findElement(By.xpath("//*[@id='success']/div/div/div[3]/button[3]")).click();
 		
+		buscarProductoPorId(nroProductoSecuencial);
+
+		Boolean valoresValidos = true;
+
+		valoresValidos = (valoresValidos == nombre.equals(driver.findElement(By.name("nombre")).getAttribute("value")));
+		valoresValidos = (valoresValidos == nombre_corto.equals(driver.findElement(By.name("nombre_corto")).getAttribute("value")));
+		valoresValidos = (valoresValidos == nombre_base_instalada.equals(driver.findElement(By.name("nombre_base_instalada")).getAttribute("value")));
+		valoresValidos = (valoresValidos == nombre_largo.equals(driver.findElement(By.name("nombre_largo")).getAttribute("value")));
+		valoresValidos = (valoresValidos == nombre_crm.equals(driver.findElement(By.name("nombre_crm")).getAttribute("value")));
+		valoresValidos = (valoresValidos == id_open.equals(driver.findElement(By.name("id_open")).getAttribute("value")));
+		valoresValidos = (valoresValidos == sku.equals(driver.findElement(By.name("sku")).getAttribute("value")));
+		valoresValidos = (valoresValidos == id_categoria.equals(driver.findElement(By.name("id_categoria")).getAttribute("value")));
+		valoresValidos = (valoresValidos == legales.equals(driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).getAttribute("value")));
+
+		Assert.assertTrue(valoresValidos);		
 	}
 	
 	@Test (groups = "CatalogoATG", priority = 0)
