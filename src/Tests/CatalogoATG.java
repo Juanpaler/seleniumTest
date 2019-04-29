@@ -394,4 +394,17 @@ public class CatalogoATG extends MetodosCatalogoATG{
 				"equals", "Eliminar");
 		Assert.assertTrue(false);	//No funciona el boton eliminar	
 	}
+	
+	@Test (groups = "CatalogoATG", priority = 0)
+	public void PoliticaComercialOfertaDePromocionesAlta (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Política comercial");
+		driver.findElement(By.xpath("//a[contains(text(),'Oferta de Promociones')]")).click();
+		WaitForElement(driver, "id", "panel_table_ofpromo");
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Nuevo");
+		driver.findElement(By.xpath("//*[@id=\"collapseNuevaOfPromocion\"]/div/form/div/div[1]/div[1]/div/div[1]/div[1]/button")).click();
+		
+	}
+	
 }
