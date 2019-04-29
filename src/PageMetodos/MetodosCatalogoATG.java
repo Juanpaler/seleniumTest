@@ -133,13 +133,13 @@ public class MetodosCatalogoATG extends Utils {
 		}
 	}
 	
-	public WebElement GetElementoVisible(List<WebElement> elementos, int x, int y) {		
+	public WebElement GetElementoVisible(List<WebElement> elementos) {		
 		
-		var indiceElemento = 0;
+		int indiceElemento = 0;
 		for(int i=0; i< elementos.size();i++)
 		{
 			//System.out.println(botones.get(i).getLocation().x +" - "+ botones.get(i).getLocation().y);
-			if(elementos.get(i).getLocation().x > y && elementos.get(i).getLocation().y > y) 
+			if(elementos.get(i).getLocation().x > 0 && elementos.get(i).getLocation().y > 0) 
 			{
 				indiceElemento = i;
 			}
