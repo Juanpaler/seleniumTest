@@ -99,7 +99,7 @@ public class MetodosCatalogoATG extends Utils {
 	}
 	
 	
-	public void buscarProductoPorId(String id) {
+	public void buscarProductoPorId(String id, Boolean click) {
 		
 		WaitForElement(driver, "xpath", "//*[@id='panel_table_productos']/article[1]/table/thead/tr/th[8]/div/button");
 		sleep(1000);
@@ -112,7 +112,10 @@ public class MetodosCatalogoATG extends Utils {
 		driver.findElement(By.xpath("//*[@id='panel_table_productos']/article[1]/table/tbody/tr/td[1]/div/label")).click();
 		WaitForElement(driver, "xpath", "//*[@id='panel_table_productos']/article[2]/div/div[2]/button[2]");
 		sleep(1000);
-		driver.findElement(By.xpath("//*[@id='panel_table_productos']/article[2]/div/div[2]/button[2]")).click();			
+		if(click)
+		{
+			driver.findElement(By.xpath("//*[@id='panel_table_productos']/article[2]/div/div[2]/button[2]")).click();
+		}
 	}
 
 		

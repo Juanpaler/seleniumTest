@@ -173,7 +173,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 
 		driver.findElement(By.xpath("//*[@id='success']/div/div/div[3]/button[3]")).click();
 		
-		buscarProductoPorId(nroProductoSecuencial);
+		buscarProductoPorId(nroProductoSecuencial, true);
 		Boolean valoresValidos = true;
 		
 		
@@ -201,7 +201,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
 		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();		
 
-		buscarProductoPorId(nroProductoSecuencial);
+		buscarProductoPorId(nroProductoSecuencial, true);
 	
 		driver.findElement(By.name("nombre")).sendKeys("_MOD");
 		driver.findElement(By.name("nombre_base_instalada")).sendKeys("_MOD");
@@ -229,7 +229,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(ElementCreatedUni(driver, "xpath", "//*[@id='success']/div/div/div[3]/button[3]",5));				
 		driver.findElement(By.xpath("//*[@id='success']/div/div/div[3]/button[3]")).click();
 		
-		buscarProductoPorId(nroProductoSecuencial);
+		buscarProductoPorId(nroProductoSecuencial, true);
 
 		Boolean valoresValidos = true;
 
@@ -257,9 +257,43 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
 		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();		
 
-		buscarProductoPorId(nroProductoSecuencial);
+		buscarProductoPorId(nroProductoSecuencial, false);
 	
+		driver.findElement(By.xpath("//*[@id='panel_table_productos']/article[2]/div/div[3]/button")).click();		
+
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
+		List<WebElement> botonesAceptar =  driver.findElements(By.xpath("//button[@ng-click='global.aceptar()']"));
+		WebElement boton = GetElementoVisible(botonesAceptar);
+		boton.click();
+		buscarProductoPorId(nroProductoSecuencial, false);
+		String enviado = driver.findElement(By.xpath("//*[@id='panel_table_productos']/article[1]/table/tbody/tr/td[15]/div")).getText();		
 		
+		Assert.assertTrue(enviado.equals("Enviado"));
+
+	}
+	
+	@Test (groups = "CatalogoATG", priority = 0)
+	public void EntidadesMaestrasProductosAnular (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+
+		loadTestConfig();
+		String nroProductoSecuencial = testConfig.getProperty("nroProductoSecuencial");
+		
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();		
+
+		buscarProductoPorId(nroProductoSecuencial, false);
+	
+		driver.findElement(By.xpath("//*[@id='panel_table_productos']/article[2]/div/div[2]/button[4]")).click();		
+
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
+		
+		buscarProductoPorId(nroProductoSecuencial, false);
+		String enviado = driver.findElement(By.xpath("//*[@id='panel_table_productos']/article[1]/table/tbody/tr/td[15]/div")).getText();		
+		
+		Assert.assertTrue(enviado.equals("Anulado"));
+
 	}
 	
 	@Test (groups = "CatalogoATG", priority = 0)
