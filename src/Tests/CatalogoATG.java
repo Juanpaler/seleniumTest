@@ -273,6 +273,30 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	}
 	
 	@Test (groups = "CatalogoATG", priority = 0)
+	public void EntidadesMaestrasProductosAnular (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+
+		loadTestConfig();
+		String nroProductoSecuencial = testConfig.getProperty("nroProductoSecuencial");
+		
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();		
+
+		buscarProductoPorId(nroProductoSecuencial, false);
+	
+		driver.findElement(By.xpath("//*[@id='panel_table_productos']/article[2]/div/div[2]/button[4]")).click();		
+
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
+		
+		buscarProductoPorId(nroProductoSecuencial, false);
+		String enviado = driver.findElement(By.xpath("//*[@id='panel_table_productos']/article[1]/table/tbody/tr/td[15]/div")).getText();		
+		
+		Assert.assertTrue(enviado.equals("Anulado"));
+
+	}
+	
+	@Test (groups = "CatalogoATG", priority = 0)
 	public void FuncionExportar(){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		boolean  existe;
