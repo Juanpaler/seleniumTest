@@ -257,30 +257,25 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver.findElement(By.xpath("//*[@id=\"collapseNuevaFactibilidad\"]/div/div/form/div[1]/div/div[1]/div[2]/div/input")).sendKeys("Autoname");
 		List<WebElement> botones =  driver.findElements(By.cssSelector(".btn-Cata-base.btn-masProducto"));	
 		botones.get(1).click();
-		//buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-masProducto")),"equals",". . .");
 		sleep(1000);
 		WaitForElement(driver, "xpath", "//*[@id='modal-large']/div/div/div[2]/div/div/div/div[2]/div/div[1]/table/tbody/tr[1]");
 		driver.findElement(By.xpath("//*[@id='modal-large']/div/div/div[2]/div/div/div/div[2]/div/div[1]/table/tbody/tr[1]")).click();
 		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","ACEPTAR");
 		botones.get(2).click();
 		sleep(1000);
-		//driver.findElement(By.xpath("//*[@id=\"modal-large\"]/div/div/div[2]/div/div/div/div[2]/article/table/tbody/tr[2]")).click();
 		List<WebElement> elementos = driver.findElements(By.xpath("//*[@id='modal-large']/div/div/div[2]/div/div/div/div[2]/article/table/tbody/tr[1]/td[1]/div/label"));
+		WebElement elemento = GetElementoVisible(elementos,0,0);
+		elemento.click();
 
-		for(int i=0; i< elementos.size();i++)
-		{
-			if(elementos.get(i).getLocation().x>0 || elementos.get(i).getLocation().y>44) 
-			{
-				elementos.get(i).click();
-			}
-		}
 		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","ACEPTAR");
 
 		driver.findElement(By.id("guardar")).click();
 		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
-		Assert.assertTrue(ElementCreatedUni(driver, "xpath", "//*[@id='success']/div/div/div[2]/div[1]/ul/li", 5));
-		//driver.findElement(By.xpath("//*[@id='success']/div/div/div[2]/div[1]/ul/li")).click();
-		buscarYClick(driver.findElements(By.xpath("//*[@id='success']/div/div/div[2]/div[1]/ul/li")),"equals","Aceptar");
+		Assert.assertTrue(ElementCreatedUni(driver, "xpath", "//*[@id='success']/div/div/div[2]/div[1]/ul/li", 5));		
+		
+		List<WebElement> botonesAceptar =  driver.findElements(By.xpath("//button[@ng-click='global.aceptar()']"));
+		WebElement boton = GetElementoVisible(botonesAceptar,0,0);
+		boton.click();
 
 	}
 	
