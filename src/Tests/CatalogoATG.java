@@ -311,13 +311,47 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		buscarYClick(driver.findElements(By.cssSelector(
 				".mdl-button.mdl-js-button.mdl-js-ripple-effect")),
 				"equals", "Modificar");
+		driver.findElement(By.xpath("//*[@id=\"collapseNuevaFactibilidad\"]/div/div/form/div[1]/div/div[1]/div[1]/div/input")).clear();
 		driver.findElement(By.xpath("//*[@id=\"collapseNuevaFactibilidad\"]/div/div/form/div[1]/div/div[1]/div[1]/div/input")).sendKeys("AutoGroup2Mdificado");
 		buscarYClick(driver.findElements(By.id("guardar")),"equals","GUARDAR");
 		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
 		List<WebElement> botonesAceptar =  driver.findElements(By.xpath("//button[@ng-click='global.aceptar()']"));
 		WebElement boton = GetElementoVisible(botonesAceptar);
 		boton.click();
+	}
 	
-	
+	@Test (groups = "CatalogoATG", priority = 0)
+	public void FactibilidadComercialEliminarGrupo() {
+		nombreCaso = new Object() {
+		}.getClass().getEnclosingMethod().getName();
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(
+				".dropdown-toggle.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),
+				"equals", "Factibilidad");
+		driver.findElement(By.xpath("//a[contains(text(),'Factibilidad Comercial')]")).click();
+		WaitForElement(driver, "id", "panel_opciones_factibilidad");
+		String grupo;
+		Boolean encontrado = false;
+		while (!encontrado) {
+			for (int i = 1; i < 7; i++) {
+				grupo = driver.findElement(By.xpath(
+						"//*[@id=\"panel_opciones_factibilidad\"]/div[2]/div[2]/div/div/table/tbody/tr["+i+"]/td[3]"))
+						.getText();
+				if (grupo.equals("AutoGroup")) {
+					driver.findElement(By.xpath(
+							"//*[@id=\"panel_opciones_factibilidad\"]/div[2]/div[2]/div/div/table/tbody/tr["+i+"]/td[3]"))
+							.click();
+					encontrado = true;
+					break;
+				}
+			}
+			if(encontrado.equals(false)) {
+				buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-button-paginado")), "equals", "»");
+			}
+		}
+		buscarYClick(driver.findElements(By.cssSelector(
+				".mdl-button.mdl-js-button.mdl-js-ripple-effect")),
+				"equals", "Eliminar");
+		Assert.assertTrue(false);	//No funciona el boton eliminar	
 	}
 }
