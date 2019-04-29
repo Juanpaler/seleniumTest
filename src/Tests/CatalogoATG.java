@@ -264,7 +264,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		botones.get(2).click();
 		sleep(1000);
 		List<WebElement> elementos = driver.findElements(By.xpath("//*[@id='modal-large']/div/div/div[2]/div/div/div/div[2]/article/table/tbody/tr[1]/td[1]/div/label"));
-		WebElement elemento = GetElementoVisible(elementos,0,0);
+		WebElement elemento = GetElementoVisible(elementos);
 		elemento.click();
 
 		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","ACEPTAR");
@@ -274,7 +274,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(ElementCreatedUni(driver, "xpath", "//*[@id='success']/div/div/div[2]/div[1]/ul/li", 5));		
 		
 		List<WebElement> botonesAceptar =  driver.findElements(By.xpath("//button[@ng-click='global.aceptar()']"));
-		WebElement boton = GetElementoVisible(botonesAceptar,0,0);
+		WebElement boton = GetElementoVisible(botonesAceptar);
 		boton.click();
 
 	}
@@ -314,7 +314,9 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver.findElement(By.xpath("//*[@id=\"collapseNuevaFactibilidad\"]/div/div/form/div[1]/div/div[1]/div[1]/div/input")).sendKeys("AutoGroup2Mdificado");
 		buscarYClick(driver.findElements(By.id("guardar")),"equals","GUARDAR");
 		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
-		
+		List<WebElement> botonesAceptar =  driver.findElements(By.xpath("//button[@ng-click='global.aceptar()']"));
+		WebElement boton = GetElementoVisible(botonesAceptar);
+		boton.click();
 	
 	
 	}
