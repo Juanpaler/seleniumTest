@@ -57,7 +57,7 @@ public class EComerce extends Metodos{
 		
 	}
 	
-	@AfterMethod (alwaysRun = true)
+	//@AfterMethod (alwaysRun = true)
 	public void after(){
 		tomarCaptura(driver,nombreCaso,rutaCaptura);
 		try{
@@ -97,6 +97,19 @@ public class EComerce extends Metodos{
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
 		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");		
 		loginEComerceWithBug("1164443656","1469");				
+	}	
+
+
+	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
+	public void C06_Cliente_loguea_accede_a_equipo_vuelve_a_home() throws IOException{
+        nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 		
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginEComerceWithBug(linea,"1469");				
+		WaitForElement("id", "tpi-user");
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+
+		Assert.assertTrue(true);
 	}	
 	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
