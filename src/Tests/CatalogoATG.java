@@ -331,22 +331,19 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver.findElement(By.xpath("//*[@id=\"collapseNuevaFactibilidad\"]/div/div/form/div[1]/div/div[1]/div[2]/div/input")).sendKeys("Autoname");
 		List<WebElement> botones =  driver.findElements(By.cssSelector(".btn-Cata-base.btn-masProducto"));	
 		botones.get(1).click();
-		sleep(1000);
+		sleep(2000);
 		WaitForElement(driver, "xpath", "//*[@id='modal-large']/div/div/div[2]/div/div/div/div[2]/div/div[1]/table/tbody/tr[1]");
 		driver.findElement(By.xpath("//*[@id='modal-large']/div/div/div[2]/div/div/div/div[2]/div/div[1]/table/tbody/tr[1]")).click();
 		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","ACEPTAR");
 		botones.get(2).click();
-		sleep(1000);
+		sleep(2000);
 		List<WebElement> elementos = driver.findElements(By.xpath("//*[@id='modal-large']/div/div/div[2]/div/div/div/div[2]/article/table/tbody/tr[1]/td[1]/div/label"));
 		WebElement elemento = GetElementoVisible(elementos);
 		elemento.click();
-
 		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","ACEPTAR");
-
 		driver.findElement(By.id("guardar")).click();
 		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
-		Assert.assertTrue(ElementCreatedUni(driver, "xpath", "//*[@id='success']/div/div/div[2]/div[1]/ul/li", 5));		
-		
+		Assert.assertTrue(ElementCreatedUni(driver, "xpath", "//*[@id='success']/div/div/div[2]/div[1]/ul/li", 5));				
 		List<WebElement> botonesAceptar =  driver.findElements(By.xpath("//button[@ng-click='global.aceptar()']"));
 		WebElement boton = GetElementoVisible(botonesAceptar);
 		boton.click();
@@ -428,4 +425,60 @@ public class CatalogoATG extends MetodosCatalogoATG{
 				"equals", "Eliminar");
 		Assert.assertTrue(false);	//No funciona el boton eliminar	
 	}
+	
+	@Test (groups = "CatalogoATG", priority = 0)
+	public void PoliticaComercialOfertaDePromocionesAlta (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Política comercial");
+		driver.findElement(By.xpath("//a[contains(text(),'Oferta de Promociones')]")).click();
+		WaitForElement(driver, "id", "panel_table_ofpromo");
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Nuevo");
+		driver.findElement(By.xpath("//*[@id=\"collapseNuevaOfPromocion\"]/div/form/div/div[1]/div[1]/div/div[1]/div[1]/button")).click();
+		sleep(2000);
+		List<WebElement> botonesAceptar =  driver.findElements(By.xpath("//*[@id=\"table_collapse\"]/div/article/div[2]/div/div/div[1]/div/label"));
+		WebElement boton = GetElementoVisible(botonesAceptar);
+		boton.click();
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","Aceptar");
+		driver.findElement(By.xpath("//*[@id=\"collapseNuevaOfPromocion\"]/div/form/div/div[1]/div[1]/div/div[2]/div[1]/button[1]")).click();
+		sleep(2000);
+		botonesAceptar =  driver.findElements(By.xpath("//*[@id=\"panel_table_pais\"]/table/tbody/tr[1]/td[1]/div/label"));
+		boton = GetElementoVisible(botonesAceptar);
+		boton.click();
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","Aceptar");
+		driver.findElement(By.xpath("//*[@id=\"collapseNuevaOfPromocion\"]/div/form/div/div[1]/div[1]/div/div[3]/div[1]/button[1]")).click(); 
+		sleep(2000); 
+		botonesAceptar = driver.findElements(By.xpath("//*[@id=\"panel_table_provincias\"]/article/table/tbody/tr[2]/td[1]/div/label")); 
+		boton = GetElementoVisible(botonesAceptar); 
+		boton.click();
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","Aceptar"); 
+        driver.findElement(By.xpath("//*[@id=\"collapseNuevaOfPromocion\"]/div/form/div/div[1]/div[1]/div/div[4]/div[1]/button")).click(); 
+        sleep(2000); buscarYClick(driver.findElements(By.cssSelector(".btn.btn-default.btn-filter.dropdown-toggle.ng-binding")),"equals","PARTIDO"); 
+        botonesAceptar = driver.findElements(By.xpath("//*[@id=\"modal-large\"]/div/div/div[2]/div/div/div/div[2]/article/table/thead/tr/th[2]/div/ul/li[5]/div[4]/div/input")); 
+        boton = GetElementoVisible(botonesAceptar); boton.sendKeys("ROQUE PEREZ");
+		sleep(2000);
+		buscarYClick(driver.findElements(By.cssSelector(".ng-binding.ng-scope")),"equals","ROQUE PEREZ"); 
+		botonesAceptar = driver.findElements(By.xpath("//*[@id=\"modal-large\"]/div/div/div[2]/div/div/div/div[2]/article/table/tbody/tr[1]/td[1]/div/label")); 
+		boton = GetElementoVisible(botonesAceptar); 
+		boton.click();
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","Aceptar"); 
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","GUARDAR");
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
+		botonesAceptar =  driver.findElements(By.xpath("//button[@ng-click='global.aceptar()']"));
+		boton = GetElementoVisible(botonesAceptar);
+		boton.click();
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-default.btn-filter.dropdown-toggle.ng-binding")),"equals","PROMOCION");
+		sleep(2000);
+		driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/thead/tr/th[3]/div/ul/li[5]/div[2]/div/input")).sendKeys("CV HD");
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-default.btn-filter.dropdown-toggle.ng-binding")),"equals","PROMOCION");
+		String promo=driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[3]/div")).getText();
+		Assert.assertTrue(promo.equals("CV HD + 25MB WIFI 12Mx70%"));
+		String pais=driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[4]/div")).getText();
+		Assert.assertTrue(pais.equals("ARGENTINA"));
+		String provincia=driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[5]/div")).getText();
+		Assert.assertTrue(provincia.equals("BUENOS AIRES"));
+		String localidad=driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[6]/div")).getText();
+		Assert.assertTrue(localidad.equals("ROQUE PEREZ"));
+	}
+	
 }
