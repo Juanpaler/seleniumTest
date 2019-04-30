@@ -69,6 +69,28 @@ public class EComerce extends Metodos{
 		}
 	}
 	
+	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
+	public void C01_Busqueda_de_resultado(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.findElement(By.cssSelector(".tpi-search")).click();
+		driver.findElement(By.id("searchable1")).sendKeys("cambio de equipo");
+		driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Tienda Online'])[1]/following::p[1]")).click();
+		Assert.assertTrue(driver.getCurrentUrl().equals("https://tienda.personal.com.ar/"));
+	}
+	
+	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
+	public void C02_Busqueda_de_resultados_relacionados(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		driver.findElement(By.cssSelector(".tpi-search")).click();
+		driver.findElement(By.id("searchable1")).sendKeys("linea");
+		driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Tienda Online'])[1]/following::p[1]")).click();
+		Assert.assertTrue(driver.getCurrentUrl().equals("https://tienda.personal.com.ar/"));
+	}
+	
+	
 	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
 	public void C03_Cliente_hace_logout_despues_de_login(){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
@@ -148,130 +170,6 @@ public class EComerce extends Metodos{
 		Assert.assertTrue(true);
 	}	
 	
-	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
-	public void C28_Visualizacion_de_productos_en_cliente_No_logueado(){
-		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName(); 	
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-		Boolean precio = false;
-		List<WebElement> precios = driver.findElements(By.cssSelector(".product-list__price--leyend"));
-			for(WebElement p : precios){
-				if(p.getText().contains("\u0024")){
-					precio = true;	
-				}
-			}
-		Assert.assertTrue(precio);
-	}
-	
-	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
-	public void C27_Visualizacion_de_catalogo_de_equipos_disponibles(){
-		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-		Boolean precio = false;
-		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
-		List<WebElement> precios = driver.findElements(By.cssSelector(".font-platform-regular.text-primary"));
-			for(WebElement p : precios){
-				if(p.getText().contains("\u0024")){
-					precio = true;	
-				}
-			}
-		Assert.assertTrue(precio);
-	}
-	
-	
-	
-	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void C31_Cliente_no_logueado_ingresa_a_Planes(){
-		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item2"));
-		Actions action = new Actions(driver);
-		action.moveToElement(searchBtn).perform();
-		driver.findElement(By.linkText("Pasate a Personal")).click();
-		Assert.assertTrue(driver.getCurrentUrl().equals("https://www.personal.com.ar/portabilidad/"));
-	}
-	
-	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void C29_Cliente_no_logueado_ingresa_a_Autogestion(){
-		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item3"));
-		Actions action = new Actions(driver);
-		action.moveToElement(searchBtn).perform();
-		driver.findElement(By.linkText("Comprar packs")).click();
-		Assert.assertTrue(driver.getCurrentUrl().equals("https://autogestionuat.personal.com.ar/login/"));
-	}
-	
-	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void C33_Cliente_no_logueado_ingresa_a_Temas_de_Ayuda(){
-		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
-		sleep(10000);
-		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item5"));
-		Actions action = new Actions(driver);
-		action.moveToElement(searchBtn).perform();
-		sleep(3000);
-		driver.findElement(By.xpath("//strong[contains(text(),'Temas de ayuda')]")).click();
-	}
-	
-	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void C34_Cliente_logueado_realiza_cater_Precio_de_venta_con_Subsidio(){
-		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-		loginEComerceWithBug("1164443656","1469");				
-		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
-		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");	
-		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary")),"contains","comprar");
-		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn--collapse.js-select-cater.js-steps")),"contains","actual");
-	}
-	
-	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void C32_Cliente_no_logueado_ingresa_a_Soporte_Tecnico(){
-		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
-		sleep(10000);
-		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item5"));
-		Actions action = new Actions(driver);
-		action.moveToElement(searchBtn).perform();
-		sleep(3000);
-		driver.findElement(By.xpath("//strong[contains(text(),'Soporte tecnico')]")).click();
-	}
-	
-	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void C30_Cliente_no_logueado_ingresa_a_Ayuda_Lineas(){
-		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		
-		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item5"));
-		Actions action = new Actions(driver);
-		action.moveToElement(searchBtn).perform();
-		driver.findElement(By.linkText("Lineas")).click();
-		Assert.assertTrue(driver.getCurrentUrl().equals("https://uat.personal.com.ar/ayudaysoporte/#/individuos/soporte/lineas"));
-	}
-	
-	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void C02_Busqueda_de_resultados_relacionados(){
-		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		
-		driver.findElement(By.cssSelector(".tpi-search")).click();
-		driver.findElement(By.id("searchable1")).sendKeys("linea");
-		driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Tienda Online'])[1]/following::p[1]")).click();
-		Assert.assertTrue(driver.getCurrentUrl().equals("https://tienda.personal.com.ar/"));
-	}
-	
-	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
-	public void C01_Busqueda_de_resultado(){
-		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		driver.findElement(By.cssSelector(".tpi-search")).click();
-		driver.findElement(By.id("searchable1")).sendKeys("cambio de equipo");
-		driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Tienda Online'])[1]/following::p[1]")).click();
-		Assert.assertTrue(driver.getCurrentUrl().equals("https://tienda.personal.com.ar/"));
-	}
-	
 	@Test (groups ={"Home Tienda","Filtros"}) 
 	public void C09_Filtro_Marcas(){
 		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
@@ -288,8 +186,7 @@ public class EComerce extends Metodos{
 		}
 		Assert.assertTrue(elementoEncontraado); 		
 	}
-	
-	
+		
 	@Test (groups ={"Home Tienda","Filtros"}) 
 	public void C11_Filtro_Tipo_de_Camara(){
 		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
@@ -372,6 +269,186 @@ public class EComerce extends Metodos{
 		
 	}
 	
+	@Test (groups ={"Home Tienda","Filtros"}) 
+	public void C23_Ordenamiento_Precio_Mayor(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","destacados");
+		buscarYClick(driver.findElements(By.cssSelector(".filter__item")),"contains","mayor precio");
+		
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);		
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".product-list__price--leyend")));		
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);	
+		
+	    List<WebElement> precios = driver.findElements(By.cssSelector(".product-list__price--leyend"));
+	    int tamanio=precios.size();
+	    double temp = 0;
+	    Boolean elementoEncontrado = true;
+	    for (int i = 0; i < tamanio; i++) {
+	    	String precioS=precios.get(i).getText();
+	    	if (!precioS.equals("")) {
+		    	precioS=precioS.replace("$","");
+		    	precioS=precioS.replace(".","");
+		    	precioS=precioS.replace(",",".");
+		    	double value = Double.parseDouble(precioS);
+		    	System.out.println(value); 
+		    	if (i>0) {
+		    		if (temp<value) {
+		    			elementoEncontrado = false;
+		    		}		
+		    	}
+		    	temp=value;
+	    	}
+	    }
+	    Assert.assertTrue(elementoEncontrado);	    
+	}
+	
+	@Test (groups ={"Home Tienda","Filtros"}) 
+	public void C25_Ordenamiento_Precio_Menor(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","destacados");
+		buscarYClick(driver.findElements(By.cssSelector(".filter__item")),"contains","menor precio");
+		
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".product-list__price--leyend")));
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
+
+	    List<WebElement> precios = driver.findElements(By.cssSelector(".product-list__price--leyend"));
+	    int tamanio=precios.size();
+	    double temp = 0;
+	    Boolean elementoEncontrado = true;
+	    for (int i = 0; i < tamanio; i++) {
+	    	String precioS=precios.get(i).getText();
+	    	if (!precioS.equals("")) {
+		    	precioS=precioS.replace("$","");
+		    	precioS=precioS.replace(".","");
+		    	precioS=precioS.replace(",",".");
+		    	double value = Double.parseDouble(precioS);
+		    	System.out.println(value); 
+		    	if (i>0) {
+		    		if (temp>value) {
+		    			elementoEncontrado = false;
+		    		}		
+		    	}
+		    	temp=value;
+	    	}
+	    }
+	    Assert.assertTrue(elementoEncontrado);	    
+	}
+	
+	
+	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
+	public void C27_Visualizacion_de_catalogo_de_equipos_disponibles(){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+		Boolean precio = false;
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		List<WebElement> precios = driver.findElements(By.cssSelector(".font-platform-regular.text-primary"));
+			for(WebElement p : precios){
+				if(p.getText().contains("\u0024")){
+					precio = true;	
+				}
+			}
+		Assert.assertTrue(precio);
+	}
+	
+	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
+	public void C28_Visualizacion_de_productos_en_cliente_No_logueado(){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+		Boolean precio = false;
+		List<WebElement> precios = driver.findElements(By.cssSelector(".product-list__price--leyend"));
+			for(WebElement p : precios){
+				if(p.getText().contains("\u0024")){
+					precio = true;	
+				}
+			}
+		Assert.assertTrue(precio);
+	}
+	
+	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
+	public void C29_Cliente_no_logueado_ingresa_a_Autogestion(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item3"));
+		Actions action = new Actions(driver);
+		action.moveToElement(searchBtn).perform();
+		driver.findElement(By.linkText("Comprar packs")).click();
+		Assert.assertTrue(driver.getCurrentUrl().equals("https://autogestionuat.personal.com.ar/login/"));
+	}
+	
+	
+	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
+	public void C30_Cliente_no_logueado_ingresa_a_Ayuda_Lineas(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item5"));
+		Actions action = new Actions(driver);
+		action.moveToElement(searchBtn).perform();
+		driver.findElement(By.linkText("Lineas")).click();
+		Assert.assertTrue(driver.getCurrentUrl().equals("https://uat.personal.com.ar/ayudaysoporte/#/individuos/soporte/lineas"));
+	}
+	
+	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
+	public void C31_Cliente_no_logueado_ingresa_a_Planes(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item2"));
+		Actions action = new Actions(driver);
+		action.moveToElement(searchBtn).perform();
+		driver.findElement(By.linkText("Pasate a Personal")).click();
+		Assert.assertTrue(driver.getCurrentUrl().equals("https://www.personal.com.ar/portabilidad/"));
+	}
+	
+	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
+	public void C32_Cliente_no_logueado_ingresa_a_Soporte_Tecnico(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		sleep(10000);
+		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item5"));
+		Actions action = new Actions(driver);
+		action.moveToElement(searchBtn).perform();
+		sleep(3000);
+		driver.findElement(By.xpath("//strong[contains(text(),'Soporte tecnico')]")).click();
+	}
+	
+	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
+	public void C33_Cliente_no_logueado_ingresa_a_Temas_de_Ayuda(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		sleep(10000);
+		WebElement searchBtn = driver.findElement(By.id("tpi-navbar-item5"));
+		Actions action = new Actions(driver);
+		action.moveToElement(searchBtn).perform();
+		sleep(3000);
+		driver.findElement(By.xpath("//strong[contains(text(),'Temas de ayuda')]")).click();
+	}
+	
+	@Test (groups ={"Home Tienda","Barra Navegacion"}) 
+	public void C34_Cliente_logueado_realiza_cater_Precio_de_venta_con_Subsidio(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+		loginEComerceWithBug("1164443656","1469");				
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");	
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary")),"contains","comprar");
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn--collapse.js-select-cater.js-steps")),"contains","actual");
+	}
+	
+
+	
+
+
+
+	
+
 	@Test (groups ={"Interna Producto","Financiacion"}) 
 	public void C52_Cliente_no_logueado_elige_linea_Nueva(){
 		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
@@ -466,77 +543,19 @@ public class EComerce extends Metodos{
 		Assert.assertTrue(elementoEncontrado);		
 	}
 
-
-	@Test (groups ={"Home Tienda","Filtros"}) 
-	public void C23_Ordenamiento_Precio_Mayor(){
+	@Test (groups ={"Interna Accesorio","Financiacion"}) 
+	public void C57_Compra_Accesorio_Carro_de_compra(){
 		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","destacados");
-		buscarYClick(driver.findElements(By.cssSelector(".filter__item")),"contains","mayor precio");
-		
-		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);		
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".product-list__price--leyend")));		
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);	
-		
-	    List<WebElement> precios = driver.findElements(By.cssSelector(".product-list__price--leyend"));
-	    int tamanio=precios.size();
-	    double temp = 0;
-	    Boolean elementoEncontrado = true;
-	    for (int i = 0; i < tamanio; i++) {
-	    	String precioS=precios.get(i).getText();
-	    	if (!precioS.equals("")) {
-		    	precioS=precioS.replace("$","");
-		    	precioS=precioS.replace(".","");
-		    	precioS=precioS.replace(",",".");
-		    	double value = Double.parseDouble(precioS);
-		    	System.out.println(value); 
-		    	if (i>0) {
-		    		if (temp<value) {
-		    			elementoEncontrado = false;
-		    		}		
-		    	}
-		    	temp=value;
-	    	}
-	    }
-	    Assert.assertTrue(elementoEncontrado);	    
-	}
-	
-	@Test (groups ={"Home Tienda","Filtros"}) 
-	public void C25_Ordenamiento_Precio_Menor(){
-		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		buscarYClick(driver.findElements(By.cssSelector(".filter__combo--select")),"contains","destacados");
-		buscarYClick(driver.findElements(By.cssSelector(".filter__item")),"contains","menor precio");
-		
-		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".product-list__price--leyend")));
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
-
-	    List<WebElement> precios = driver.findElements(By.cssSelector(".product-list__price--leyend"));
-	    int tamanio=precios.size();
-	    double temp = 0;
-	    Boolean elementoEncontrado = true;
-	    for (int i = 0; i < tamanio; i++) {
-	    	String precioS=precios.get(i).getText();
-	    	if (!precioS.equals("")) {
-		    	precioS=precioS.replace("$","");
-		    	precioS=precioS.replace(".","");
-		    	precioS=precioS.replace(",",".");
-		    	double value = Double.parseDouble(precioS);
-		    	System.out.println(value); 
-		    	if (i>0) {
-		    		if (temp>value) {
-		    			elementoEncontrado = false;
-		    		}		
-		    	}
-		    	temp=value;
-	    	}
-	    }
-	    Assert.assertTrue(elementoEncontrado);	    
+		
+		driver.navigate().to("https://personaluat.vtexcommercestable.com.br/accesorios");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		driver.findElement(By.cssSelector(".buy-button.buy-button-ref")).click();			
+		Boolean carroCompras = false;		
+		carroCompras = driver.findElement(By.cssSelector(".cart__title--container")).getText().equals("Resumen de compra");	
+		Assert.assertTrue(carroCompras);		
 	}
-	
+
 	@Test (groups ={"Interna Producto","Financiacion"}) 
 	public void C68_Compra_equipo_linea_nueva_Mail_registrado(){
 		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
@@ -567,60 +586,6 @@ public class EComerce extends Metodos{
 		Assert.assertTrue(camposLlenos);		
 	}
 	
-	@Test (groups ={"Interna Producto","Financiacion"}) 
-	public void C70_Compra_equipo_linea_nueva_Mail_no_registrado(){
-		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		
-		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
-		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
-		driver.findElement(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary.js-steps")).click();
-		driver.findElement(By.cssSelector(".product-main__btn.btn.btn-default.js-select-plan.js-steps")).click();
-		buscarYClick(driver.findElements(By.cssSelector(".plan__btn.product-main__btn.btn.btn-default")),"contains","Quiero este plan");
-		driver.findElement(By.cssSelector(".action__go-to-checkout.btn.btn-primary.btn-lg.col-md-3.col-sm-6.col-xs-12")).click();
-		driver.findElement(By.id("client-pre-email")).sendKeys("correo@electronico.com");
-		driver.findElement(By.id("btn-client-pre-email")).click();		
-		
-		Boolean camposVacios = false;		
-		camposVacios = driver.findElement(By.id("client-first-name")).getText().isEmpty();		
-		camposVacios = (camposVacios == driver.findElement(By.id("client-last-name")).getText().isEmpty());
-		
-		Assert.assertTrue(camposVacios);		
-	}
-	
-	@Test (groups ={"Interna Accesorio","Financiacion"}) 
-	public void C57_Compra_Accesorio_Carro_de_compra(){
-		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
-		
-		driver.navigate().to("https://personaluat.vtexcommercestable.com.br/accesorios");
-		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
-		driver.findElement(By.cssSelector(".buy-button.buy-button-ref")).click();			
-		Boolean carroCompras = false;		
-		carroCompras = driver.findElement(By.cssSelector(".cart__title--container")).getText().equals("Resumen de compra");	
-		Assert.assertTrue(carroCompras);		
-	}
-	
-	@Test (groups ={"Interna Accesorio","Financiacion"}) 
-	public void C72_Compra_Accesorio_Mail_no_registrado(){
-		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		
-		driver.navigate().to("https://personaluat.vtexcommercestable.com.br/accesorios");
-		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
-		driver.findElement(By.cssSelector(".buy-button.buy-button-ref")).click();
-		driver.findElement(By.cssSelector(".action__go-to-checkout.btn.btn-primary.btn-lg.col-md-3.col-sm-6.col-xs-12")).click();
-		driver.findElement(By.id("client-pre-email")).sendKeys("alejandro-miguel.rubinstein@atos.net");
-		driver.findElement(By.id("btn-client-pre-email")).click();		
-		buscarYClick(driver.findElements(By.id("btn-identified-user-button")),"contains","continuar con la compra");
-		
-		Boolean camposLlenos = false;		
-		camposLlenos = !driver.findElement(By.id("client-first-name")).getText().isEmpty();		
-		camposLlenos = !(camposLlenos == driver.findElement(By.id("client-last-name")).getText().isEmpty());
-		
-		Assert.assertTrue(camposLlenos);		
-	}
-	
 	@Test (groups ={"Registracion de email","Linea nueva"}) 
 	public void C69_Cliente_no_logueado_compra_equipo_con_nueva_linea_e_ingresa_un_mail_registrado(){
 		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
@@ -642,6 +607,49 @@ public class EComerce extends Metodos{
 		Assert.assertFalse(driver.findElement(By.id("client-first-name")).getAttribute("value").isEmpty());
 	}
 	
+	@Test (groups ={"Interna Producto","Financiacion"}) 
+	public void C70_Compra_equipo_linea_nueva_Mail_no_registrado(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		driver.findElement(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary.js-steps")).click();
+		driver.findElement(By.cssSelector(".product-main__btn.btn.btn-default.js-select-plan.js-steps")).click();
+		buscarYClick(driver.findElements(By.cssSelector(".plan__btn.product-main__btn.btn.btn-default")),"contains","Quiero este plan");
+		driver.findElement(By.cssSelector(".action__go-to-checkout.btn.btn-primary.btn-lg.col-md-3.col-sm-6.col-xs-12")).click();
+		driver.findElement(By.id("client-pre-email")).sendKeys("correo@electronico.com");
+		driver.findElement(By.id("btn-client-pre-email")).click();		
+		
+		Boolean camposVacios = false;		
+		camposVacios = driver.findElement(By.id("client-first-name")).getText().isEmpty();		
+		camposVacios = (camposVacios == driver.findElement(By.id("client-last-name")).getText().isEmpty());
+		
+		Assert.assertTrue(camposVacios);		
+	}
+	
+
+	
+	@Test (groups ={"Interna Accesorio","Financiacion"}) 
+	public void C72_Compra_Accesorio_Mail_no_registrado(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		driver.navigate().to("https://personaluat.vtexcommercestable.com.br/accesorios");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		driver.findElement(By.cssSelector(".buy-button.buy-button-ref")).click();
+		driver.findElement(By.cssSelector(".action__go-to-checkout.btn.btn-primary.btn-lg.col-md-3.col-sm-6.col-xs-12")).click();
+		driver.findElement(By.id("client-pre-email")).sendKeys("alejandro-miguel.rubinstein@atos.net");
+		driver.findElement(By.id("btn-client-pre-email")).click();		
+		buscarYClick(driver.findElements(By.id("btn-identified-user-button")),"contains","continuar con la compra");
+		
+		Boolean camposLlenos = false;		
+		camposLlenos = !driver.findElement(By.id("client-first-name")).getText().isEmpty();		
+		camposLlenos = !(camposLlenos == driver.findElement(By.id("client-last-name")).getText().isEmpty());
+		
+		Assert.assertTrue(camposLlenos);		
+	}
+	
 	
 	@Test(groups ={"Registracion de email","Venta Accesorio"}) 
 	public void C73_Cliente_no_logueado_compra_un_accesorio_e_ingresa_un_mail_no_registrado_y_debe_completar_todos_los_datos_en_checkout(){
@@ -661,23 +669,5 @@ public class EComerce extends Metodos{
 		camposVacios = (camposVacios == driver.findElement(By.id("client-last-name")).getText().isEmpty());
 		
 		Assert.assertTrue(camposVacios);		
-	}
-	
-	@Test(groups ={"Registracion de email","Venta Accesorio","cliente logueado"})  // El accesorio lo reconoce como un equipo y pregunta por la linea 
-	public void TS054_Cliente_logueado_compra_un_accesorio_e_ingresa_un_mail_cargado_en_Siebel(){
-		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
-		loginEComerce("1151747938","1469");
-		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
-		sleep(7000);
-		List <WebElement> products = driver.findElements(By.cssSelector(".product-list__wrapper"));
-			for(WebElement p : products){
-				if (p.getText().toLowerCase().contains("vidrio templado")){
-					p.findElement(By.cssSelector(".col-xs-5.col-sm-12")).click();
-					break;
-				}
-			}
-		sleep(5000);
-		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary.js-steps")),"equals","comprar");
-		Assert.assertTrue(false);
 	}
 }
