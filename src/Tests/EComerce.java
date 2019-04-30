@@ -104,10 +104,11 @@ public class EComerce extends Metodos{
 	public void C06_Cliente_loguea_accede_a_equipo_vuelve_a_home() throws IOException{
         nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 		
 		String linea=retornaLinea(nombreCaso,archivoLineas);
-		loginEComerceWithBug(linea,"1469");				
+		loginEComerceWithBug("1164443656","1469");				
 		WaitForElement("id", "tpi-user");
-		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		driver.findElement(By.xpath("//a[contains(text(),'VER TODOS LOS EQUIPOS')]")).click();
 		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		driver.findElement(By.xpath("//a[contains(text(),'Inicio')]")).click();
 
 		Assert.assertTrue(true);
 	}	
