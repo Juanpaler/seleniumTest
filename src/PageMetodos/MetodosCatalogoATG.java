@@ -118,6 +118,30 @@ public class MetodosCatalogoATG extends Utils {
 		}
 	}
 
+	public void buscarPromocionPorId(String id, Boolean click) {
+		
+		WaitForElement(driver, "xpath", "//*[@id='table_collapse']/div[2]/div[1]/div/div[11]/button");
+		sleep(1000);
+		driver.findElement(By.xpath("//*[@id='table_collapse']/div[2]/div[1]/div/div[11]/button")).click();	
+		
+		WaitForElement(driver, "xpath", "//*[@id='table_collapse']/div[2]/div[1]/div/div[11]/ul/li[6]/div/input");
+		
+		sleep(1000);
+		driver.findElement(By.xpath("//*[@id='table_collapse']/div[2]/div[1]/div/div[11]/ul/li[6]/div/input")).sendKeys(id);	
+		
+		WaitForElement(driver, "xpath", "//*[@id='table_collapse']/div[2]/div[2]/div/div/div[1]/div/label");
+		
+		sleep(1000);
+		driver.findElement(By.xpath("//*[@id='table_collapse']/div[2]/div[2]/div/div/div[1]/div/label")).click();
+		
+		WaitForElement(driver, "xpath", "//*[@id='panel_table_promo']/article/div/div[2]/button[2]");
+		
+		sleep(1000);
+		if(click)
+		{
+			driver.findElement(By.xpath("//*[@id='panel_table_promo']/article/div/div[2]/button[2]")).click();
+		}
+	}
 		
 	public void logoutCatalogoATG() {		
 		
