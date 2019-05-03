@@ -508,8 +508,8 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		sleep(1000);
 		driver.findElement(By.xpath("//a[contains(text(),'Promociones')]")).click();
 		
-		WaitForElement(driver, "xpath", "//*[@id='panel_table_promo']/article/div/div[2]/button[1]");
-		
+		//Espero y presiono botón nuevo
+		WaitForElement(driver, "xpath", "//*[@id='panel_table_promo']/article/div/div[2]/button[1]");		
 		driver.findElement(By.xpath("//*[@id='panel_table_promo']/article/div/div[2]/button[1]")).click();
 
 		WaitForElement(driver, "id", "collapseNuevaPromocion");
