@@ -137,9 +137,23 @@ public class Utils {
 		return newDate;		
 	}
 	
+	public String GetFormattedStringDatePlusDay (int days, String formato){
+		SimpleDateFormat sdf = new SimpleDateFormat (formato);
+		Calendar cal = Calendar.getInstance();
+		System.out.println("Current Date" +sdf.format(cal.getTime()));
+		cal.add(Calendar.DAY_OF_MONTH, days);
+		String newDate = sdf.format(cal.getTime());
+		return newDate;		
+	}
+	
 	public String GetStringDate(){
 		String pattern = "dd/MM/yyyy";
 		String dateInString =new SimpleDateFormat(pattern).format(new Date());
+		return dateInString;		
+	}
+	
+	public String GetFormattedStringDate(String formato){		
+		String dateInString =new SimpleDateFormat(formato).format(new Date());
 		return dateInString;		
 	}
 	
