@@ -7,6 +7,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -527,6 +528,43 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		sleep(2000);
 		Boolean isPresent = driver.findElements(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[3]/div")).size()> 0;
 		Assert.assertFalse(isPresent);
+		
+	}
+	
+	@Test (groups = "CatalogoATG", priority = 0)
+	public void EntidadesMaestrasLegalesAlta (){
+		
+		loadTestConfig();
+		String nroLegalSecuencial = testConfig.getProperty("nroLegalSecuencial");
+		int nroSeq = Integer.parseInt(nroLegalSecuencial);
+		nroSeq = nroSeq + 1;
+		nroLegalSecuencial = Integer.toString(nroSeq);
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
+		driver.findElement(By.xpath("//a[contains(text(),'Legales')]")).click();
+		WaitForElement(driver, "id", "panel_table_legales");
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Nuevo");
+		driver.findElement(By.xpath("//*[@id=\"collapseNuevoLegal\"]/form/div/div[1]/div/div[1]/div/div[2]/div/select")).sendKeys("WEB");
+		driver.findElement(By.xpath("//*[@id=\"collapseNuevoLegal\"]/form/div/div[1]/div/div[1]/div/div[3]/div/input")).sendKeys("Legales"+nroSeq);
+		driver.findElement(By.name("descripcion")).sendKeys("Descripcion");
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","GUARDAR");
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
+		List<WebElement> botonesAceptar =  driver.findElements(By.xpath("//button[@ng-click='global.aceptar()']"));
+		WebElement boton = GetElementoVisible(botonesAceptar);
+		boton.click();
+		sleep(2000);
+        buscarYClick(driver.findElements(By.cssSelector(".btn.btn-default.btn-filter.dropdown-toggle.ng-binding")),"equals","NOMBRE"); 
+        botonesAceptar = driver.findElements(By.xpath("//*[@id=\"panel_table_legales\"]/article[1]/table/thead/tr/th[4]/div/ul/div[3]/div/input")); 
+        boton = GetElementoVisible(botonesAceptar); 
+        boton.sendKeys("Legales"+nroSeq);
+		sleep(2000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-default.btn-filter.dropdown-toggle.ng-binding")),"equals","NOMBRE"); 
+		String Legales=driver.findElement(By.xpath("//*[@id=\"panel_table_legales\"]/article[1]/table/tbody/tr/td[4]/div")).getText();
+		Assert.assertTrue(Legales.equals("Legales"+nroSeq));
+		String descripcion=driver.findElement(By.xpath("//*[@id=\"panel_table_legales\"]/article[1]/table/tbody/tr/td[5]/div")).getText();
+		Assert.assertTrue(descripcion.equals("Descripcion"));
+		saveTestConfig("nroLegalSecuencial", nroLegalSecuencial);
 		
 	}
 }
