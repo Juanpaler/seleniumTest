@@ -581,6 +581,12 @@ public class Metodos extends Utils {
 		sleep(3000);
 		new Select(driver.findElement(By.name("localidad"))).selectByVisibleText("Lujan De Cuyo");
 		sleep(3000);
+		List<WebElement> els = driver.findElements(By.xpath("//input[@type='checkbox']"));
+		for ( WebElement el : els ) {
+		    if ( !el.isSelected() & el.isDisplayed() ) {
+		        el.click();
+		    }
+		}
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-lg.btn-primary")), "contains", "Guardar >");
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg")), "contains", "Guardar");
 		String texto = "Gracias por actualizar tus datos";
@@ -810,6 +816,12 @@ public class Metodos extends Utils {
 		new Select(driver.findElement(By.id("idProvince"))).selectByVisibleText("Mendoza");
 		sleep(3000);
 		new Select(driver.findElement(By.id("idLocalidad"))).selectByVisibleText("Lujan De Cuyo");
+		List<WebElement> els = driver.findElements(By.xpath("//input[@type='checkbox']"));
+		for ( WebElement el : els ) {
+		    if ( !el.isSelected() & el.isDisplayed() ) {
+		        el.click();
+		    }
+		}
 		driver.findElement(By.id("btnNo")).click();
 		sleep(3000);
 		driver.findElement(By.linkText("Actualizaci\u00f3n de Datos")).click();
