@@ -663,7 +663,6 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	
 	@Test (groups = "CatalogoATG", priority = 0)
 	public void EntidadesMaestrasLegalesAlta (){
-		
 		loadTestConfig();
 		String nroLegalSecuencial = testConfig.getProperty("nroLegalSecuencial");
 		int nroSeq = Integer.parseInt(nroLegalSecuencial);
@@ -695,7 +694,12 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(Legales.equals("Legales"+nroSeq));
 		String descripcion=driver.findElement(By.xpath("//*[@id=\"panel_table_legales\"]/article[1]/table/tbody/tr/td[5]/div")).getText();
 		Assert.assertTrue(descripcion.equals("Descripcion"));
-		
+	    botonesAceptar = driver.findElements(By.xpath("//*[@id=\"panel_table_legales\"]/article[1]/table/tbody/tr[1]/td[1]/div/label")); 
+        boton = GetElementoVisible(botonesAceptar); 
+        boton.click();
+		sleep(2000);
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Aceptar"); 
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
 	}
 	
 	@Test (groups = "CatalogoATG", priority = 0)
@@ -729,4 +733,27 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		String descripcion=driver.findElement(By.xpath("//*[@id=\"panel_table_legales\"]/article[1]/table/tbody/tr/td[5]/div")).getText();
 		Assert.assertTrue(descripcion.equals("DescripcionMofidicada"));
 	}
+	
+	@Test (groups = "CatalogoATG", priority = 0)
+	public void EntidadesMaestrasLegalesAnular (){
+		loadTestConfig();
+		String nroLegalSecuencial = testConfig.getProperty("nroLegalSecuencial");
+		int nroSeq = Integer.parseInt(nroLegalSecuencial);
+		nroLegalSecuencial = Integer.toString(nroSeq);
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
+		driver.findElement(By.xpath("//a[contains(text(),'Legales')]")).click();
+		WaitForElement(driver, "id", "panel_table_legales");
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-default.btn-filter.dropdown-toggle.ng-binding")),"equals","NOMBRE"); 
+		List<WebElement> botonesAceptar = driver.findElements(By.xpath("//*[@id=\"panel_table_legales\"]/article[1]/table/thead/tr/th[4]/div/ul/div[3]/div/input")); 
+		WebElement boton = GetElementoVisible(botonesAceptar); 
+        boton.sendKeys("Legales"+nroSeq);
+		sleep(2000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-default.btn-filter.dropdown-toggle.ng-binding")),"equals","NOMBRE"); 
+		driver.findElement(By.xpath("//*[@id=\"panel_table_legales\"]/article[1]/table/tbody/tr/td[1]/div/label")).click();
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Anular");
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
+	}
+	
 }
