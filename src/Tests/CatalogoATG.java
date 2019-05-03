@@ -498,25 +498,17 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		
 		loginCatalogoATG();
 		
-		//Espero y presiono boton entidades maestras
-		WaitForElement(driver, "xpath", "/html/body/div[1]/div[2]/nav/div/ul/li[3]/div/button");
-		sleep(1000);
-		driver.findElement(By.xpath("/html/body/div[1]/div[2]/nav/div/ul/li[3]/div/button")).click();
-
-		//Espero y presiono boton promociones 
-		WaitForElement(driver, "xpath", "//a[contains(text(),'Promociones')]");
-		sleep(1000);
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
 		driver.findElement(By.xpath("//a[contains(text(),'Promociones')]")).click();
-		
-		//Espero y presiono botón nuevo
+
 		WaitForElement(driver, "xpath", "//*[@id='panel_table_promo']/article/div/div[2]/button[1]");		
-		driver.findElement(By.xpath("//*[@id='panel_table_promo']/article/div/div[2]/button[1]")).click();
+
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Nuevo");
 
 		WaitForElement(driver, "id", "collapseNuevaPromocion");
 
 		String fechaHoy = GetFormattedStringDate("MMddyyyy");
 		String fechaHasta = GetFormattedStringDatePlusDay(32,"MMddyyyy");
-		//fechaHoy = fechaHoy.replace("/", "");
 		
 		String canal = "WEB ARNET";
 		String prioridad="1500";
@@ -557,6 +549,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		sleep(1000);
 		driver.findElement(By.xpath("//*[@id='modal-large']/div/div/div[2]/div/div/div/div[2]/div/div[1]/table/thead/tr/th[8]/div/ul/li[5]/div[7]/div/input")).sendKeys(nroProductoSecuencial);		
 		//Espero y presiono sobre el producto filtrado
+		sleep(1000);
 		WaitForElement(driver, "xpath", "//*[@id='modal-large']/div/div/div[2]/div/div/div/div[2]/div/div[1]/table/tbody/tr/td[1]/div/label");
 		sleep(1000);
 		driver.findElement(By.xpath("//*[@id='modal-large']/div/div/div[2]/div/div/div/div[2]/div/div[1]/table/tbody/tr/td[1]/div/label")).click();		
@@ -566,6 +559,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver.findElement(By.xpath("//*[@id='modal-large']/div/div/div[3]/button[2]")).click();
 
 		//Espero y presiono componente Porcentaje
+		sleep(500);
 		WaitForElement(driver, "xpath", "//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[1]/div/div[2]/div/div/label[1]");
 		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[1]/div/div[2]/div/div/label[1]")).click();
 		//Lleno campo descuento , descuento Fin promo y Duracion
@@ -587,10 +581,15 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		
 		buscarPromocionPorId(nroPromocionSecuencial, true);		
 			
+		driver.findElement(By.xpath("//*[@id='table_collapse']/div[2]/div[1]/div/div[1]/div/button")).click();
+		driver.findElement(By.xpath("//*[@id='table_collapse']/div[2]/div[1]/div/div[1]/div/ul/li[8]/div/div/button")).click();
+		driver.findElement(By.xpath("//*[@id='table_collapse']/div[2]/div[1]/div/div[1]/div/ul/li[6]/div/div/button")).click();
+
+		
 		saveTestConfig("nroPromocionSecuencial", nroPromocionSecuencial);
 			
 		Boolean valoresValidos = true;
-		
+		//TODO: Verificar validación
 		valoresValidos = (valoresValidos == canal.equals(driver.findElement(By.id("canal")).getAttribute("value")));		
 		valoresValidos = (valoresValidos == prioridad.equals(driver.findElement(By.name("prioridad")).getAttribute("value")));
 		valoresValidos = (valoresValidos == legales.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[2]/input")).getAttribute("value")));	
