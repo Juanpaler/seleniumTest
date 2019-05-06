@@ -52,7 +52,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	public void EntidadesMaestrasProductosValidarPagina (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
-		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
 		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();
 		WaitForElement(driver, "id", "panel_table_productos");
 		Assert.assertTrue(driver.findElement(By.id("panel_table_productos")).isDisplayed());
@@ -62,7 +62,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	public void EntidadesMaestrasPromocionesValidarPagina (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
-		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
 		driver.findElement(By.xpath("//a[contains(text(),'Promociones')]")).click();
 		WaitForElement(driver, "id", "panel_table_promo");
 		Assert.assertTrue(driver.findElement(By.id("panel_table_promo")).isDisplayed());
@@ -72,7 +72,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	public void EntidadesMaestrasZonaGeograficaValidarPagina (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
-		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
 		driver.findElement(By.xpath("//a[contains(text(),'Zona Geográfica')]")).click();
 		WaitForElement(driver, "id", "panel_zona_geografica");
 		Assert.assertTrue(driver.findElement(By.id("panel_zona_geografica")).isDisplayed());
@@ -82,7 +82,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	public void EntidadesMaestrasLegalesValidarPagina (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
-		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
 		driver.findElement(By.xpath("//a[contains(text(),'Legales')]")).click();
 		WaitForElement(driver, "id", "panel_table_legales");
 		Assert.assertTrue(driver.findElement(By.id("panel_table_legales")).isDisplayed());
@@ -92,7 +92,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	public void PoliticaComercialOfertaDePeciosValidarPagina (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
-		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Política comercial");
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Política comercial");
 		driver.findElement(By.xpath("//a[contains(text(),'Oferta de Precios')]")).click();
 		WaitForElement(driver, "id", "panel_table_ofprecio");
 		Assert.assertTrue(driver.findElement(By.id("panel_table_ofprecio")).isDisplayed());
@@ -102,7 +102,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	public void PoliticaComercialOfertaDePromocionesValidarPagina (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
-		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Política comercial");
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Política comercial");
 		driver.findElement(By.xpath("//a[contains(text(),'Oferta de Promociones')]")).click();
 		WaitForElement(driver, "id", "panel_table_ofpromo");
 		Assert.assertTrue(driver.findElement(By.id("panel_table_ofpromo")).isDisplayed());
@@ -112,7 +112,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	public void FactibilidadComercialValidarPagina (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
-		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Factibilidad");
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effecte")),"equals","Factibilidad");
 		driver.findElement(By.xpath("//a[contains(text(),'Factibilidad Comercial')]")).click();
 		WaitForElement(driver, "id", "panel_opciones_factibilidad");
 		Assert.assertTrue(driver.findElement(By.id("panel_opciones_factibilidad")).isDisplayed());
@@ -130,7 +130,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		nroProductoSecuencial = Integer.toString(nroSeq);				
 		
 		loginCatalogoATG();
-		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		buscarYClick(driver.findElements(By.cssSelector("..dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
 		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();
 		WaitForElement(driver, "cssSelector", ".gridContainer.tabla-article");
 		driver.findElement(By.xpath("//*[@id=\"panel_table_productos\"]/article[2]/div/div[2]/button[1]")).click();
@@ -199,7 +199,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		String nroProductoSecuencial = testConfig.getProperty("nroProductoSecuencial");
 		
 		loginCatalogoATG();
-		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
 		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();		
 
 		buscarProductoPorId(nroProductoSecuencial, true);
@@ -255,7 +255,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		String nroProductoSecuencial = testConfig.getProperty("nroProductoSecuencial");
 		
 		loginCatalogoATG();
-		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
 		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();		
 
 		buscarProductoPorId(nroProductoSecuencial, false);
@@ -281,7 +281,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		String nroProductoSecuencial = testConfig.getProperty("nroProductoSecuencial");
 		
 		loginCatalogoATG();
-		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
 		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();		
 
 		buscarProductoPorId(nroProductoSecuencial, false);
@@ -306,7 +306,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 			f.delete();
 		}
 		loginCatalogoATG();
-		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Entidades Maestras");
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
 		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();
 		WaitForElement(driver, "id", "panel_table_productos");
 		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Exportar");
@@ -324,7 +324,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	public void FactibilidadComercialAltaGrupo (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
-		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Factibilidad");
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Factibilidad");
 		driver.findElement(By.xpath("//a[contains(text(),'Factibilidad Comercial')]")).click();
 		WaitForElement(driver, "id", "panel_opciones_factibilidad");
 		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Nuevo");
@@ -357,7 +357,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
 		buscarYClick(driver.findElements(By.cssSelector(
-				".dropdown-toggle.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),
+				".dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),
 				"equals", "Factibilidad");
 		driver.findElement(By.xpath("//a[contains(text(),'Factibilidad Comercial')]")).click();
 		WaitForElement(driver, "id", "panel_opciones_factibilidad");
@@ -398,7 +398,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
 		buscarYClick(driver.findElements(By.cssSelector(
-				".dropdown-toggle.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),
+				".dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),
 				"equals", "Factibilidad");
 		driver.findElement(By.xpath("//a[contains(text(),'Factibilidad Comercial')]")).click();
 		WaitForElement(driver, "id", "panel_opciones_factibilidad");
@@ -431,7 +431,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	public void PoliticaComercialOfertaDePromocionesAlta (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
-		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.dropdown-toggle")),"equals","Política comercial");
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Política comercial");
 		driver.findElement(By.xpath("//a[contains(text(),'Oferta de Promociones')]")).click();
 		WaitForElement(driver, "id", "panel_table_ofpromo");
 		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Nuevo");
