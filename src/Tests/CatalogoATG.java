@@ -497,16 +497,17 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		nroPromocionSecuencial = Integer.toString(nroPromoSeq);	
 		
 		loginCatalogoATG();
-		
+		//Click en entidades maestras
 		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
+		//Click en promociones
 		driver.findElement(By.xpath("//a[contains(text(),'Promociones')]")).click();
-
-		WaitForElement(driver, "xpath", "//*[@id='panel_table_promo']/article/div/div[2]/button[1]");		
-
+		//Espero y click en botón nuevo
+		WaitForElement(driver, "xpath", "//*[@id='panel_table_promo']/article/div/div[2]/button[1]");	
 		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Nuevo");
-
+		//Espero por elemento de pantalla nueva promocion
 		WaitForElement(driver, "id", "collapseNuevaPromocion");
 
+		//Seteo variables para llenar campos y luego validar lo guardado con estos mismos valores.
 		String fechaHoy = GetFormattedStringDate("MMddyyyy");
 		String fechaHoyValidacion = GetFormattedStringDate("yyyy-MM-dd");
 		String fechaHasta = GetFormattedStringDatePlusDay(32,"MMddyyyy");
@@ -572,8 +573,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		//lleno campos nombre mostrado, condicionatg y ofertaATG
 		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[4]/div/input")).sendKeys(nombreMostradoATG);
 		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[5]/div/input")).sendKeys(condicionATG);
-		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[6]/div/input")).sendKeys(ofertaATG);
-		
+		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[6]/div/input")).sendKeys(ofertaATG);		
 		
 		//Presiono botón guardar, confirmar y aceptar
 		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[7]/div/fieldset/div/button[2]")).click();
@@ -581,7 +581,6 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver.findElement(By.xpath("//*[@id='success']/div/div/div[3]/button[3]")).click();
 
 		saveTestConfig("nroPromocionSecuencial", nroPromocionSecuencial);
-
 		
 		buscarPromocionPorId(nroPromocionSecuencial, true);		
 			
@@ -602,7 +601,6 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		valoresValidos = (valoresValidos && nombreMostradoATG.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[4]/div/input")).getAttribute("value")));
 		valoresValidos = (valoresValidos && condicionATG.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[5]/div/input")).getAttribute("value")));
 		valoresValidos = (valoresValidos && ofertaATG.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[6]/div/input")).getAttribute("value")));
-
 		
 		Assert.assertTrue(valoresValidos);
 	}
