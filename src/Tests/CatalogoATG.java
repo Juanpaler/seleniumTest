@@ -178,15 +178,15 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Boolean valoresValidos = true;
 		
 		
-		valoresValidos = (valoresValidos == nombre.equals(driver.findElement(By.name("nombre")).getAttribute("value")));
-		valoresValidos = (valoresValidos == nombre_corto.equals(driver.findElement(By.name("nombre_corto")).getAttribute("value")));
-		valoresValidos = (valoresValidos == nombre_base_instalada.equals(driver.findElement(By.name("nombre_base_instalada")).getAttribute("value")));
-		valoresValidos = (valoresValidos == nombre_largo.equals(driver.findElement(By.name("nombre_largo")).getAttribute("value")));
-		valoresValidos = (valoresValidos == nombre_crm.equals(driver.findElement(By.name("nombre_crm")).getAttribute("value")));
-		valoresValidos = (valoresValidos == id_open.equals(driver.findElement(By.name("id_open")).getAttribute("value")));
-		valoresValidos = (valoresValidos == sku.equals(driver.findElement(By.name("sku")).getAttribute("value")));
-		valoresValidos = (valoresValidos == id_categoria.equals(driver.findElement(By.name("id_categoria")).getAttribute("value")));
-		valoresValidos = (valoresValidos == legales.equals(driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).getAttribute("value")));
+		valoresValidos = (valoresValidos && nombre.equals(driver.findElement(By.name("nombre")).getAttribute("value")));
+		valoresValidos = (valoresValidos && nombre_corto.equals(driver.findElement(By.name("nombre_corto")).getAttribute("value")));
+		valoresValidos = (valoresValidos && nombre_base_instalada.equals(driver.findElement(By.name("nombre_base_instalada")).getAttribute("value")));
+		valoresValidos = (valoresValidos && nombre_largo.equals(driver.findElement(By.name("nombre_largo")).getAttribute("value")));
+		valoresValidos = (valoresValidos && nombre_crm.equals(driver.findElement(By.name("nombre_crm")).getAttribute("value")));
+		valoresValidos = (valoresValidos && id_open.equals(driver.findElement(By.name("id_open")).getAttribute("value")));
+		valoresValidos = (valoresValidos && sku.equals(driver.findElement(By.name("sku")).getAttribute("value")));
+		valoresValidos = (valoresValidos && id_categoria.equals(driver.findElement(By.name("id_categoria")).getAttribute("value")));
+		valoresValidos = (valoresValidos && legales.equals(driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).getAttribute("value")));
 
 		Assert.assertTrue(valoresValidos);
 	}
@@ -234,15 +234,15 @@ public class CatalogoATG extends MetodosCatalogoATG{
 
 		Boolean valoresValidos = true;
 
-		valoresValidos = (valoresValidos == nombre.equals(driver.findElement(By.name("nombre")).getAttribute("value")));
-		valoresValidos = (valoresValidos == nombre_corto.equals(driver.findElement(By.name("nombre_corto")).getAttribute("value")));
-		valoresValidos = (valoresValidos == nombre_base_instalada.equals(driver.findElement(By.name("nombre_base_instalada")).getAttribute("value")));
-		valoresValidos = (valoresValidos == nombre_largo.equals(driver.findElement(By.name("nombre_largo")).getAttribute("value")));
-		valoresValidos = (valoresValidos == nombre_crm.equals(driver.findElement(By.name("nombre_crm")).getAttribute("value")));
-		valoresValidos = (valoresValidos == id_open.equals(driver.findElement(By.name("id_open")).getAttribute("value")));
-		valoresValidos = (valoresValidos == sku.equals(driver.findElement(By.name("sku")).getAttribute("value")));
-		valoresValidos = (valoresValidos == id_categoria.equals(driver.findElement(By.name("id_categoria")).getAttribute("value")));
-		valoresValidos = (valoresValidos == legales.equals(driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).getAttribute("value")));
+		valoresValidos = (valoresValidos && nombre.equals(driver.findElement(By.name("nombre")).getAttribute("value")));
+		valoresValidos = (valoresValidos && nombre_corto.equals(driver.findElement(By.name("nombre_corto")).getAttribute("value")));
+		valoresValidos = (valoresValidos && nombre_base_instalada.equals(driver.findElement(By.name("nombre_base_instalada")).getAttribute("value")));
+		valoresValidos = (valoresValidos && nombre_largo.equals(driver.findElement(By.name("nombre_largo")).getAttribute("value")));
+		valoresValidos = (valoresValidos && nombre_crm.equals(driver.findElement(By.name("nombre_crm")).getAttribute("value")));
+		valoresValidos = (valoresValidos && id_open.equals(driver.findElement(By.name("id_open")).getAttribute("value")));
+		valoresValidos = (valoresValidos && sku.equals(driver.findElement(By.name("sku")).getAttribute("value")));
+		valoresValidos = (valoresValidos && id_categoria.equals(driver.findElement(By.name("id_categoria")).getAttribute("value")));
+		valoresValidos = (valoresValidos && legales.equals(driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).getAttribute("value")));
 
 		Assert.assertTrue(valoresValidos);		
 	}
@@ -508,8 +508,10 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		WaitForElement(driver, "id", "collapseNuevaPromocion");
 
 		String fechaHoy = GetFormattedStringDate("MMddyyyy");
+		String fechaHoyValidacion = GetFormattedStringDate("yyyy-MM-dd");
 		String fechaHasta = GetFormattedStringDatePlusDay(32,"MMddyyyy");
-		
+		String fechaHastaValidacion = GetFormattedStringDatePlusDay(32,"yyyy-MM-dd");
+
 		String canal = "WEB ARNET";
 		String prioridad="1500";
 		String legales="AU_TEST_SP"+sprint+"_ATG_LEG";
@@ -520,8 +522,8 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		String id_promo_open=nroPromocionSecuencial;		
 		String fecha_inicio=fechaHoy;
 		String fecha_fin = fechaHasta;
-		String descuento = "35";
-		String descuentoFinPromo = "5";
+		String descuento = "35.00";
+		String descuentoFinPromo = "5.00";
 		String duracion = "12";
 		String nombreMostradoATG = "AU_TEST_SP"+sprint+"_ATG_";
 		String condicionATG = "AU_TEST_SP"+sprint+"_ATG_condATG";
@@ -578,38 +580,33 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver.findElement(By.xpath("//*[@id='warning']/div/div/div[3]/button[2]")).click();
 		driver.findElement(By.xpath("//*[@id='success']/div/div/div[3]/button[3]")).click();
 
+		saveTestConfig("nroPromocionSecuencial", nroPromocionSecuencial);
+
 		
 		buscarPromocionPorId(nroPromocionSecuencial, true);		
 			
-		driver.findElement(By.xpath("//*[@id='table_collapse']/div[2]/div[1]/div/div[1]/div/button")).click();
-		driver.findElement(By.xpath("//*[@id='table_collapse']/div[2]/div[1]/div/div[1]/div/ul/li[8]/div/div/button")).click();
-		driver.findElement(By.xpath("//*[@id='table_collapse']/div[2]/div[1]/div/div[1]/div/ul/li[6]/div/div/button")).click();
-
-		
-		saveTestConfig("nroPromocionSecuencial", nroPromocionSecuencial);
-			
 		Boolean valoresValidos = true;
-		//TODO: Verificar validación
-		valoresValidos = (valoresValidos == canal.equals(driver.findElement(By.id("canal")).getAttribute("value")));		
-		valoresValidos = (valoresValidos == prioridad.equals(driver.findElement(By.name("prioridad")).getAttribute("value")));
-		valoresValidos = (valoresValidos == legales.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[2]/input")).getAttribute("value")));	
-		valoresValidos = (valoresValidos == nombreCRMInp.equals(driver.findElement(By.id("nombreCRMInp")).getAttribute("value")));
-		valoresValidos = (valoresValidos == metodoPago.equals(driver.findElement(By.name("metodoPago")).getAttribute("value"))); 		
-		valoresValidos = (valoresValidos == tipo_promocion.equals(driver.findElement(By.name("tipo_promocion")).getAttribute("value")));		
-		valoresValidos = (valoresValidos == tipo_combo.equals(driver.findElement(By.name("tipo_combo")).getAttribute("value")));		
-		valoresValidos = (valoresValidos == id_promo_open.equals(driver.findElement(By.name("id_promo_open")).getAttribute("value")));		
-		valoresValidos = (valoresValidos == fecha_inicio.equals(driver.findElement(By.name("fecha_inicio")).getAttribute("value")));		
-		valoresValidos = (valoresValidos == fecha_fin.equals(driver.findElement(By.name("fecha_fin")).getAttribute("value")));
-		valoresValidos = (valoresValidos == descuento.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[1]/div/div[3]/div[2]/input[3]")).getAttribute("value")));	
-		valoresValidos = (valoresValidos == descuentoFinPromo.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[1]/div/div[4]/div[2]/input[3]")).getAttribute("value")));		
-		valoresValidos = (valoresValidos == duracion.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[1]/div/div[5]/div[2]/input")).getAttribute("value")));		
-		valoresValidos = (valoresValidos == nombreMostradoATG.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[4]/div/input")).getAttribute("value")));
-		valoresValidos = (valoresValidos == condicionATG.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[5]/div/input")).getAttribute("value")));
-		valoresValidos = (valoresValidos == ofertaATG.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[6]/div/input")).getAttribute("value")));
+		valoresValidos = (valoresValidos && intValue(driver.findElement(By.id("canal")).getAttribute("value")));//id		
+		valoresValidos = (valoresValidos && prioridad.equals(driver.findElement(By.name("prioridad")).getAttribute("value")));
+		valoresValidos = (valoresValidos && legales.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[2]/input")).getAttribute("value")));	
+		valoresValidos = (valoresValidos && nombreCRMInp.equals(driver.findElement(By.id("nombreCRMInp")).getAttribute("value")));
+		valoresValidos = (valoresValidos && intValue(driver.findElement(By.name("metodoPago")).getAttribute("value"))); 	//?obj null?	
+		valoresValidos = (valoresValidos && intValue(driver.findElement(By.name("tipo_promocion")).getAttribute("value")));//id		
+		valoresValidos = (valoresValidos && intValue(driver.findElement(By.name("tipo_combo")).getAttribute("value")));	//id	
+		valoresValidos = (valoresValidos && id_promo_open.equals(driver.findElement(By.name("id_promo_open")).getAttribute("value")));		
+		valoresValidos = (valoresValidos && fechaHoyValidacion.equals(driver.findElement(By.name("fecha_inicio")).getAttribute("value")));//2019-05-06		
+		valoresValidos = (valoresValidos && fechaHastaValidacion.equals(driver.findElement(By.name("fecha_fin")).getAttribute("value")));//2019-06-07
+		valoresValidos = (valoresValidos && descuento.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[1]/div/div[3]/div[2]/input[3]")).getAttribute("value")));	//35.00
+		valoresValidos = (valoresValidos && descuentoFinPromo.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[1]/div/div[4]/div[2]/input[3]")).getAttribute("value")));		
+		valoresValidos = (valoresValidos && duracion.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[1]/div/div[5]/div[2]/input")).getAttribute("value")));		
+		valoresValidos = (valoresValidos && nombreMostradoATG.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[4]/div/input")).getAttribute("value")));
+		valoresValidos = (valoresValidos && condicionATG.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[5]/div/input")).getAttribute("value")));
+		valoresValidos = (valoresValidos && ofertaATG.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[6]/div/input")).getAttribute("value")));
 
 		
 		Assert.assertTrue(valoresValidos);
 	}
+	
 	
 	
 	@Test (groups = "CatalogoATG", priority = 0)
