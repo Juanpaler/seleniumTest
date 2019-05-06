@@ -610,7 +610,6 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 
 		loadTestConfig();
-		//String nroProductoSecuencial = testConfig.getProperty("nroProductoSecuencial");
 		String nroPromocionSecuencial = testConfig.getProperty("nroPromocionSecuencial");
 
 		String sprint = testConfig.getProperty("sprint");	
@@ -691,6 +690,33 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		
 		Assert.assertTrue(valoresValidos);
 	}
+	
+	@Test (groups = "CatalogoATG", priority = 0)
+	public void EntidadesMaestrasPromocionAnular (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+
+		loadTestConfig();
+		String nroPromocionSecuencial = testConfig.getProperty("nroPromocionSecuencial");
+		
+		loginCatalogoATG();
+		//Click en entidades maestras
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
+		//Click en promociones
+		driver.findElement(By.xpath("//a[contains(text(),'Promociones')]")).click();
+		
+		buscarPromocionPorId(nroPromocionSecuencial, false);		
+	
+		//Presiono boton anular
+		driver.findElement(By.xpath("//*[@id='panel_table_promo']/article/div/div[2]/button[4]")).click();		
+
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
+		
+		buscarPromocionPorId(nroPromocionSecuencial, false);		
+		String Anulado = driver.findElement(By.xpath("//*[@id='table_collapse']/div[2]/div[2]/div/div/div[16]/span")).getText();		
+		
+		Assert.assertTrue(Anulado.equals("Anulado"));
+
+	}	
 	
 	@Test (groups = "CatalogoATG", priority = 0)
 	public void PoliticaComercialOfertaDePromocionesModificacion(){
