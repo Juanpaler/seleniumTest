@@ -809,10 +809,6 @@ public class CatalogoATG extends MetodosCatalogoATG{
         boton.sendKeys(ofertaDePreciosDescripcion);
 		sleep(2000);
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-default.btn-filter.dropdown-toggle.ng-binding")),"equals","OBSERVACION");
-		
-		botonesAceptar = driver.findElements(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[1]/div/label")); 
-		boton = GetElementoVisible(botonesAceptar); 
-        boton.click();
 
 		String Canal=driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[3]/div")).getText();
 		Assert.assertTrue(Canal.equals("WEB"));
@@ -829,8 +825,14 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		String Valor=driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[11]/div")).getText();
 		Assert.assertTrue(Valor.equals("100"));
 
-
+		String fechaHoyValidacion = GetFormattedStringDate("dd-MM-yyyy");
+		String fechaHastaValidacion = GetFormattedStringDatePlusDay(32,"dd-MM-yyyy");
 		
+		fechaHoy=driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[12]")).getText();
+		Assert.assertTrue(fechaHoy.equals(fechaHoyValidacion));
+		
+		fechaHasta=driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[13]")).getText();
+		Assert.assertTrue(fechaHasta.equals(fechaHastaValidacion));
 		
 
 	}
