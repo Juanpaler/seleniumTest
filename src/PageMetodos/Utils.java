@@ -291,5 +291,15 @@ public class Utils {
 		}
 		sleep(5000);
 	}
+	
+	public boolean intValue(String value) {  
+	     try{  
+			 Integer.parseInt(value);  
+			 return true;  
+	      } 
+	     catch (NumberFormatException e){  
+	    	 return false;  
+	     }  
+	}
   
 }
