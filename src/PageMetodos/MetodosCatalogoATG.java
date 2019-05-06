@@ -127,6 +127,7 @@ public class MetodosCatalogoATG extends Utils {
 		WaitForElement(driver, "xpath", "//*[@id='table_collapse']/div[2]/div[1]/div/div[11]/ul/li[6]/div/input");
 		
 		sleep(1000);
+		driver.findElement(By.xpath("//*[@id='table_collapse']/div[2]/div[1]/div/div[11]/ul/li[6]/div/input")).clear();	
 		driver.findElement(By.xpath("//*[@id='table_collapse']/div[2]/div[1]/div/div[11]/ul/li[6]/div/input")).sendKeys(id);	
 		
 		WaitForElement(driver, "xpath", "//*[@id='table_collapse']/div[2]/div[2]/div/div/div[1]/div/label");
