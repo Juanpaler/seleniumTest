@@ -605,7 +605,92 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(valoresValidos);
 	}
 	
+	@Test (groups = "CatalogoATG", priority = 0)
+	public void EntidadesMaestrasPromocionModificacion (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+
+		loadTestConfig();
+		//String nroProductoSecuencial = testConfig.getProperty("nroProductoSecuencial");
+		String nroPromocionSecuencial = testConfig.getProperty("nroPromocionSecuencial");
+
+		String sprint = testConfig.getProperty("sprint");	
+		
+		loginCatalogoATG();
+		//Click en entidades maestras
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
+		//Click en promociones
+		driver.findElement(By.xpath("//a[contains(text(),'Promociones')]")).click();
+		
+		buscarPromocionPorId(nroPromocionSecuencial, true);					
 	
+		String metodoPago="Todos";		
+		String prioridad="1501";
+		String legales="AU_TEST_SP"+sprint+"_ATG_LEG_M";
+		String nombreCRMInp="AU_TEST_SP"+sprint+"_ATG_NCRM_M";		
+	
+		String descuento = "36.00";
+		String descuentoFinPromo = "6.00";
+		String duracion = "13";
+		String nombreMostradoATG = "AU_TEST_SP"+sprint+"_ATG__M";
+		String condicionATG = "AU_TEST_SP"+sprint+"_ATG_condATG_M";
+		String ofertaATG = "AU_TEST_SP"+sprint+"_ATG_ofATG_M";
+		
+		driver.findElement(By.name("prioridad")).clear();
+		driver.findElement(By.name("prioridad")).sendKeys(prioridad);
+		
+		driver.findElement(By.name("metodoPago")).sendKeys(metodoPago);		
+
+		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[2]/input")).clear();
+		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[2]/input")).sendKeys(legales);	
+
+		driver.findElement(By.id("nombreCRMInp")).clear();
+		driver.findElement(By.id("nombreCRMInp")).sendKeys(nombreCRMInp);	
+		
+		//Vacío y lleno campo descuento 
+		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[1]/div/div[3]/div[2]/input[3]")).clear();
+		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[1]/div/div[3]/div[2]/input[3]")).sendKeys(descuento);	
+		//vacío y lleno campo descuento Fin promo
+		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[1]/div/div[4]/div[2]/input[3]")).clear();
+		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[1]/div/div[4]/div[2]/input[3]")).sendKeys(descuentoFinPromo);		
+		//Vacío y lleno campo Duracion
+		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[1]/div/div[5]/div[2]/input")).clear();
+		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[1]/div/div[5]/div[2]/input")).sendKeys(duracion);		
+
+
+		//lleno campos nombre mostrado, condicionatg y ofertaATG
+		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[4]/div/input")).clear();
+		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[4]/div/input")).sendKeys(nombreMostradoATG);
+
+		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[5]/div/input")).clear();
+		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[5]/div/input")).sendKeys(condicionATG);
+
+		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[6]/div/input")).clear();
+		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[6]/div/input")).sendKeys(ofertaATG);		
+
+		
+		//Presiono botón guardar, confirmar y aceptar
+		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[7]/div/fieldset/div/button[2]")).click();
+		driver.findElement(By.xpath("//*[@id='warning']/div/div/div[3]/button[2]")).click();
+		driver.findElement(By.xpath("//*[@id='success']/div/div/div[3]/button[3]")).click();
+
+		saveTestConfig("nroPromocionSecuencial", nroPromocionSecuencial);
+		
+		buscarPromocionPorId(nroPromocionSecuencial, true);		
+			
+		Boolean valoresValidos = true;
+		valoresValidos = (valoresValidos && intValue(driver.findElement(By.name("metodoPago")).getAttribute("value"))); 
+		valoresValidos = (valoresValidos && prioridad.equals(driver.findElement(By.name("prioridad")).getAttribute("value")));
+		valoresValidos = (valoresValidos && legales.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[2]/input")).getAttribute("value")));	
+		valoresValidos = (valoresValidos && nombreCRMInp.equals(driver.findElement(By.id("nombreCRMInp")).getAttribute("value")));
+		valoresValidos = (valoresValidos && descuento.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[1]/div/div[3]/div[2]/input[3]")).getAttribute("value")));	//35.00
+		valoresValidos = (valoresValidos && descuentoFinPromo.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[1]/div/div[4]/div[2]/input[3]")).getAttribute("value")));		
+		valoresValidos = (valoresValidos && duracion.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[1]/div/div[5]/div[2]/input")).getAttribute("value")));		
+		valoresValidos = (valoresValidos && nombreMostradoATG.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[4]/div/input")).getAttribute("value")));
+		valoresValidos = (valoresValidos && condicionATG.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[5]/div/input")).getAttribute("value")));
+		valoresValidos = (valoresValidos && ofertaATG.equals(driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[4]/div[2]/div/div[2]/div/div[6]/div/input")).getAttribute("value")));
+		
+		Assert.assertTrue(valoresValidos);
+	}
 	
 	@Test (groups = "CatalogoATG", priority = 0)
 	public void PoliticaComercialOfertaDePromocionesModificacion(){
