@@ -756,4 +756,89 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
 	}
 	
+	@Test (groups = "CatalogoATG", priority = 0)
+	public void PoliticaComercialOfertaDePeciosAlta(){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loadTestConfig();
+		String ofertaDePreciosDescripcion = testConfig.getProperty("ofertaDePreciosDescripcion");
+		int nroSeq = Integer.parseInt(ofertaDePreciosDescripcion);
+		nroSeq = nroSeq + 1;
+		ofertaDePreciosDescripcion = Integer.toString(nroSeq);
+		
+		loginCatalogoATG();
+		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Política comercial");
+		driver.findElement(By.xpath("//a[contains(text(),'Oferta de Precios')]")).click();
+		WaitForElement(driver, "id", "panel_table_ofprecio");
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Nuevo");
+		driver.findElement(By.xpath("//*[@id=\"collapseNuevaOfPrecio\"]/div/form/div[1]/div/div[1]/div/div[2]/div/select")).sendKeys("WEB");
+		driver.findElement(By.xpath("//*[@id=\"collapseNuevaOfPrecio\"]/div/form/div[1]/div/div[1]/div/div[3]/div[1]/button[1]")).click();
+		sleep(2000);
+		List<WebElement> botonesAceptar =  driver.findElements(By.xpath("//*[@id=\"panel_table_pais\"]/table/tbody/tr[1]/td[1]/div/label"));
+		WebElement boton = GetElementoVisible(botonesAceptar);
+		boton.click();
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","Aceptar");
+		driver.findElement(By.xpath("//*[@id=\"collapseNuevaOfPrecio\"]/div/form/div[1]/div/div[1]/div/div[4]/div[1]/button[1]")).click();
+		sleep(2000);
+		botonesAceptar =  driver.findElements(By.xpath("//*[@id=\"panel_table_provincias\"]/article/table/tbody/tr[1]/td[1]/div/label"));
+		boton = GetElementoVisible(botonesAceptar);
+		boton.click();
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","Aceptar");
+		driver.findElement(By.xpath("//*[@id=\"collapseNuevaOfPrecio\"]/div/form/div[1]/div/div[1]/div/div[5]/div[1]/button[1]")).click();
+		sleep(2000);
+		botonesAceptar =  driver.findElements(By.xpath("//*[@id=\"modal-large\"]/div/div/div[2]/div/div/div/div[2]/article/table/tbody/tr[1]/td[1]/div/label"));
+		boton = GetElementoVisible(botonesAceptar);
+		boton.click();
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","Aceptar");
+		driver.findElement(By.xpath("//*[@id=\"collapseNuevaOfPrecio\"]/div/form/div[1]/div/div[1]/div/div[7]/div[1]/button[1]")).click();
+		sleep(2000);
+		botonesAceptar =  driver.findElements(By.xpath("//*[@id=\"modal-large\"]/div/div/div[2]/div/div/div/div[2]/div/div[1]/table/tbody/tr[1]/td[1]/div/label"));
+		boton = GetElementoVisible(botonesAceptar);
+		boton.click();
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","Aceptar");
+		driver.findElement(By.xpath("//*[@id=\"collapseNuevaOfPrecio\"]/div/form/div[1]/div/div[2]/div/div[2]/div[2]/input")).sendKeys("100");
+		String fechaHoy = GetFormattedStringDate("ddMMyyyy");
+		String fechaHasta = GetFormattedStringDatePlusDay(32,"ddMMyyyy");
+	    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Vigencia Desde'])[2]/following::input[1]")).sendKeys(fechaHoy);
+	    driver.findElement(By.name("fechaHasta")).sendKeys(fechaHasta);
+	    driver.findElement(By.id("observacion")).sendKeys(ofertaDePreciosDescripcion);
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-Guardar")),"equals","GUARDAR");
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
+		botonesAceptar =  driver.findElements(By.xpath("//button[@ng-click='global.aceptar()']"));
+		boton = GetElementoVisible(botonesAceptar);
+		boton.click();
+		
+		saveTestConfig("ofertaDePreciosDescripcion", ofertaDePreciosDescripcion);
+		
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-default.btn-filter.dropdown-toggle.ng-binding")),"equals","OBSERVACION");
+		botonesAceptar = driver.findElements(By.xpath("//*[@id=\"home\"]/article[1]/table/thead/tr/th[15]/div/ul/li[5]/div[13]/div/input")); 
+		boton = GetElementoVisible(botonesAceptar); 
+        boton.sendKeys(ofertaDePreciosDescripcion);
+		sleep(2000);
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-default.btn-filter.dropdown-toggle.ng-binding")),"equals","OBSERVACION");
+		
+		botonesAceptar = driver.findElements(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[1]/div/label")); 
+		boton = GetElementoVisible(botonesAceptar); 
+        boton.click();
+
+		String Canal=driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[3]/div")).getText();
+		Assert.assertTrue(Canal.equals("WEB"));
+		String Ciente=driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[4]/div")).getText();
+		Assert.assertTrue(Ciente.equals("NO CLIENTE"));
+		String Pais=driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[5]/div")).getText();
+		Assert.assertTrue(Pais.equals("ARGENTINA"));
+		String Provincia=driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[6]/div")).getText();
+		Assert.assertTrue(Provincia.equals("CAPITAL FEDERAL"));
+		String Localidad=driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[7]/div")).getText();
+		Assert.assertTrue(Localidad.equals("CAPITAL FEDERAL"));
+		String Producto=driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[10]/div")).getText();
+		Assert.assertTrue(Producto.equals("TV POR CABLE"));
+		String Valor=driver.findElement(By.xpath("//*[@id=\"home\"]/article[1]/table/tbody/tr/td[11]/div")).getText();
+		Assert.assertTrue(Valor.equals("100"));
+
+
+		
+		
+
+	}
+	
 }
