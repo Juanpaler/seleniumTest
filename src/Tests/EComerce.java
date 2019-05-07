@@ -619,6 +619,31 @@ public class EComerce extends Metodos{
 		carroCompras = driver.findElement(By.cssSelector(".cart__title--container")).getText().equals("Resumen de compra");	
 		Assert.assertTrue(carroCompras);		
 	}
+	
+	@Test (groups ={"Interna Producto","Financiacion"}) 
+	public void C65_cliente_logueado_Compra_equipo_linea_nueva_no_hay_opcion_cupon_club(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		loginEComerceWithBug("1151141702","1469");				
+
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		
+		driver.findElement(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary")).click();
+		driver.findElement(By.cssSelector(".product-main__btn--collapse.js-select-plan.js-steps")).click();
+		
+		
+		buscarYClick(driver.findElements(By.cssSelector(".plan__btn.product-main__btn.btn.btn-default")),"contains","QUIERO ESTE PLAN");
+		
+		WaitForElement("cssSelector", ".action__coupon.col-md-3.col-md-offset-9.col-sm-12.col-xs-12");
+
+		driver.findElement(By.cssSelector(".action__coupon.col-md-3.col-md-offset-9.col-sm-12.col-xs-12")).click();
+
+		WaitForElement("cssSelector", ".coupon__leyend.coupon__leyend--vtex.col-md-7.col-xs-12");
+		Assert.assertFalse(ElementCreated("cssSelector", ".coupon__wrapper.coupon__wrapper--personal.col-md-9.col-md-offset-3", 5));
+		
+	}
 
 	@Test (groups ={"Interna Producto","Financiacion"}) 
 	public void C67_cliente_logueado_Compra_equipo_linea_nueva_Mail_registrado(){
