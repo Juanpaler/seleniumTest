@@ -480,8 +480,9 @@ public class EComerce extends Metodos{
 		
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
 		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
-		driver.findElement(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary.js-steps")).click();
-		driver.findElement(By.cssSelector(".product-main__btn.btn.btn-default.js-select-plan.js-steps")).click();
+		driver.findElement(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary")).click();
+		driver.findElement(By.cssSelector(".product-main__btn--collapse.js-select-plan.js-steps")).click();
+		                                    
 
 		List<WebElement> planesFacPre = driver.findElements(By.cssSelector(".page-header"));
 		int elementosEncontrados = 0;
@@ -506,6 +507,45 @@ public class EComerce extends Metodos{
 		}
 		
 		Assert.assertTrue(elementosEncontrados == 3);		
+	}
+	
+	@Test (groups ={"Interna Producto","Financiacion"}) 
+	public void C53_Cliente_logueado_elige_linea_Nueva(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		loginEComerceWithBug("1164478723","1469");	
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		driver.findElement(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary")).click();
+		driver.findElement(By.cssSelector(".product-main__btn--collapse.js-select-plan.js-steps")).click();
+		                                    
+
+		List<WebElement> planesFacPre = driver.findElements(By.cssSelector(".page-header"));
+		int elementosEncontrados = 0;
+		for(WebElement plan : planesFacPre)
+		{
+			if(plan.getText().contains("Planes con Factura")) 
+			{
+				elementosEncontrados++;
+			}
+			if(plan.getText().contains("Plan Prepago")) 
+			{
+				elementosEncontrados++;
+			}
+		}
+		List<WebElement> planAbono = driver.findElements(By.cssSelector(".text-brand-cyan.product-main__mercado--subtitle"));
+		for(WebElement plan : planAbono)
+		{
+			if(plan.getText().contains("Abono Fijo")) 
+			{
+				elementosEncontrados++;
+			}
+		}
+		
+		Assert.assertTrue(elementosEncontrados == 3);
+		
+		
 	}
 	
 	
