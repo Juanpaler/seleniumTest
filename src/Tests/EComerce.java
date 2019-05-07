@@ -619,6 +619,26 @@ public class EComerce extends Metodos{
 		carroCompras = driver.findElement(By.cssSelector(".cart__title--container")).getText().equals("Resumen de compra");	
 		Assert.assertTrue(carroCompras);		
 	}
+	
+	@Test (groups ={"Interna Accesorio","Financiacion"}) 
+	public void C59_Cliente_logueado_hace_Cater_solo_puede_aplicar_un_cupon_VTEX(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		loginEComerceWithBug("1162538540","1469");	
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		driver.findElement(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary")).click();
+		sleep(2000);
+		driver.findElement(By.cssSelector(".product-main__btn--collapse.js-select-cater.js-steps")).click();
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.btn.btn-default")),"contains","MANTENER MI PLAN");
+		sleep(5000);
+		driver.findElement(By.cssSelector(".action__coupon.col-md-3.col-md-offset-9.col-sm-12.col-xs-12")).click();
+		driver.findElement(By.xpath("//*[@id=\"coupon\"]/div[1]/div/span[1]/input")).sendKeys("cupon-autom1");
+		buscarYClick(driver.findElements(By.cssSelector(".js-coupon.coupon__form--btn.btn.btn-default")),"contains","APLICAR");
+	
+		
+	}
 
 	@Test (groups ={"Interna Producto","Financiacion"}) 
 	public void C68_Compra_equipo_linea_nueva_Mail_registrado(){
