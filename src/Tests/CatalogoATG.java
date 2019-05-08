@@ -806,8 +806,10 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		boton = GetElementoVisible(botonesAceptar); 
         boton.click();
         
-        buscarYClick(driver.findElements(By.cssSelector(".btn.dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals"," Enviar ...");
-        buscarYClick(driver.findElements(By.cssSelector(".dropdown-item")),"equals","Seleccionados ");
+        buscarYClick(driver.findElements(By.cssSelector(".btn.dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Enviar ...");
+        driver.findElement(By.xpath("//*[@id=\"home\"]/article[2]/div/div/div[3]/div/div/ul/li[5]/button")).click();
+        
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
 		botonesAceptar =  driver.findElements(By.xpath("//button[@ng-click='global.aceptar()']"));
 		boton = GetElementoVisible(botonesAceptar);
 		boton.click();
@@ -847,9 +849,12 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		boton = GetElementoVisible(botonesAceptar); 
         boton.click();
         
-        buscarYClick(driver.findElements(By.cssSelector(".btn.dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Anular");
+        buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect.margin-left-10")),"equals","Anular");
 
-    	buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
+		botonesAceptar =  driver.findElements(By.xpath("//button[@ng-click='global.aceptar()']"));
+		boton = GetElementoVisible(botonesAceptar);
+		boton.click();
         
 		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-default.btn-filter.dropdown-toggle.ng-binding")),"equals","OBSERVACION");
 		botonesAceptar = driver.findElements(By.xpath("//*[@id=\"home\"]/article[1]/table/thead/tr/th[15]/div/ul/li[5]/div[13]/div/input")); 
