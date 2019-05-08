@@ -620,7 +620,7 @@ public class EComerce extends Metodos{
 		Assert.assertTrue(carroCompras);		
 	}
 	
-	@Test (groups ={"Interna Accesorio","Financiacion"}) 
+	@Test (groups ={"Interna Accesorio","Financiacion"})
 	public void C59_Cliente_logueado_hace_Cater_solo_puede_aplicar_un_cupon_VTEX(){
 		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -636,6 +636,8 @@ public class EComerce extends Metodos{
 		driver.findElement(By.cssSelector(".action__coupon.col-md-3.col-md-offset-9.col-sm-12.col-xs-12")).click();
 		driver.findElement(By.xpath("//*[@id=\"coupon\"]/div[1]/div/span[1]/input")).sendKeys("cupon-autom1");
 		buscarYClick(driver.findElements(By.cssSelector(".js-coupon.coupon__form--btn.btn.btn-default")),"contains","APLICAR");
+	
+	}
 	
 	@Test (groups ={"Interna Producto","Financiacion"}) 
 	public void C65_cliente_logueado_Compra_equipo_linea_nueva_no_hay_opcion_cupon_club(){
