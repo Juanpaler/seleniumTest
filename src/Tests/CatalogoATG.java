@@ -69,7 +69,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		nroProductoSecuencial = Integer.toString(nroSeq);				
 		
 		loginCatalogoATG();
-		buscarYClick(driver.findElements(By.cssSelector("..dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
 		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();
 		WaitForElement(driver, "cssSelector", ".gridContainer.tabla-article");
 		driver.findElement(By.xpath("//*[@id=\"panel_table_productos\"]/article[2]/div/div[2]/button[1]")).click();
@@ -87,7 +87,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		String id_open=nroProductoSecuencial;
 		String sku="AU_TEST_SP"+sprint+"_ATG_SKU";
 		String id_categoria="cat90026";
-		String legales="AU_TEST_SP"+sprint+"_ATG_LEG";
+		String legales="";
 		
 		driver.findElement(By.name("canal")).sendKeys(canal);
 		driver.findElement(By.name("tipo_familia")).sendKeys(tipo_familia);
@@ -100,7 +100,12 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver.findElement(By.name("id_open")).sendKeys(id_open);
 		driver.findElement(By.name("sku")).sendKeys(sku);
 		driver.findElement(By.name("id_categoria")).sendKeys(id_categoria);
-		driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).sendKeys(legales);	
+		
+		driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[1]/button[1]")).click();		
+		ClickElementoVisible("xpath", "//*[@id='panel_table_legales']/article/table/tbody/tr[1]/td[1]/div/label");		
+		ClickElementoVisible("xpath", "//*[@id='modal-large']/div/div/div[3]/button[2]");
+		
+		legales = driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).getAttribute("value");
 		
 		WaitForElement(driver, "xpath", "//*[@id=\"collapseNuevoProducto\"]/div/div[3]/div/fieldset/div/button[2]");
 		driver.findElement(By.xpath("//*[@id=\"collapseNuevoProducto\"]/div/div[3]/div/fieldset/div/button[2]")).click();
@@ -111,11 +116,9 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		
 		saveTestConfig("nroProductoSecuencial", nroProductoSecuencial);
 
-		driver.findElement(By.xpath("//*[@id='success']/div/div/div[3]/button[3]")).click();
-		
+		driver.findElement(By.xpath("//*[@id='success']/div/div/div[3]/button[3]")).click();		
 		buscarProductoPorId(nroProductoSecuencial, true);
-		Boolean valoresValidos = true;
-		
+		Boolean valoresValidos = true;		
 		
 		valoresValidos = (valoresValidos && nombre.equals(driver.findElement(By.name("nombre")).getAttribute("value")));
 		valoresValidos = (valoresValidos && nombre_corto.equals(driver.findElement(By.name("nombre_corto")).getAttribute("value")));
