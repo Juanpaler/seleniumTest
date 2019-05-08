@@ -47,7 +47,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	}
 	
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "EntidadesMaestrasProductos", priority = 0)
 	public void C01_EntidadesMaestrasProductosValidarPagina (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
@@ -57,7 +57,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(driver.findElement(By.id("panel_table_productos")).isDisplayed());
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "EntidadesMaestrasProductos", priority = 1)
 	public void C02_EntidadesMaestrasProductosAlta (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 
@@ -133,7 +133,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(valoresValidos);
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "EntidadesMaestrasProductos", priority = 2)
 	public void C03_EntidadesMaestrasProductosModificacion (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 
@@ -189,7 +189,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(valoresValidos);		
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "EntidadesMaestrasProductos", priority = 3)
 	public void C04_EntidadesMaestrasProductosEnviar (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 
@@ -215,7 +215,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "EntidadesMaestrasProductos", priority = 4)
 	public void C05_EntidadesMaestrasProductosAnular (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 
@@ -239,7 +239,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "EntidadesMaestrasPromociones", priority = 0)
 	public void C06_EntidadesMaestrasPromocionesValidarPagina (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
@@ -249,7 +249,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(driver.findElement(By.id("panel_table_promo")).isDisplayed());
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "EntidadesMaestrasPromociones", priority = 1)
 	public void C07_EntidadesMaestrasPromocionAlta (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 
@@ -372,7 +372,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(valoresValidos);
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "EntidadesMaestrasPromociones", priority = 2)
 	public void C08_EntidadesMaestrasPromocionModificacion (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 
@@ -458,7 +458,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(valoresValidos);
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "EntidadesMaestrasPromociones", priority = 4)
 	public void C10_EntidadesMaestrasPromocionAnular (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 
@@ -485,7 +485,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 
 	}	
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "EntidadesMaestrasZonaGeografica", priority = 0)
 	public void C11_EntidadesMaestrasZonaGeograficaValidarPagina (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
@@ -495,7 +495,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(driver.findElement(By.id("panel_zona_geografica")).isDisplayed());
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "EntidadesMaestrasLegales", priority = 0)
 	public void C12_EntidadesMaestrasLegalesValidarPagina (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
@@ -505,7 +505,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(driver.findElement(By.id("panel_table_legales")).isDisplayed());
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "EntidadesMaestrasLegales", priority = 1)
 	public void C13_EntidadesMaestrasLegalesAlta (){
 		loadTestConfig();
 		String nroLegalSecuencial = testConfig.getProperty("nroLegalSecuencial");
@@ -546,7 +546,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "EntidadesMaestrasLegales", priority = 2)
 	public void C14_EntidadesMaestrasLegalesModificar (){
 		loadTestConfig();
 		String nroLegalSecuencial = testConfig.getProperty("nroLegalSecuencial");
@@ -578,7 +578,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(descripcion.equals("DescripcionMofidicada"));
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "EntidadesMaestrasLegales", priority = 3)
 	public void C15_EntidadesMaestrasLegalesAnular (){
 		loadTestConfig();
 		String nroLegalSecuencial = testConfig.getProperty("nroLegalSecuencial");
@@ -600,7 +600,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "PoliticaComercialOfertaDePrecios", priority = 0)
 	public void C16_PoliticaComercialOfertaDePreciosValidarPagina (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
@@ -610,7 +610,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(driver.findElement(By.id("panel_table_ofprecio")).isDisplayed());
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "PoliticaComercialOfertaDePrecios", priority = 1)
 	public void C17_PoliticaComercialOfertaDePreciosAlta(){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loadTestConfig();
@@ -698,7 +698,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	}
 	
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "PoliticaComercialOfertaDePrecios", priority = 2)
 	public void C18_PoliticaComercialOfertaDePreciosModificacion(){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loadTestConfig();
@@ -785,7 +785,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
       
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "PoliticaComercialOfertaDePrecios", priority = 3)
 	public void C19_PoliticaComercialOfertaDePreciosModificacionEnviar(){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loadTestConfig();
@@ -828,7 +828,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(Estado.equals("Enviado"));  
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "PoliticaComercialOfertaDePrecios", priority = 4)
 	public void C20_PoliticaComercialOfertaDePreciosModificacionAnular(){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loadTestConfig();
@@ -870,7 +870,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(Estado.equals("Anulado"));  
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "PoliticaComercialOfertaDePromociones", priority = 0)
 	public void C21_PoliticaComercialOfertaDePromocionesValidarPagina (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
@@ -880,7 +880,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(driver.findElement(By.id("panel_table_ofpromo")).isDisplayed());
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "PoliticaComercialOfertaDePromociones", priority = 1)
 	public void C22_PoliticaComercialOfertaDePromocionesAlta (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
@@ -935,7 +935,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(localidad.equals("ROQUE PEREZ"));
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "PoliticaComercialOfertaDePromociones", priority = 2)
 	public void C23_PoliticaComercialOfertaDePromocionesEliminar(){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
@@ -982,7 +982,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertFalse(isPresent);
 	}	
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "FactibilidadComercial", priority = 0)
 	public void C24_FactibilidadComercialValidarPagina (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
@@ -992,7 +992,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(driver.findElement(By.id("panel_opciones_factibilidad")).isDisplayed());
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "FactibilidadComercial", priority = 1)
 	public void C25_FactibilidadComercialAltaGrupo (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginCatalogoATG();
@@ -1023,7 +1023,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "FactibilidadComercial", priority = 2)
 	public void C26_FactibilidadComercialModificacionGrupo() {
 		nombreCaso = new Object() {
 		}.getClass().getEnclosingMethod().getName();
@@ -1064,7 +1064,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		boton.click();
 	}
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "FactibilidadComercial", priority = 3)
 	public void C27_FactibilidadComercialEliminarGrupo() {
 		nombreCaso = new Object() {
 		}.getClass().getEnclosingMethod().getName();
@@ -1099,7 +1099,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(false);	//No funciona el boton eliminar	
 	}	
 	
-	@Test (groups = "CatalogoATG", priority = 0)
+	@Test (groups = "FuncionExportar", priority = 0)
 	public void C28_FuncionExportar(){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		boolean  existe;
