@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Catalogo ATG" parallel="tests" thread-count="1">
+
+<!-- ************************************************** EntidadesMaestras - Productos  ****************************************************** -->
+<!--  <test name="EntidadesMaestras - Productos>
+   <groups>
+    	<run>
+     	 					<include name="EntidadesMaestrasProductos"/>
+    	</run>
+  </groups>
+    <classes>
+    						<class name="Tests.CatalogoATG"/>     						
+    </classes>
+  </test> 
+  -->
+  <!-- ************************************************** EntidadesMaestras - Promociones ****************************************************** -->
+  
+ <!--  <test name="EntidadesMaestras - Promociones">
+   <groups>
+    	<run>
+     	 					<include name="EntidadesMaestrasPromociones"/>
+    	</run>
+  </groups>
+    <classes>
+    						<class name="Tests.CatalogoATG"/> 
+    </classes>
+  </test> 
+ -->
+ <!-- ************************************************** EntidadesMaestras - ZonaGeografica ****************************************************** -->
+  
+  <!-- <test name="EntidadesMaestras - ZonaGeografica">
+   <groups>
+    	<run>
+     	 					<include name="EntidadesMaestrasZonaGeografica"/>
+    	</run>
+  </groups>
+    <classes>
+    						<class name="Tests.CatalogoATG"/> 
+    </classes>
+  </test>
+  -->
+   <!-- ************************************************** EntidadesMaestras - Legales ****************************************************** -->
+    <!--
+  <test name="EntidadesMaestras - Legales">
+   <groups>
+    	<run>
+     	 					<include name="EntidadesMaestrasLegales"/>
+    	</run>
+  </groups>
+    <classes>
+    						<class name="Tests.CatalogoATG"/> 
+    </classes>
+  </test> 
+  -->
+   <!-- ************************************************** PoliticaComercial - OfertaDePrecios ****************************************************** -->
+    <!--
+  <test name="PoliticaComercial - OfertaDePrecios">
+   <groups>
+    	<run>
+     	 					<include name="PoliticaComercialOfertaDePrecios"/>
+    	</run>
+  </groups>
+    <classes>
+    						<class name="Tests.CatalogoATG"/> 
+    </classes>
+  </test>
+  -->
+   <!-- ************************************************** PoliticaComercial - OfertaDePromociones ****************************************************** -->
+   <!-- 
+  <test name="PoliticaComercial - OfertaDePromociones">
+   <groups>
+    	<run>
+     	 					<include name="PoliticaComercialOfertaDePromociones"/>
+    	</run>
+  </groups>
+    <classes>
+    					 	<class name="Tests.CatalogoATG"/> 
+    </classes>
+  </test>
+    -->
+   <!-- ************************************************** FactibilidadComercial ****************************************************** -->
+    <!--
+  <test name="FactibilidadComercial">
+   <groups>
+    	<run>
+     	 					<include name="FactibilidadComercial"/>
+    	</run>
+  </groups>
+    <classes>
+    						<class name="Tests.CatalogoATG"/> 
+    </classes>
+  </test>
+  -->
+  <!-- ************************************************** Funcion Exportar ****************************************************** -->
+   <!--
+  <test name="Funcion Exportar">
+   <groups>
+    	<run>
+     	 					<include name="FuncionExportar"/>
+    	</run>
+  </groups>
+    <classes>
+    					 	<class name="Tests.CatalogoATG"/> 
+    </classes>
+  </test>  -->
+ </suite>
