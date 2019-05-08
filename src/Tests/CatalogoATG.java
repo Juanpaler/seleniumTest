@@ -291,7 +291,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 
 		String canal = "WEB ARNET";
 		String prioridad="1500";
-		String legales="AU_TEST_SP"+sprint+"_ATG_LEG";
+		String legales="";
 		String nombreCRMInp="AU_TEST_SP"+sprint+"_ATG_NCRM";		
 		String metodoPago="Todos";		
 		String tipo_promocion="VENTAS IN";		
@@ -308,7 +308,14 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		
 		driver.findElement(By.id("canal")).sendKeys(canal);		
 		driver.findElement(By.name("prioridad")).sendKeys(prioridad);
-		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[2]/input")).sendKeys(legales);	
+		
+		//Presiono en botón de búsqueda de legales		
+		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[1]/button[1]")).click();		
+		ClickElementoVisible("xpath", "//*[@id='panel_table_legales']/article/table/tbody/tr[1]/td[1]/div/label");		
+		ClickElementoVisible("xpath", "//*[@id='modal-large']/div/div/div[3]/button[2]");
+		
+		legales = driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[2]/input")).getAttribute("value");
+
 		driver.findElement(By.id("nombreCRMInp")).sendKeys(nombreCRMInp);
 		driver.findElement(By.name("metodoPago")).sendKeys(metodoPago);		
 		driver.findElement(By.name("tipo_promocion")).sendKeys(tipo_promocion);		
@@ -400,7 +407,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	
 		String metodoPago="Todos";		
 		String prioridad="1501";
-		String legales="AU_TEST_SP"+sprint+"_ATG_LEG_M";
+		//String legales="AU_TEST_SP"+sprint+"_ATG_LEG_M";
 		String nombreCRMInp="AU_TEST_SP"+sprint+"_ATG_NCRM_M";		
 	
 		String descuento = "36.00";
@@ -416,7 +423,15 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver.findElement(By.name("metodoPago")).sendKeys(metodoPago);		
 
 		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[2]/input")).clear();
-		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[2]/input")).sendKeys(legales);	
+		//driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[2]/input")).sendKeys(legales);	
+		
+		//Blanqueo legales		
+		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[1]/button[2]")).click();				
+		//Presiono en botón de búsqueda de legales
+		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[1]/button[1]")).click();		
+		ClickElementoVisible("xpath", "//*[@id='panel_table_legales']/article/table/tbody/tr[7]/td[1]/div/label");		
+		ClickElementoVisible("xpath", "//*[@id='modal-large']/div/div/div[3]/button[2]");
+		String legales = driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[2]/input")).getAttribute("value");
 
 		driver.findElement(By.id("nombreCRMInp")).clear();
 		driver.findElement(By.id("nombreCRMInp")).sendKeys(nombreCRMInp);	
