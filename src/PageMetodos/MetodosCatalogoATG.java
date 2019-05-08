@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class MetodosCatalogoATG extends Utils {	
   	
@@ -167,6 +169,24 @@ public class MetodosCatalogoATG extends Utils {
 		return elementos.get(indiceElemento);
 	}
 	
+	public void ClickElementoVisible(String by, String selector) {			
+
+		List<WebElement> elementos = Collections.<WebElement>emptyList();
+
+		switch (by) {
+		case "id":
+			elementos = driver.findElements(By.id(selector));	
+			break;
+		case "cssSelector":
+			elementos = driver.findElements(By.cssSelector(selector));	
+			break;
+		case "xpath":
+			elementos = driver.findElements(By.xpath(selector));	
+			break;
+		}
 	
+		WebElement elemento = GetElementoVisible(elementos);
+		elemento.click();	
+	}	
 		
 } 
