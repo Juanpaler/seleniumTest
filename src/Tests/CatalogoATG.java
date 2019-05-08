@@ -3,6 +3,7 @@ package Tests;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -101,6 +102,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver.findElement(By.name("sku")).sendKeys(sku);
 		driver.findElement(By.name("id_categoria")).sendKeys(id_categoria);
 		
+		//Presiono en botón de búsqueda de legales
 		driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[1]/button[1]")).click();		
 		ClickElementoVisible("xpath", "//*[@id='panel_table_legales']/article/table/tbody/tr[1]/td[1]/div/label");		
 		ClickElementoVisible("xpath", "//*[@id='modal-large']/div/div/div[3]/button[2]");
@@ -136,12 +138,13 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	@Test (groups = "EntidadesMaestrasProductos", priority = 2)
 	public void C03_EntidadesMaestrasProductosModificacion (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);			
 
 		loadTestConfig();
 		String nroProductoSecuencial = testConfig.getProperty("nroProductoSecuencial");
 		
 		loginCatalogoATG();
-		buscarYClick(driver.findElements(By.cssSelector(".dropdown-toggle.mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
 		driver.findElement(By.xpath("//a[contains(text(),'Productos')]")).click();		
 
 		buscarProductoPorId(nroProductoSecuencial, true);
@@ -153,7 +156,13 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver.findElement(By.name("nombre_crm")).sendKeys("_MOD");
 		driver.findElement(By.name("sku")).sendKeys("_MOD");
 		driver.findElement(By.name("id_categoria")).sendKeys("_MOD");
-		driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).sendKeys("_MOD");			
+		
+		//Blanqueo legales
+		driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[1]/button[2]")).click();				
+		//Presiono en botón de búsqueda de legales
+		driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[1]/button[1]")).click();		
+		ClickElementoVisible("xpath", "//*[@id='panel_table_legales']/article/table/tbody/tr[7]/td[1]/div/label");		
+		ClickElementoVisible("xpath", "//*[@id='modal-large']/div/div/div[3]/button[2]");
 		
 		String nombre = driver.findElement(By.name("nombre")).getAttribute("value"); 
 		String nombre_base_instalada = driver.findElement(By.name("nombre_corto")).getAttribute("value");
@@ -163,8 +172,8 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		String id_open = driver.findElement(By.name("id_open")).getAttribute("value");
 		String sku = driver.findElement(By.name("sku")).getAttribute("value");
 		String id_categoria = driver.findElement(By.name("id_categoria")).getAttribute("value");
-		String legales = driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).getAttribute("value");		
-		
+		String legales = driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).getAttribute("value");				
+				
 		WaitForElement(driver, "xpath", "//*[@id=\"collapseNuevoProducto\"]/div/div[3]/div/fieldset/div/button[2]");
 		driver.findElement(By.xpath("//*[@id=\"collapseNuevoProducto\"]/div/div[3]/div/fieldset/div/button[2]")).click();
 		WaitForElement(driver, "xpath", "//*[@id=\"warning\"]/div/div/div[3]/button[2]");

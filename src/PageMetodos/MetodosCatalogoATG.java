@@ -104,7 +104,7 @@ public class MetodosCatalogoATG extends Utils {
 	public void buscarProductoPorId(String id, Boolean click) {
 		
 		WaitForElement(driver, "xpath", "//*[@id='panel_table_productos']/article[1]/table/thead/tr/th[8]/div/button");
-		sleep(1000);
+		sleep(2000);
 		driver.findElement(By.xpath("//*[@id='panel_table_productos']/article[1]/table/thead/tr/th[8]/div/button")).click();		
 		WaitForElement(driver, "xpath", "//*[@id='panel_table_productos']/article[1]/table/thead/tr/th[8]/div/ul/div[7]/div/input");
 		sleep(1000);
