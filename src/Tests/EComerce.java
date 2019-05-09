@@ -647,6 +647,27 @@ public class EComerce extends Metodos{
 		Assert.assertTrue(validacion.equals("Los cupones no son acumulativos"));
 	}
 	
+	@Test (groups ={"Interna Accesorio","Financiacion"})
+	public void C60_Cliente_logueado_hace_Cater_aplica_un_cupon_VTEX(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		loginEComerceWithBug("1162538540","1469");	
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		driver.findElement(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary")).click();
+		sleep(2000);
+		driver.findElement(By.cssSelector(".product-main__btn--collapse.js-select-cater.js-steps")).click();
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.btn.btn-default")),"contains","MANTENER MI PLAN");
+		sleep(5000);
+		driver.findElement(By.cssSelector(".action__coupon.col-md-3.col-md-offset-9.col-sm-12.col-xs-12")).click();
+		driver.findElement(By.xpath("//*[@id=\"coupon\"]/div[1]/div/span[1]/input")).sendKeys("cupon-autom1");
+		buscarYClick(driver.findElements(By.cssSelector(".js-coupon.coupon__form--btn.btn.btn-default")),"contains","APLICAR");
+		sleep(2000);
+		String validacion=driver.findElement(By.xpath("//*[@id=\"coupon\"]/div[1]/div/span[3]")).getText();
+		Assert.assertTrue(validacion.equals("El cupón se adhirio con éxito"));
+	}
+	
 	@Test (groups ={"Interna Producto","Financiacion"}) 
 	public void C65_cliente_logueado_Compra_equipo_linea_nueva_no_hay_opcion_cupon_club(){
 		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
@@ -670,6 +691,33 @@ public class EComerce extends Metodos{
 		WaitForElement("cssSelector", ".coupon__leyend.coupon__leyend--vtex.col-md-7.col-xs-12");
 		Assert.assertFalse(ElementCreated("cssSelector", ".coupon__wrapper.coupon__wrapper--personal.col-md-9.col-md-offset-3", 5));
 		
+	}
+	
+	@Test (groups ={"Interna Accesorio","Financiacion"})
+	public void C66_Cliente_logueado_compra_linea_nueva_solo_puede_aplicar_un_cupon_VTEX(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		loginEComerceWithBug("1162538540","1469");	
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		driver.findElement(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary")).click();
+		sleep(2000);
+		driver.findElement(By.cssSelector(".product-main__btn--collapse.js-select-plan.js-steps")).click();
+		driver.findElement(By.cssSelector(".plan__btn.product-main__btn.btn.btn-default")).click();
+		sleep(5000);
+		driver.findElement(By.cssSelector(".action__coupon.col-md-3.col-md-offset-9.col-sm-12.col-xs-12")).click();
+		driver.findElement(By.xpath("//*[@id=\"coupon\"]/div[1]/div/span[1]/input")).sendKeys("cupon-autom1");
+		buscarYClick(driver.findElements(By.cssSelector(".js-coupon.coupon__form--btn.btn.btn-default")),"contains","APLICAR");
+		sleep(2000);
+		String validacion=driver.findElement(By.xpath("//*[@id=\"coupon\"]/div[1]/div/span[3]")).getText();
+		Assert.assertTrue(validacion.equals("El cupón se adhirio con éxito"));
+		driver.findElement(By.xpath("//*[@id=\"coupon\"]/div[1]/div/span[1]/input")).clear();
+		driver.findElement(By.xpath("//*[@id=\"coupon\"]/div[1]/div/span[1]/input")).sendKeys("cupon-autom2");
+		buscarYClick(driver.findElements(By.cssSelector(".js-coupon.coupon__form--btn.btn.btn-default")),"contains","APLICAR");
+		sleep(2000);
+		validacion=driver.findElement(By.xpath("//*[@id=\"coupon\"]/div[1]/div/span[3]")).getText();
+		Assert.assertTrue(validacion.equals("Los cupones no son acumulativos"));
 	}
 
 	@Test (groups ={"Interna Producto","Financiacion"}) 
