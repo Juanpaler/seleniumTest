@@ -640,6 +640,75 @@ public class EComerce extends Metodos{
 	}
 	
 	@Test (groups ={"Interna Producto","Financiacion"}) 
+	public void C61_cliente_logueado_hace_cater_y_aplica_cupon_club(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		loginEComerceWithBug("1164443656","1469");				
+
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		
+		driver.findElement(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary")).click();
+		driver.findElement(By.cssSelector(".product-main__btn--collapse.js-select-cater.js-steps")).click();
+		
+		
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.btn.btn-default")),"contains","MANTENER MI PLAN");
+		
+		WaitForElement("cssSelector", ".action__coupon.col-md-3.col-md-offset-9.col-sm-12.col-xs-12");
+
+		driver.findElement(By.cssSelector(".action__coupon.col-md-3.col-md-offset-9.col-sm-12.col-xs-12")).click();
+		
+		String precioAntesCuponString = driver.findElement(By.xpath("/html/body/div[7]/div[1]/div[2]/span[2]")).getText();
+		precioAntesCuponString = precioAntesCuponString.replace("$", "");
+		precioAntesCuponString = precioAntesCuponString.replace(".", "");
+		precioAntesCuponString = precioAntesCuponString.replace(",", ".");
+		Double precioAntesCupon = Double.parseDouble(precioAntesCuponString);
+		
+		driver.findElement(By.xpath("//*[@id='coupon']/div[2]/div/span[1]/input")).sendKeys("14451282");
+		driver.findElement(By.xpath("//*[@id='coupon']/div[2]/div/span[2]/button")).click();
+		
+		WaitForElement(driver,"xpath", "//*[@id='coupon']/div[2]/div/span[3]");
+		sleep(5000);
+		
+		String precioDespuesCuponString = driver.findElement(By.xpath("/html/body/div[7]/div[1]/div[2]/span[2]")).getText();
+		
+		precioDespuesCuponString = precioDespuesCuponString.replace("$", "");
+		precioDespuesCuponString = precioDespuesCuponString.replace(".", "");
+		precioDespuesCuponString = precioDespuesCuponString.replace(",", ".");
+		Double precioDespuesCupon = Double.parseDouble(precioDespuesCuponString);
+		
+		Assert.assertTrue(precioDespuesCupon < precioAntesCupon);
+	}
+	
+	@Test (groups ={"Interna Producto","Financiacion"}) 
+	public void C62_cliente_logueado_aplica_cupon_club_canjeado(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		loginEComerceWithBug("1164443656","1469");				
+
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		
+		driver.findElement(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary")).click();
+		driver.findElement(By.cssSelector(".product-main__btn--collapse.js-select-cater.js-steps")).click();
+		
+		
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.btn.btn-default")),"contains","MANTENER MI PLAN");
+		
+		WaitForElement("cssSelector", ".action__coupon.col-md-3.col-md-offset-9.col-sm-12.col-xs-12");
+
+		driver.findElement(By.cssSelector(".action__coupon.col-md-3.col-md-offset-9.col-sm-12.col-xs-12")).click();
+		
+		driver.findElement(By.xpath("//*[@id='coupon']/div[2]/div/span[1]/input")).sendKeys("14451282");
+		driver.findElement(By.xpath("//*[@id='coupon']/div[2]/div/span[2]/button")).click();
+
+		
+		
+	}
+	
+	@Test (groups ={"Interna Producto","Financiacion"}) 
 	public void C65_cliente_logueado_Compra_equipo_linea_nueva_no_hay_opcion_cupon_club(){
 		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
