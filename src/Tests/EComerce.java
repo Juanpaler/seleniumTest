@@ -733,8 +733,41 @@ public class EComerce extends Metodos{
 		driver.findElement(By.xpath("//*[@id='coupon']/div[2]/div/span[1]/input")).sendKeys("14451282");
 		driver.findElement(By.xpath("//*[@id='coupon']/div[2]/div/span[2]/button")).click();
 
+		WaitForElement("xpath","//*[@id='coupon']/div[2]/div/span[3]");
+		sleep(5000);
+		String texto = driver.findElement(By.xpath("//*[@id='coupon']/div[2]/div/span[3]")).getText();
 		
+		Assert.assertTrue(texto.contains("cupon usado"));		
 		
+	}
+	
+	@Test (groups ={"Interna Producto","Financiacion"}) 
+	public void C63_cliente_logueado_aplica_cupon_club_de_otra_linea(){
+		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		loginEComerceWithBug("1162538540","1469");				
+
+		buscarYClick(driver.findElements(By.cssSelector(".btn.btn-primary.btn-lg.btn-block")),"contains","ver todos los equipos");
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");
+		
+		driver.findElement(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary")).click();
+		driver.findElement(By.cssSelector(".product-main__btn--collapse.js-select-cater.js-steps")).click();		
+		
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.btn.btn-default")),"contains","MANTENER MI PLAN");
+		
+		WaitForElement("cssSelector", ".action__coupon.col-md-3.col-md-offset-9.col-sm-12.col-xs-12");
+
+		driver.findElement(By.cssSelector(".action__coupon.col-md-3.col-md-offset-9.col-sm-12.col-xs-12")).click();
+		
+		driver.findElement(By.xpath("//*[@id='coupon']/div[2]/div/span[1]/input")).sendKeys("14451282");
+		driver.findElement(By.xpath("//*[@id='coupon']/div[2]/div/span[2]/button")).click();
+
+		WaitForElement("xpath","//*[@id='coupon']/div[2]/div/span[3]");
+		sleep(5000);
+		String texto = driver.findElement(By.xpath("//*[@id='coupon']/div[2]/div/span[3]")).getText();
+		
+		Assert.assertTrue(texto.contains("Ocurrio un error inesperado (pudo fallar el servicio)"));		
 	}
 	
 	@Test (groups ={"Interna Producto","Financiacion"}) 
