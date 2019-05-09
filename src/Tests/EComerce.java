@@ -636,7 +636,15 @@ public class EComerce extends Metodos{
 		driver.findElement(By.cssSelector(".action__coupon.col-md-3.col-md-offset-9.col-sm-12.col-xs-12")).click();
 		driver.findElement(By.xpath("//*[@id=\"coupon\"]/div[1]/div/span[1]/input")).sendKeys("cupon-autom1");
 		buscarYClick(driver.findElements(By.cssSelector(".js-coupon.coupon__form--btn.btn.btn-default")),"contains","APLICAR");
-	
+		sleep(2000);
+		String validacion=driver.findElement(By.xpath("//*[@id=\"coupon\"]/div[1]/div/span[3]")).getText();
+		Assert.assertTrue(validacion.equals("El cupón se adhirio con éxito"));
+		driver.findElement(By.xpath("//*[@id=\"coupon\"]/div[1]/div/span[1]/input")).clear();
+		driver.findElement(By.xpath("//*[@id=\"coupon\"]/div[1]/div/span[1]/input")).sendKeys("cupon-autom2");
+		buscarYClick(driver.findElements(By.cssSelector(".js-coupon.coupon__form--btn.btn.btn-default")),"contains","APLICAR");
+		sleep(2000);
+		validacion=driver.findElement(By.xpath("//*[@id=\"coupon\"]/div[1]/div/span[3]")).getText();
+		Assert.assertTrue(validacion.equals("Los cupones no son acumulativos"));
 	}
 	
 	@Test (groups ={"Interna Producto","Financiacion"}) 
