@@ -26,9 +26,9 @@ public class MetodosMiCuentaWebATG extends Utils {
   	
 	static WebDriver driver;
 
-	public Properties testConfig = new Properties();
-    InputStream testConfigInput = null;
-    public static OutputStream configOutput = null;
+//	public Properties testConfig = new Properties();
+//    InputStream testConfigInput = null;
+//    public static OutputStream configOutput = null;
     
 //    public void loadTestConfig(){
 //        try{
