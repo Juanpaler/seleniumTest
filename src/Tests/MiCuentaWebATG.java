@@ -118,4 +118,12 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 		Assert.assertTrue(intValue(nroRefPago));		
 	}
 	
+	@Test (groups = "DummyGroup", priority = 0)
+	public void C07_CuentaGestionarMudanza (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginMiCuentaWebATG("tiagotest05@cablevision.com.ar","Prueba12");
+		buscarYClick(driver.findElements(By.cssSelector(".cv-btn")),"equals","gestionar mudanza");
+
+		
+	}
 }
