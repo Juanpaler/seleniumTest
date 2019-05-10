@@ -118,7 +118,7 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 		Assert.assertTrue(intValue(nroRefPago));		
 	}
 	
-}
+
 	
 	@Test (groups = "DummyGroup", priority = 0)
 	public void C05_InformacionDeFacturacion (){
@@ -162,4 +162,4 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 	}
 	
 }
-}
+
