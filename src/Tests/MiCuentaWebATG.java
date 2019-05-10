@@ -69,4 +69,46 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 		
 	}
 	
+	
+	@Test (groups = "DummyGroup", priority = 0)
+	public void C05_InformacionDeFacturacion (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginMiCuentaWebATG("tiagotest02@cablevision.com.ar","Prueba12");
+		
+		driver.findElement(By.xpath("/html/body/main/div[5]/div[1]/ul/li[2]/a")).click();
+		driver.findElement(By.xpath("//div[@class='saldo']/span[4]")).click();
+		
+		
+		driver.findElement(By.xpath("//p[@class='med-pago']/a[@href='/clientes/factura/debito-automatico']")).click();
+
+		Assert.assertTrue(ElementCreatedUni(driver, "id", "cbuSlider", 10));
+		driver.findElement(By.id("cbuSlider")).click();
+		sleep(1500);
+		Assert.assertTrue(ElementCreatedUni(driver, "id", "creditoSlider", 10));	
+		driver.findElement(By.id("creditoSlider")).click();
+		sleep(1500);
+
+		driver.navigate().back();
+		
+		Assert.assertTrue(ElementCreatedUni(driver, "xpath", "//p[@class='med-pago']/a[@href='https://pagomiscuentas.com/']", 10));			
+		
+		driver.findElement(By.xpath("//a[@href='/MediosDePago']")).click();
+		sleep(500);
+
+		driver.findElement(By.xpath("/html/body/main/main/div[2]/div[2]/div/ul/li[2]/a")).click();
+		String pagoEnEfectivo = driver.findElement(By.xpath("/html/body/main/main/div[2]/div[2]/div/div/div[2]/h3[1]")).getText();
+		Assert.assertTrue(pagoEnEfectivo.contains("Pago en efectivo"));
+		sleep(500);
+
+		driver.findElement(By.xpath("/html/body/main/main/div[2]/div[2]/div/ul/li[3]/a")).click();
+		String pagoPorInternet = driver.findElement(By.xpath("/html/body/main/main/div[2]/div[2]/div/div/div[3]/h3[1]")).getText();
+		Assert.assertTrue(pagoPorInternet.contains("Pago por internet"));
+		sleep(500);
+
+		driver.findElement(By.xpath("/html/body/main/main/div[2]/div[2]/div/ul/li[4]/a")).click();
+		String pagoTelefonico = driver.findElement(By.xpath("/html/body/main/main/div[2]/div[2]/div/div/div[4]/h3")).getText();
+		Assert.assertTrue(pagoTelefonico.contains("Pago telefónico"));
+		
+	}
+	
 }
