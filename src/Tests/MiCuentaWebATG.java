@@ -46,7 +46,7 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 	@Test (groups = "DummyGroup", priority = 0)
 	public void C01_DummyTest (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
-		loginMiCuentaWebATG();
+		loginMiCuentaWebATG("tiagotest01@cablevision.com.ar","Prueba12");
 		
 	}
 	

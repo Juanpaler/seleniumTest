@@ -85,9 +85,19 @@ public class MetodosMiCuentaWebATG extends Utils {
 		}
 	}
 	
-	public void loginMiCuentaWebATG() {
+	public void loginMiCuentaWebATG(String user, String pass) {
+		driver.get("http://cv-atgf2-test.corp.cablevision.com.ar:7003/");		
 		
-					
+		WaitForElement(driver, "id", "ingresar");
+		driver.findElement(By.id("ingresar")).click();
+		
+		WaitForElement(driver, "id", "username");
+		driver.findElement(By.id("username")).sendKeys(user);
+		driver.findElement(By.id("password")).sendKeys(pass);	
+		
+		driver.findElement(By.id("login-button")).click();		
+		
+		
 	}
 	
 	
