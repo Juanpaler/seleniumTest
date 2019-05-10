@@ -121,7 +121,7 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 
 	
 	@Test (groups = "DummyGroup", priority = 0)
-	public void C05_InformacionDeFacturacion (){
+	public void C06_MediosDePago (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginMiCuentaWebATG("tiagotest02@cablevision.com.ar","Prueba12");
 		
