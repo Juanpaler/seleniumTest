@@ -101,4 +101,21 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 		
 	}
 	
+	@Test (groups = "DummyGroup", priority = 0)
+	public void C03_InformacionDeFacturacion (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginMiCuentaWebATG("tiagotest02@cablevision.com.ar","Prueba12");
+		
+		driver.findElement(By.xpath("/html/body/main/div[5]/div[1]/ul/li[2]/a")).click();
+		driver.findElement(By.xpath("//div[@class='saldo']/span[4]")).click();
+		String saldo = driver.findElement(By.xpath("//div[@class='saldo']/span[@class='pla']")).getText();
+		String nroRefPago = driver.findElement(By.xpath("//div[@class='saldo']/span[4]")).getText();
+		
+		saldo = saldo.replace(",","");
+		nroRefPago = nroRefPago.replace("No. de Referencia de Pago: ", "");
+		
+		Assert.assertTrue(intValue(saldo));
+		Assert.assertTrue(intValue(nroRefPago));		
+	}
+	
 }
