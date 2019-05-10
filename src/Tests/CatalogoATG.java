@@ -407,9 +407,7 @@ public class CatalogoATG extends MetodosCatalogoATG{
 	
 		String metodoPago="Todos";		
 		String prioridad="1501";
-		//String legales="AU_TEST_SP"+sprint+"_ATG_LEG_M";
-		String nombreCRMInp="AU_TEST_SP"+sprint+"_ATG_NCRM_M";		
-	
+		String nombreCRMInp="AU_TEST_SP"+sprint+"_ATG_NCRM_M";
 		String descuento = "36.00";
 		String descuentoFinPromo = "6.00";
 		String duracion = "13";
