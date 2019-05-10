@@ -102,9 +102,13 @@ public class MetodosMiCuentaWebATG extends Utils {
 	
 	
 
-	public void logoutCatalogoATG() {		
+	public void logoutMiCuentaWebATG() {		
 		
-		
+		WaitForElement(driver, "cssSelector", ".name");
+		driver.findElement(By.cssSelector(".name")).click();
+		WaitForElement(driver, "cssSelector", ".cerra");
+		driver.findElement(By.cssSelector(".cerra")).click();
+
 	}
 	
 		
