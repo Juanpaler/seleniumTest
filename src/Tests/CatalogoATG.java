@@ -480,6 +480,33 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		Assert.assertTrue(valoresValidos);
 	}
 	
+	@Test (groups = "EntidadesMaestrasPromociones", priority = 3)
+	public void C09_EntidadesMaestrasPromocionEnviar (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+
+		loadTestConfig();
+		String nroPromocionSecuencial = testConfig.getProperty("nroPromocionSecuencial");
+		
+		loginCatalogoATG();
+		//Click en entidades maestras
+		buscarYClick(driver.findElements(By.cssSelector(".mdl-button.mdl-js-button.mdl-js-ripple-effect")),"equals","Entidades Maestras");
+		//Click en promociones
+		driver.findElement(By.xpath("//a[contains(text(),'Promociones')]")).click();
+		
+		buscarPromocionPorId(nroPromocionSecuencial, false);		
+	
+		//Presiono boton enviar
+		driver.findElement(By.xpath("//*[@id='panel_table_promo']/article/div/div[3]/button[1]")).click();		
+
+		buscarYClick(driver.findElements(By.cssSelector(".btn-Cata-base.btn-VerResult")),"equals","Confirmar");
+		
+		buscarPromocionPorId(nroPromocionSecuencial, false);		
+		String enviado = driver.findElement(By.xpath("//*[@id='table_collapse']/div[2]/div[2]/div/div/div[16]/span")).getText();		
+		
+		Assert.assertTrue(enviado.equals("Enviado"));
+
+	}	
+	
 	@Test (groups = "EntidadesMaestrasPromociones", priority = 4)
 	public void C10_EntidadesMaestrasPromocionAnular (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
