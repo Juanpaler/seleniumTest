@@ -36,7 +36,7 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 	public void after(){
 		tomarCaptura(driver,nombreCaso,rutaCaptura);
 		try {
-			logoutCatalogoATG();
+			logoutMiCuentaWebATG();
 			driver.close();
 		}catch(Exception ex1){	driver.close();
 		}
@@ -44,10 +44,10 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 	
 	
 	@Test (groups = "DummyGroup", priority = 0)
-	public void C01_DummyTest (){
+	public void C01_LoginEnLaWeb (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginMiCuentaWebATG("tiagotest01@cablevision.com.ar","Prueba12");
-		
+		Assert.assertTrue(ElementCreatedUni(driver, "cssSelector", ".name",20));
 	}
 	
 }
