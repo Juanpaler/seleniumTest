@@ -1,6 +1,7 @@
 package Tests;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -8,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.AssertJUnit;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -271,7 +273,7 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 	public void C10_ServiciosServiciosContratados (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginMiCuentaWebATG("pablotest157@cablevision.com.ar","Prueba12");
-		driver.findElement(By.xpath("/html/body/main/div[5]/div[1]/ul/li[4]/a")).click();
+		ClickElementoVisible(driver,"xpath", "//div[@class='side-menu']/ul/li[4]/a");
 
 		String television = driver.findElement(By.cssSelector(".col.tv.first")).getText();
 		String internet = driver.findElement(By.cssSelector(".col.it.sec")).getText();
@@ -280,6 +282,24 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 		Assert.assertTrue(television.contains("TELEVISION"));
 		Assert.assertTrue(internet.contains("INTERNET"));
 		Assert.assertTrue(telefonia.contains("TELEFONÍA"));
+		
+	}
+	
+	@Test (groups = "DummyGroup", priority = 0)
+	public void C11_ServiciosServiciosContratados (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginMiCuentaWebATG("pablotest157@cablevision.com.ar","Prueba12");
+		driver.findElement(By.xpath("/html/body/main/div[5]/div[1]/ul/li[4]/a")).click();
+
+		driver.findElement(By.cssSelector(".adm")).click();
+		
+		ArrayList<String> tabs2 = new ArrayList<String> (driver.getWindowHandles());
+	    driver.switchTo().window(tabs2.get(1));
+	    WaitForElement(driver, "id", "usernameNew");
+	    sleep(2500);
+	    driver.close();
+	    driver.switchTo().window(tabs2.get(0));
+		
 		
 	}
 	
