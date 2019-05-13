@@ -316,5 +316,19 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 		driver.close();
 		driver.switchTo().window(tabs.get(0));
 	}
+	
+	@Test (groups = "DummyGroup", priority = 0)
+	public void C24_clubPersonalValidarSitio (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginMiCuentaWebATG("tiagotest01@cablevision.com.ar","Prueba12");
+		ClickElementoVisible(driver,"xpath", "//div[@class='side-menu']/ul/li[7]/a");
+	    ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+		driver.switchTo().window(tabs.get(1));
+		sleep(30000);
+		String texto=driver.findElement(By.cssSelector(".text-center.title.c-violet")).getText();
+		Assert.assertTrue(texto.equals("¿Qué es Club Personal ?"));
+		driver.close();
+		driver.switchTo().window(tabs.get(0));
+	}
 }
 
