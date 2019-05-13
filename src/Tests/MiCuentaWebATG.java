@@ -263,6 +263,8 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 		Assert.assertTrue(mensaje.contains("Los cambios fueron guardados exitosamente."));
 		buscarYClick(driver.findElements(By.cssSelector(".cv-btn.close")),"equals","volver a mi cuenta");
 		sleep(2000);
+		
+	}
 	
 	@Test (groups = "DummyGroup", priority = 0)
 	public void C10_ServiciosServiciosContratados (){
