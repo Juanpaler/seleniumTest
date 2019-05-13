@@ -60,7 +60,7 @@ public class Utils {
 		
 		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);		
 		
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		try {
 			switch (by) {
 			case "id":
@@ -76,7 +76,7 @@ public class Utils {
 		} catch (Exception e) {
 			Assert.assertTrue(false);
 		}
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);			
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);			
 	}
 	
 	public Boolean ElementCreatedUni(WebDriver driver, String by, String text, int time) {
