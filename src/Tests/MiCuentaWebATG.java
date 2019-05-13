@@ -197,5 +197,22 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 		Assert.assertTrue(mensaje.contains("¡Muchas Gracias!"));
 		driver.findElement(By.xpath("//*[@id=\"modal-mudanza\"]/header/button")).click();
 	}
+	
+	
+	@Test (groups = "DummyGroup", priority = 0)
+	public void C10_ServiciosServiciosContratados (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginMiCuentaWebATG("pablotest157@cablevision.com.ar","Prueba12");
+		driver.findElement(By.xpath("/html/body/main/div[5]/div[1]/ul/li[4]/a")).click();
+
+		String television = driver.findElement(By.cssSelector(".col.tv.first")).getText();
+		String internet = driver.findElement(By.cssSelector(".col.it.sec")).getText();
+		String telefonia = driver.findElement(By.cssSelector(".col.te.last")).getText();
+
+		Assert.assertTrue(television.contains("TELEVISION"));
+		Assert.assertTrue(internet.contains("INTERNET"));
+		Assert.assertTrue(telefonia.contains("TELEFONÍA"));
+		
+	}
 }
 
