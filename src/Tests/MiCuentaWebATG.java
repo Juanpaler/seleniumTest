@@ -286,7 +286,7 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 	}
 	
 	@Test (groups = "DummyGroup", priority = 0)
-	public void C11_ServiciosServiciosContratados (){
+	public void C11_ServiciostelevisionFlow (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginMiCuentaWebATG("pablotest157@cablevision.com.ar","Prueba12");
 		driver.findElement(By.xpath("/html/body/main/div[5]/div[1]/ul/li[4]/a")).click();
@@ -298,9 +298,21 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 	    WaitForElement(driver, "id", "usernameNew");
 	    sleep(2500);
 	    driver.close();
-	    driver.switchTo().window(tabs2.get(0));
+	    driver.switchTo().window(tabs2.get(0));		
+	}
+	
+	@Test (groups = "DummyGroup", priority = 0)
+	public void C12_ServiciosTelevisionEstadoDelServicio (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginMiCuentaWebATG("pablotest157@cablevision.com.ar","Prueba12");
+		driver.findElement(By.xpath("/html/body/main/div[5]/div[1]/ul/li[4]/a")).click();
+		
+		buscarYClick(driver.findElements(By.cssSelector(".est.catvServiceStatus")), "contains", "estado de servicios");
+		String estadoServicio = driver.findElement(By.cssSelector(".lg.cen")).getText();
 		
 		
+	    Assert.assertTrue(estadoServicio.contains("ESTADO DE SERVICIO"));
+	
 	}
 	
 	@Test (groups = "DummyGroup", priority = 0)
