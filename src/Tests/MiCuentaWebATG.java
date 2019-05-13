@@ -1,6 +1,7 @@
 package Tests;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -8,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.AssertJUnit;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -287,10 +289,14 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 	public void C23_CentroDeAyudaValidarSitio (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginMiCuentaWebATG("tiagotest01@cablevision.com.ar","Prueba12");
-		//driver.findElement(By.xpath("//div[@class='side-menu']/ul/li[6]/a")).click();
 		ClickElementoVisible(driver,"xpath", "//div[@class='side-menu']/ul/li[6]/a");
-        
-		
+	    ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+		driver.switchTo().window(tabs.get(1));
+		sleep(2000);
+		Assert.assertTrue(false);
+		//Falta validacion por que no carga nada la pagina de ayuda
+		driver.close();
+		driver.switchTo().window(tabs.get(0));
 	}
 }
 
