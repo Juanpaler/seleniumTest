@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -87,6 +88,18 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 		String domicilio=driver.findElement(By.xpath("//div[@class='box size-2']/div/h4")).getText(); 
 		Assert.assertTrue(domicilio.equals("DOMICILIO DE INSTALACIÓN"));
 		
+		String direccion=driver.findElement(By.xpath("//div[@class='box size-2']/div/p[1]/span[2]")).getText(); 
+		System.out.println(direccion);
+		Assert.assertFalse(direccion.isEmpty());
+		
+		String localidad=driver.findElement(By.xpath("//div[@class='box size-2']/div/p[2]/span[2]")).getText(); 
+		System.out.println(localidad);
+		Assert.assertFalse(localidad.isEmpty());
+		
+		String provincia=driver.findElement(By.xpath("//div[@class='box size-2']/div/p[3]/span[2]")).getText(); 
+		System.out.println(provincia);
+		Assert.assertFalse(provincia.isEmpty());
+
 		String usuario=driver.findElement(By.xpath("//*[@id=\"registerSection\"]/h4")).getText(); 
 		System.out.println(usuario);
 		Assert.assertTrue(usuario.equals("USUARIO DE REGISTRACIÓN"));
@@ -166,8 +179,23 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginMiCuentaWebATG("tiagotest05@cablevision.com.ar","Prueba12");
 		buscarYClick(driver.findElements(By.cssSelector(".cv-btn")),"equals","gestionar mudanza");
-
-		
+		new Select(driver.findElement(By.id("documentType"))).selectByVisibleText("DNI Masculino");
+		driver.findElement(By.id("documentNumber")).sendKeys("34270300");
+		sleep(2000);
+		driver.findElement(By.id("nameAndSurname")).clear();
+		driver.findElement(By.id("nameAndSurname")).sendKeys("Juan Perez");
+		new Select(driver.findElement(By.id("phoneType"))).selectByVisibleText("Celular");
+		driver.findElement(By.id("areaCode")).clear();
+		driver.findElement(By.id("areaCode")).sendKeys("011");
+		driver.findElement(By.id("phoneNumber")).clear();
+		driver.findElement(By.id("phoneNumber")).sendKeys("32643788");
+		driver.findElement(By.id("email")).clear();
+		driver.findElement(By.id("email")).sendKeys("juanperze23@gmail.com");
+		buscarYClick(driver.findElements(By.cssSelector(".cv-btn-default.primary.pull-right")),"equals","Solicitar");
+		sleep(2000);
+		String mensaje = driver.findElement(By.xpath("//*[@id=\"modal-mudanza\"]/header/h2")).getText();
+		Assert.assertTrue(mensaje.contains("¡Muchas Gracias!"));
+		driver.findElement(By.xpath("//*[@id=\"modal-mudanza\"]/header/button")).click();
 	}
 }
 
