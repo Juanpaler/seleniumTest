@@ -1,6 +1,7 @@
 package Tests;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -263,6 +264,16 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 		Assert.assertTrue(mensaje.contains("Los cambios fueron guardados exitosamente."));
 		buscarYClick(driver.findElements(By.cssSelector(".cv-btn.close")),"equals","volver a mi cuenta");
 		sleep(2000);
+	}
+	
+	@Test (groups = "DummyGroup", priority = 0)
+	public void C23_CentroDeAyudaValidarSitio (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginMiCuentaWebATG("tiagotest01@cablevision.com.ar","Prueba12");
+		//driver.findElement(By.xpath("//div[@class='side-menu']/ul/li[6]/a")).click();
+		ClickElementoVisible(driver,"xpath", "//div[@class='side-menu']/ul/li[6]/a");
+        
+		
 	}
 }
 

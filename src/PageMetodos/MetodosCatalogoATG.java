@@ -156,37 +156,6 @@ public class MetodosCatalogoATG extends Utils {
 		boton.click();
 	}
 	
-	public WebElement GetElementoVisible(List<WebElement> elementos) {		
-		
-		int indiceElemento = 0;
-		for(int i=0; i< elementos.size();i++)
-		{
-			if(elementos.get(i).getLocation().x > 0 && elementos.get(i).getLocation().y > 0) 
-			{
-				indiceElemento = i;
-			}
-		}
-		return elementos.get(indiceElemento);
-	}
 	
-	public void ClickElementoVisible(String by, String selector) {			
-
-		List<WebElement> elementos = Collections.<WebElement>emptyList();
-
-		switch (by) {
-		case "id":
-			elementos = driver.findElements(By.id(selector));	
-			break;
-		case "cssSelector":
-			elementos = driver.findElements(By.cssSelector(selector));	
-			break;
-		case "xpath":
-			elementos = driver.findElements(By.xpath(selector));	
-			break;
-		}
-	
-		WebElement elemento = GetElementoVisible(elementos);
-		elemento.click();	
-	}	
 		
 } 

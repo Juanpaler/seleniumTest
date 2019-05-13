@@ -104,8 +104,8 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		
 		//Presiono en botón de búsqueda de legales
 		driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[1]/button[1]")).click();		
-		ClickElementoVisible("xpath", "//*[@id='panel_table_legales']/article/table/tbody/tr[1]/td[1]/div/label");		
-		ClickElementoVisible("xpath", "//*[@id='modal-large']/div/div/div[3]/button[2]");
+		ClickElementoVisible(driver,"xpath", "//*[@id='panel_table_legales']/article/table/tbody/tr[1]/td[1]/div/label");		
+		ClickElementoVisible(driver,"xpath", "//*[@id='modal-large']/div/div/div[3]/button[2]");
 		
 		legales = driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[2]/input")).getAttribute("value");
 		
@@ -161,8 +161,8 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[1]/button[2]")).click();				
 		//Presiono en botón de búsqueda de legales
 		driver.findElement(By.xpath("//*[@id='collapseNuevoProducto']/div/div[1]/div/div[2]/div/div[4]/div[1]/button[1]")).click();		
-		ClickElementoVisible("xpath", "//*[@id='panel_table_legales']/article/table/tbody/tr[7]/td[1]/div/label");		
-		ClickElementoVisible("xpath", "//*[@id='modal-large']/div/div/div[3]/button[2]");
+		ClickElementoVisible(driver,"xpath", "//*[@id='panel_table_legales']/article/table/tbody/tr[7]/td[1]/div/label");		
+		ClickElementoVisible(driver,"xpath", "//*[@id='modal-large']/div/div/div[3]/button[2]");
 		
 		String nombre = driver.findElement(By.name("nombre")).getAttribute("value"); 
 		String nombre_base_instalada = driver.findElement(By.name("nombre_corto")).getAttribute("value");
@@ -311,8 +311,8 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		
 		//Presiono en botón de búsqueda de legales		
 		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[1]/button[1]")).click();		
-		ClickElementoVisible("xpath", "//*[@id='panel_table_legales']/article/table/tbody/tr[1]/td[1]/div/label");		
-		ClickElementoVisible("xpath", "//*[@id='modal-large']/div/div/div[3]/button[2]");
+		ClickElementoVisible(driver,"xpath", "//*[@id='panel_table_legales']/article/table/tbody/tr[1]/td[1]/div/label");		
+		ClickElementoVisible(driver,"xpath", "//*[@id='modal-large']/div/div/div[3]/button[2]");
 		
 		legales = driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[2]/input")).getAttribute("value");
 
@@ -427,8 +427,8 @@ public class CatalogoATG extends MetodosCatalogoATG{
 		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[1]/button[2]")).click();				
 		//Presiono en botón de búsqueda de legales
 		driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[1]/button[1]")).click();		
-		ClickElementoVisible("xpath", "//*[@id='panel_table_legales']/article/table/tbody/tr[7]/td[1]/div/label");		
-		ClickElementoVisible("xpath", "//*[@id='modal-large']/div/div/div[3]/button[2]");
+		ClickElementoVisible(driver,"xpath", "//*[@id='panel_table_legales']/article/table/tbody/tr[7]/td[1]/div/label");		
+		ClickElementoVisible(driver,"xpath", "//*[@id='modal-large']/div/div/div[3]/button[2]");
 		String legales = driver.findElement(By.xpath("//*[@id='collapseNuevaPromocion']/div/div[3]/div/div[1]/div/div[3]/div[2]/input")).getAttribute("value");
 
 		driver.findElement(By.id("nombreCRMInp")).clear();

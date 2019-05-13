@@ -13,6 +13,7 @@ import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
@@ -311,5 +312,38 @@ public class Utils {
 	    	 return false;  
 	     }  
 	}
+	
+public WebElement GetElementoVisible(List<WebElement> elementos) {		
+		
+		int indiceElemento = 0;
+		for(int i=0; i< elementos.size();i++)
+		{
+			if(elementos.get(i).getLocation().x > 0 && elementos.get(i).getLocation().y > 0) 
+			{
+				indiceElemento = i;
+			}
+		}
+		return elementos.get(indiceElemento);
+	}
+	
+	public void ClickElementoVisible( WebDriver driver,String by, String selector) {			
+
+		List<WebElement> elementos = Collections.<WebElement>emptyList();
+
+		switch (by) {
+		case "id":
+			elementos = driver.findElements(By.id(selector));	
+			break;
+		case "cssSelector":
+			elementos = driver.findElements(By.cssSelector(selector));	
+			break;
+		case "xpath":
+			elementos = driver.findElements(By.xpath(selector));	
+			break;
+		}
+	
+		WebElement elemento = GetElementoVisible(elementos);
+		elemento.click();	
+	}	
   
 }
