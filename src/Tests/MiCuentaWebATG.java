@@ -198,6 +198,71 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 		driver.findElement(By.xpath("//*[@id=\"modal-mudanza\"]/header/button")).click();
 	}
 	
+	@Test (groups = "DummyGroup", priority = 0)
+	public void C08_CuentaModificarUsuario (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginMiCuentaWebATG("tiagotest05@cablevision.com.ar","Prueba12");
+		//Modificacion Usuario
+		driver.findElement(By.id("modifyUserModalBtn")).click();
+		sleep(2000);
+		String usuarioActual = driver.findElement(By.id("modalUsername")).getText();
+		driver.findElement(By.id("newUserLogin")).sendKeys("automationtest@cablevision.com.ar");
+		driver.findElement(By.id("modifyUser")).click();
+		sleep(2000);
+		String mensaje = driver.findElement(By.xpath("//*[@id=\"mod-user\"]/div[2]/div/div/div[2]/div[2]/p")).getText();
+		Assert.assertTrue(mensaje.contains("Los cambios fueron guardados exitosamente."));
+		buscarYClick(driver.findElements(By.cssSelector(".cv-btn.close")),"equals","volver a mi cuenta");
+		sleep(2000);
+		driver.findElement(By.id("modifyUserModalBtn")).click();
+		sleep(2000);
+		String usuarioNuevo = driver.findElement(By.id("modalUsername")).getText();
+		Assert.assertTrue(usuarioNuevo.contains("automationtest@cablevision.com.ar"));
+		driver.findElement(By.id("newUserLogin")).sendKeys("tiagotest05@cablevision.com.ar");
+		driver.findElement(By.id("modifyUser")).click();
+		sleep(2000);
+		mensaje = driver.findElement(By.xpath("//*[@id=\"mod-user\"]/div[2]/div/div/div[2]/div[2]/p")).getText();
+		Assert.assertTrue(mensaje.contains("Los cambios fueron guardados exitosamente."));
+		buscarYClick(driver.findElements(By.cssSelector(".cv-btn.close")),"equals","volver a mi cuenta");
+		sleep(2000);
+		usuarioNuevo=driver.findElement(By.xpath("//*[@id=\"actualUsername\"]")).getText(); 
+		Assert.assertTrue(usuarioActual.contains(usuarioNuevo));
+		
+		//Modificacion Contraseña
+		driver.findElement(By.id("btnPasswordChange")).click();
+		sleep(2000);
+		driver.findElement(By.id("user_password")).sendKeys("Prueba12");
+		driver.findElement(By.id("new_password")).sendKeys("Prueba13");
+		driver.findElement(By.id("donfirm_password")).sendKeys("Prueba13");
+		driver.findElement(By.id("modifyPasswordButton")).click();
+		sleep(5000);
+		mensaje = driver.findElement(By.xpath("//*[@id=\"_123\"]/div[2]/div/div/div/div[2]/div/p")).getText();
+		Assert.assertTrue(mensaje.contains("Modificaste con éxito la contraseña de tu cuenta"));
+		buscarYClick(driver.findElements(By.cssSelector(".cv-btn.close")),"equals","volver a mi cuenta");
+		sleep(2000);
+		driver.findElement(By.id("btnPasswordChange")).click();
+		sleep(2000);
+		driver.findElement(By.id("user_password")).sendKeys("Prueba13");
+		driver.findElement(By.id("new_password")).sendKeys("Prueba12");
+		driver.findElement(By.id("donfirm_password")).sendKeys("Prueba12");
+		driver.findElement(By.id("modifyPasswordButton")).click();
+		sleep(5000);
+		mensaje = driver.findElement(By.xpath("//*[@id=\"_123\"]/div[2]/div/div/div/div[2]/div/p")).getText();
+		Assert.assertTrue(mensaje.contains("Modificaste con éxito la contraseña de tu cuenta"));
+		buscarYClick(driver.findElements(By.cssSelector(".cv-btn.close")),"equals","volver a mi cuenta");
+		sleep(2000);
+	}
+	
+	@Test (groups = "DummyGroup", priority = 0)
+	public void C09_CuentaPrivacidad (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginMiCuentaWebATG("tiagotest05@cablevision.com.ar","Prueba12");
+		driver.findElement(By.xpath("//div[@class='configuration']/a")).click();
+		driver.findElement(By.id("submitAjaxHandler")).click();
+		sleep(2000);
+		String mensaje = driver.findElement(By.xpath("//div[@class='modal-body sml cen']/p[1]")).getText();
+		Assert.assertTrue(mensaje.contains("Los cambios fueron guardados exitosamente."));
+		buscarYClick(driver.findElements(By.cssSelector(".cv-btn.close")),"equals","volver a mi cuenta");
+		sleep(2000);
 	
 	@Test (groups = "DummyGroup", priority = 0)
 	public void C10_ServiciosServiciosContratados (){
