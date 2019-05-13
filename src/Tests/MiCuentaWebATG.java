@@ -342,5 +342,13 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 		driver.close();
 		driver.switchTo().window(tabs.get(0));
 	}
+	
+	@Test (groups = "DummyGroup", priority = 0)
+	public void C25_Mudanza (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginMiCuentaWebATG("tiagotest01@cablevision.com.ar","Prueba12");
+		ClickElementoVisible(driver,"xpath", "//div[@class='side-menu']/ul/li[8]/a");
+
+	}
 }
 
