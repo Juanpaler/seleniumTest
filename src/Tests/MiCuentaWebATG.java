@@ -362,7 +362,23 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginMiCuentaWebATG("tiagotest01@cablevision.com.ar","Prueba12");
 		ClickElementoVisible(driver,"xpath", "//div[@class='side-menu']/ul/li[8]/a");
-
+		new Select(driver.findElement(By.id("documentType"))).selectByVisibleText("DNI Masculino");
+		driver.findElement(By.id("documentNumber")).sendKeys("34270300");
+		sleep(2000);
+		driver.findElement(By.id("nameAndSurname")).clear();
+		driver.findElement(By.id("nameAndSurname")).sendKeys("Juan Perez");
+		new Select(driver.findElement(By.id("phoneType"))).selectByVisibleText("Celular");
+		driver.findElement(By.id("areaCode")).clear();
+		driver.findElement(By.id("areaCode")).sendKeys("011");
+		driver.findElement(By.id("phoneNumber")).clear();
+		driver.findElement(By.id("phoneNumber")).sendKeys("32643788");
+		driver.findElement(By.id("email")).clear();
+		driver.findElement(By.id("email")).sendKeys("juanperze23@gmail.com");
+		buscarYClick(driver.findElements(By.cssSelector(".cv-btn-default.primary.pull-right")),"equals","Solicitar");
+		sleep(2000);
+		String mensaje = driver.findElement(By.xpath("//*[@id=\"modal-mudanza\"]/header/h2")).getText();
+		Assert.assertTrue(mensaje.contains("¡Muchas Gracias!"));
+		driver.findElement(By.xpath("//*[@id=\"modal-mudanza\"]/header/button")).click();
 	}
 }
 
