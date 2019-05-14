@@ -473,6 +473,23 @@ public class EComerce extends Metodos{
 		WaitForElement("cssSelector", ".product-main__btn.btn.btn-default");		
 	}	
 	
+	@Test (groups ={"Home Tienda","Visualizacion de Productos"}) 
+	public void C39_Cliente_logueado_realiza_Cater_Upselling_Plan_abono_POS_mayor200() throws IOException{
+        nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 		
+		String linea=retornaLinea(nombreCaso,archivoLineas);
+		loginEComerceWithBug("1162583971","1469");				
+		WaitForElement("id", "tpi-user");
+		driver.findElement(By.xpath("//a[contains(text(),'VER TODOS LOS EQUIPOS')]")).click();
+		buscarYClick(driver.findElements(By.cssSelector(".product-list__button")),"contains","ver detalle");		
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn.product-main__btn--buy.btn.btn-primary")),"equals","comprar");		
+		buscarYClick(driver.findElements(By.cssSelector(".product-main__btn--collapse.js-select-cater.js-steps")),"equals","Con mi línea actual de Personal");
+
+		WaitForElement("cssSelector", ".product-main__btn.btn.btn-default");	
+		
+		int cantPlanes = driver.findElements(By.cssSelector(".plan__wrapper")).size(); 
+		Assert.assertTrue(cantPlanes > 1);
+	}	
+	
 	@Test (groups ={"Interna Producto","Financiacion"}) 
 	public void C52_Cliente_no_logueado_elige_linea_Nueva(){
 		nombreCaso=new Object(){}.getClass().getEnclosingMethod().getName(); 	
