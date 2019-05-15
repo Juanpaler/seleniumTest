@@ -316,18 +316,30 @@ public class MiCuentaWebATG extends MetodosMiCuentaWebATG{
 	}
 	
 	@Test (groups = "DummyGroup", priority = 0)
-	public void C13_ServiciosInternetEstadoDelServicio (){
+	public void C14_ServiciosInternetEstadoDelServicio (){
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		loginMiCuentaWebATG("pablotest157@cablevision.com.ar","Prueba12");
 		driver.findElement(By.xpath("/html/body/main/div[5]/div[1]/ul/li[4]/a")).click();
 		
 		buscarYClick(driver.findElements(By.cssSelector(".esi.internetServiceStatus")), "contains", "estado de servicios");
-		String estadoServicio = driver.findElement(By.cssSelector(".lg.cen")).getText();
+		String estadoServicio = driver.findElement(By.cssSelector(".lg.cen")).getText();		
 		
-		
-	    Assert.assertTrue(estadoServicio.contains("ESTADO DE SERVICIO"));
-	
+	    Assert.assertTrue(estadoServicio.contains("ESTADO DE SERVICIO"));	
 	}
+	
+	
+	@Test (groups = "DummyGroup", priority = 0)
+	public void C15_ServiciosTelefoniaEstadoDelServicio (){
+		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
+		loginMiCuentaWebATG("pablotest157@cablevision.com.ar","Prueba12");
+		driver.findElement(By.xpath("/html/body/main/div[5]/div[1]/ul/li[4]/a")).click();
+		
+		buscarYClick(driver.findElements(By.cssSelector(".ese.telephoneServiceStatus")), "contains", "estado de servicios");
+		String estadoServicio = driver.findElement(By.cssSelector(".lg.cen")).getText();		
+		
+	    Assert.assertTrue(estadoServicio.contains("ESTADO DE SERVICIO"));	
+	}
+	
 	
 	@Test (groups = "DummyGroup", priority = 0)
 	public void C23_CentroDeAyudaValidarSitio (){
