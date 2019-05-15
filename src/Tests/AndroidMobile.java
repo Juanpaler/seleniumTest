@@ -22,7 +22,7 @@ public class AndroidMobile extends MetodosAndroid {
 
     private AndroidDriver<AndroidElement> driver = null;
     private DesiredCapabilities dc = new DesiredCapabilities();
-//    ccccc
+
 	private String nombreCaso;
 	private String archivoLineas="dataInput/LineasAndroidMiCuenta.xlsx";
 	private String rutaCaptura;
