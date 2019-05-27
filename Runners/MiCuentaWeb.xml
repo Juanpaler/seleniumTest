@@ -3,20 +3,20 @@
 <suite name="Mi cuenta Web" parallel="tests" thread-count="1">
 
 <!-- ************************************************** Mi  LINEA  ****************************************************** -->
-<!--  <test name="mi linea">
+  <test name="mi linea">
    <groups>
     	<run>
-     	 					<include name="mi linea"/>
+     	 					<include name="mi linea1"/>
     	</run>
   </groups>
     <classes>
     						<class name="Tests.MiCuentaWeb"/>     						
     </classes>
   </test> 
-  -->
+
   <!-- ************************************************** CONSUMOS ****************************************************** -->
   
- <!--  <test name="consumos">
+   <! -- <test name="consumos">
    <groups>
     	<run>
      	 					<include name="consumos"/>
@@ -26,7 +26,7 @@
     						<class name="Tests.MiCuentaWeb"/> 
     </classes>
   </test> 
- -->
+  -- >
  <!-- ************************************************** PACKS ****************************************************** -->
   
   <!-- <test name="packs">
@@ -80,8 +80,8 @@
   </test>
     -->
    <!-- ************************************************** LOGIN ****************************************************** -->
-    <!--
-  <test name="login">
+   <!-- 
+   <test name="login">
    <groups>
     	<run>
      	 					<include name="login"/>
@@ -91,7 +91,7 @@
     						<class name="Tests.MiCuentaWeb"/> 
     </classes>
   </test>
-  -->
+   -->
   <!-- ************************************************** INPUTS ****************************************************** -->
    <!--
   <test name="Inputs">

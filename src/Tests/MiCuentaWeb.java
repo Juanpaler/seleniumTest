@@ -210,7 +210,7 @@ public class MiCuentaWeb extends Metodos{
 		AssertJUnit.assertTrue(tabla.isDisplayed());
 	}
 	
-	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
+	@Test (groups ={ "AutogestionIndividuosWeb","mi linea1"})
 	public void Mi_Linea_Baja_de_Suscripciones_MIX() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -229,7 +229,7 @@ public class MiCuentaWeb extends Metodos{
 		AssertJUnit.assertTrue(alert.isDisplayed());
 	}
 	
-	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
+	@Test (groups ={ "AutogestionIndividuosWeb","mi linea1"})
 	public void Mi_Linea_Baja_de_Suscripciones_PRE() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);
@@ -248,7 +248,7 @@ public class MiCuentaWeb extends Metodos{
 		AssertJUnit.assertTrue(alert.isDisplayed());
 	}
 	
-	@Test (groups ={ "AutogestionIndividuosWeb","mi linea"})
+	@Test (groups ={ "AutogestionIndividuosWeb","mi linea1"})
 	public void Mi_Linea_Baja_de_Suscripciones_POS() throws IOException{
 		nombreCaso = new Object(){}.getClass().getEnclosingMethod().getName();
 		String linea=retornaLinea(nombreCaso,archivoLineas);

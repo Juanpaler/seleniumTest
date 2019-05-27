@@ -816,6 +816,7 @@ public class Metodos extends Utils {
 		new Select(driver.findElement(By.id("idProvince"))).selectByVisibleText("Mendoza");
 		sleep(3000);
 		new Select(driver.findElement(By.id("idLocalidad"))).selectByVisibleText("Lujan De Cuyo");
+		sleep(3000);
 		List<WebElement> els = driver.findElements(By.xpath("//input[@type='checkbox']"));
 		for ( WebElement el : els ) {
 		    if ( !el.isSelected() & el.isDisplayed() ) {
