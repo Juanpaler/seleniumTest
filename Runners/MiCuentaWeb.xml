@@ -3,6 +3,7 @@
 <suite name="Mi cuenta Web" parallel="tests" thread-count="1">
 
 <!-- ************************************************** Mi  LINEA  ****************************************************** -->
+ <! --
   <test name="mi linea">
    <groups>
     	<run>
@@ -13,7 +14,7 @@
     						<class name="Tests.MiCuentaWeb"/>     						
     </classes>
   </test> 
-
+-- >
   <!-- ************************************************** CONSUMOS ****************************************************** -->
   
    <! -- <test name="consumos">
